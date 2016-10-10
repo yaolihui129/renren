@@ -1,0 +1,336 @@
+.Widget .side-item { padding-top:10px; border-top:1px solid #CEE1EE }
+.Widget .share-sidebar .side-item-body,.Widget .side-item-body,#ad100000000001
+{ padding:0 0 10px } .Widget .side-item-header { position:relative; margin:0;
+padding:0 0 8px; text-align:right } .Widget .side-item-header h4 { float:left;
+color:#333; font-weight:bold } .Widget .side-item-header h4 .title { display:inline-block;
+width:180px } .Widget .side-item-header h4 .long_title { display:inline-block;
+width:100%; text-align:left } .Widget .side-item-header h4 span,.selfHelp
+.self-big h4.commonchar,.selfHelp .self-text h4.commonchar,.selfHelp .under
+h4.commonchar { font-weight:normal } .Widget .side-item-body .from-sponsor
+{ color:#AAA } .Widget .side-item-body .btnspace { float:right; margin:10px
+0 15px } .side-item .info p { overflow:hidden; word-wrap:break-word; word-break:break-all
+} .side-item-body .fans { margin:0 0 5px; line-height:18px; word-break:break-all;
+word-wrap:break-word } .side-item-body .fansapp { height:78px; margin:0
+0 5px; line-height:18px; word-break:break-all; word-wrap:break-word } .side-item-body
+.infoapp { height:83px; margin:0 0 5px; line-height:18px; word-break:break-all;
+word-wrap:break-word } .side-item .footer a,.template .footer a img,.sponsors
+.footer a img,.wide-sponsors .footer a { text-decoration:none; outline:none;
+blr:expression(this.onFocus=this.blur()) } .template .side-item-body p,.imgtemplate
+.side-item-body p,.sponsors .side-item-body p,.wide-sponsors .side-item-body
+p,.commend-page .side-item-body p,.selected .side-item-body p,.s4-preview-holder
+.sponsors .side-item-body p,.s4-preview-holder .wide-sponsors .side-item-body
+p { margin-bottom:.5ex } .template .figure,.selected .figure,.commend-page
+.figure,.sponsors .figure,.wide-sponsors .figure,.s4-preview-holder .template
+.figure,.s4-preview-holder .sponsors .figure { float:left; margin-bottom:10px
+} .template .info { margin:0 0 10px 73px; color:#333 } .sponsors .info
+{ float:left; width:120px; height:83px; color:#333; font-size:12px } .wide-sponsors
+.info,.s4-preview-holder .sponsors .info { margin-left:108px; color:#333
+} .sponsors .side-item-header a,.wide-sponsors .side-item-header a,.sw_button_area
+.link,.selfHelp a,.nuomi-ad a { outline:none; blr:expression(this.onFocus=this.blur())
+} .commend-page .info { margin-left:85px; color:#333 } .template .footer,.sponsors
+.footer,.wide-sponsors .footer,.s4-preview-holder .wide-sponsors .footer,.s4-preview-holder
+.sponsors .footer,.s4-preview-holder .template .footer,.wide-sponsors .side-item-header,.sponsors
+.side-item-body { clear:both } .wide-sponsors .footer a img { zoom:1 }
+.template .info ul li a { display:inline-block } .sponsors .figure,.figure
+{ position:relative; *zoom:1 } .sponsors .figure { position:inherit; margin-right:8px
+} .template .play,.sponsors .play,.wide-sponsors .play { display:block;
+position:absolute; left:0; top:0; width:100px; height:80px; background:url(../images/play2_1.gif)
+no-repeat center center; text-indent:-9999px; outline:0; opacity:.9; *filter:alpha(opacity=90)
+} .template .play:hover,.sponsors .play:hover,.wide-sponsors .play:hover
+{ background:url(../images/play2_2.gif) no-repeat center center } .template
+.play { width:64px; height:64px; background:url(../images/play_a.png) no-repeat
+center center } .template .play:hover { background:url(../images/play_b.png)
+no-repeat center center } .sponsors .play:hover { background-image:url(../images/play21.gif)
+} .wide-sponsors .play { width:220px; height:120px } #sponsorsWidget a.link
+img { *position:relative; zoom:1 } a.text,.s4-preview-holder a.text { color:#333;
+text-decoration:none } a.text:hover { color:#333; text-decoration:none
+} #send-gift-form { margin-bottom:10px; padding-left:20px; background:url(../images/gift.gif)
+no-repeat left 3px } #send-gift-form p.submit { text-align:right } #send-gift-form
+.input-text,#send-gift-form textarea { width:190px } .sent-gift:after {
+display:block; clear:both; height:0; content:'.'; visibility:hidden } .sent-gift
+{ margin-bottom:5px; padding:5px; background-color:#F0F5F8; *zoom:1 } .sent-gift
+.avatar { float:left; margin-right:5px } .sent-gift .gift,.nuomi-ad .nuomi-city
+{ float:right } .sent-gift p { word-wrap:break-word } .wide-sponsors .footer
+.link:hover,.sponsors .footer .link:hover { text-decoration:underline }
+#sponsorsAdFlash,#sponsorsComments .publisher .section,.widget-ad-for-56
+.avatar,.ad-show-box .img img { float:left } #sponsorsComments { float:right;
+width:350px; height:360px; background:#FFF } #sponsorsComments .diggs {
+margin-bottom:1px; padding:5px 10px 0; border-bottom:1px solid #F0F5F8;
+background:#F0F5F8 } #sponsorsComments .diggers:after { display:block;
+clear:both; content:'.' } #sponsorsComments .diggs p,.sw_operate_area,.sw_vote_item,.widget-ad-for-56
+.detail h4 { margin-bottom:5px } #sponsorsComments .diggers { margin-left:20px;
+*zoom:1 } #sponsorsComments .diggers li { float:left; width:50px; height:69px;
+margin-right:10px; text-align:center; overflow:hidden } #sponsorsComments
+.diggers li .name { *margin-top:5px } #sponsorsComments .publisher { height:59px;
+margin:0 0 1px; padding:10px 15px; border-bottom:1px solid #F0F5F8; background:#F0F5F8;
+*zoom:1; *overflow:hidden } #sponsorsComments .publisher:after { display:block;
+clear:both; content:'.' } #sponsorsComments .publisher .figure,#sponsorsComments
+.comment .figure { _display:inline; float:left; margin-right:5px } #sponsorsComments
+.publisher textarea { width:276px; height:22px; margin-top:0; margin-bottom:5px;
+resize:none } #sponsorsComments .publisher .text-count { float:right; color:#AAA
+} #sponsorsComments .comments { height:227px; border-bottom:1px solid #C2D8E7;
+background:#FFF url(../images/renren-bg.png) no-repeat center top; overflow:auto;
+word-wrap:break-word } #sponsorsComments.diggers-showed .comments { height:158px
+} #sponsorsComments .more-comments { height:24px; _height:22px; padding-right:20px;
+background:#F0F5F8; line-height:24px; text-align:right; _overflow:hidden
+} #sponsorsComments .more-comments a { line-height:24px } #sponsorsComments
+.more-comments .count { float:left; margin-left:10px; color:#888 } #sponsorsComments
+.comment { padding:5px 10px; border-bottom:2px solid #FFF; background:#F0F5F8
+} #sponsorsComments .comment .section p { line-height:15px } #sponsorsComments
+.comment .x-to-hide { float:right; text-indent:-9999px; outline:0 } #sponsorsComments
+.comment .reply,.loadMask .maskView span,.loadMask-small .maskView span
+{ margin-left:10px } .sw_mobile_num_input { width:120px; height:15px; padding:2px;
+color:#AAA; vertical-align:middle } .sw_button_img { margin-right:5px;
+vertical-align:middle } .ad_btn { position:absolute; left:0; bottom:0;
+padding:5px 0 7px 10px; text-align:left; z-index:1 } .btn_bg,.btn_bg1 {
+position:absolute; left:0; bottom:0; width:100% } .btn_bg_gray { background:#000;
+opacity:.50; filter:Alpha(Opacity=50) } .ad_btn a { display:inline-block;
+width:86px; height:21px; margin-bottom:2px; margin-top:5px; margin-left:1px;
+border:1px solid #8B8B8B; vertical-align:top; 1margin-left:10px } .ad_btn
+a:hover { margin-bottom:0; margin-top:5px; border:1px solid #333; border-bottom:3px
+solid #333 } #aShare { width:54px } .ad_join_btn { background:url(../images/i-want-join-button.png)
+-1px -1px no-repeat } .ad_buy_btn { background:url(../images/a_main_L3gO_57_040250.png)
+-1px -1px no-repeat } .ad_download_btn { background:url(../images/a_main_hatH_ac_073157.png)
+-1px -1px no-repeat } .ad_share_btn { background:url(../images/sw_share_button.png)
+-1px -1px no-repeat } .ad_like_btn { background:url(../images/follow-button1.gif)
+-1px -1px no-repeat } .home .side-item .sw_mobile_backinfo li { margin-bottom:1px;
+padding:5px 3px 5px 5px; background:#F3FAFF } .sw_mobile_backinfo li .img
+{ display:block; float:left } .sw_mobile_backinfo li .info_area { display:block;
+float:left; padding-left:5px } .sw_block,.widget-ad-for-56 .avatar img
+{ display:block } .sw_mobile_backinfo li .info_area span,.selfHelp .will
+a,#ad1000000063 .will a { color:#888 } .sw_mobile_backinfo li .info_area
+span span { color:#333; font-weight:700 } .sw_vote_title { margin-bottom:10px;
+font-weight:700 } .sw_vote_icon { background:url(../images/someicons.gif)
+0 1px no-repeat; vertical-align:middle } .sw_vote_title_text,.link img,.ad110429
+input,.ad110429 label { vertical-align:middle } .sw_vote_item input { height:16px
+} .sw_vote_p { display:block; float:left; width:35px } .sw_vote_itemtext_holder
+{ display:block; position:relative; float:left; width:170px; height:15px;
+padding-left:10px } .sw_vote_itemtext_holder .sw_vote_itemtext { position:absolute;
+left:9px; *top:2px; _top:0; vertical-align:middle; white-space:nowrap }
+.sw_vote_more { background:#005EAC; color:#FFF } .sw_vote_less { background:#CEE1EE;
+color:#666 } .sw_vote_info { margin:12px 0; color:#888 } .sw_vote_item
+input { font-family:tahoma, verdana, arial, STHeiTi, simsun, sans-serif;
+vertical-align:middle } .sw_vote_item label { font-weight:normal; font-family:tahoma,
+verdana, arial, STHeiTi, simsun, sans-serif; vertical-align:middle } .sw_button_area
+{ margin-top:12px } .sw_button_area a:hover { text-decoration:none } .sw-refresh-button
+{ display:block; position:absolute; top:-3px; right:0; width:14px; height:22px;
+background:url(../images/wbPage.gif) no-repeat 0 0; text-indent:-9999px;
+z-index:999; overflow:hidden; outline:0 none } .sw-refresh-button:hover
+{ background-position:0 -22px } .sw-x-button { display:none; position:absolute;
+top:-3px; right:0; width:14px; height:22px; background:url(../images/action-bottons.gif)
+0 -75px no-repeat; text-indent:-9999px; z-index:999; overflow:hidden; outline:0
+none } .sw-x-button:hover { background-position:0 -116px } .sw-buttons-holder
+{ position:absolute; top:0; right:0 } .s4-preview-holder .side-item { margin-bottom:10px;
+border-bottom:1px solid #FFF } .s4-preview-holder .side-item-header { padding:0
+0 8px; text-align:right } .s4-preview-holder .side-item-header h4 { float:left;
+color:#333; font-size:12px; text-align:left } .s4-preview-holder .side-item-body,.wide-sponsors
+.side-item-body { padding:0 0 7px } .s4-preview-holder .sponsors .figure,.s4-preview-holder
+.figure,.wide-sponsors,.sponsors,.ifr-wrap { position:relative } .s4-preview-holder
+.wide-sponsors .play { display:block; position:absolute; left:0; top:0;
+width:220px; height:120px; background:url(../images/play1_1.gif) no-repeat
+scroll 85px 45px transparent; text-indent:-9999px; opacity:.9; outline:0
+none } .s4-preview-holder .wide-sponsors .play:hover { background-position:85px
+-55px } .s4-preview-holder .template .info { margin:0 0 10px 73px; color:#333
+} #sponsorsWidget .sw-buttons-holder { top:0; zoom:1 } .selfHelp { width:240px
+} .selfHelp div { padding:10px 0; _zoom:1; overflow:hidden } .selfHelp
+div.addedtop { width:213px; margin:0 auto; padding:22px 0 22px 5px; border:1px
+solid #B8D4E8!important; background:#F0F5F8 } .selfHelp div.under .inner-under
+{ border:none } .selfHelp div.under { width:240px; border-bottom:1px solid
+#CEE1EE } .selfHelp div.under a.closebtn,.selfHelp div.inner-under .closebtn,.self-big
+div.under a.closebtn,.self-big div.inner-under .closebtn { position:absolute;
+left:218px; top:10px; width:14px; height:14px; background:url(../images/cs_home.png)
+no-repeat scroll -225px -24px transparent } .selfHelp div.under .closebtn:hover
+{ background-position:-225px -38px } .selfHelp div.under .closebtn span,.selfHelp
+div.inner-under .closebtn span,.self-big div.under .closebtn span,.self-big
+div.inner-under .closebtn span,.has-flash a.advert-more,.Widget .has-flash
+a.advert-more,#ad100000000072 .selfHelp .has-flash a.advert-more,#adla100000000072
+.selfHelp .has-flash a.advert-more,#ad100000000073 .selfHelp .has-flash
+a.advert-more,#ad100000000071 .selfHelp .has-flash a.advert-more,#ad100000000070
+.selfHelp .has-flash a.advert-more { display:none } .selfHelp div.inner-under
+.closebtn:hover { background-position:-225px -38px } .selfHelp div.under
+.closebtn:hover { background-position:-225px -38px } .self-big div.inner-under
+.closebtn:hover { background-position:-225px -38px } .selfHelp .self-big
+h4,.selfHelp .self-text h4,.selfHelp .under h4 { margin:0; padding:0 0
+10px; border:none; font-weight:bold } .selfHelp .img { display:inline;
+float:left; width:77px; height:77px; margin:0 5px 0 10px; } .selfHelp img
+{ display:block; margin:0 auto } .selfHelp .rr { margin:0 80px 0 5px; padding-left:13px;
+word-wrap:break-word } .selfHelp .rr.rrnew { margin:0 80px 0 5px; padding-left:0
+} .selfHelp .adr { display:inline-block; padding-top:5px; color:#5CBC5C
+} .selfHelp p a { color:#000 } .selfHelp p a:link,.selfHelp p a:visited,.selfHelp
+p a:hover,.selfHelp p a:active { color:#000; text-decoration:none } .selfHelp
+.will { margin:0 10px 0 -2px; padding:0 0 10px; text-align:right } .self-big,.self-text
+{ width:240px; padding:10px 0; border-bottom:1px solid #CEE1EE } .self-text
+.txt,.self-text .txt:hover { color:#000; text-decoration:none } .self-text
+.addr { color:#009600 } .self-text a:hover { text-decoration:underline
+} .wide-sponsors .side-item-body { position:relative; padding:0 0 7px;
+z-index:999 } .side-item-body .figureWide { position:absolute; top:0; right:0;
+z-index:999 } .nobtborder { border-bottom:none!important } .noborder {
+border:none !important } .text-link-ad { padding:6px 0; font-weight:bold
+} .loadMask { position:absolute; top:121px; right:0; width:200px; height:40px;
+z-index:9999 } .loadMask .maskBg,.loadMask-small .maskBg { position:absolute;
+left:3px; top:3px; width:200px; height:40px; background:#888; z-index:1;
+opacity:.3; filter:alpha(opacity=30) } .loadMask .maskView,.loadMask-small
+.maskView { position:absolute; left:0; top:0; width:198px; height:38px;
+border:1px solid #888; background:#FFF; line-height:38px; font-size:14px;
+z-index:100 } .suspendWb { position:absolute; top:121px; right:0; width:297px;
+height:248px; z-index:9999 } .side-item-body .userPic img { margin:0 0
+4px; vertical-align:middle } .suspendWb .suspendBg,.suspendWb-small .suspendBg
+{ position:absolute; left:3px; top:3px; width:297px; height:248px; background:#888;
+z-index:1; opacity:.3; filter:alpha(opacity=30) } .suspendWb .suspendView,.suspendWb-small
+.suspendView { position:absolute; left:0; top:0; width:295px; height:246px;
+border:1px solid #888; background:#FFF; z-index:100 } .suspendWb .suspendView
+img,.suspendWb-small .suspendView img { border:0; vertical-align:middle
+} .loadMask-small { position:absolute; top:81px; right:120px; width:200px;
+height:40px; z-index:9999 } .suspendWb-small { position:absolute; top:81px;
+right:120px; width:297px; height:248px; z-index:9999 } .nuomi-ad .nuomi-ad-header
+{ height:18px; padding:10px 10px 0 0 } .nuomi-ad h4 { float:left; width:80px
+} .nuomi-ad h4 a:link,.nuomi-ad h4 a:visited { color:#333 } .nuomi-ad h4
+a:hover { text-decoration:none } .nuomi-ad del { color:#888; text-decoration:line-through
+} .nuomi-ad-body a.nuomi-pic { float:left; width:150px; margin:4px 0 0
+} .nuomi-ad-body a.nuomi-title { float:left; margin:7px 0 4px; +margin-top:10px
+} .nuomi-ad-body p { float:left; width:100% } .nuomi-ad-body p a { display:inline-block;
+margin-right:10px } .nuomi-ad-body p a:link,.nuomi-ad-body p a:visited
+{ color:#000 } .nuomi-ad-body p a:hover { text-decoration:none } .ifr-wrap
+div { position:absolute; left:0; top:0; cursor:pointer } .navigation .banner
+.float-right { overflow:visible } .hideAd { display:block; position:absolute;
+bottom:0; right:-25px; width:12px; padding:5px; *padding-bottom:3px; background:#EEF5FB;
+line-height:12px; color:#779CB7; text-decoration:none; overflow:hidden
+} .hideAd:link,.hideAd:visited { color:#779CB7 } .hideAd:hover { background:#CCE3F1;
+color:#779CB7; text-decoration:none } .praiseInfo .hasBg { display:block;
+padding:5px 0; background:#F3FAFF } .sw_backinfo .userPic img { position:relative;
+top:1px } .footer a { float:left; *padding-bottom:1px; outline:none } .footer
+a.sms-link { float:none } .wide-sponsors .side-item-header,.sponsors .side-item-header
+{ height:15px } .side-item { *zoom:1 } .share-ads,#ad100000000075 p { margin:0
+} .ad110429 .box { position:relative; padding:10px; background:#F0F5F8;
+background:#F0F5F8 url(../images/logo.png) no-repeat 90% 90% } .ad110429
+.tl,.ad110429 .tr,.ad110429 .bl,.ad110429 .br { position:absolute; width:4px;
+height:4px; background:url(../images/corner.png) no-repeat; overflow:hidden
+} .ad110429 .tl { left:0; top:0; background-position:0 0 } .ad110429 .tr
+{ top:0; right:0; background-position:-4px 0 } .ad110429 .bl { left:0;
+bottom:0; background-position:0 -4px } .ad110429 .br { bottom:0; right:0;
+background-position:-4px -4px } .ad110429 .box .icon { margin-right:8px
+} .ad110429 .box .ql,.ad110429 .box .qr { display:inline-block; width:10px;
+height:7px; background:url(../images/home_icon.png) no-repeat; vertical-align:top
+} .ad110429 .box .ql { margin-right:.5ex; background-position:0 -333px
+} .ad110429 .box .qr { margin-left:.5ex; background-position:-10px -333px
+} .ad110429 input { margin-right:3px } .ad110429 label { line-height:normal;
+font-weight:normal } .ad110429 li { margin-top:10px } .widget-ad-for-56
+{ margin-bottom:8px; zoom:1; overflow:hidden } .widget-ad-for-56 .detail
+{ margin-left:80px } .widget-ad-for-56 #content { width:auto!important;
+color:#333; text-decoration:none!important } .advert-con { position:relative;
+border:none !important; font-size:12px } .advert-con .advert-title { height:16px;
+padding-bottom:8px; line-height:16px } .advert-con .advert-title .advert-link:link,.advert-con
+.advert-title .advert-link:visited { color:#005EAC; font-weight:bold; font-size:12px;
+text-decoration:none } .advert-con .advert-title .advert-link:hover { color:#005EAC;
+text-decoration:underline } .advert-con .advert-more { display:block; position:absolute;
+top:0; right:0; width:25px; height:18px; background:url(../images/newpager.png)
+no-repeat 0 -18px; text-indent:-9999em; z-index:1; overflow:hidden; outline:0
+none } .advert-con .advert-more:hover { display:block; background-position:0
+-90px } .advert-con:hover a.advert-more { display:block } .has-flash {
+behavior:expression(function(ele) { ele.runtimeStyle.behavior='none'; Expressions.pseudo.hover(ele,
+'has-flash_hover') } (this)) } .has-flash:hover a.advert-more,.has-flash_hover
+a.advert-more { display:block; position:absolute; top:0; right:23px; width:25px;
+height:18px; background:url(../images/newpager.png) no-repeat 0 -18px; text-indent:-9999em;
+z-index:9999px; overflow:hidden; outline:0 none } .has-flash a.advert-more:hover
+{ background-position:0 -90px; cursor:pointer } .advert-con .advert-main
+.side-item.wide-sponsors { margin-top:0 !important } #ad100000000072 .advert-con
+a.advert-more,#adla100000000072 .advert-con a.advert-more,#ad100000000073
+.advert-con a.advert-more { top:13px } .Widget .advert-con a.advert-more
+{ display:inline-block; position:absolute; top:10px; right:0; width:25px;
+height:18px; background:url(../images/newpager.png) 0 -18px no-repeat; text-indent:-9999em;
+z-index:1; overflow:hidden; outline:0 none } .Widget .has-flash:hover a.advert-more,.Widget
+.has-flash_hover a.advert-more { display:inline-block; position:absolute;
+top:15px; right:5px; width:25px; height:18px; background:url(../images/newpager.png)
+no-repeat 0 -18px; text-indent:-9999em; z-index:9999; overflow:hidden;
+outline:0 none } .Widget .advert-con .advert-more:hover { background-position:0
+-90px; cursor:pointer } .Widget .has-flash a.advert-more:hover { background-position:0
+-90px; cursor:pointer } #ad100000000072 .selfHelp .advert-con,#adla100000000072
+.selfHelp .advert-con,#ad100000000073 .selfHelp .advert-con,#ad100000000071
+.selfHelp .advert-con,#ad100000000070 .selfHelp .advert-con { padding:0;
+border-top:1px solid #CEE1EE !important } #ad100000000072 .selfHelp .advert-con
+.advert-main,#adla100000000072 .selfHelp .advert-con .advert-main,#ad100000000073
+.selfHelp .advert-con .advert-main,#ad100000000071 .selfHelp .advert-con
+.advert-main,#ad100000000070 .selfHelp .advert-con .advert-main { padding:0
+} #ad100000000072 .selfHelp .advert-con .advert-more,#adla100000000072
+.selfHelp .advert-con .advert-more,#ad100000000073 .selfHelp .advert-con
+.advert-more,#ad100000000071 .selfHelp .advert-con .advert-more,#ad100000000070
+.selfHelp .advert-con .advert-more { top:22px } #ad100000000072 .selfHelp
+.advert-con .advert-more:hover,#adla100000000072 .selfHelp .advert-con
+.advert-more:hover,#ad100000000073 .selfHelp .advert-con .advert-more:hover,#ad100000000071
+.selfHelp .advert-con .advert-more:hover,#ad100000000070 .selfHelp .advert-con
+.advert-more:hover { background-position:-20px -38px; cursor:pointer }
+#ad100000000072 .selfHelp .has-flash:hover a.advert-more,#adla100000000072
+.selfHelp .has-flash:hover a.advert-more,#ad100000000072 .selfHelp .has-flash_hover
+a.advert-more,#adla100000000072 .selfHelp .has-flash_hover a.advert-more,#ad100000000073
+.selfHelp .has-flash:hover a.advert-more,#ad100000000073 .selfHelp .has-flash_hover
+a.advert-more,#ad100000000071 .selfHelp .has-flash:hover a.advert-more,#ad100000000071
+.selfHelp .has-flash_hover a.advert-more,#ad100000000070 .selfHelp .has-flash:hover
+a.advert-more,#ad100000000070 .selfHelp .has-flash_hover a.advert-more
+{ display:block; display:inline-block; position:absolute; top:15px; right:5px;
+width:25px; height:18px; background:url(../images/newpager.png) no-repeat
+0 -18px; text-indent:-9999em; z-index:9999px; overflow:hidden; outline:0
+none } #ad1000000063 .under { padding:10px 0; border-bottom:1px solid #CEE1EE;
+line-height:140% } #ad1000000063 .under .rr { margin-right:5px } #ad1000000063
+div h4 { padding-bottom:10px } #ad1000000063 .selfHelp .img { margin-left:0
+} #ad1000000063 .will { clear:both; margin-right:10px; padding:0 0 10px;
+color:#888; text-align:right } #ad1000000063 p a:link,#ad1000000063 p a:visited,#ad1000000063
+p a:hover,#ad1000000063 p a:active { color:#000; text-decoration:none }
+#ad1000000063 .under,#ad1000000063 div.nobtborder { margin-bottom:0!important
+} #ad1000000063 .selfHelp .img { width:85px } #ad1000000060 .wide-sponsors,#ad1000000060
+.sponsors { position:static } #ad1000000060 .wide-sponsors .side-item-body
+{ position:static; z-index:auto } #ad1000000060 .wide-sponsors .side-item-header,#ad1000000060
+.sponsors .side-item-header { height:auto } #ad1000000060 .wide-sponsors
+.side-item-header,#ad1000000060 .sponsors .side-item-body { clear:none
+} .adspicholder { display:block; float:left; width:75px; heith:75px } .ads-wrap
+{ margin:3px 0 0 85px; word-wrap:break-word; word-break:break-all } .ads-description
+{ margin-top:5px; line-height:18px } .side-item a.ads-linkout { display:inline;
+color:#888; text-decoration:none !important } .vote-con { margin-bottom:-5px9;
+font-size:12px; font-weight:normal } .vote-main li { position:relative;
+height:25px; margin-bottom:5px; background:#F7F7F7; *zoom:1 } .vote-main
+li input,.vote-main li span { position:absolute; z-index:1 } .vote-main
+li input { left:10px; top:6px; *top:2px } .vote-main li .choice-word {
+left:35px; top:6px; color:#000 } .vote-main li .choice-percent { top:6px;
+right:5px } .vote-main li .choice-bg { position:absolute; left:0; top:0;
+width:0; height:25px; background:#D8DBE1 } .side-item-body .voteUserPic,.vote-info
+.fans-avatar { display:inline-block; float:left; width:25px; height:25px;
+margin-right:5px; margin-top:2px } .side-item-body .voteUserPic img,.vote-info
+.fans-avatar img { width:100%; height:100% } .side-item-body .fans p {
+height:28px; padding-top:1px; line-height:1.2em } .fans-avatar-opt { display:inline-block;
+display:inline; float:left; width:25px; height:25px; margin:2px 5px 0 0;
+} .fans-avatar-opt img { float:left; width:100%; height:100% } .vote-main
+li .votePic { width:100%; margin-left:245px } .vote-info { margin-bottom:10px;
+margin-bottom:5px9 } .vote-info p { margin:10px 0 6px; color:#666 } .vote-info
+.vote-fans { *height:28px; min-height:28px } .vote-list li { background:none
+} .vote-list .voteTxt { position:absolute; left:0; width:240px; height:25px;
+background:#F7F7F7 } .vote-list li .votePic { width:auto } .vote-list .votePic
+a { margin-top:0 } .vote-list .votePic a img,.fans-avatar img { opacity:.4;
+filter:alpha(opacity=40) } .vote-list .votePic a:hover img,.fans-avatar:hover
+img,.vote-list .votePic .fans-self img { opacity:1; filter:alpha(opacity=100)
+} .vote-main .voteTxt .choice-word { top:2px } .ad-contrainer { padding:0;
+border-bottom:1px solid #CEE1EE; zoom:1 } .ad-show-box { margin-bottom:0;
+padding-bottom:10px } .ad-show-box .header { position:relative; font-weight:bold
+} .ad-show-box .img { float:left; margin:0 } .ad-show-box .discribe { float:right;
+width:130px; height:75px; font-family:'宋体'; outline:0 none } .ad-show-box
+.ad-content { display:block; width:130px; height:75px; color:#000; text-decoration:none;
+word-wrap:break-word; word-break:break-all } .ad-show-box .close-btn {
+display:none; position:absolute; top:0; right:0; width:18px; height:18px;
+background:url(../images/close-btn.png) 0 0 no-repeat; cursor:pointer; outline:medium
+none } .ad-show-box .close-btn:hover { background:url(../images/close-hover.png)
+no-repeat 0 0; } .ad-show-box:hover .close-btn { display:block } .ad-show-box
+.footer { padding:6px 0 1px } .ad-show-box .footer a:hover { text-decoration:underline
+} .ad-show-box .footer .like-ad { padding:0 0 0 16px; background:url(../images/iFeeds-and-Requests-101102.png)
+no-repeat scroll left -1559px transparent; *line-height:18px; _line-height:16px;
+cursor:pointer } .ad-close { padding:0 0 0 5px } .ad-close .close-reason
+{ width:150px; color:#999 } .ad-close .ad-confirm-btn,.ad-close .ad-cancel-btn
+{ padding:1px 8px; border:1px solid #8B8B8B; background:url(../images/icons2.png)
+no-repeat scroll -1px -300px transparent; color:#666; text-shadow:1px 1px
+#FFF } .thank-slogan { padding:10px; text-align:center } .thank-slogan
+.thanks { padding:20px 10px; border:1px solid #CFC274; background:#FFF9D7;
+line-height:20px; font-size:12px; font-family:'宋体','Microsoft Yahei','微软雅黑','黑体';
+-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px }
+.ad-standard-65 { margin-bottom:-7px; padding-top:10px } .sideBar .c .ad-area
+{ padding-bottom:1px } #ad1000000060 .has-flash:hover a.advert-more { top:2px;
+right:2px } #ad1000000060 .has-flash_hover a.advert-more { top:2px; right:2px
+} .Widget #ad1000000060 .has-flash:hover a.advert-more { top:12px; right:2px
+} .Widget #ad1000000060 .has-flash_hover a.advert-more { top:12px; right:2px
+} #ad1000000065 { margin-top:-5px } #ad100000000100 { font-size:0 }

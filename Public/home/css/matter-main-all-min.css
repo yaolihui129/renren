@@ -1,0 +1,104 @@
+.a-feed .feed-hide {
+    display:none
+}
+.a-feed .feed-menu .circle-base {
+    position:relative;
+    top:10px;
+    margin-right:6px;
+    float:left;
+    background-image:url(../images/feed-menu-icon.png);
+    height:16px;
+    width:16px;
+    background-position:0 0
+}
+.a-feed .feed-menu .feed-menu-disabled {
+    color:#d6d6d6
+}
+.a-feed .feed-menu .feed-menu-disabled .circle-base {
+    background-position:0 16px
+}
+.a-feed .feed-menu .circle-selected .circle-base {
+    background-position:0 32px
+}
+#feed-list .new-feed-tip-matter {
+    width:500px;
+    margin-top:20px
+}
+#feed-list .new-feed-tip-matter div {
+    margin-left:3px;
+    background-color:#f5f9fc;
+    width:480px;
+    height:18px;
+    border:1px solid #e1dfdf;
+    border-bottom:0;
+    border-radius:2px 2px 0 0;
+    font-size:12px;
+    line-height:100%;
+    padding:12px 0 0 13px;
+    color:#369
+}
+.a-feed .feed-menu {
+    width:auto
+}
+.a-feed .feed-menu a {
+    width:160px
+}
+.matter-page {
+    margin-top:20px;
+    background-color:white;
+    width:480px;
+    border:1px solid #d2d2d2;
+    border-bottom:2px solid #d2d2d2;
+    border-radius:2px;
+    padding:10px
+}
+.matter-page a {
+    cursor:pointer;
+    margin:0 2px;
+    display:block;
+    float:left;
+    color:#686f7c;
+    font-size:12px;
+    line-height:100%;
+    padding:6px 8px;
+    border:1px solid #d2d2d2
+}
+.matter-page .page-select {
+    border-bottom:3px solid #227dc5;
+    padding:6px 8px 4px 8px;
+    color:black
+}
+.matter-page a:hover {
+    background-color:#e8edf1
+}
+.matter-page .page-disabled {
+    color:#d8dbe0
+}
+.nav-selected a {
+    height:47px;
+    text-decoration:none;
+    border-bottom:3px solid #227dc5;
+    _overflow:hidden;
+    color:black;
+    font-weight:bolder
+}
+.nav-fade {
+    color:#a7a7a7
+}
+.fedcont {
+    display:none
+}
+.more-replies a {
+    display:inline-block;
+    line-height:20px;
+    cursor:pointer;
+    font-size:12px;
+    color:#227dc5;
+    padding-left:20px
+}
+.more-replies a:hover {
+    color:#227dc5
+}
+.own-reply .own-reply-content .tool-bar a {
+    overflow:hidden
+}

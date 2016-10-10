@@ -1,0 +1,389 @@
+<extend name="Public/Base" />
+<block name="main-css">
+    <link href="__PUBLIC__/home/images/apple_icon_.png" rel="apple-touch-icon">
+    <link href="__PUBLIC__/home/css/base.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/home.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/global2-all-min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile-all-min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/publisher-all-min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index-all-min.css"
+    media="all">
+    <link rel="stylesheet" href="__PUBLIC__/home/css/statuslist-all-min.css">
+    <link rel="stylesheet" href="__PUBLIC__/home/css/blogList.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/home/css/style.css">
+    <link href="__PUBLIC__/home/css/advert.css" rel="stylesheet" class="lazyload" charset="utf-8">
+    <style class="lazyload" charset="utf-8">
+    @import "__PUBLIC__/home/css/webpager.css";
+    </style>
+    
+    <link href="__PUBLIC__/home/css/webpager.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/roomkeeper.css" rel="stylesheet">
+    <style type="text/css">
+        #top:hover{background-color:#fc0;opacity:0.8;cursor:move;}
+    </style>
+</block>
+<block name="main-body">
+    <input type="hidden" id="whichType" value="{$Think.get.type}"/>
+    <!------------ 我的主页，资料，相册，分享，状态，日志 ------------>
+    <div class="frame-nav-wrap">
+        <div style="width: 1189px;" id="frameFixedNav" class="frame-nav-fixed-wraper">
+            <div class="frame-nav-inner">
+                <ul class="fd-nav-list clearfix">
+                    <li class="fd-nav-item fd-nav-cur-item">
+                        <span class="fd-nav-icon fd-sub-nav">
+                        </span>
+                        <a href="__MODULE__/FriendPage/friendPageIndex/id/{$Think.get.id}/fid/{$Think.get.fid}">
+                            TA的主页
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Profile/profileIndex/id/{$Think.session.homeuserid}">资料</a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Album/index/id/{$Think.session.homeuserid}">相册</a>
+                    </li>
+                     <li class="fd-nav-item">
+                        <a href="__MODULE__/FriendNews/index/id/{$Think.get.id}/fid/{$Think.get.fid}/type/6">分享</a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/FriendNews/index/id/{$Think.get.id}/fid/{$Think.get.fid}/type/0">状态</a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/FriendNews/index/id/{$Think.get.id}/fid/{$Think.get.fid}/type/1">日志</a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Friend/index/id/{$Think.session.homeuserid}">好友</a>
+                    </li>
+                    <li class="fd-nav-item fd-nav-showmore">
+                        <a href="#">
+                            更多
+                            <em class="fd-arr-down">
+                                <span class="fd-arr-outer">
+                                    <span class="fd-arr-inner">
+                                    </span>
+                                </span>
+                            </em>
+                        </a>
+                        <div class="nf-group-list-container">
+                            <ul class="nf-group-list">
+                                <li class="nf-group-item">
+                                    <a href="http://follow.renren.com/list/885992102/sub/v7">
+                                        关注
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://photo.renren.com/photo/zuji/885992102" target="_blank">
+                                        足迹
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://gift.renren.com/show/box/otherbox?userId=885992102" target="_blank">
+                                        礼物
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://page.renren.com/home/mypages" target="_blank">
+                                        公共主页
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://www.renren.com/lifeevent/index/885992102">
+                                        生活纪事
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://mvideo.renren.com/video/885992102/list">
+                                        短视频
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bd-main">
+            <div class="bd-content clearfix">
+
+
+              <div class="ugc-list-content clearfix">
+                <div class="ugc-list-left">
+                  <!------------ 网页主体部分->中部->上侧(我的状态 语音状态 ) ------------>
+                 <if condition="$Think.get.type eq 0"> 
+                      <div class="ugc-left-header clearfix">
+                        <div class="ugc-header-left">
+                            
+                          <a href="javascript:void(0)" class="ugc-header-a headhover" onclick="qhzht(0,this)">
+                            <span class="ugc-header-span">
+                              文字状态
+                            </span>
+                          </a>
+                          <a href="javascript:void(0)" class="ugc-header-a" onclick="qhzht(5,this)">
+                            <span class="ugc-header-span">
+                              图文状态
+                            </span>
+                          </a>
+                          </div>
+                      </div>
+                  </if>
+
+                        <if condition="$Think.get.type eq 1">
+                            <div class="ugc-left-header">
+                                <div id="blogList_tabBox" class="ugc-header-left">
+                                    <a href="javascript:void(0)" id="blogList_myblogTab" itemcount="7" class="ugc-header-a headhover" style="margin-left: 10px;"  onclick="qhzht(1,this)"><span class="ugc-header-span">TA的日志</span></a>
+                                    </div>
+                                <div class="ugc-header-right">
+                                    
+                                </div>
+                                </div>
+
+                        </if>
+                    
+                  <!------------ 网页主体 说说部分 ------------>
+                  <div class="ugc-left-content">
+                    <div class="ugc-left-list">
+                      <div id="my-status-con">
+                        <ul id="my-status-list" class="status-list" data-status="mystatus">
+                          
+                            <volist name="userNews" id="vo" key="k">
+                                <switch name="vo.typeid">
+                                    <case value="0">
+                                        <li class="ugc-list-item" typeid="{$vo.typeid}">
+                                            <div class="ugc-item-info">
+                                              <div class="status-item-calender">
+                                                <span class="status-release-month">
+                                                  {:date('Y-m',$vo['addtime'])}
+                                                </span>
+                                                <span class="status-release-day">
+                                                  {:date('d',$vo['addtime'])}
+                                                </span>
+                                              </div>
+                                              <div class="status-relative-info">
+                                                <div class="ugc-release-msgs">
+                                                  <span>
+                                                    公开
+                                                  </span>
+                                                  -
+                                                  <span>
+                                                    {:date('H:i',$vo['addtime'])}
+                                                  </span>
+                                                </div>
+                                                <div class="ugc-item-abstract">
+                                                  
+                                                    {:htmlspecialchars_decode($vo['content'])}
+                                                    
+                                                </div>
+                                                <div class="ugc-item-focused">
+                                                  <span class="ugc-item-iliked">
+                                                    {$vo.support}
+                                                  </span>
+                                                  <span class="ugc-seperator-v">
+                                                    |
+                                                  </span>
+                                                  <span class="ugc-item-ishared">
+                                                    0
+                                                  </span>
+                                                  <span class="ugc-seperator-v">
+                                                    |
+                                                  </span>
+                                                  <span class="ugc-item-icomment">
+                                                    {$vo.discussNum}
+                                                  </span>
+                                                </div>
+                                                <div class="ugc-host-control" style="display: none; ">
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </li>
+
+                                    </case>
+                                    <case value="1">
+                                      
+                                      <li class="ugc-list-item" typeid="{$vo.typeid}" xxid="{$vo.id}">
+                                          <div class="ugc-item-info">
+                                              <h3 class="blogList-info-title">
+                                                <!--是否置顶--><!--是否加密-->
+                                                <a href="__MODULE__/Diary/displayDiary/id/{$Think.get.id}/diaryid/{$vo.id}">
+                                                {$vo.title}
+                                                <span class="blogList-icon-pic" title="包含图片">&nbsp;&nbsp;</span></a></h3>
+                                                        <div class="ugc-release-msgs">
+                                                            <span>
+                                                <span title="" class="privacy-trigger privacy-trigger-small " id="privacy_3602879702860084271">
+                                                <i class="privacy-icon picon-public"></i>
+                                                <span>公开</span>
+                                                  <input type="hidden" value="{&quot;sourceControl&quot;: 99, &quot;privacyGroupId&quot;: -1, &quot;privacyGroupName&quot;: &quot;&quot;, &quot;privacyGroupType&quot;: &quot;init&quot;, &quot;password&quot;: &quot;&quot;}" name="privacyParams">
+                                                  </span>
+                                                  </span>&nbsp;-&nbsp;
+                                                  <span>{:date('Y-m-d H:i:s',$vo['addtime'])}</span>&nbsp;-&nbsp;
+                                                  <span>分类&nbsp;:&nbsp;<span class="cateName">默认分类</span></span>
+                                              </div>
+                                              <div class="ugc-item-abstract" data-wiki="">
+                                                  ...</div>
+                                              <div class="ugc-item-focused" style="width: 100%;">
+                                                  <div style="float: left;">
+                                                      <span class="ugc-item-iliked">{$vo.support}</span>
+                                                      <span class="ugc-seperator-v">|</span>
+                                                      <span class="ugc-item-ishared">0</span>
+                                                      <span class="ugc-seperator-v">|</span>
+                                                      <span class="ugc-item-icomment">{$vo.discussNum}</span>
+                                                      
+                                                  </div>
+                                                  <div class="blogList-focused-right">
+                                                    
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </li>
+
+                                      
+
+
+                                    </case>
+                                    <case value="5">
+                                      
+                                      <li class="ugc-list-item" typeid="{$vo.typeid}">
+                                            <div class="ugc-item-info">
+                                              <div class="status-item-calender">
+                                                <span class="status-release-month">
+                                                  {:date('Y-m',$vo['addtime'])}
+                                                </span>
+                                                <span class="status-release-day">
+                                                  {:date('d',$vo['addtime'])}
+                                                </span>
+                                              </div>
+                                              <div class="status-relative-info">
+                                                <div class="ugc-release-msgs">
+                                                  <span>
+                                                    公开
+                                                  </span>
+                                                  -
+                                                  <span>
+                                                    {:date('H:i',$vo['addtime'])}
+                                                  </span>
+                                                </div>
+                                                <div class="ugc-item-abstract">
+                                                  
+                                                    {:htmlspecialchars_decode($vo['content'])}
+                                                    <div class="photo-content-1 clearfix">
+                                                    <foreach name="vo.talkpic" item="pvo" key="k">
+                                                    <a href="javascript:void(0)" class="cursor-all location-left" data-pic="{picNum:'{$vo.talkpicnum}',presentSrc:'__PUBLIC__/upload/images/{$pvo.picname}',presentNum:'{$k}'}" <if condition="$k gt 3">style="display:none"</if> onclick="xsPicdes(this)">
+                                                        
+                                                        <img width="150" height="150" class="photo-feed-pic1" src="__PUBLIC__/upload/images/s_{$pvo.picname}" data-src="__PUBLIC__/home/images/m2w470h350q85lt_original_cNcB_2b900005c8461e83.jpg" data-viewer='{"type":"photo","owner":"436513776","id":"8331789952","url":"__PUBLIC__/home/images/original_cNcB_2b900005c8461e83.jpg","width":256,"height":256}' /></a>
+
+                                                    </foreach>
+
+                                        </div>
+                                                </div>
+                                                <div class="ugc-item-focused">
+                                                  <span class="ugc-item-iliked">
+                                                    {$vo.support}
+                                                  </span>
+                                                  <span class="ugc-seperator-v">
+                                                    |
+                                                  </span>
+                                                  <span class="ugc-item-ishared">
+                                                    0
+                                                  </span>
+                                                  <span class="ugc-seperator-v">
+                                                    |
+                                                  </span>
+                                                  <span class="ugc-item-icomment">
+                                                    {$vo.discussNum}
+                                                  </span>
+                                                </div>
+                                                <div class="ugc-host-control" style="display: none; ">
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </li>
+
+                                    </case>
+
+
+                                </switch>
+                            </volist>
+
+                            
+
+                        </ul>
+                        <!------------ 网页主体 分页部分 ------------>
+                        <div id="my-status-page" class="status-page">
+                          <a href="javascript:void(0)" class="page-item page-prev page-disable" onclick="XXSprev()">
+                            上一页
+                          </a>
+                          <input type="text" class="page-item page-num page-current" style="width:25px;text-align:center" value="1" onchange="XXSfy(this)"/>/<span class="page-all-num">20</span>
+                            
+                          <a href="javascript:void(0)" class="page-item page-next page-disable" onclick="XXSnext()">
+                            下一页
+                          </a>
+                          <span class="myxs" style="float:right;">每页显示<input type="text" class="myxs" value="5" style="width:25px;text-align:center" onchange="totalPage(this)"/>条</span>
+                        </div>
+                      </div>
+                      <div id="vol-status-con" style="display:none">
+                        <ul id="vol-status-list" class="status-list" data-status="volstatus">
+                        </ul>
+                        <div id="vol-status-page" class="status-page">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" id="hostId" value="885992102">
+              <input type="hidden" id="userId" value="885992102">
+            </div>
+          </div>
+<script type="text/javascript" src="__PUBLIC__/home/js/userpage.js"></script>
+<script type="text/javascript" src="__PUBLIC__/home/js/selfNews.js"></script>
+
+<!------------------------批量删除------------------------>
+<div id="plsc" style="display:none">
+    <div class="ui-widget-overlay ui-front"></div>
+    <div class="ui-dialog ui-widget ui-front" tabindex="-1" style="height: auto; width: 520px; top: 104px; left: 413.5px; display: block;">
+        <div class="ui-widget-header ui-helper-clearfix"><span id="ui-id-2" class="ui-dialog-title">批量删除</span>
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-close" role="button" title="关闭" onclick="gbplsc()"><span class="ui-button-icon-primary ui-icon-lclose ui-iconfont">×</span><span class="ui-button-text">关闭</span></button>
+        </div>
+        <div class="multiwork-panel ui-widget-content" style="display: block; width: auto; min-height: 0px; max-height: none; height: auto;">
+            <div class="panel-multiBList">
+                <div class="multiBList-box ui-scrollbar">
+                    <ul class="multiBList-ul" style="float: left;">
+
+                      <volist name="userNews" id="vo" key="k">
+                        <if condition="$vo.typeid eq 1">
+                          <li class="multiBList-item" diaryid="{$vo.id}">
+                              <div class="multiBList-itemIcon seldiv">&nbsp;</div>
+                              <div class="multiBList-itemCon">{$vo.title}</div>
+                          </li>
+                        </if>
+                      </volist>
+  
+
+                    </ul>
+                    <div class="ui-scrollbar-bar ui-scrollbar-bar-y" style="top: 0px; height: 0px;"></div>
+                </div>
+                <div class="multiBList-toolBar">
+                    <div id="multiBList-selectAll" class="multiBList-selectAll"> 全选 </div>
+                    <div class="multiBList-selected"> 已选&nbsp;<span class="multiBList-selectNum">0</span>/<span class="multiBList-allNum"></span> </div>
+                </div>
+            </div>
+            <div class="panel-setBox"></div>
+        </div>
+        <div class="ui-widget-footer ui-helper-clearfix">
+            <div class="ui-dialog-buttonset">
+                <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"  onclick="gbplsc()"><span class="ui-button-text">取消</span></button>
+                <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" onclick="plscDiary()"><span class="ui-button-text">删除</span></button>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<!------------------批量删除结束---------------------->
+</block>

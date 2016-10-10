@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html class="nx-main760">
+
+<head>
+    <meta content="" name="Description">
+    <meta content="" name="Keywords">
+    <title>人人网 - {$info['name']}</title>
+    <meta charset="utf-8">
+    <link href="__PUBLIC__/home/images/favicon-rr.ico?ver=3" type="image/x-icon" rel="shortcut icon">
+    <link href="__PUBLIC__/home/images/apple_icon_.png" rel="apple-touch-icon">
+
+    <block name="main-css">
+    <link href="__PUBLIC__/home/css/base.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/home.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/global2-all-min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile-all-min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/publisher-all-min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index-all-min.css"
+    media="all">
+    <style class="lazyload" charset="utf-8">
+    @import "__PUBLIC__/home/css/webpager.css";
+    </style>
+    <link href="__PUBLIC__/home/css/webpager.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/roomkeeper.css" rel="stylesheet">
+    </block>
+
+    <script type="text/javascript" src="__PUBLIC__/home/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/home/js/homePage.js"></script>
+</head>
+
+<body>
+    <div id="fixedLayer" style="width: 1109px;"></div>
+    <div id="kaiguan"></div>
+    <div style="display:none" id="webpager">
+        <a class="wp_fold_webpager png" href="javascript:void(0);" style="left: 200px;"></a>
+        <div class="wp_top_bubbles"></div>
+        <div class="wp_top_tabs" id="controldialog" style="width:0px">
+            <div data-tab="fold" class="wp_top_tab fold png wp-none"> <span class="sn hide">0</span> </div>
+
+            <div data-tab="notify" class="wp_top_tab notify png" style="display:none"> 
+                <span class="title">通知</span> 
+            </div>
+
+            <div data-tab="friends" class="wp_top_tab friends png right  on" style="display:none"> 
+                <span class="wp_top_tab_friends sn hide">0</span> 
+                <span class="title">好友</span> 
+                <span style="display:none" class="on_sn">0</span> 
+            </div>
+
+            <div data-tab="recent" class="wp_top_tab recent png" style="display:none"> 
+                <span class="wp_top_tab_recent sn hide">0</span>
+                <span class="title">会话</span> 
+                <span style="display:none" class="on_sn hide">0</span> 
+            </div>
+
+        </div>
+        <div id="buddy" style="height: 630px;width:0px;">
+            <div class="wp_tab notify" id="notifyTab">
+                <div style="display:none;" class="wp_collector status"></div>
+                <div class="wp_collector_box">
+                    <div class="wp_collector notify" id="notify"><a class="wp_notify_padding" href="javascript:;">&nbsp;</a>
+                        <ul>
+                            
+
+                            
+                            <foreach name="sysMessage" item="vo">
+                                
+                                 
+                                 <li class="sysInfoList">
+                                    <div class="piece_icon">
+                                        <a target="_blank" href="javascript:void(0)" data-rid="{$vo.info}" data-id="{$vo.id}" class="piece_url" ondblclick="addNewFriend(this)"><img src="__PUBLIC__/home/images/alarm.png" class="piece_url"></a>
+                                    </div>
+                                    <a target="_blank" href="http://photo.renren.com/photo/436513776/album-1128379449" class="piece-link">
+                                        <div class="piece_info double"> <span class="piece_up_name">消息通知</span> <span  class="piece_msg" style="margin-top:20px">{$vo.content}</span></div> <span class="delfriend" data-rid="{$vo.info}" data-id="{$vo.id}" onclick="delNewFriend(this)" style="cursor:pointer;display:none">×</span> 
+                                    </a>
+                                </li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="friendsTab" class="wp_tab friends">
+                <div class="wp_collector search" style="height: auto;">
+                    <a class="wp_search_clear_icon png" style="display: none;"></a>
+                    <div class="create_group_opera"> <span>建讨论组</span> <span style="margin-top:12px;">                          <button type="button" class="png create_cancel"></button>                           <button type="button" class="png create_ok create_disable"></button>                        </span>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="wp_search_selected" style="display: none;">
+                        <ul></ul>
+                    </div>
+                    <div class="wp_search_box">
+                        <div class="wp_search_input_box">
+                            <input class="wp_search_input" type="text" default-value="找好友或建讨论组" placeholder="找好友或建讨论组">
+                            <div class="wp_search_icon png"></div>
+                        </div>
+                        <div class="mgr_wrap">
+                            <div class="wp_webpager_mgr png wp_mute"></div>
+                            <a class="png setting_icon">
+                                <div class="setting_wrap" style="display:none;">
+                                    <div class="png wp_setting_stranger">接收陌生人消息<em class="png status_icon accept_status_icon"></em></div>
+                                </div>
+                                <div class="png wp_setting_success" style="display:none;">设置成功！</div>
+                            </a>
+                        </div>
+                        <div class="create_group_wrap">
+                            <button type="button" class="png btn_create_group"></button>
+                        </div>
+                    </div> <a href="javascript:;" class="wp_start_chat" style="display: none;"><em class="png">发起聊天</em></a>
+                    <div class="wp_collector_box" style="height: auto;">
+                        <div class="wp_search_list">
+                            <ul></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="wp_collector status" style="display:none;"></div>
+                <div class="wp_collector_box" style="height: 580px;">
+                    <div class="wp_collector assistant">
+                        <ul>
+                            <li id="wp_ast_apply" class="piece_box" data-type="apply" data-id="201" data-name="新的朋友" data-url="" data-sn="0">
+                                <div class="piece_icon png apply">
+                                    <div class="sn hide">0</div>
+                                </div>
+                                <div class="piece_info"> <span class="piece_name">新的朋友</span> </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="friends" class="wp_collector friends">
+                        <div class="collector_title friends" data-type="friends"> <span class="text">全部好友</span> <span class="num">{$friendNum}</span> </div>
+                        <div class="collector_title_block" style="display: none;"> </div>
+                        <ul>
+                            <!--<li id="wp_b_f453172326" class="piece_box" data-type="chat" data-id="453172326" data-name="白刚" data-url="__PUBLIC__/home/images/h_tiny_WJgs_500a00000af81375.jpg" data-status="0">
+                                <div class="piece_icon"> <img class="piece_url" namecard="453172326" src="__PUBLIC__/home/images/h_tiny_WJgs_500a00000af81375.jpg"> </div>
+                                <div class="piece_info"> <span class="piece_name">白刚</span> <span class="piece_client png wp-none"></span> <span class="piece_online png wp-none"></span> </div>
+                            </li>-->
+                            <foreach name="friend" item="vo">
+
+                                <li class="piece_box" data-type="chat" data-id="453172326" data-name="{$vo.name}" data-url="__PUBLIC__/home/images/{$vo.head}" data-status="0" >
+                                    <div class="piece_icon" ondblclick="alertDialog(this)" friendid="{$vo.fid}">
+
+                                        <img class="piece_url" namecard="453172326" src="__PUBLIC__/home/images/m_{$vo.head|default='men_tiny.gif'}">
+                                    </div>
+                                    <div class="piece_info">
+                                        <span class="piece_name">{$vo.name}</span>
+                                        <span class="piece_client png wp-none"></span>
+                                        <span class="piece_online png wp-none"></span>
+                                    </div>
+                                </li>
+                            </foreach>
+                            
+                        </ul>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="wp_tab recent" id="recentTab" style="left: 240px;">
+                <div class="wp_collector search" style="height: auto;">
+                    <a style="display:none;" class="wp_search_clear_icon png"></a>
+                    <div class="create_group_opera"> <span>建讨论组</span> <span style="margin-top:12px;">							<button class="png create_cancel" type="button"></button>							<button class="png create_ok create_disable" type="button"></button>						</span>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div style="display:none;" class="wp_search_selected">
+                        <ul></ul>
+                    </div>
+                    <div class="wp_search_box">
+                        <div class="wp_search_input_box">
+                            <input type="text" placeholder="找好友或建讨论组" default-value="找好友或建讨论组" class="wp_search_input">
+                            <div class="wp_search_icon png"></div>
+                        </div>
+                        <div class="mgr_wrap">
+                            <div class="wp_webpager_mgr png wp_mute"></div>
+                            <a class="png setting_icon">
+                                <div style="display:none;" class="setting_wrap">
+                                    <div class="png wp_setting_stranger">接收陌生人消息<em class="png status_icon accept_status_icon"></em></div>
+                                </div>
+                                <div style="display:none;" class="png wp_setting_success">设置成功！</div>
+                            </a>
+                        </div>
+                        <div class="create_group_wrap">
+                            <button class="png btn_create_group" type="button"></button>
+                        </div>
+                    </div> <a style="display:none;" class="wp_start_chat" href="javascript:;"><em class="png">发起聊天</em></a>
+                    <div class="wp_collector_box" style="height: auto;">
+                        <div class="wp_search_list">
+                            <ul></ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:none;" class="wp_collector status"></div>
+                <div class="wp_collector_box" style="height: 580px;">
+                    <div class="wp_collector assistant">
+                        <ul>
+                            <li data-sn="0" data-url="" data-name="回复助手" data-id="301" data-type="remind" class="piece_box" id="wp_ast_remind">
+                                <div class="piece_icon png remind">
+                                    <div class="sn hide">0</div>
+                                </div>
+                                <div class="piece_info"> <span class="piece_name">回复助手</span> </div>
+                            </li>
+                            <li data-sn="0" data-url="" data-name="通知助手" data-id="302" data-type="notice" class="piece_box" id="wp_ast_notice">
+                                <div class="piece_icon png notice">
+                                    <div class="sn hide">0</div>
+                                </div>
+                                <div class="piece_info"> <span class="piece_name">通知助手</span> </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="wp_collector recents" id="recents">
+                        <ul>
+                           <!--  <li data-sn="0" data-status="1" data-url="__PUBLIC__/home/images/original_irME_6b0a00003308125f.jpg" data-name="小黄鸡" data-id="630000002" data-type="chat" class="piece_box" id="wp_b_r_chat_630000002">
+                                <div class="piece_icon">
+                                    <div class="sn hide">0</div> <img src="__PUBLIC__/home/images/original_irME_6b0a00003308125f.jpg" namecard="630000002" class="piece_url"> </div>
+                                <div class="piece_info double"> <span class="piece_up_name">小黄鸡</span> <span class="piece_msg"><img src="__PUBLIC__/home/images/sad.gif" class="ubb-img" style="width: 16px; height: 16px;"></span> <span class="piece_client png wp-none" style="display:none;"></span> <span class="piece_online png " style="display:none;"></span> <span class="piece_del png"></span> </div>
+                            </li> -->
+                            
+                        </ul>
+                        <div class="wp_loader"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nx-container nx-webpager-unfold nx-normalViewport" id="nxContainer">
+        <div class="nx-main" style="width:1349px">
+            <div style="display:none" id="zidou_template"></div>
+            <div style="display:none" data-notshow="" id="hometpl_style">
+                <br>
+            <style>
+                /* 公共部分(顶部导航条、左侧菜单、webpager)*/
+                
+                html,
+                .ft-wrapper {
+                    background: #a9dac5;
+                }
+                
+                .bd-container {
+                    background: #a9dac5 url(__PUBLIC__/home/images/bg.jpg) no-repeat top center;
+                    ;
+                }
+                
+                .hd-wraper .hd-fixed-wraper {
+                    background: #5fb38f;
+                }
+                
+                .frame-nav-wrap .fix-app-nav {
+                    background: #5fb38f !important;
+                }
+                
+                .frame-nav-fixed-wraper {
+                    background: #a1dfc5 !important;
+                }
+                
+                .frame-nav-wrap .fd-nav-cur-item a,
+                .fd-nav-item a:hover,
+                .fix-app-nav .fd-nav-cur-item a,
+                .fix-app-nav .fd-nav-item a:hover {
+                    border-bottom-color: #368463;
+                }
+                
+                .fix-app-nav .fd-nav-item span,
+                .fix-app-nav .fd-nav-item .fd-nav-gName-label,
+                .fix-app-nav .fd-nav-item a,
+                .fix-app-nav .fd-nav-item .fd-name {
+                    color: #a1dfc5;
+                }
+                
+                .fix-app-nav .nf-group-list-container .nf-group-item a,
+                .nf-group-list-container .nf-group-item a,
+                .nf-group-list-container .nf-group-list .nf-group-item a:hover,
+                .nf-group-list-container a .nf-item-gname,
+                .nf-group-list-container a:hover .nf-item-gname {
+                    color: #5fb38f;
+                }
+                
+                .fix-app-nav .nf-group-item a,
+                .fix-app-nav .nf-group-item a:hover {
+                    border-bottom-color: #FFF;
+                }
+                
+                .fix-app-nav .fd-nav-cur-item a,
+                .fix-app-nav .fd-nav-item a:hover {
+                    color: #ffffff;
+                }
+                
+                .fd-arr-inner {
+                    border-top-color: #a1dfc5;
+                }
+                
+                #kaiguan{
+                    height: 50px;
+                    width: 70px;
+                    position: fixed;
+                    top: 0px;
+                    right: 0px;
+                    background: url(__PUBLIC__/home/images/kaiguan.png);
+                    z-index: 199;
+                    cursor: pointer;
+                }
+
+                .fix-app-nav .fd-nav-item .fd-arr-inner {
+                    border-top-color: #5fb38f;
+                }
+                
+                .fix-app-nav .fd-nav-item .fd-arr-outer {
+                    border-top-color: #368463;
+                }
+                
+                .fd-nav-item .fd-nav-home {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat -140px -420px;
+                }
+                
+                .fd-nav-item .fd-sub-nav {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat -140px -440px;
+                }
+                
+                .hd-wraper .hd-logo,
+                .nx-main980 .hd-wraper .hd-logo {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat -120px -117px !important;
+                }
+                
+                #webpager .wp_top_tabs .fold {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat -140px 0 !important;
+                }
+                
+                #webpager .wp_top_tabs .fold.foldstyle {
+                    background-position: -140px -60px !important;
+                }
+                
+                .hd-wraper .hd-search .hd-search-input {
+                    background: #78c5a4;
+                    color: #c1eedb;
+                }
+                
+                .hd-search input::-webkit-input-placeholder {
+                    color: #c1eedb;
+                }
+                
+                .hd-search input::-moz-placeholder {
+                    color: #c1eedb;
+                }
+                
+                .hd-nav .hd-search .hd-search-placeholder {
+                    color: #c1eedb;
+                }
+                
+                .hd-search input:-ms-input-placeholder {
+                    color: #c1eedb;
+                }
+                
+                .hd-search .hd-search-btn {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat -140px -190px;
+                }
+                
+                .hd-wraper .hd-account .hd-name {
+                    color: #ffffff;
+                }
+                
+                .hd-wraper .hd-account .hd-logindays {
+                    color: #a1dfc5;
+                }
+                
+                .hd-wraper .icon-arr-inner {
+                    border-color: #368463 transparent transparent transparent;
+                    _border-color: #368463 #5fb38f #5fb38f #5fb38f;
+                    _filter: chroma(color=#5fb38f);
+                }
+                
+                .hd-account-action .showDrop .icon-arr-inner,
+                .hd-account-action .account-more:hover .icon-arr-inner {
+                    border-top-color: #44c28c;
+                }
+                
+                .a-feed .feed-menu a:hover,
+                .hd-wraper .search-result .s-item:hover,
+                .hd-wraper .search-result .s-item-selected a,
+                .hd-wraper .nv-account-ctrl a:hover {
+                    background: #a1dfc5;
+                }
+                
+                .hd-wraper .search-result .s-line {
+                    border-bottom-color: #c1eedb;
+                }
+                
+                .hd-wraper .nv-account-ctrl .nv-account-sline {
+                    background: #c1eedb;
+                }
+                
+                .slide-fixed-wraper {
+                    border-right-color: #78c5a4 !important;
+                    background: #78c5a4;
+                    box-shadow: -8px 0 2px -7px #78c5a4 inset;
+                }
+                
+                .app-nav-item-cur .app-link {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat right -293px;
+                }
+                
+                .slide-fixed-wraper .app-nav-item .app-link:hover {
+                    background-color: #5fb38f;
+                }
+                
+                .slide-fixed-wraper .app-nav-cont {
+                    border-bottom-color: #78c5a4;
+                }
+                
+                .slide-fixed-wraper .my-app-cont,
+                .slide-fixed-wraper .recent-app-cont {
+                    border-top-color: #5fb38f;
+                }
+                
+                .nf-group-list .nf-group-item a:hover,
+                .nf-group-list .nf-group-item a:hover {
+                    background-color: #a1dfc5;
+                }
+                
+                #webpager a:link,
+                #webpager a:visited,
+                #webpager a:hover,
+                #webpager a:active {
+                    color: #368463;
+                }
+                
+                #webpager .wp_top_tabs,
+                #webpager .wp_top_tabs .wp_top_tab {
+                    background-color: #5fb38f !important;
+                }
+                
+                #webpager .wp_top_tabs .wp_top_tab.on {
+                    background-color: #78c5a4 !important;
+                }
+                
+                #webpager .wp_top_tabs {
+                    box-shadow: -3px -3px 6px 0 #305a48;
+                }
+                
+                #webpager #buddy {
+                    border-left-color: #305a48 !important;
+                    box-shadow: -3px 0 6px -2px #305a48;
+                }
+                
+                #webpager #buddy .wp_search_box .wp_webpager_mgr,
+                #webpager #buddy .setting_icon,
+                #webpager #buddy .create_group_wrap {
+                    border-left-color: #c1eedb !important;
+                }
+                
+                #webpager .wp_top_tabs,
+                #webpager #buddy .wp_tab,
+                #webpager #buddy .wp_collector_box {
+                    background-color: #a1dfc5 !important;
+                }
+                
+                #webpager #buddy .wp_search_box .wp_search_input {
+                    background-color: #a1dfc5 !important;
+                }
+                
+                #webpager #buddy .wp_collector li.piece_box.hover {
+                    background-color: #c1eedb !important;
+                }
+                
+                #webpager #buddy .wp_collector li,
+                #webpager #buddy .wp_search_box,
+                #webpager #buddy .wp_collector.assistant {
+                    border-bottom-color: #c1eedb !important;
+                }
+                
+                #webpager #buddy .collector_title.friends.fixed_top {
+                    border-top-color: #c1eedb !important;
+                }
+                
+                #webpager #buddy .collector_title {
+                    background-color: #a1dfc5 !important;
+                }
+                
+                .ugc-remind-assistant-window .remind-wrap ul li,
+                .ugc-notice-assistant-window .notice-wrap ul li {
+                    border-bottom-color: #c1eedb !important;
+                }
+                
+                .ugc-remind-assistant-window .remind-wrap ul li:hover,
+                .ugc-notice-assistant-window .notice-wrap ul li:hover {
+                    background-color: #a1dfc5 !important;
+                }
+                
+                .popup-window .win-top {
+                    background-color: #5fb38f !important;
+                }
+                
+                .popup-window {
+                    border-color: #8f8f8f !important;
+                    box-shadow: 0 3px 5px 1px #8f8f8f;
+                }
+                
+                #webpager .wp_top_tabs .notify,
+                #webpager .wp_top_tabs .friends,
+                #webpager .wp_top_tabs .recent,
+                #webpager #buddy .wp_search_box .wp_search_icon,
+                #webpager #buddy .wp_search_box .wp_webpager_mgr,
+                #webpager #buddy .wp_search_box .wp_mute,
+                #webpager #buddy .setting_icon,
+                #webpager #buddy .create_group_wrap .btn_create_group,
+                #webpager #buddy .wp_collector li .piece_del,
+                #webpager #buddy .wp_collector li.wp_timestamp,
+                .popup-window .win-top .win-name em.offline-status,
+                .popup-window .win-top .win-name em.online-status,
+                .popup-window .win-top .win-name a.btn-add-friends,
+                .popup-window .win-top .win-opera a.btn-add-friends,
+                .popup-window .win-top .win-opera a.btn-top-zoom,
+                .popup-window .win-top .win-opera a.btn-top-close,
+                .popup-window .win-top .win-opera a.add-btn-top-close,
+                .popup-window .win-top .win-opera a.transfer-btn-top-close {
+                    background-image: url(__PUBLIC__/home/images/spriteUrl.png) !important;
+                    background-repeat: no-repeat !important;
+                }
+                
+                #webpager .wp_top_tabs .notify {
+                    background-position: 17px -38px !important;
+                }
+                
+                #webpager .wp_top_tabs .notify.on {
+                    background-position: 17px -86px !important;
+                }
+                
+                #webpager .wp_top_tabs .friends.left {
+                    background-position: 17px -138px !important;
+                }
+                
+                #webpager .wp_top_tabs .friends.on {
+                    background-position: 17px -191px !important;
+                }
+                
+                #webpager .wp_top_tabs .recent {
+                    background-position: 17px -250px !important;
+                }
+                
+                #webpager .wp_top_tabs .recent.on {
+                    background-position: 17px -303px !important;
+                }
+                
+                #webpager #buddy .wp_search_box .wp_search_icon {
+                    background-position: 0 -417px !important;
+                }
+                
+                #webpager #buddy .wp_search_box .wp_webpager_mgr {
+                    background-position: -24px -462px !important;
+                }
+                
+                #webpager #buddy .wp_search_box .wp_mute {
+                    background-position: -25px -488px !important;
+                }
+                
+                #webpager #buddy .setting_icon {
+                    background-position: 10px -462px !important;
+                }
+                
+                #webpager #buddy .setting_icon:hover {
+                    background-position: 10px -483px !important;
+                }
+                
+                #webpager #buddy .create_group_wrap .btn_create_group {
+                    background-position: 0 -543px !important;
+                }
+                
+                #webpager #buddy .create_group_wrap .btn_create_group:hover {
+                    background-position: -1px -593px !important;
+                }
+                
+                #webpager #buddy .wp_collector li:hover .piece_del {
+                    background-position: -1px -657px !important;
+                }
+                
+                #webpager #buddy .wp_collector li .piece_del:hover {
+                    background-position: -1px -700px !important;
+                }
+                
+                #webpager #buddy .wp_collector li.wp_timestamp {
+                    background-position: 0 -728px !important;
+                }
+                
+                .popup-window .win-top .win-name em.online-status {
+                    background-position: -140px -480px !important;
+                }
+                
+                .popup-window .win-top .win-name em.offline-status {
+                    background-position: -140px -480px !important;
+                }
+                
+                .popup-window .win-top .win-name a.btn-add-friends,
+                .popup-window .win-top .win-opera a.btn-add-friends {
+                    background-position: -133px -495px !important;
+                }
+                
+                .popup-window .win-top .win-opera a.btn-top-zoom {
+                    background-position: -135px -525px !important;
+                }
+                
+                .popup-window .win-top .win-opera a.btn-top-close,
+                .popup-window .win-top .win-opera a.add-btn-top-close,
+                .popup-window .win-top .win-opera a.transfer-btn-top-close {
+                    background-position: -135px -555px !important;
+                }
+                
+                .popup-window .win-top .win-opera a.btn-top-close:hover,
+                .popup-window .win-top .win-opera a.add-btn-top-close:hover,
+                .popup-window .win-top .win-opera a.transfer-btn-top-close:hover {
+                    background-position: -165px -555px !important;
+                }
+                
+                #webpager-holder .wp_top_tabs {
+                    background: #5fb38f !important;
+                    box-shadow: -3px -3px 6px 0 #305a48;
+                }
+                /**  首页皮肤相关*/
+                
+                .ui-renren-publisher .ui-renren-publisher-body,
+                .nx-content .a-feed,
+                .double-cols-feed .nx-right .a-feed,
+                .side-item {
+                    border-color: #78c5a4;
+                    box-shadow: 0 1px 1px #78c5a4;
+                }
+                
+                .ui-renren-publisher-active .ui-renren-publisher-body {
+                    box-shadow: 0 0 23px 0 #78c5a4;
+                }
+                
+                .a-feed .feed-tool {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat -140px -240px;
+                }
+                
+                .a-feed .feed-tool:hover {
+                    background-position: -140px -270px;
+                }
+                
+                .a-feed .feed-hide {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat -140px -360px;
+                }
+                
+                .a-feed .feed-hide:hover {
+                    background-position: -140px -380px;
+                }
+                
+                .nx-content .a-feed,
+                .double-cols-feed .nx-right .a-feed,
+                .side-item {
+                    background: #ffffff;
+                }
+                
+                body .advert-box .side-item-advert .advert-content {
+                    background: #ffffff;
+                }
+                
+                body .advert-box .side-item-advert .advert-banner {
+                    background: #a9dac5;
+                }
+                
+                .nx-content .a-feed .appendix,
+                .double-cols-feed .nx-right .a-feed .appendix {
+                    border-bottom-color: #c1eedb;
+                }
+                
+                .nx-content .feed-reply-container,
+                .double-cols-feed .nx-right .feed-reply-container,
+                .nx-content .own-reply,
+                .double-cols-feed .nx-right .own-reply {
+                    background-color: #a1dfc5;
+                }
+                
+                .nx-content .more-replies i,
+                .double-cols-feed .nx-right .more-replies i,
+                .nx-content .pack-replies i,
+                .double-cols-feed .nx-right .pack-replies i {
+                    background: url(__PUBLIC__/home/images/spriteUrl.png) no-repeat;
+                }
+                
+                .nx-content .more-replies i,
+                .double-cols-feed .nx-right .more-replies i {
+                    background-position: -140px -590px;
+                }
+                
+                .nx-content .pack-replies i,
+                .double-cols-feed .nx-right .pack-replies i {
+                    background-position: -154px -590px;
+                }
+                
+                .nx-content .pack-replies,
+                .double-cols-feed .nx-right .pack-replies {
+                    background-color: #a1dfc5;
+                }
+                
+                .photo-content-more .show-more-pic,
+                .share-content .show-more-pic,
+                .pack-replies span,
+                .nx-content .more-replies span,
+                .double-cols-feed .nx-right .more-replies span,
+                .nx-content .a-feed .feed-content .status a,
+                .double-cols-feed .nx-right .a-feed .feed-content .status a,
+                .nx-content .a-feed .feed-content .status a:hover,
+                .double-cols-feed .nx-right .a-feed .feed-content .status a:hover,
+                .photo-feed-content .photo-info a:hover,
+                .nx-content a:link,
+                .nx-content a:visited,
+                .nx-content a:hover,
+                .nx-content a:active,
+                .double-cols-feed .nx-right a:link,
+                .double-cols-feed .nx-right a:visited,
+                .double-cols-feed .nx-right a:hover,
+                .double-cols-feed .nx-right a:active {
+                    color: #368463;
+                }
+                
+                .a-feed .share-link-content .link-title:visited,
+                .a-feed .share-link-content .link-title:link {
+                    color: #333333;
+                }
+                
+                .nx-content .a-feed .share-content .user-name:hover,
+                .nx-content .feed-content .share-desc a:hover,
+                .nx-content .a-feed .share-link-content .link-desc h2:hover,
+                .nx-content .a-feed:hover .share-blog-title h2,
+                .nx-content .a-feed:hover .blog-title,
+                .nx-content .a-feed:hover .link-title h2,
+                .nx-content .a-feed:hover .share-video-title,
+                .nx-content .a-feed:hover .album-info .album-name,
+                .double-cols-feed .nx-right .a-feed .share-content .user-name:hover,
+                .double-cols-feed .nx-right .feed-content .share-desc a:hover,
+                .double-cols-feed .nx-right .a-feed .share-link-content .link-desc h2:hover,
+                .double-cols-feed .nx-right .a-feed:hover .share-blog-title h2,
+                .double-cols-feed .nx-right .a-feed:hover .blog-title,
+                .double-cols-feed .nx-right .a-feed:hover .link-title h2,
+                .double-cols-feed .nx-right .a-feed:hover .share-video-title,
+                .double-cols-feed .nx-right .a-feed:hover .album-info .album-name {
+                    color: #44c28c;
+                }
+                
+                .nx-content .a-feed .feed-content .status,
+                .nx-content .a-reply .reply-content .user-name,
+                .nx-content .a-reply .reply-content .user-name:hover,
+                .nx-content .a-reply .reply-content .text,
+                .double-cols-feed .nx-right .a-feed .feed-content .status,
+                .double-cols-feed .nx-right .a-reply .reply-content .user-name,
+                .double-cols-feed .nx-right .a-reply .reply-content .user-name:hover,
+                .double-cols-feed .nx-right .a-reply .reply-content .text {
+                    color: #333333;
+                }
+                
+                .nx-content .a-feed .feed-menu a:hover,
+                .double-cols-feed .nx-right .a-feed .feed-menu a:hover {
+                    background: #a1dfc5;
+                }
+                
+                .nx-content .a-reply .reply-content p,
+                .nx-content .a-feed .feed-action-info p,
+                .double-cols-feed .nx-right .a-reply .reply-content p,
+                .double-cols-feed .nx-right .a-feed .feed-action-info p {
+                    color: #8f8f8f;
+                }
+                
+                .nx-content .own-reply .own-reply-content .reply-input,
+                .double-cols-feed .nx-right .own-reply .own-reply-content .reply-input {
+                    border-color: #c1eedb;
+                    background-color: #ffffff;
+                }
+                
+                .nx-content .own-reply .own-reply-content .active-textarea,
+                .double-cols-feed .nx-right .own-reply .own-reply-content .active-textarea {
+                    border-color: #c1eedb;
+                }
+                
+                .nx-content .own-reply .own-reply-content .reply-input:hover,
+                .nx-content .own-reply .own-reply-content .active-textarea,
+                .double-cols-feed .nx-right .own-reply .own-reply-content .reply-input:hover,
+                .double-cols-feed .nx-right .own-reply .own-reply-content .active-textarea {
+                    border-color: #368463;
+                }
+                
+                .nx-content .a-reply:hover,
+                .double-cols-feed .nx-right .a-reply:hover {
+                    background-color: #c1eedb;
+                }
+                
+                .nx-content .a-reply .reply-tool a,
+                .double-cols-feed .nx-right .a-reply .reply-tool a {
+                    background-color: #5fb38f;
+                }
+                
+                .nx-content .a-reply .reply-tool a:hover,
+                .double-cols-feed .nx-right .a-reply .reply-tool a:hover {
+                    background-color: #44c28c;
+                }
+                
+                .double-cols-feed .nx-right .viparea_nav span.show {
+                    background: #368463;
+                }
+                
+                .double-cols-feed .viparea_area_c .name {
+                    color: #368463;
+                }
+                
+                #feed-filter ul li a:hover,
+                #focus-filter ul li a:hover {
+                    background-color: #a1dfc5;
+                }
+                
+                #feed-list .get-more-feed,
+                #feed-list .new-feed-tip a {
+                    background-color: #78c5a4;
+                }
+                
+                #feed-list .get-more-feed:hover,
+                #feed-list .new-feed-tip a:hover {
+                    background-color: #44c28c;
+                }
+                
+                #feed-list .get-more-feed {
+                    border-top-color: #78c5a4;
+                }
+                
+                #toolRefreshFeed a {
+                    background-color: rgba(255, 234, 119, 0.7);
+                }
+                
+                #toolBackTo a {
+                    background-color: rgba(255, 234, 119, 0.7);
+                }
+                
+                #toolRefreshFeed a:hover {
+                    background-color: rgba(108, 183, 132, 0.7);
+                }
+                
+                #toolBackTo a:hover {
+                    background-color: rgba(108, 183, 132, 0.7);
+                }
+                /**个人页皮肤相关*/
+                
+                #footprint-box h5 .title:hover,
+                #specialfriend-box .share-friend h5 .title:hover,
+                #specialfriend-box .has-friend h5 .title:hover,
+                #timeline_wrapper a:link,
+                #timeline_wrapper a:visited,
+                #timeline_wrapper a:hover,
+                #timeline_wrapper a:active {
+                    color: #368463;
+                }
+                
+                #operate_area {
+                    border-bottom-color: #78c5a4;
+                    border-left-color: #78c5a4;
+                    border-right-color: #78c5a4;
+                    box-shadow: 0 1px 1px #78c5a4;
+                }
+                
+                #global-publisher-box,
+                #footprint-box,
+                #timeline .gossip-box,
+                #specialfriend-box {
+                    border-color: #78c5a4;
+                    box-shadow: 0 1px 1px #78c5a4;
+                }
+                
+                #timeline .timeline_feed section,
+                .born .timeline_feed section {
+                    border-color: #78c5a4;
+                }
+                
+                .tl-new-feed {
+                    box-shadow: 0 1px 1px #78c5a4;
+                }
+                
+                #global-publisher-box:hover,
+                #footprint-box:hover,
+                #timeline .gossip-box:hover,
+                #specialfriend-box:hover,
+                #timeline .timeline_feed:hover section,
+                .born .timeline_feed:hover section {
+                    border-color: #305a48;
+                }
+                
+                .tl-new-feed .legend {
+                    background-color: #a1dfc5;
+                }
+                
+                .tl-information ul li {
+                    border-right-color: #c1eedb;
+                }
+                
+                #cover {
+                    height: 380px;
+                }
+                
+                #normal_cover,
+                #cover_image {
+                    height: 380px;
+                    border: none;
+                    background: url(__PUBLIC__/home/images/coveranim.gif) no-repeat top center;
+                }
+                
+                .vip-skin-profile .bd-main {
+                    background: url(__PUBLIC__/home/images/cover.jpg) no-repeat top center;
+                }
+                
+                #normal_cover img,
+                .comboBox,
+                #cover_image .comboBox,
+                #cover_image img,
+                .cover-like {
+                    display: none !important;
+                }
+                
+                .cover-bg {
+                    background: none;
+                }
+                
+                .avatar_title,
+                .avatar_title span {
+                    color: #44c28c;
+                }
+                
+                .tl-information {
+                    color: #333333;
+                }
+                
+                #operate_area {
+                    background: #a1dfc5;
+                }
+                
+                #timeline_nav li {
+                    border-left-color: #368463;
+                }
+                
+                #timeline_nav li a,
+                #timeline_nav li.current ol a {
+                    color: #368463;
+                }
+                
+                #timeline_nav li:hover {
+                    border-left-color: #44c28c;
+                }
+                
+                #timeline_nav li a:hover {
+                    color: #44c28c;
+                }
+                
+                #timeline_nav li.current {
+                    border-left-color: #305a48;
+                }
+                
+                #timeline_nav li.current a,
+                #timeline_nav ol li.current a {
+                    color: #305a48;
+                }
+                
+                #timeline {
+                    background-image: url(__PUBLIC__/home/images/bg_timeline_bar.gif);
+                }
+                
+                #timeline .tlr_feed i {
+                    background-image: url(__PUBLIC__/home/images/bg_dot_left.png);
+                    _background-image: url(__PUBLIC__/home/images/bg_dot_left_ie6.png);
+                }
+                
+                #timeline .tll_feed i {
+                    background-image: url(__PUBLIC__/home/images/bg_dot_right.png);
+                    _background-image: url(__PUBLIC__/home/images/bg_dot_right_ie6.png);
+                }
+                
+                #timeline .tlf_feed i,
+                .born .tlf_feed i {
+                    background-image: url(__PUBLIC__/home/images/bg_dot_top.png);
+                    _background-image: url(__PUBLIC__/home/images/bg_dot_top_ie6.png);
+                }
+                
+                .tl-new-feed .legend .like:hover,
+                .tl-new-feed .legend .shared:hover,
+                .tl-new-feed .legend .replied:hover {
+                    background-color: #5fb38f;
+                }
+                .ui-icon {
+  					background-image: url(__PUBLIC__/home/images/ui-icons-default_1423641197087.png);
+  					background-position: -37px -218px;
+  					background-repeat: no-repeat;
+				}
+                #timeline .timeline_marker span,
+                #timeline .timeline_marker_combine span,
+                #timeline .timeline_marker_combine_month span,
+                #timeline .show_more span,
+                .born .timeline_marker span {
+                    background-color: #78c5a4;
+                    color: #c1eedb;
+                }
+                
+                .tl-a-feed .feed-comment,
+                .tl-a-feed .feed-replies .a-reply,
+                .tl-a-feed .feed-replies .more-reply {
+                    border-top-color: #c1eedb;
+                    background-color: #a1dfc5;
+                }
+                </style>
+            </div>
+            <div class="hd-wraper " id="nxHeader">
+                <div class="hd-fixed-wraper clearfix" style="width: 1370px;">
+                    <div class="hd-main">
+                        <h1 class="hd-logo">
+                   <a title="人人网 renren.com - 人人网校内是一个真实的社交网络，联系朋友，一起玩游戏" href="__MODULE__/HomePage/index/id/{$Think.get.id}">人人网</a>
+               </h1>
+                        <div class="hd-nav clearfix" style="opacity: 1; display: block;">
+                            <div class="hd-search">
+                                <input type="text" placeholder="搜索好友" class="hd-search-input" id="hd-search">
+                                <a class="hd-search-btn" href="javascript:;"></a>
+                                <div id="search-result-box" class="search-result" style="width: 500px; top: 40px; left: 0px; display: none;"> 
+                                    <em class="search-arr-down">
+                                        <span class="search-arr-outer"></span>
+                                    </em>
+                                    <div class="s-main" id="s-main-cont">
+                                        <div id="s-result-cont" style="display: none;">
+                                            <ul class="s-default s-list">
+                                                <li id="s-tipword" class=""><a class="s-item s-tip" target="_blank" href="http://browse.renren.com/s/all?from=opensearch&amp;q=n">在人人网搜索与“n”相关的内容</a></li>
+                                            </ul>
+                                            <div class="s-line"></div>
+                                            <div id="s-result-wrap">
+                                                <ul class="s-default s-list" id="s-search-list"></ul>
+                                                <div class="s-line"></div>
+                                                <ul class="s-default s-list" id="s-more-list">
+                                                    <li class="s-def-item s-def-know">
+                                                        <a class="s-item" target="_blank" href="http://browse.renren.com/s/all?from=opensearch&amp;q=n#qt=n/tindex=2">
+                                                            <div class="s-icon"></div>
+                                                            <div class="s-info">搜索叫“n”的人</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="s-def-item s-def-page">
+                                                        <a class="s-item" target="_blank" href="http://browse.renren.com/s/all?from=opensearch&amp;q=n#qt=n/tindex=4">
+                                                            <div class="s-icon"></div>
+                                                            <div class="s-info">搜索叫“n”的公共主页</div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="s-line"></div>
+                                            </div>
+                                        </div>
+                                        <ul id="s-default-items" class="s-default s-list" style="display: block;">
+                                            <li class="s-def-item s-def-know">
+                                                <a class="s-item" target="_self" href="http://friend.renren.com/newfriends">
+                                                    <div class="s-icon"></div>
+                                                    <div class="s-info">可能认识的人</div>
+                                                </a>
+                                            </li>
+                                            <li class="s-def-item s-def-friend">
+                                                <a class="s-item" target="_self" href="http://friend.renren.com/managefriends">
+                                                    <div class="s-icon"></div>
+                                                    <div class="s-info">我的好友</div>
+                                                </a>
+                                            </li>
+                                            <li class="s-def-item">
+                                                <a class="s-item" target="_self" href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}">
+                                                    <div class="s-icon"><img src="__PUBLIC__/home/images/s_{$head}" alt=""></div>
+                                                    <div class="s-info">个人主页</div>
+                                                </a>
+                                            </li>
+                                            <li class="s-def-item s-def-share">
+                                                <a class="s-item" target="_self" href="http://share.renren.com/share/hot/v7">
+                                                    <div class="s-icon"></div>
+                                                    <div class="s-info">热门</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <dl class="hd-account clearfix">
+                                <dt>
+                                    <a href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}">
+                                        <img width="30" height="30" alt="{$info['name']}" src="__PUBLIC__/home/images/s_{$head|default='men_tiny.gif'}" class="hd-avatar">
+                                    </a>
+                                </dt>
+                                <dd>
+                                    <a title="{$info['name']}" href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}" class="hd-name">{$info.name}</a>
+                                    <a data-tips="{'days':'10','range':'11','score':'2111','vipLevel':'1'}" href="javascript:void(0)" class="hd-logindays" target="_blank" id="hdLoginDays">{$info['level']}</a>
+                                </dd>
+                            </dl>
+                            <dl class="hd-account clearfix">
+                                <dd style="padding-top:10px;">
+                                    <a href="__URL__/quitUser" style="color:#FFF;margin-left:80px;cursor:pointer">退出</a>
+                                </dd>
+                            </dl>
+
+                            <div class="hd-account-action">
+                               
+                                <div class="nx-drop-box nx-simple-drop nx-account-drop">
+                                    <ul class="nv-account-ctrl clearfix">
+                                        <li class="nv-drop-privacy "><a href="http://www.renren.com/privacyhome.do"><span class="ui-icon ui-icon-lock ui-iconfont"></span>隐私设置</a></li>
+                                        <li class="nv-drop-setting"><a href="http://safe.renren.com/"><span class="ui-icon ui-icon-privacysetting ui-iconfont"></span>个人设置</a></li>
+                                        <li class="nv-drop-pay"><a href="http://pay.renren.com/"><span class="ui-icon ui-icon-pay"></span>充值中心</a></li>
+                                        <li class="nv-account-sline"></li>
+                                        <li class="nv-drop-guide"><a href="http://2014.renren.com/v7/guide"><span class="ui-icon ui-icon-guide ui-iconfont"></span>新版指南</a></li>
+                                        <li class="nv-drop-contact"><a href="http://help.renren.com/helpcenter"><span class="ui-icon ui-icon-customerservice ui-iconfont"></span>联系客服</a></li>
+                                        <li class="nv-drop-exit"><a href="http://www.renren.com/Logout.do?requesttoken=1336227558"><span class="ui-icon ui-icon-out ui-iconfont"></span>退出</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="hd-account-action hd-account-action-vip">
+                                
+                                <div class="nx-drop-box nx-simple-drop nx-account-drop">
+                                    <ul class="nv-account-ctrl clearfix">
+                                        <li class="nv-drop-recharge"><a href="http://i.renren.com/pay/pre?wc=huangguan"><span class="ui-icon ui-icon-money ui-iconfont"></span>开通会员</a></li>
+                                        <li class="nv-drop-contact"><a href="http://i.renren.com/index/yearpay/home"><span class="ui-icon ui-icon-calendar ui-iconfont"></span>年付会员</a></li>
+                                        <li class="nv-drop-vip"><a href="http://i.renren.com/"><span class="ui-icon ui-icon-crown ui-iconfont"></span>VIP中心</a></li>
+                                        <li class="nv-account-sline"></li>
+                                        <li class="nv-drop-skin"><a href="http://i.renren.com/store/index/home?wc=huangguan"><span class="ui-icon ui-icon-artist ui-iconfont"></span>装扮商城</a></li>
+                                        <li class="nv-drop-skin"><a href="http://gift.renren.com?wc=huangguan"><span class="ui-icon ui-icon-gift ui-iconfont"></span>礼物中心</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nx-wraper clearfix">
+                <div class="nx-sidebar">
+                    <div class="slide-fixed-wraper clearfix ui-scrollbar" id="nxSlidebar" style="height: 630px;">
+                        <div class="app-nav-wrap">
+                            <div class="app-nav-cont">
+                                <ul class="app-nav-list">
+                                    <li data-tip="首页" class="app-nav-item app-nav-item-cur app-feed">
+                                        <a href="__MODULE__/HomePage/index/id/{$Think.get.id}" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/a.gif" class="app-icon"><span class="app-title">首页</span></a>
+                                    </li>
+                                    <li data-tip="与我相关" class="app-nav-item app-matter">
+                                        <a href="javascript:void(0)" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/a.gif" class="app-icon"><span class="app-title">与我相关</span></a>
+                                    </li>
+                                    <li data-tip="个人主页" class="app-nav-item app-homepage">
+                                        <a href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/a.gif" class="app-icon"><span class="app-title">个人主页</span></a>
+                                    </li>
+                                    <li data-tip="我的相册" class="app-nav-item app-album">
+                                        <a href="__MODULE__/Album/albumIndex/id/{$Think.get.id}" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/a.gif" class="app-icon"><span class="app-title">我的相册</span></a>
+                                    </li>
+                                    <li data-tip="好友" class="app-nav-item app-friends">
+                                        <a href="__MODULE__/Friend/index/id/{$Think.get.id}" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/a.gif" class="app-icon"><span class="app-title">好友</span></a>
+                                    </li>
+                                    <li data-tip="社团人" class="app-nav-item app-st">
+                                        <a target="_blank" href="http://st.renren.com" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/a.gif" class="app-icon"><span class="app-title">社团人</span></a>
+                                    </li>
+                                    <li data-tip="人人分期" class="app-nav-item app-st">
+                                        <a target="_blank" href="http://xray.jebe.renren.com/xray/monitor/click.htm?clickUrl=http://fenqi.renren.com/?origin=587&amp;adzoneID=fenqi&amp;creativeID=0&amp;userID=0" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/icon-fq.png" style="background:none;" class="app-icon"><span class="app-title">人人分期</span></a>
+                                    </li>
+                                    <li data-tip="热门" class="app-nav-item app-share">
+                                        <a href="http://share.renren.com/share/hot/v7" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/a.gif" class="app-icon"><span class="app-title">热门</span></a>
+                                    </li>
+                                    <li data-tip="应用中心" class="app-nav-item app-myapp">
+                                        <a href="__MODULE__/Game/index/id/{$Think.get.id}" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images//icon-app201412.png" style="background:none;" class="app-icon2"><span class="app-title">应用中心</span></a>
+                                    </li>
+                                    <li data-tip="我的应用" class="app-nav-item app-more"><a href="http://app.renren.com/app/editApps?origin=44070" class="app-link"><span class="icon-wrap"><img width="32" height="32" alt="我的应用" src="__PUBLIC__/home/images/icon-myapp201412b.png" style="background:none;" class="app-icon"></span><span class="app-title">我的应用</span></a></li>
+                                    <li data-tip="公共主页" class="app-nav-item"><a target="_blank" href="http://page.renren.com" class="app-link"><span class="icon-wrap"><img width="32" height="32" alt="公共主页" src="__PUBLIC__/home/images/LlnRa91f020051.jpg" class="app-icon"></span><span class="app-title">公共主页</span></a></li>
+                                    <li data-tip="人人话题" class="app-nav-item"><a target="_blank" href="http://huati.renren.com" class="app-link"><span class="icon-wrap"><img width="32" height="32" alt="人人话题" src="__PUBLIC__/home/images/LlNh066j020051.jpg" class="app-icon"></span><span class="app-title">人人话题</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="app-nav-cont recent-app-cont">
+                            <ul class="app-nav-list">
+                                <li class="app-nav-item">
+                                    <div data-adzone-id="100000000119" class="side-item-advert app-promote-ad"></div>
+                                </li>
+                                <li data-tip="圣剑神域" class="app-nav-item"><a target="_blank" href="http://apps.renren.com/shengjianshenyu?origin=50081" class="app-link"><span class="icon-wrap"><img width="32" height="32" alt="圣剑神域" src="__PUBLIC__/home/images/L9H0N2l020051.jpg" class="app-icon"></span><span class="app-title">圣剑神域</span><span class="app-icon-small"><img src="__PUBLIC__/home/images/2014.3.30.type4.v2.png"></span></a></li>
+                                <li data-tip="校园招聘" class="app-nav-item"><a target="_blank" href="http://www.connect.renren.com/redirect.do?type=appmenu&amp;app_id=193060&amp;origin=50082" class="app-link"><span class="icon-wrap"><img width="32" height="32" alt="校园招聘" src="__PUBLIC__/home/images/LBR6i350j020051.jpg" class="app-icon"></span><span class="app-title">校园招聘</span><span class="app-icon-small"><img src="__PUBLIC__/home/images/2014.3.30.type3.v2.png"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="app-nav-cont recent-app-cont">
+                            <ul class="app-nav-list">
+                                <li data-tip="网络防诈骗" class="app-nav-item app-nav-item app-feed">
+                                    <a href="http://page.renren.com/602122598" class="app-link"><img width="32" height="32" src="__PUBLIC__/home/images/m3w230h230q92lt_h_large_r2Ru_5e170001cfc6195a.jpg" class="app-icon"><span class="app-title">网络防诈骗</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ui-scrollbar-bar ui-scrollbar-bar-y" style="top: 0px; height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bd-container ">
+                
+                
+
+
+
+                <!--------------------------- 主体内容---------------------- -->
+                
+                <block name="main-body"></block>
+
+
+
+                    
+                <!---------------------------主体内容结束---------------------->
+                <div class="ft-wrapper clearfix" style="width: 760px;">
+                    <p>
+                        <strong>玩转人人</strong>
+                        <a target="_blank" href="http://page.renren.com/register/regGuide/">公共主页</a>
+                        <a target="_blank" href="http://public.renren.com/">公众平台</a>
+                        <a target="_blank" href="http://support.renren.com/helpcenter">客服帮助</a>
+                        <a target="_blank" href="http://www.renren.com/siteinfo/privacy">隐私</a>
+                    </p>
+                    <p>
+                        <strong>商务合作</strong>
+                        <a target="_blank" href="http://page.renren.com/marketing/index">品牌营销</a>
+                        <a target="_blank" class="l-2" href="http://bolt.jebe.renren.com/introduce.htm">中小企业<br>自助广告</a>
+                        <a target="_blank" href="http://dev.renren.com/">开放平台</a>
+                    </p>
+                    <p>
+                        <strong>公司信息</strong>
+                        <a target="_blank" href="http://www.renren-inc.com/zh/product/renren.html">关于我们</a>
+                        <a target="_blank" href="http://page.renren.com/gongyi">人人公益</a>
+                        <a target="_blank" href="http://www.renren-inc.com/zh/hr/">招聘</a>
+                    </p>
+                    <p>
+                        <strong>友情链接</strong>
+                        <a target="_blank" href="http://www.jingwei.com/">经纬网</a>
+                        <a target="_blank" href="http://wan.renren.com/">人人游戏</a>
+                        <a target="_blank" href="http://fenqi.renren.com/">人人分期</a>
+                        <a target="_blank" href="http://quxue.renren.com/">人人趣学</a>
+                    </p>
+                    <p>
+                        <strong>人人移动客户端下载</strong>
+                        <a target="_blank" href="http://mobile.renren.com/showClient?v=platform_rr&amp;psf=42064">iPhone/Android</a>
+                        <a target="_blank" href="http://mobile.renren.com/showClient?v=platform_hd&amp;psf=42067">iPad客户端</a>
+                        <a target="_blank" href="http://mobile.renren.com">其他人人产品</a>
+                    </p>
+                    <!--<p class="copyright-info">-->
+                    <!-- 临时添加公司信息用 -->
+                    <p style="margi-left: -20px" class="copyright-info">
+                        <span>公司全称：北京千橡网景科技发展有限公司</span>
+                        <span>公司电话：010-84481818</span>
+                        <span><a href="mailto:admin@renren.com">公司邮箱：admin@renren.com</a></span>
+                        <span>公司地址：北京市朝阳区酒仙桥中路18号<br>国投创意信息产业园北楼1层</span>
+                        <span><img src="__PUBLIC__/home/images/wenhuajingying.png" style="height: 28px;float: left; margin-left: 60px;" id="wenhuajingying_icon"><a target="_blank" href="http://sq.ccm.gov.cn/ccnt/sczr/service/business/emark/toDetail/DFB957BAEB8B417882539C9B9F9547E6">京网文[2013]0136-030号</a></span>
+                        <span><a target="_blank" href="http://www.miibeian.gov.cn/">京ICP证090254号</a></span>
+                        <span>人人网&copy;2015</span>
+                        <span><a id="lawInfo" href="#nogo">法律声明</a></span>
+                    </p>
+                </div>
+                <div class="advert-box advert-box-alien">
+                    <div data-adzone-id="100000300001" class="side-item-advert"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div widthlog="" class="back-to" id="toolBackTo" style="right: 20px;z-index:100">
+        <a onclick="turnToTop();" href="javascript:void(0)" style="display: none;"></a> 
+        <a onclick="return false;" class="v7-feedback" target="_blank" href="#nogo" style="display: block;">反馈</a>
+    </div>
+    <div class="advert-box advert-box-drift">
+        <div data-adzone-id="100000300010" class="side-item-advert"></div>
+    </div>
+    <div class="advert-box">
+        <div data-adzone-id="100000300011" class="side-item-advert"></div>
+    </div>
+    <div id="toolRefreshFeed" style="left: 1039px;">
+        <a onclick="return false;" class="refresh-back-to" href="#nogo" style="display: none;"> <span>有<span class="count-num">0</span>条
+            </span> <span>新鲜事</span>
+        </a>
+        <a class="feed-continue-read" onclick="return false;" href="#nogo">
+            <span>继续</span> <span>阅读</span>
+        </a>
+    </div>
+    <div class="advert-box">
+        <div data-adzone-id="100000300009" class="side-item-advert"></div>
+    </div>
+    <input type="hidden" value="" id="showActivityFlag">
+    <input type="hidden" value="" id="showActivityIndex">
+    <input type="hidden" value="0" id="isAdminDel">
+    <input type="hidden" value="{$head}" name="head" id="head">
+    <input type="hidden" value="{$info['name']}" id="name" >
+    <input type="hidden" value="{$info['id']}" id="uid" >
+
+    <iframe frameborder="0" id="webpagerengine" name="webpagerengine" style="width: 0px; height: 0px;"></iframe>
+
+
+
+
+    <!------------------好友对话框------------------------>
+    <div id="popup-window-wrap" class="popup-window-wrap" style="right: 248px; display:none;z-index:199">
+        <iframe style="display: none;" id="webpager_uploader" width="0" height="0" name="webpager_uploader" src="about:blank"></iframe>
+        <div win-type="chat" class="popup-window ui-resizable ui-resizable-autohide">
+            <div class="win-top"> 
+                <i class="png resize"></i>
+                <p class="win-name"> 
+                    <em class="png offline-status"></em> 
+                    <a onfocus="this.blur();" title="TA的主页" target="_blank" href="http://www.renren.com/profile.do?id=503313309" class="friend-name">时吉想</a> 
+                </p>
+                <div class="win-opera">
+                    <a class="png btn-add-friends"></a>
+                    <a class="png btn-top-setting"></a>
+                    <a class="png btn-top-zoom"></a>
+                    <a class="png btn-top-close" onclick="closeDialog()"></a>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="win-main" style="height: 320px;">
+                <div></div>
+                <div class="ugc-win-wrap chatmsg-wrap"> 
+                    <ul class="chat-con"></ul>
+
+
+                    <div id="udialog" style="display:none">
+                        <li class="sys-time" data-time="1446565976"> 
+                            <em class="png line-left"></em> 
+                            <span class="time">11月3日 23:52</span> 
+                            <em class="png line-right"></em>
+                        </li>
+                        <li class="myself-msg " data-time="1446565976" localid="">
+                            <a target="_blank" title="{$info.name}" href="http://www.renren.com/profile.do?id=436513776" class="photo-wrap"> 
+                                <img src="__PUBLIC__/home/images/s_{$head|default='men_tiny.gif'}" width="30" height="30"> </a>
+                            <p class="msg-wrap"> 
+                                <em class="png msg-arrow"></em> 
+                                <div data-type="" class="chatmsg">你个家伙还就读于北京大学呢
+                                </div> 
+                            </p>
+                        </li>
+                    </div>
+                    
+                    <div id="fdialog" style="display:none">
+                        <li class="sys-time" data-time="1446941400"> <em class="png line-left"></em> <span class="time">11月8日 8:10</span> <em class="png line-right"></em></li>
+                        <li class="friends-msg " data-time="1446941400" localid="">
+                            <a target="_blank" title="时吉想" href="http://www.renren.com/profile.do?id=503313309" class="photo-wrap"> <img src="__PUBLIC__/home/images/h_tiny_9KlD_79a20001efb7111a.jpg" width="30" height="30"> </a>
+                            <p class="msg-wrap"> <em class="png msg-arrow"></em> <div data-type="" class="chatmsg">一般化吧，都是往事了～</div> </p>
+                        </li>
+                    </div>
+                       
+                </div>
+            </div>
+            <div class="win-footer">
+                <div class="chat-func-wrap">
+                    <div class="chat-func-left">
+                        <div class="fileCon">
+                            <form target="webpager_uploader" action="http://upload.renren.com/upload.fcgi?pagetype=webpageriframe&amp;callback=top.webpager.pasteUploader.send&amp;uploadid=webpager&amp;hostid=436513776&amp;tick=dd1e176506da7b349b468cbf8df4f33b" method="post" enctype="multipart/form-data">
+                                <input type="file" name="file" class="file" title="发送图片">
+                            </form>
+                        </div>
+                        <div class="ui-textbox-buttonPane">
+                            <span class="ui-icon ui-iconfont ui-icon-with" style="margin-right: 10px; cursor: pointer; display: none;"></span>
+                            <span class="ui-icon ui-iconfont ui-icon-emotion2 duihuabiaoqing" style="margin-right: 10px; cursor: pointer; display:inline-block;background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: -36px -110px;width:18px;height:18px;" onclick="biaoqingShow(this)"></span>
+                            <span class="ui-icon ui-iconfont ui-icon-speech" style="margin-right: 10px; cursor: pointer; display: none;"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="btn-func-right"> <a id="record-503313309" data-id="503313309" class="png msghistory">聊天记录</a> </div>
+                </div>
+                <div class="send-msg-wrap">
+                    <div class="textarea-input">
+                        <div class="textarea chat-textarea ui-textbox">
+                            <div style="position: absolute; left: 0px; top: 0px; width: 405px; height: 40px; padding: 10px 5px; outline: none; color: rgb(169, 169, 169);"></div>
+                            <div contenteditable="true" style="position: absolute; left: 0px; top: 0px; width: 405px; height: 40px; padding: 10px 5px; outline: none; background: none;" id="dialogIcon"></div>
+                        </div>
+                    </div>
+                    <div class="send-msg-bottom">
+                        <div class="words-tip"> <span class="words-current"></span> <span class="delimiter">/</span> <span class="words-total">500</span> </div>
+                        <div class="btn-msg-send-wrap">
+                             <a title="点击发送" class="btn-msg-send" onclick="sendMessage(this)">点击发送</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: none;"></div>
+            <div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: none;"></div>
+            <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: none;"></div>
+        </div>
+    </div>
+<!--------------------好友对话框结束-------------------------------->
+
+
+
+<!-----------------------小表情------------------------>
+
+
+<div class="ui-dialog ui-widget ui-front emotion-dialog" tabindex="-1" style="height: auto; width: 350px; top: 268px; left: 427px; display: none;" id="xiaobiaoqing">
+    <div class="ui-widget-header ui-helper-clearfix"><span id="ui-id-20" class="ui-dialog-title"></span>
+        <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-close" role="button" title="关闭" onclick="closeBiaoqing()"><span class="ui-button-icon-primary ui-icon-lclose ui-iconfont">×</span><span class="ui-button-text">关闭</span></button>
+    </div>
+    <div class="ui-widget-content" style="display: block; width: auto; min-height: 128px; max-height: none; height: auto;">
+        <div class="emotion-tab-wrapper">
+            <ul class="emotion-dialog-nav emotion-nav-more clearfix" style="top: 0px;">
+                <li class="emotion-tab select"><img src="__PUBLIC__/upload/icon/default.png" alt="默认表情" width="25" height="25"></li>
+               <!--此处可以做另外几套表情后期可以补充
+                <li class="emotion-tab"><img src="__PUBLIC__/home/images/bernie.png" alt="动物家族--Bernie" width="25" height="25"></li>-->
+            </ul>
+           <!-- <div class="emotion-tab-switcher"> <span class="emotion-tab-up" disabled="disabled">&nbsp;</span> <span class="emotion-tab-down">&nbsp;</span> </div>-->
+        </div>
+        <div class="emotion-dialog-box ui-scrollbar">
+            <ul class="emotion-dialog-list  clearfix select">
+                <foreach name="iconList" item="vo">
+                    <li>
+                        <img emotion="(吃饭)" alt="{$vo.reg}" data-preview="__PUBLIC__/upload/icon/{$vo.icon}" data-src="__PUBLIC__/home/images/3.gif?ver=1" src="__PUBLIC__/upload/icon/s_{$vo.icon}">
+                    </li>
+                    
+                </foreach>
+
+            </ul>
+            
+            <div class="ui-scrollbar-bar ui-scrollbar-bar-y" style="top: 0px; height: 141px;"></div>
+        </div>
+        <div class="emotion-dialog-preview" style="display: none;"> <img src="__PUBLIC__/upload/icon/bu.gif" width="50" height="50"> </div>
+    </div>
+    <div class="ui-widget-footer ui-helper-clearfix" style="display: none;">
+        <div class="ui-dialog-buttonset"></div>
+    </div>
+</div>
+<!---------------------------小表情结束---------------- ---->
+
+<!-----------------------弹窗---------------------------->
+<div id="tanchuang" style="display:none">
+    <div class="ui-widget-overlay ui-front"></div>
+    <div class="ui-dialog ui-widget ui-front ui-dialog-confirm" tabindex="-1" style="height: auto; width: 500px; top: 150px; left: 423.5px; display: block;position:fixed">
+    <div class="ui-widget-header ui-helper-clearfix"><span id="ui-id-24" class="ui-dialog-title"></span>
+        <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-close" role="button" title="关闭"><span class="ui-button-icon-primary ui-iconfont"  onclick="alarmCancel()">×</span><span class="ui-button-text">关闭</span></button>
+    </div>
+    <div class="ui-widget-content" id="tanchaungneirong" style="display: block; width: auto; min-height: 0px; max-height: none; height: auto;">确定要屏蔽该用户的新鲜事么？</div>
+    <div class="ui-widget-footer ui-helper-clearfix">
+        <div class="ui-dialog-buttonset">
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" id="alarmCancelButton" onclick="alarmCancel()"><span class="ui-button-text">取消</span></button>
+            <button type="button" class="ui-button-blue ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"  id="alarmConfirmButton" onclick="alarmConform()"><span class="ui-button-text">确定</span></button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+<!------------------------弹窗结束------------------------------>
+</body>
+
+</html>

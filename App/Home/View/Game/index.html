@@ -1,0 +1,697 @@
+<extend name="Public/base" />
+<block name="main-body">
+	<style>
+			#map{
+				clear: both;
+				height:500px;
+				width:500px;
+				background:url("__PUBLIC__/home/images/bg2.jpg") repeat-y;
+				overflow:hidden;
+				position:relative;
+			}
+			#kaishi{
+				height: 300px;
+				width: 300px;
+				top:100px;
+				left: 100px;
+				background: rgba(255,0,0,0);
+				color:#FFF;
+				font-size: 250px;
+				font-weight: bold;
+				text-align: center;
+			}
+			#bbt{
+				margin-left: 230px;
+				margin-top: 20px;
+				width: 100px;
+				height:40px;
+				background: #AAA;
+				font-size: 20px;
+				font-weight: bold;
+				color: white;
+				border-radius: 10px;
+			}
+			#p0,#p1,#p2,#p3,#p4,#e1,#e2,#e3,#bomb,#kaishi{
+				
+				position:absolute;
+			}
+			#shi,#ge{
+				width: 22px;
+				height: 25px;
+				float: left;
+				background: url('__PUBLIC__/home/images/num.png') no-repeat;
+			}
+		</style>
+	<div id="gamebody" style="height:600px;width:800px;background:#FFF;margin-left:100px;margin-top:20px">
+		<div id="fen">
+			<div style="float:left;line-height: normal;font-family: STHeiti,'Microsoft YaHei',\5b8b\4f53,arial;margin-left:200px;font-size:20px">您的得分是：</div>
+			<div id="shi"></div>
+			<div id="ge"></div>
+		</div>
+		<div id="map" style="margin-left:30px">
+			<div id="kaishi" style="display:none"></div>
+			<img id="e1" src="__PUBLIC__/home/images/e1.png" style="display:none;"/>
+			<img id="e2" src="__PUBLIC__/home/images/e2.png" style="display:none;" />
+			<img id="e3" src="__PUBLIC__/home/images/e3.png" style="display:none;" />
+
+			<img id="p0" src="__PUBLIC__/home/images/eshot.png" style="display:none;" />
+			<img id="p1" src="__PUBLIC__/home/images/eshot.png" style="display:none;" />
+			<img id="p2" src="__PUBLIC__/home/images/eshot.png" style="display:none;" />
+			<img id="p3" src="__PUBLIC__/home/images/eshot.png" style="display:none;" />
+			<img id="p4" src="__PUBLIC__/home/images/eshot.png" style="display:none;" />
+
+
+			<img id="bomb" src="__PUBLIC__/home/images/boom.gif" style="display:none;width:100px;height:80px;">
+			<img id="air" src="__PUBLIC__/home/images/me.png" style="position:absolute;left:100px;top:424px;" />
+		</div>
+		<div id="goalDisplay" style="display:hidden"></div>
+		<button onclick="start(this)" id="bbt" >开始</button>
+
+
+		<div style="position:absolute;top:120px;left:830px;width:200px">
+			<div style="font-size:30px;margin-left:20px">好友排行榜</div>
+            <ul id="rankList">
+            	
+		        <foreach name="gameRank" item="vo" key="k">
+            		<if condition="$k eq 0">
+		                <li style="clear:both">
+		                    <div style="float:left">
+		                       <img src="__PUBLIC__/home/images/rankfirst.png" style="width:50px;height:50px" namecard="630000002" class="piece_url"> 
+		                   </div>
+		                    <div style="float:left;line-height:50px;font-size:20px;margin-left:10px">
+		                    	{$vo.name} {$vo.score}分
+		                    </div>
+		                </li>
+                	</if>
+                	<if condition="$k eq 1">
+		                <li style="clear:both">
+		                    <div style="float:left">
+		                       <img src="__PUBLIC__/home/images/ranksecond.png" style="width:50px;height:50px" namecard="630000002" class="piece_url"> 
+		                   </div>
+		                    <div style="float:left;line-height:50px;font-size:20px;margin-left:10px">
+		                    	{$vo.name} {$vo.score}分
+		                    </div>
+		                </li>
+                	</if>
+                	<if condition="$k eq 2">
+		                <li style="clear:both">
+		                    <div style="float:left">
+		                       <img src="__PUBLIC__/home/images/rankthird.png" style="width:50px;height:50px" namecard="630000002" class="piece_url"> 
+		                   </div>
+		                    <div style="float:left;line-height:50px;font-size:20px;margin-left:10px">
+		                    	{$vo.name} {$vo.score}分
+		                    </div>
+		                </li>
+                	</if>
+                	<if condition="$k gt 2">
+		                <li style="clear:both">
+		                    <div style="float:left">
+		                       <img src="__PUBLIC__/home/images/{$vo.head}" style="width:50px;height:50px" namecard="630000002" class="piece_url"> 
+		                   </div>
+		                    <div style="float:left;line-height:50px;font-size:20px;margin-left:10px">
+		                    	{$vo.name} {$vo.score}分
+		                    </div>
+		                </li>
+                	</if>
+
+
+                	
+                </foreach>
+                		
+                	
+                
+            </ul>
+        </div>
+
+
+
+		
+		<script type="text/javascript">
+			$('li[data-tip="首页"]').removeClass('app-nav-item-cur');
+			$('li[data-tip="应用中心"]').addClass('app-nav-item-cur');
+
+			var map=document.getElementById('map');
+			var air=document.getElementById('air');
+			var bomb=document.getElementById('bomb');
+			//无缝连接
+			var wflj=-268;
+			//飞机运动的初始位置
+			var chs=-116;
+			//定义炸弹爆炸时间参数
+			var t=0;
+			//开始
+			var s=3;
+			//定义关卡
+			var gq=1;
+			var kaishi=document.getElementById('kaishi');
+			//得分
+			var goal=0;
+			var n2=0;
+			var n1=0;
+			var shi=document.getElementById('shi');
+			var ge=document.getElementById('ge');
+
+			//添加敌方子弹
+			for(var i=0;i<15;i++){
+				var pei=document.createElement('img');
+				pei.setAttribute('id','pe'+i);
+				pei.setAttribute('src','__PUBLIC__/home/images/eshot_e.png');
+				pei.setAttribute('style','display:none');
+				
+				map.appendChild(pei);
+			}
+
+
+			window.document.onkeydown=function(e){
+				// alert(e.keyCode);
+				switch(e.keyCode){
+					case 37:
+					case 65:
+						air.style.left=Math.max(0,air.offsetLeft-5)+'px';
+						break;
+					case 38:
+					case 87:
+						air.style.top=Math.max(0,air.offsetTop-5)+'px';
+						break;
+					case 39:
+					case 68:
+						air.style.left=Math.min(map.offsetWidth-106,air.offsetLeft+5)+'px';
+						break;
+					case 40:
+					case 83:
+						air.style.top=Math.min(424,air.offsetTop+5)+'px';
+						break;
+					case 74:
+						//alert('aa');
+						launch(air.offsetLeft+53,air.offsetTop);
+				}
+			}
+			function launch(x,y){
+				 //遍历所有炮弹
+				for(var i=0;i<5;i++){
+					// alert('aaa');
+					var p = document.getElementById("p"+i);
+					var pa=document.getElementById("p"+i+'a');
+					var pb=document.getElementById("p"+i+'b');
+					//判断炮弹是否可用
+					// alert(p.id);
+					if(p.style.display=="none"){
+						// alert('aaa'); 
+						if(gq==1){
+							p.style.top = y+"px";
+							p.style.left = x+"px";
+							p.style.display = "block";
+							return;
+						}
+						if(gq==2){
+							p.style.top = y+"px";
+							p.style.left = x+"px";
+							p.style.display = "block";
+							pa.style.position="absolute";
+							pb.style.position="absolute";
+							pa.style.top = y+"px";
+							pa.style.left = x+"px";
+							pa.style.display = "block";
+							pb.style.top = y+"px";
+							pb.style.left = x+"px";
+							pb.style.display = "block";
+							return;
+						}
+						
+					}
+				}
+			}
+			var exx=new Array();
+
+			//随机产生飞机
+			function enmies(){
+				if(gq==1){
+					for(var i=1;i<4;i++){
+						var enmy=document.getElementById('e'+i);
+						//判断飞机是否可用
+						if(enmy.style.display=="none"){
+							//飞机产生的位置
+							var l=(Math.round(Math.random()*10000))%394;
+							enmy.style.left=l+'px';
+							enmy.style.top=-116+'px';
+							enmy.style.display="block";
+							return;
+						}
+					}
+				}
+				if(gq==2){
+					for(var i=1;i<4;i++){
+						var enmy=document.getElementById('e'+i);
+						//判断飞机是否可用
+						if(enmy.style.display=="none"){
+							//飞机产生的位置
+							var l=(Math.round(Math.random()*10000))%330+25;
+							exx[i]=l;
+							enmy.style.left=l+'px';
+							enmy.style.top=-116+'px';
+							enmy.style.display="block";
+							return;
+						}
+				}
+			}	
+			}
+			
+			//随机产生敌方炮弹
+			function peidisplay(){
+				for(var i=0;i<15;i++){
+					var pei=document.getElementById('pe'+i);
+
+					//判断炮弹是否可用
+					if(pei.style.display=="none"){
+						//确定炮弹的位置
+
+						var j=Math.round(Math.random()*10000)%3+1;
+						var enmy=document.getElementById('e'+j);
+						if(enmy.style.display=="block"){
+							var x=enmy.offsetLeft+enmy.offsetWidth/2+'px';
+							var y=enmy.offsetTop+enmy.offsetHeight+'px';
+							pei.style.position="absolute";
+							pei.style.left=x;
+							pei.style.top=y;
+							
+							pei.style.display='block';
+							return;
+						}
+					}
+				}
+			}
+
+
+
+			function zd1(){
+				//自己的子弹
+				for(i=0;i<5;i++){
+					var pa = document.getElementById("p"+i+'a');
+					var pb = document.getElementById("p"+i+'b');
+					$(pa).hide();
+					$(pb).hide();
+					var p = document.getElementById("p"+i);
+					if(p.style.display=="block"){
+						
+						p.style.top=p.offsetTop-5+'px';
+						if(p.offsetTop<-25){
+							p.style.display="none";
+						}
+					}
+					//碰撞检测
+					for(var j=1;j<4;j++){
+						var em=document.getElementById('e'+j);
+						if(em.style.display=="block"){
+							if(p.offsetLeft>=em.offsetLeft && p.offsetLeft<=em.offsetLeft+em.offsetWidth && p.offsetTop>=em.offsetTop && p.offsetTop<=em.offsetTop+em.offsetHeight){
+								bomb.style.top=em.offsetTop+'px';
+								bomb.style.left=em.offsetLeft+'px';
+								bomb.style.display="block";
+								p.style.display="none";
+								em.style.display="none";
+								goal++;
+								t=0;
+								
+							}
+						}
+					}
+					
+				}
+			}
+
+			//主线程
+			function running(){
+				zd1();
+
+
+				//敌方的子弹
+				for(i=0;i<15;i++){
+					var pei = document.getElementById("pe"+i);
+					if(pei.style.display=="block"){
+						
+						pei.style.top=pei.offsetTop+4+'px';
+						if(pei.offsetTop>500){
+							pei.style.display="none";
+						}
+					}
+					//碰撞检测
+					if((pei.offsetTop+pei.offsetHeight)>=air.offsetTop && (pei.offsetTop+pei.offsetHeight)<=(air.offsetTop+air.offsetHeight) && pei.offsetLeft>=air.offsetLeft && pei.offsetLeft<=(air.offsetLeft+air.offsetWidth)){
+						bomb.style.top=air.offsetTop+'px';
+						bomb.style.left=air.offsetLeft+'px';
+						bomb.style.display="block";
+						pei.style.display="none";
+						air.style.display="none";
+						alert('Game Over!');
+						upload();
+						return;
+
+
+					}
+					
+				}
+
+
+
+
+
+				//炸弹爆炸
+				t++;
+				//alert(ti);
+				if(t>33){
+					
+					bomb.style.display="none";
+				}
+
+				//得分
+				n2=-(goal%10);
+				n1=-((goal+n2)/10);
+				//if (n1!=0) {
+				//	alert(goal+":"+n2+":"+n1);
+			//	};
+
+
+				//alert(n1);
+				shi.style.backgroundPosition=n1*22+'px 0px';
+				ge.style.backgroundPosition=n2*22+'px 0px';
+
+				//下一关
+				if (goal>5) {
+					gq=2;
+					//alert('恭喜你进入下一关！');
+					for(i=0;i<15;i++){
+						var pei = document.getElementById("pe"+i);
+						if(pei.style.display=="block"){
+							pei.style.display="none";
+						}
+					}
+					for(j=1;j<4;j++){
+						var em=document.getElementById('e'+j);
+						em.style.display="none";
+					}
+
+
+					clearTimeout(run1);
+					running2();
+					return;
+				};
+
+
+
+				//随机产生飞机和导弹
+				var sj=(Math.round(Math.random()*10000))%60;
+				if(sj==5 || sj==4){
+					enmies();
+					
+				}
+				if(sj==6){
+					peidisplay();
+				}
+
+				//飞机的运动
+				for(j=1;j<4;j++){
+					var em=document.getElementById('e'+j);
+					if(em.style.display=="block"){
+						em.style.top=em.offsetTop+1+'px';
+						if(em.offsetTop>500){
+							em.style.display="none";
+						}
+					}
+					if(em.offsetTop>=air.offsetTop-em.offsetHeight && em.offsetTop<=air.offsetTop+air.offsetHeight && em.offsetLeft>=air.offsetLeft-em.offsetWidth && em.offsetLeft<=air.offsetLeft+air.offsetWidth){
+						bomb.style.top=em.offsetTop+50+'px';
+						bomb.style.left=em.offsetLeft+'px';
+						bomb.style.display="block";
+						air.style.display="none";
+						em.style.display="none";
+						alert("Game Over!goal:"+goal);
+						upload();
+						return;
+
+					}
+
+				}
+
+				//无缝连接
+				wflj++;
+				map.style.backgroundPosition="0px "+wflj+'px';
+
+
+				run1=setTimeout("running()",33);
+			}
+			
+			
+			function start(ob){
+				if(ob.innerHTML=='开始'){
+					ob.style.display="none";
+					dutiao();
+				}else{
+					$('#map img').hide();
+					$('#map div').hide();
+					$('#air').show();
+					clearTimeout(run1);
+					s=3;
+					goal=0;
+					$('#map').css('background','url("__PUBLIC__/home/images/bg2.jpg") repeat-y');
+					$(ob).html('开始');
+					$(ob).hide();
+					zd1();
+					dutiao();
+				}
+				
+			}
+
+			function dutiao(){
+
+				kaishi.style.display="block";
+
+				if(s==0){
+					//alert('aa');
+					//kaishi.innerHTML=s;
+					kaishi.style.fontSize="100px";
+					kaishi.innerHTML="Start！";
+				}else{
+					//alert(s);
+					kaishi.innerHTML=s;
+				}
+				s--;
+				var tt=setTimeout("dutiao()",1000);
+				if(s==-2){
+					kaishi.style.display="none";
+					clearTimeout(tt);
+					running();
+					return;
+				}
+
+			}
+
+			//running();
+
+
+
+			function zd2(){
+				for(i=0;i<5;i++){
+					var p = document.getElementById("p"+i);
+					var pa = document.getElementById("p"+i+'a');
+					var pb = document.getElementById("p"+i+'b');
+					if(p.style.display=="block" || pa.style.display=="block" || pb.style.display=="block"){
+						
+						p.style.top=p.offsetTop-5+'px';
+						pa.style.top=p.offsetTop-5+'px';
+						pa.style.left=pa.offsetLeft-1+'px';
+						pb.style.top=p.offsetTop-5+'px';
+						pb.style.left=pb.offsetLeft+1+'px';
+						if(p.offsetTop<0 || pa.offsetTop<0 || pa.offsetTop<0){
+							p.style.display="none";
+							pa.style.display="none";
+							pb.style.display="none";
+						}
+					}
+					pengzhuang(p);
+					pengzhuang(pa);
+					pengzhuang(pb);
+					//碰撞检测
+					
+					
+				}
+				return;
+			}
+
+
+			function pengzhuang(p){
+				for(var j=1;j<4;j++){
+						var em=document.getElementById('e'+j);
+						if(em.style.display=="block"){
+							if(p.offsetLeft>=em.offsetLeft && p.offsetLeft<=em.offsetLeft+em.offsetWidth && p.offsetTop>=em.offsetTop && p.offsetTop<=em.offsetTop+em.offsetHeight){
+								bomb.style.top=em.offsetTop+'px';
+								bomb.style.left=em.offsetLeft+'px';
+								bomb.style.display="block";
+								p.style.display="none";
+								em.style.display="none";
+								goal++;
+								t=0;
+								
+							}
+						}
+					}
+			}
+
+			//第二关
+
+			function running2(){
+				map.style.background="url('__PUBLIC__/home/images/bg_1.jpg')";
+
+				//添加己方子弹
+				for(var i=0;i<5;i++){
+					var pei=document.createElement('img');
+					pei.setAttribute('id','p'+i+'a');
+					pei.setAttribute('src','__PUBLIC__/home/images/eshot.png');
+					pei.setAttribute('style','display:none');
+					
+					map.appendChild(pei);
+				}
+				for(var i=0;i<5;i++){
+					var pei=document.createElement('img');
+					pei.setAttribute('id','p'+i+'b');
+					pei.setAttribute('src','__PUBLIC__/home/images/eshot.png');
+					pei.setAttribute('style','display:none');
+					
+					map.appendChild(pei);
+				}
+				
+
+				//子弹
+				zd2();
+
+				
+
+
+				
+				//炸弹爆炸
+				t++;
+				//alert(ti);
+				if(t>33){
+					
+					bomb.style.display="none";
+				}
+
+				//得分
+				n2=-(goal%10);
+				n1=-((goal+n2)/10);
+				//if (n1!=0) {
+				//	alert(goal+":"+n2+":"+n1);
+			//	};
+
+
+				//alert(n1);
+				shi.style.backgroundPosition=n1*22+'px 0px';
+				ge.style.backgroundPosition=n2*22+'px 0px';
+
+				//下一关
+				if (goal>100) {
+					
+					alert('恭喜你通关了！');
+					upload();
+					
+					return;
+				};
+
+
+
+				//随机产生飞机
+				var sj=(Math.round(Math.random()*10000))%30;
+				if(sj==5){
+					enmies();
+				}
+
+				//飞机的运动
+				for(j=1;j<4;j++){
+					var em=document.getElementById('e'+j);
+					if(em.style.display=="block"){
+						var hh=(Math.round(Math.random()*10000))%5;
+						var ii=(Math.round(Math.random()*10000))%5;
+						var jj=(Math.round(Math.random()*10000))%10-5;
+						var kk=(Math.round(Math.random()*10000))%40-20;
+						em.style.top=em.offsetTop+5+'px';
+						var xx=em.offsetTop;
+						em.style.left=exx[j]+25*Math.sin(xx/60)+'px';
+						if(em.offsetTop>500){
+							em.style.display="none";
+						}
+					}
+					if(em.offsetTop>=air.offsetTop-em.offsetHeight && em.offsetTop<=air.offsetTop+air.offsetHeight && em.offsetLeft>=air.offsetLeft-em.offsetWidth && em.offsetLeft<=air.offsetLeft+air.offsetWidth){
+						bomb.style.top=em.offsetTop+50+'px';
+						bomb.style.left=em.offsetLeft+'px';
+						bomb.style.display="block";
+						air.style.display="none";
+						em.style.display="none";
+						alert("Game Over!goal:"+goal);
+						upload();
+						return;
+
+					}
+
+				}
+
+				//无缝连接
+				wflj++;
+				map.style.backgroundPosition="0px "+wflj+'px';
+
+
+				run2=setTimeout("running2()",20);
+			}
+			
+			
+
+
+			//战绩上传
+			function upload(){
+					
+					$.ajax({
+						url:'/renren/index.php/Home/Game/uploadMyGoal',
+						type:'POST',
+						data:'score='+goal+'&uid='+$('#uid').val(),
+						success:function(res){
+							// alert('ok');
+							
+								$('#bbt').html('重新开始');
+								$('#bbt').show();
+								ajaxReload();
+						},
+						error:function(){
+							alert('ajax传值失败');
+						},
+					});
+			}
+			//
+			function ajaxReload(){
+				$('#rankList').empty();
+				$.ajax({
+					url:'__URL__/findRank/id/{$Think.get.id}',
+					type:'GET',
+					dataType:'json',
+					success:function(res){
+						// alert(res);
+						for(var i=0;i<res.length;i++){
+							if(i==0){
+								$('#rankList').append('<li style="clear:both"><div style="float:left"><img src="__PUBLIC__/home/images/rankfirst.png" style="width:50px;height:50px" namecard="630000002" class="piece_url"></div><div style="float:left;line-height:50px;font-size:20px;margin-left:10px">'+res[i].name+' '+res[i].score+'分</div></li>');
+							}
+							if(i==1){
+								$('#rankList').append('<li style="clear:both"><div style="float:left"><img src="__PUBLIC__/home/images/ranksecond.png" style="width:50px;height:50px" namecard="630000002" class="piece_url"></div><div style="float:left;line-height:50px;font-size:20px;margin-left:10px">'+res[i].name+' '+res[i].score+'分</div></li>');
+							}
+							if(i==2){
+								$('#rankList').append('<li style="clear:both"><div style="float:left"><img src="__PUBLIC__/home/images/rankthird.png" style="width:50px;height:50px" namecard="630000002" class="piece_url"></div><div style="float:left;line-height:50px;font-size:20px;margin-left:10px">'+res[i].name+' '+res[i].score+'分</div></li>');
+							}
+							if(i>2){
+								$('#rankList').append('<li style="clear:both"><div style="float:left"><img src="__PUBLIC__/home/images/'+res[i].head+'" style="width:50px;height:50px" namecard="630000002" class="piece_url"></div><div style="float:left;line-height:50px;font-size:20px;margin-left:10px">'+res[i].name+' '+res[i].score+'分</div></li>');
+							}
+							
+
+						}
+					},
+					error:function(){
+						alert('ajax传值失败');
+					},
+				});
+			}
+			
+		</script>
+	</div>
+</block>

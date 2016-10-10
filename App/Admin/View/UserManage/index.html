@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>在路上 后台主页</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="__PUBLIC__/admin/bower_components/bootstrap/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+        <!-- MetisMenu CSS -->
+        <link href="__PUBLIC__/admin/bower_components/metisMenu/dist/metisMenu.min.css"
+        rel="stylesheet">
+        <!-- DataTables CSS -->
+        <link href="__PUBLIC__/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css"
+        rel="stylesheet">
+        <!-- DataTables Responsive CSS -->
+        <link href="__PUBLIC__/admin/bower_components/datatables-responsive/css/dataTables.responsive.css"
+        rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="__PUBLIC__/admin/dist/css/sb-admin-2.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="__PUBLIC__/admin/bower_components/font-awesome/css/font-awesome.min.css"
+        rel="stylesheet" type="text/css">
+        
+        <style type="text/css">
+            #inputSuccess,#level,#status{width:60%;float:right;margin-right:10%;} 
+            .control-label{margin-left:10%;}
+            #secondWell{position:absolute;width:40%;left:35%;top:15%;}
+            #control-label-sex{padding-right:10%;}
+            #control-div-sex{padding-top:10px;}
+        </style>
+    </head>
+    
+    <body>
+        <div id="pageLoading">
+        </div>
+        <!------ 头部开始 ------>
+        <header>
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+            style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">
+                            Toggle navigation
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        用户管理
+                    </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <span class="sr-only">
+                            Toggle navigation
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope fa-fw">
+                                </i>
+                                <i class="fa fa-caret-down">
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-messages">
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <strong>
+                                                John Smith
+                                            </strong>
+                                            <span class="pull-right text-muted">
+                                                <em>
+                                                    Yesterday
+                                                </em>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+                                            eleifend...
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <strong>
+                                                John Smith
+                                            </strong>
+                                            <span class="pull-right text-muted">
+                                                <em>
+                                                    Yesterday
+                                                </em>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+                                            eleifend...
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <strong>
+                                                John Smith
+                                            </strong>
+                                            <span class="pull-right text-muted">
+                                                <em>
+                                                    Yesterday
+                                                </em>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+                                            eleifend...
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a class="text-center" href="#">
+                                        <strong>
+                                            Read All Messages
+                                        </strong>
+                                        <i class="fa fa-angle-right">
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-messages -->
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-tasks fa-fw">
+                                </i>
+                                <i class="fa fa-caret-down">
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-tasks">
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    Task 1
+                                                </strong>
+                                                <span class="pull-right text-muted">
+                                                    40% Complete
+                                                </span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                    <span class="sr-only">
+                                                        40% Complete (success)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    Task 2
+                                                </strong>
+                                                <span class="pull-right text-muted">
+                                                    20% Complete
+                                                </span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                                    <span class="sr-only">
+                                                        20% Complete
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    Task 3
+                                                </strong>
+                                                <span class="pull-right text-muted">
+                                                    60% Complete
+                                                </span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                    <span class="sr-only">
+                                                        60% Complete (warning)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    Task 4
+                                                </strong>
+                                                <span class="pull-right text-muted">
+                                                    80% Complete
+                                                </span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                    <span class="sr-only">
+                                                        80% Complete (danger)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a class="text-center" href="#">
+                                        <strong>
+                                            See All Tasks
+                                        </strong>
+                                        <i class="fa fa-angle-right">
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-tasks -->
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell fa-fw">
+                                </i>
+                                <i class="fa fa-caret-down">
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-comment fa-fw">
+                                            </i>
+                                            New Comment
+                                            <span class="pull-right text-muted small">
+                                                4 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-twitter fa-fw">
+                                            </i>
+                                            3 New Followers
+                                            <span class="pull-right text-muted small">
+                                                12 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-envelope fa-fw">
+                                            </i>
+                                            Message Sent
+                                            <span class="pull-right text-muted small">
+                                                4 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-tasks fa-fw">
+                                            </i>
+                                            New Task
+                                            <span class="pull-right text-muted small">
+                                                4 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-upload fa-fw">
+                                            </i>
+                                            Server Rebooted
+                                            <span class="pull-right text-muted small">
+                                                4 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a class="text-center" href="#">
+                                        <strong>
+                                            See All Alerts
+                                        </strong>
+                                        <i class="fa fa-angle-right">
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-alerts -->
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user fa-fw">
+                                </i>
+                                <i class="fa fa-caret-down">
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user fa-fw">
+                                        </i>
+                                        用户简介
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-gear fa-fw">
+                                        </i>
+                                        设置
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="__MODULE__/Public/logout">
+                                        <i class="fa fa-sign-out fa-fw">
+                                        </i>
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </li>
+                        <!-- /.dropdown -->
+                    </ul>
+                    <!-- /.navbar-top-links -->
+                </div>
+                <!-- /.navbar-header -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+        </header>
+        <!------ /头部结束 ------>
+        <div id="wrapper">
+            <!------ 左侧导航栏 ------>
+            <nav role="navigation" style="margin-bottom: 0; margin-top: -1px;">
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse" id="sidebar-area">  
+                        <ul class="nav" id="sidebar">
+                            <!-- 搜索框 -->
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="搜索...">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                                </div>
+                                <div  class="search-icon">
+                                    <a href="#"><i class="fa fa fa-search fa-fw"></i></a>
+                                </div>
+                            </li>
+                            <!-- 主页 -->
+                            <li>
+                                <a href="__MODULE__/Index/index"> 
+                                    <i class="fa fa-dashboard fa-fw"></i>
+                                    <span class="side-menu-title">主页</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="__MODULE__/UserManage/index">
+                                    <i class="fa fa-male fa-fw"></i> 
+                                    <span class="side-menu-title">用户管理</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="__MODULE__/Log/index">
+                                    <i class="fa fa-list-alt fa-fw"></i> 
+                                    <span class="side-menu-title">行为日志</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-collapse">
+                                    <i class="fa fa-gears fa-fw"></i> 
+                                    <span class="side-menu-title">系统管理</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="__MODULE__/Sys/index">表情管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="__MODULE__/Sys/linkIndex">链接管理</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!------ /左侧导航栏 ------>
+                    </div>
+                </div>
+            </nav>
+            <!------ 中间主题内容 ------>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12" text-align="center">
+                        <h2 class="page-header">
+                            <center>
+                                <i class="fa fa-users fa-10x">
+                                </i>
+                                <b>
+                                    用户列表
+                                </b>
+                            </center>
+                        </h2>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!------ 第一块 修改弹窗 ------>
+                <div class="panel-body navbar-right" style="margin-top:-22px">
+                    <div class="modal fade" id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!------ form提交表单处 ------>
+                                <form action="__URL__/insert" id="editForm" method="post" onsubmit="return updateUserInfo(this)">
+                                    <input type="hidden" name="id" value=""/>
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">修改用户</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputSuccess">
+                                                用户名
+                                            </label>
+                                            <input type="text" name="user" class="form-control" value="zhngsan" id="inputSuccess">
+                                        </div>
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputSuccess">
+                                                真实姓名
+                                            </label>
+                                            <input type="text" name="name" class="form-control" id="inputSuccess">
+                                        </div>
+                                        <div class="form-group has-success" id="control-div-sex">
+                                            <label class="control-label" id="control-label-sex" for="">
+                                                性别　　　
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="sex" id="sexMan" value="1"> 男
+                                            </label>　　　
+                                            <label>
+                                                <input type="radio" name="sex" id="sexWoman" value="0" checked> 女
+                                            </label>
+                                            
+                                        </div>
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputError">
+                                                生日
+                                            </label>
+                                            <input type="text" name="birth" class="form-control" id="inputSuccess">
+                                        </div>
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputSuccess">
+                                                学校
+                                            </label>
+                                            <input type="text" name="school" class="form-control" id="inputSuccess">
+                                        </div>
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputWarning">
+                                                地址
+                                            </label>
+                                            <input type="text" name="address" class="form-control" id="inputSuccess">
+                                        </div>
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputError">
+                                                等级
+                                            </label>
+                                            <select name="level" id="level" class="form-control">
+                                                <option value="1">码农</option>
+                                                <option value="2">程序员</option>
+                                                <option value="3">工程师</option>
+                                                <option value="4">大牛</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputError">
+                                                状态
+                                            </label>
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="0">后台管理员</option>
+                                                <option value="1">信息不完整</option>
+                                                <option value="2">禁用</option>
+                                                <option value="3">启用</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">提交</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+                <!------ 第二块 ------>
+                <div class="row" style="margin-bottom:100px">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                用户列表 
+                                <!------ 弹窗添加用户 ------>
+                                <div class="panel-body navbar-right" style="margin-top:-22px">
+                                    <!-- Button trigger modal -->
+                                    
+                                    <button class="btn btn-success " data-toggle="modal" data-target="#myModal">
+                                        添加用户
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!------ form提交表单处 ------>
+                                                <form action="__URL__/insertUserInfo" method="post" role="form" onsubmit="return insertUserInfo()">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">添加新用户</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group" id="addUserInfo">
+                                                            <label class="control-label" for="inputSuccess">
+                                                                用户名
+                                                            </label>
+                                                            <input type="text" name="user" class="form-control" id="inputSuccess">
+                                                        </div>
+                                                        
+                                                        
+                                                        <div class="form-group "  id="addPasswordInfo">
+                                                            <label class="control-label" for="inputWarning">
+                                                                密码
+                                                            </label>
+                                                            <input type="password" name="password" class="form-control" id="inputSuccess">
+                                                        </div>
+                                                        <div class="form-group " id="addRepasswordInfo">
+                                                            <label class="control-label" for="inputError">
+                                                                确认密码
+                                                            </label>
+                                                            <input type="password" name="repassword" class="form-control" id="inputSuccess">
+                                                        </div>
+                                                        <div class="form-group " id="addRealNameInfo">
+                                                            <label class="control-label" for="inputSuccess">
+                                                                真实姓名
+                                                            </label>
+                                                            <input type="text" name="name" class="form-control" id="inputSuccess">
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="inputSuccess">
+                                                                权限
+                                                            </label>
+                                                            <select class="form-control" id="inputSuccess" name="status">
+                                                                <option value="0">后台管理员</option>
+                                                                <option value="1">信息不完整</option>
+                                                                <option value="2">禁用</option>
+                                                                <option value="3">启用</option>
+                                                                
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">提交</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+                                </div>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <!------ 浏览表格 ------>
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper" >
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <!------ 表头 ------>
+                                        <thead>
+                                            <tr>
+                                                <th>id</th>
+                                                <th>用户名</th>
+                                                <th>姓名</th>
+                                                <th>性别</th>
+                                                <th>生日</th>
+                                                <th>学校</th>
+                                                <th>地址</th>
+                                                <th>注册时间</th>
+                                                <th>等级</th>
+                                                <th>权限</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <!------ 表体 ------>
+                                        <tbody>
+                                            <!-- <tr class="odd gradeX text-center">
+                                                <p style="display:none">{var $vo =}</p>
+                                                <p style="display:none">{$vo}</p>
+                                                <td k="id">1</td>
+                                                <td k="user">zhangsan</td>
+                                                <td k="name">张三</td>
+                                                <td k="sex">女</td>
+                                                <td k="birth">1992-9-9</td>
+                                                <td k="school">北京语言大学</td>
+                                                <td k="address">回龙观</td>
+                                                <td k="addtime">1992-9-9</td>
+                                                <td k="level">大牛</td>
+                                                <td k="status">启用</td>
+                                                <td>
+                                                    <button type="button" onclick="getInfo(this)" class="btn btn-warning btn-sm btn-circle" data-toggle="modal" data-target="#myEditModal" title="修改">
+                                                        <i class="fa fa-wrench"></i>
+                                                    </button>
+                                                    <button type="button" onclick="del(this)" class="btn btn-warning btn-sm btn-circle" title="删除">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </td>
+                                            </tr> -->
+                                            <foreach name="list" item="vo">
+                                                <tr class="odd gradeX text-center">
+                                                
+                                                <td k="id">{$vo.id}</td>
+                                                <td k="user">{$vo.user}</td>
+                                                <td k="name">{$vo.name}</td>
+                                                <td k="sex"><if condition="$vo.sex eq 0">女
+                                                    <else/>男
+                                                </if></td>
+                                                <td k="birth">{:date("Y-m-d",$vo['birth'])}</td>
+                                                <td k="school">{$vo.school}</td>
+                                                <td k="address">{$vo.address}</td>
+                                                <td k="addtime">{:date("Y-m-d",$vo['addtime'])}</td>
+                                                <td k="level"><switch name="vo.level"><case value="1">码农</case><case value="2">程序员</case><case value="3">工程师</case><case value="4">大牛</case><default />码农</switch></td>
+                                                <td k="status"><switch name="vo.status">
+                                                    <case value="0">后台管理员</case>
+                                                    <case value="1">信息不完整</case>
+                                                    <case value="2">禁用</case>
+                                                    <case value="3">启用</case>
+                                                    <default />启用
+                                                </switch></td>
+                                                <td>
+                                                    <button type="button" onclick="getInfo(this)" class="btn btn-warning btn-sm btn-circle" data-toggle="modal" data-target="#myEditModal" title="修改" data-id="{$vo.id}">
+                                                        <i class="fa fa-wrench"></i>
+                                                    </button>
+                                                    
+                                                </td>
+                                            </tr>
+                                            </foreach>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+            </div>
+        </div>
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="__PUBLIC__/admin/bower_components/jquery/dist/jquery.min.js">
+        </script>
+        <script src="__PUBLIC__/admin/bower_components/jquery-cookie-master/src/jquery.cookie.js">
+        </script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="__PUBLIC__/admin/bower_components/bootstrap/dist/js/bootstrap.min.js">
+        </script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="__PUBLIC__/admin/bower_components/metisMenu/dist/metisMenu.min.js">
+        </script>
+        <!-- DataTables JavaScript -->
+        <script src="__PUBLIC__/admin/bower_components/DataTables/media/js/jquery.dataTables.min.js">
+        </script>
+        <script src="__PUBLIC__/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js">
+        </script>
+        <!-- Custom Theme JavaScript -->
+        <script src="__PUBLIC__/admin/dist/js/sb-admin-2.js">
+        </script>
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function() {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            function getInfo(me){
+                var list = $(me).parents('tr').find('td');
+                for(var i=0;i<list.length-1;i++){
+                    var key = $(list[i]).attr('k');
+                    if(key == "sex"){
+                        // 默认为女
+                        if($(list[i]).html()=="男"){
+                            document.getElementById('sexMan').checked = true;
+                        }
+                    }else if(key == "level"){
+                        var level = document.getElementById('level');
+                        // alert($(list[i]).html());
+                        switch($(list[i]).html()){
+                            case '码农':level[0].selected = true;break;
+                            case '程序员':level[1].selected = true;break;
+                            case '工程师':level[2].selected = true;break;
+                            case '大牛':level[3].selected = true;break;
+                        }
+                    }else if(key == "status"){
+                        var status = document.getElementById('status');
+                        console.log($(list[i]).html());
+                        switch($(list[i]).html()){
+                            case '后台管理员':status[0].selected = true;break;
+                            case '信息不完整':status[1].selected = true;break;
+                            case '禁用':status[2].selected = true;break;
+                            case '启用':status[3].selected = true;break;
+                        }
+                    }else{
+                        $("#editForm input[name='"+key+"']").attr('value',$(list[i]).html());
+                    }  
+                }
+            }
+            
+            // 无刷新修改
+            function updateUserInfo(ob){
+                $.ajax({
+                    url:'__URL__/updateUserInfo',
+                    type:'POST',
+                    data:$(ob).serialize(),
+                    success:function(res){
+                        if(res){
+                            //$('#myEditModal').parent('div.panel-body').hide();
+                            //此处可修改。。。。。。。。。。。。。。。。。。。。。。。。
+                            window.location.href="__URL__/index";
+                        }                    
+                    },
+                    error:function(){
+                        alert('ajax传值失败');
+                    },
+                });
+                return false;
+            }
+
+            //新增用户的用户名做判断
+            $('#myModal input[name="user"]').change(function(){
+                $.ajax({
+                    url:"/renren/index.php/Public/doCheck",
+                    type:'POST',
+                    data:'user=' + $(this).val(),
+                    dataType:'text',
+                    success:function(res){
+                        if(!res){
+                           
+                            $('#addUserInfo').removeClass('has-error');
+                            $('#addUserInfo').addClass('has-success');
+                            $('#addUserInfo').next('div.alert').remove();
+                        }else{
+                            $('#addUserInfo').removeClass('has-success');
+                            $('#addUserInfo').addClass('has-error');
+                            $('#addUserInfo').next('div.alert').remove();
+                            $('#addUserInfo').after('<div class="alert alert-danger alert-dismissable" style="width:40%;margin:0 auto;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>该用户已被注册</div>');
+                        }
+                    },
+                    error:function(){
+                        alert('ajax传值失败');
+                    },
+                });
+            });
+            //密码长度验证
+            $('#myModal input[name="password"]').blur(function(){
+                if($(this).val().length < 6 || $(this).val().length > 20){
+                    $('#addPasswordInfo').addClass('has-error');
+                    $('#addPasswordInfo').removeClass('has-success');
+                    $('#addPasswordInfo').next('div.alert').remove();
+                    $('#addPasswordInfo').after('<div class="alert alert-danger alert-dismissable" style="width:40%;margin:0 auto;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>密码6~20位</div>');
+                }else{
+                   $('#addPasswordInfo').removeClass('has-error');
+                   $('#addPasswordInfo').addClass('has-success');
+                   $('#addPasswordInfo').next('div.alert').remove();
+                }
+            });
+            //确认密码验证
+            $('#myModal input[name="repassword"]').blur(function(){
+                if($(this).val()==$('#myModal input[name="password"]').val()){
+                    $('#addRepasswordInfo').removeClass('has-error');
+                    $('#addRepasswordInfo').addClass('has-success');
+                    $('#addRepasswordInfo').next('div.alert').remove();
+                }else{
+                    $('#addRepasswordInfo').addClass('has-error');
+                    $('#addRepasswordInfo').removeClass('has-success');
+                    $('#addRepasswordInfo').next('div.alert').remove();
+                    $('#addRepasswordInfo').after('<div class="alert alert-danger alert-dismissable" style="width:40%;margin:0 auto;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>前后密码不一致</div>');
+                }
+            });
+            //真是姓名验证
+            $('#myModal input[name="name"]').blur(function(){
+                if(!$(this).val().match(/^[\u4E00-\u9FA5\uF900-\uFA2D]{2,4}$/g)){
+                    $('#addRealNameInfo').addClass('has-error');
+                    $('#addRealNameInfo').removeClass('has-success');
+                    $('#addRealNameInfo').next('div.alert').remove();
+                    $('#addRealNameInfo').after('<div class="alert alert-danger alert-dismissable" style="width:40%;margin:0 auto;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>请填写真实中文名</div>');
+                }else{
+                    $('#addRealNameInfo').removeClass('has-error');
+                    $('#addRealNameInfo').addClass('has-success');
+                    $('#addRealNameInfo').next('div.alert').remove();
+                }
+            });
+
+            //执行新增用户
+            function insertUserInfo(){
+                if($('#myModal input[name="name"]').val().length<1 || $('#myModal input[name="repassword"]').val().length<1 || $('#myModal input[name="password"]').val().length<1 || $('#myModal input[name="user"]').val().length<1){
+                    return false;
+                }
+                if($('#addRealNameInfo').hasClass('has-error') || $('#addRepasswordInfo').hasClass('has-error') || $('#addPasswordInfo').hasClass('has-error') || $('#addUserInfo').hasClass('has-error')){
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </body>
+
+</html>

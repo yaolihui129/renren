@@ -1,0 +1,2200 @@
+<extend name="Public/base"/>
+<block name="main-body">
+	<div class="frame-nav-wrap">
+        <div class="frame-nav-fixed-wraper" id="frameFixedNav" style="width: 1189px; top: 50px;">
+            <div class="frame-nav-inner">
+                <ul class="fd-nav-list clearfix">
+                    <li class="fd-nav-item fd-nav-item-list fd-nav-cur-item">
+                        <a onclick="return false;" href="/436513776" data-feed-type="0" class="fd-nav-filter">新鲜事</a>
+                        <span class="fd-nav-filter-btn"> <span class="ui-icon ui-icon-caratb" ></span>
+                        <ul class="newsfeed-filter-list">
+                            <li class="actived" data-feed-type-label="allFresh" data-feed-type="[0,1,2,3,4,5,6]">全部新鲜事</li>
+                            <li data-feed-type-label="photo" data-feed-type="[2,5]">只看照片</li>
+                           
+                            <li data-feed-type-label="status" data-feed-type="[0]">只看状态</li>
+                            <li data-feed-type-label="blog" data-feed-type="[1]">只看日志</li>
+                            <li data-feed-type-label="share" data-feed-type="[6]">只看分享</li>
+                            <li data-feed-type-label="origianal" data-feed-type="[0,1,2,3,4,5]" style="display:none">原创内容</li>
+                        </ul>
+                        </span>
+                    </li>
+                    
+
+                    <li class="fd-nav-item"><a class="friends-original" href="javascript:void(0)">原创内容</a></li>
+
+                    
+                    <li class="fd-nav-item"><a class="content-focus" href="javascript:void(0)">关注内容</a></li>
+
+                    
+                    <input type="hidden" id="sFList" value="[{$sFList}]"/>
+                    <li class="fd-nav-item"><a class="group-focus" href="javascript:void(0)">特别关注</a></li>
+                    <li class="fd-nav-item fd-nav-showmore fd-nav-item-list">
+                        <a class="fd-nav-gName-label" onclick="return false;" href="#nogo">好友分组</a>
+                        <a class="fd-nav-gName" onclick="return false;" href="#nogo"></a> <span onclick="return false;" href="#nogo" class="fd-nav-filter-btn"> <span class="ui-icon ui-icon-caratb"></span>
+                        <div class="nf-group-list-container">
+                            <ul class="nf-group-list">
+                                <!--<li class="nf-group-item">
+                                    <a class="clearfix" data-gid="252357163" href="http://www.renren.com/home/getGroupDetail?groupId=252357163">
+                                        <span class="nf-item-gname">中国矿业大学...</span> <span class="feeds-count fd-nav-num"></span>
+                                    </a>
+                                </li>-->
+                                
+                                <foreach name='group' item="vo">
+                                    <li class="nf-group-item" gid="{$vo.id}" flist="[<foreach name='gFList' item='gf' key='k'><if condition='$vo.id eq $k'>{$gf}</if></foreach>]">
+                                        <a class="clearfix" data-gid="252357163" href="javascript:void(0)">
+                                            <span class="nf-item-gname">{$vo.gname}</span> <span class="feeds-count fd-nav-num"></span>
+                                        </a>
+                                    </li>
+
+                                </foreach>
+
+                            </ul>
+                        </div>
+                        </span>
+                    </li>
+                    <li class="fd-nav-item split-icon"></li>
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+	<div class="bd-main" style="width:1189px;">
+        <div class="bd-content clearfix">
+            <div class="bd-publisher"></div>
+            <div class="nx-right ">
+                <div id="huatiBox" class="side-item"></div>
+                <div class="side-item ui-tabs ui-widget ui-widget-content ui-corner-all" id="mergeModule">
+                    <input type="hidden" id="mergeSelected" value="bn">
+                    <input type="hidden" id="mergeAjaxUrl" value="http://www.renren.com">
+                    <div class="side-item-body clearfix" id="merge-side-item-body">
+                        <ul class="mergeTab ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                            <li id="fortuneTab" class="ui-state-default ui-corner-top" role="tab" tabindex="0" aria-controls="fortune" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true"><a href="javascript:void(0)" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">攒人品</a></li>
+                            <li id="footprintTab" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="footprintBox" aria-labelledby="ui-id-2" aria-selected="false" aria-expanded="false"><a href="javascript:void(0)" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2">最近来访<span id="footprintNum" style="display: none;"></span></a></li>
+                            <li id="birthTab" class="hasLeftLine ui-state-default ui-corner-top ui-tabs-active ui-state-active ui-state-focus" role="tab" tabindex="-1" aria-controls="homeBirthdayPart" aria-labelledby="ui-id-3" aria-selected="false" aria-expanded="false"><a href="javascript:void(0)" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">生日提醒</a></li>
+                        </ul>
+                        <!--tab切换主体（攒人品，最近来访）-->
+                        <div class="mergeBody">
+                            <!-- <div class="fortune ui-tabs-panel ui-widget-content ui-corner-bottom" id="fortune" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="false" style="display: block;">
+                                <div class="side-item-header clearfix">
+                                    <input type="hidden" id="userIfPin" value="false">
+                                    <input type="hidden" id="interval" value="1799997">
+                                    <input type="hidden" id="RpRankNum" value="0">
+                                    <input type="hidden" id="totalRp" value="196">
+                                    <input type="hidden" id="newGuidePop" value="1">
+                                    <input type="hidden" id="refreshRp" value="2">
+                                    <!-- <h4 class="item_name">攒人品</h4>
+                                    <div class="option">
+                                        <a title="展开" href="#nogo" id="unFold" class="unfold"></a>
+                                    </div> -->
+                                <!--</div>
+                                <div class="side-item-body clearfix" id="fortune-side-item-body">
+                                    <div class="fortuneBar">
+                                        <a class="assBtn" id="assembleBtn" target="_blank" title=""></a>
+                                        <a href="http://renpin.renren.com/myrp" target="_blank" class="for_content" title="">
+                                            <span class="total">总RP值：
+                                                <b id="bTotalRpNum">196</b>
+                                            </span>
+                                            <span>今日RP值：<b id="bTodayRpNum">2</b>
+                                            </span>
+                                        </a>
+                                        <div class="learnMoreIcon" id="rpLearnMoreIcon" title="">
+                                            
+                                        </div>
+                                        <div class="myFreshBtn" id="myFreshBtn" title="" style="height:55px">
+                                            <span class="title">刷新已得</span>
+                                            <span class="numBox"><b class="freshNum">2</b>RP</span>
+                                        </div>
+                                    </div>
+                                    <a title="收起" href="#nogo" id="packUp" class="pack_up"></a>
+                                </div>
+                            </div> -->
+                            <!-- 最近来访 -->
+                            <!-- <div id="footprintBox" class="footprint-box ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-2" role="tabpanel" aria-hidden="true" style="display: none;">
+                                <div class="side-item-header clearfix">
+                                    <h4>
+                                        <span> 109</span>
+                                        <input type="hidden" value="7">人
+                                    </h4>
+                                    <div class="option">
+                                        <a href="#nogo" class="pager-back back-disable" title="上一页" style="display: none;"></a>
+                                        <a href="#nogo" class="pager-forward" title="下一页" style="display: none;"></a>
+                                        <a href="http://www.renren.com/myfoot.do" target="_blank" title="更多来访" class="more"></a>
+                                    </div>
+                                </div>
+                                <div class="side-item-body clearfix footprint-area" id="footprintListBox">
+                                    <ul class="footprint-people-list" id="footprintList">
+                                        <div class="group">
+                                            <li><span class="headpichold">
+                                                <a href="http://www.renren.com/profile.do?portal=homeFootprint&amp;ref=home_footprint&amp;id=377484212" namecard="377484212" target="_blank" title="涂瑞丰 14:26"><img class="footprint-thumb" src="__PUBLIC__/home/images/m3w100h100q85lt_h_main_Tl0d_3737000001fd111a.jpg" data-src="__PUBLIC__/home/images/h_main_Tl0d_3737000001fd111a.jpg"></a>
+                                            </span>
+                                        </li>
+                                        
+                                        
+                                    </div>
+                                </ul>
+                            </div>
+                        </div> -->
+                        <input type="hidden" id="birthNum" value="5">
+                        <div id="homeBirthdayPart" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-labelledby="ui-id-3" role="tabpanel" aria-hidden="true" style="display: block;">
+                            <div class="topTexture"></div>
+                            <input type="hidden" value="">
+                            <div class="side-item-header clearfix">
+                                <!-- <div class="option">
+                                    <a href="#nogo" class="pager-back back-disable" title="上一页" style="display: none;"></a>
+                                    <a href="#nogo" class="pager-forward" title="下一页" style="display: none;"></a>
+                                    <a href="http://sc.renren.com/scores/mycalendar" target="_blank" title="更多好友生日" class="more"></a>
+                                </div> -->
+                            </div>
+                            <div class="side-item-body clearfix" style="">
+                                <div class="birthListBox overHide">
+                                    <ul id="birthNoticeList" class="birthList">
+                                        <div class="listGroup">
+                                             <!-- <li class="common-item">
+                                                <div class="ui-button giftBtn" data="248383256"><span>送礼</span>
+                                                    <div class="arrowIcon"></div>
+                                                </div>
+                                                <a href="http://www.renren.com/profile.do?id=248383256" namecard="248383256" class="userPhoto">
+                                                    <img src="__PUBLIC__/home/images/tiny_7j4M_73e3000284f11375.jpg">
+                                                </a>
+                                                <a href="http://www.renren.com/profile.do?id=248383256" class="name" namecard="248383256">刘奇</a>
+                                                <span class="birthday">11.20</span>
+                                                <p class="birthday-item-ctl">
+                                                    <a href="javascript:;" class="common-sendGift" data-id="248383256">送礼</a> |
+                                                    <a href="javascript:;" class="leave-message" onclick="window.webpager.talk(248383256); return false;">留言</a>
+                                                </p>
+                                            </li> -->
+                                            <foreach name='recBirth' item="Bvo" key="k">
+                                            <li class="common-item">
+                                               <!--  <div class="ui-button giftBtn" data="248383256"><span>送礼</span>
+                                                    <div class="arrowIcon"></div>
+                                                </div> -->
+                                                <a href="http://www.renren.com/profile.do?id=248383256" namecard="248383256" class="userPhoto">
+                                                    <img src="__PUBLIC__/home/images/{$Bvo.head}">
+                                                </a>
+                                                <a href="http://www.renren.com/profile.do?id=248383256" class="name" namecard="248383256">{$Bvo.name}</a>
+                                                <span class="birthday">{$Bvo.birth}</span>
+                                                <p class="birthday-item-ctl">
+                                                    <a href="javascript:;" class="common-sendGift" data-id="248383256">送礼</a> |
+                                                    <a href="javascript:;" class="leave-message" onclick="window.webpager.talk(248383256); return false;">留言</a>
+                                                </p>
+                                            </li>
+                                            </foreach>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--推荐好友模块-->
+              <!--      <div id="recommendArea" class="recommend-area recommend2">
+                        <div id="recommendFriBox" class="recommend-box">
+                            <div class="side-item-header clearfix">
+                                <h4>推荐好友</h4>
+                                <div class="option">
+                                    <a href="#" stats="recommendfriends-refresh" class="pager-forward" title="换一组"></a>
+                                    <a href="http://friend.renren.com/newfriends" stats="recommendfriends-more" target="_blank" title="更多推荐" class="more"></a>
+                                </div>
+                            </div>
+                            <div class="side-item-body recommend-fri-area clearfix">
+                                <ul class="recommend-friends-list">
+                                    <li class="recommend-friend" data-id="881281585" data-type="POP">
+                                        <div class="userhead" namecard="881281585">
+                                            <a href="http://www.renren.com/profile.do?id=881281585"><img src="http://hdn.xnimg.cn/photos/hdn121/20151016/1700/p/m3w100h100q85lt_large_Kmhj_5d530001219c195a.jpg" width="68" height="68"></a><span class="friends-num">段奕宏</span><a title="不再推荐此人" class="ui-icon ui-iconfont x-to-hide" href="#" stats="recommendfriends-exclude"></a></div>
+                                        <p class="userinfo-single"><a namecard="881281585" title="段奕宏" class="username" href="http://www.renren.com/profile.do?id=881281585" stats="recommendfriends-profile">段奕宏</a><a href="#" stats="recommendfriends-add" class="add-btn recommend-single" data-id="881281585" data-from="Web_SG_RcdFour_addFriend" title="关注好友"><span class="ui-icon ui-iconfont"></span></a></p>
+                                    </li>
+                                    <li class="recommend-friend" data-id="881281585" data-type="POP">
+                                        <div class="userhead" namecard="881281585">
+                                            <a href="http://www.renren.com/profile.do?id=881281585"><img src="http://hdn.xnimg.cn/photos/hdn121/20151016/1700/p/m3w100h100q85lt_large_Kmhj_5d530001219c195a.jpg" width="68" height="68"></a><span class="friends-num">段奕宏</span><a title="不再推荐此人" class="ui-icon ui-iconfont x-to-hide" href="#" stats="recommendfriends-exclude"></a></div>
+                                        <p class="userinfo-single"><a namecard="881281585" title="段奕宏" class="username" href="http://www.renren.com/profile.do?id=881281585" stats="recommendfriends-profile">段奕宏</a><a href="#" stats="recommendfriends-add" class="add-btn recommend-single" data-id="881281585" data-from="Web_SG_RcdFour_addFriend" title="关注好友"><span class="ui-icon ui-iconfont"></span></a></p>
+                                    </li>
+                                    <li class="recommend-friend" data-id="881281585" data-type="POP">
+                                        <div class="userhead" namecard="881281585">
+                                            <a href="http://www.renren.com/profile.do?id=881281585"><img src="http://hdn.xnimg.cn/photos/hdn121/20151016/1700/p/m3w100h100q85lt_large_Kmhj_5d530001219c195a.jpg" width="68" height="68"></a><span class="friends-num">段奕宏</span><a title="不再推荐此人" class="ui-icon ui-iconfont x-to-hide" href="#" stats="recommendfriends-exclude"></a></div>
+                                        <p class="userinfo-single"><a namecard="881281585" title="段奕宏" class="username" href="http://www.renren.com/profile.do?id=881281585" stats="recommendfriends-profile">段奕宏</a><a href="#" stats="recommendfriends-add" class="add-btn recommend-single" data-id="881281585" data-from="Web_SG_RcdFour_addFriend" title="关注好友"><span class="ui-icon ui-iconfont"></span></a></p>
+                                    </li>
+                                    <li class="recommend-friend" data-id="881281585" data-type="POP">
+                                        <div class="userhead" namecard="881281585">
+                                            <a href="http://www.renren.com/profile.do?id=881281585"><img src="http://hdn.xnimg.cn/photos/hdn121/20151016/1700/p/m3w100h100q85lt_large_Kmhj_5d530001219c195a.jpg" width="68" height="68"></a><span class="friends-num">段奕宏</span><a title="不再推荐此人" class="ui-icon ui-iconfont x-to-hide" href="#" stats="recommendfriends-exclude"></a></div>
+                                        <p class="userinfo-single"><a namecard="881281585" title="段奕宏" class="username" href="http://www.renren.com/profile.do?id=881281585" stats="recommendfriends-profile">段奕宏</a><a href="#" stats="recommendfriends-add" class="add-btn recommend-single" data-id="881281585" data-from="Web_SG_RcdFour_addFriend" title="关注好友"><span class="ui-icon ui-iconfont"></span></a></p>
+                                    </li>
+                                    <li class="recommend-friend" data-id="881281585" data-type="POP">
+                                        <div class="userhead" namecard="881281585">
+                                            <a href="http://www.renren.com/profile.do?id=881281585"><img src="http://hdn.xnimg.cn/photos/hdn121/20151016/1700/p/m3w100h100q85lt_large_Kmhj_5d530001219c195a.jpg" width="68" height="68"></a><span class="friends-num">段奕宏</span><a title="不再推荐此人" class="ui-icon ui-iconfont x-to-hide" href="#" stats="recommendfriends-exclude"></a></div>
+                                        <p class="userinfo-single"><a namecard="881281585" title="段奕宏" class="username" href="http://www.renren.com/profile.do?id=881281585" stats="recommendfriends-profile">段奕宏</a><a href="#" stats="recommendfriends-add" class="add-btn recommend-single" data-id="881281585" data-from="Web_SG_RcdFour_addFriend" title="关注好友"><span class="ui-icon ui-iconfont"></span></a></p>
+                                    </li>
+                                    <li class="recommend-friend" data-id="881281585" data-type="POP">
+                                        <div class="userhead" namecard="881281585">
+                                            <a href="http://www.renren.com/profile.do?id=881281585"><img src="http://hdn.xnimg.cn/photos/hdn121/20151016/1700/p/m3w100h100q85lt_large_Kmhj_5d530001219c195a.jpg" width="68" height="68"></a><span class="friends-num">段奕宏</span><a title="不再推荐此人" class="ui-icon ui-iconfont x-to-hide" href="#" stats="recommendfriends-exclude"></a></div>
+                                        <p class="userinfo-single"><a namecard="881281585" title="段奕宏" class="username" href="http://www.renren.com/profile.do?id=881281585" stats="recommendfriends-profile">段奕宏</a><a href="#" stats="recommendfriends-add" class="add-btn recommend-single" data-id="881281585" data-from="Web_SG_RcdFour_addFriend" title="关注好友"><span class="ui-icon ui-iconfont"></span></a></p>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+
+
+                <div id="feed-list-right"></div>
+                <div class="advert-box side-item advert-box-top">
+                    <div class="side-item-advert" data-adzone-id="100000000100"></div>
+                </div>
+                <div class="advert-box side-item">
+                    <div class="side-item-advert" data-adzone-id="100000000060"></div>
+                    <div class="side-item-advert" data-adzone-id="100000000065"></div>
+                </div>
+                <!-- <div id="right-fix-info" >
+                    <div class="advert-box side-item" style="display:block">
+                        
+                        <div class="side-item photopast" style="display:block">
+                            
+                            <div class="side-item-header">
+                                <h3>过往的今天</h3>
+                                <div class="advert-box advert-box-photo">
+                                    <div class="side-item-advert" data-adzone-id="100000100001"></div>
+                                </div>
+                                <div class="option ui-button ui-button-icon-only"><span class="ui-icon ui-icon-square-setting"></span>
+                                    <p class="option-layer" style="display: none;"><a href="javascript:;" mode="1" class="hover">过往的今天</a><a href="javascript:;" mode="0">好友的最新</a><a href="javascript:;" mode="2">热门推荐</a></p>
+                                </div>
+                            </div>
+                            <div class="side-item-body">
+                                <div class="photopast-image">
+                                    <div class="photopast-notice">
+                                        <div class="photopast-notice-bg"></div>
+                                        <p class="photopast-notice-text"></p>
+                                    </div>
+                                    <a href="javascript:;" class="photopast-btn photopast-prev" style="display: none;"></a>
+                                    <a href="javascript:;" class="photopast-btn photopast-next" style="display: none;"></a>
+                                    <p class="photopast-title"><a class="title" title="翠翠这话太萌了wwwww酷爱到我板车上来！">翠翠这话太萌了ww...&nbsp;</a>
+                                        <a href="javascript:;" data-tip="赞一个" class="like" data-like="{&quot;stype&quot;:&quot;photo&quot;,&quot;sourceId&quot;:&quot;7550567815&quot;,&quot;owner&quot;:&quot;349820505&quot;}"></a>
+                                        <a href="javascript:;" data-tip="分享" class="share" data-share="{&quot;stype&quot;:&quot;create_share_feed&quot;,&quot;type&quot;:&quot;photo&quot;,&quot;id&quot;:&quot;7550567815&quot;,&quot;owner&quot;:&quot;349820505&quot;}"></a>
+                                    </p><img style="margin-left:0px;margin-top:0px;" width="240" height="240" src="__PUBLIC__/home/images/m3w240h240q100lt_original_Gjbc_4a2c0000b5b6118c.jpg" data-viewer="{&quot;type&quot;:&quot;photo&quot;,&quot;owner&quot;:&quot;349820505&quot;,&quot;id&quot;:&quot;7550567815&quot;,&quot;url&quot;:&quot;http://fmn.rrimg.com/fmn062/20131117/2355/original_Gjbc_4a2c0000b5b6118c.jpg&quot;,&quot;width&quot;:0,&quot;height&quot;:0}"></div>
+                                <div class="photopast-memo"><a class="photopast-name" target="_blank" href="http://www.renren.com/349820505" namecard="349820505">王寒松❄Dege</a><b class="photopast-date">上传于2年前的今天</b></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> -->
+            </div>
+            <div class="nx-content">
+            	<div class="ui-renren-publisher ui-helper-clearfix" id="jiakuang" style="z-index: auto; left: 0px;">
+                    <a class="ui-renren-publisher-avatar" style="display: none; opacity: 1;">
+                        <img width="50" height="50" src="__PUBLIC__/home/images/m_{$head}">
+                    </a>
+                    <div class="ui-renren-publisher-body ui-helper-grid">
+                        <div class="ui-renren-publisher-edit">
+                            <div class="ui-renren-publisher-textbox">
+                                <div class="triangle" style="display: none; opacity: 1;">
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="textarea ui-scrollbar">
+                                    <div class="textarea-wrapper">
+                                        <div class="textarea-textzone" id="shuoshuo" style="height: 45px;">你现在在想什么？</div>
+                                        <div class="textarea-withwrapper" style="visibility: hidden;">——— 和 
+                                            <span class="with-results"></span> 在一起
+                                        </div>
+                                        <div class="textarea-emotionplaceholder"></div>
+                                    </div>
+                                    <div class="ui-scrollbar-bar ui-scrollbar-bar-y" style="top: 0px; height: 30px;">
+                                    </div>
+                                </div>
+                                <div class="tools"></div>
+                                <div class="counter" id="counterLength">0/240</div>
+                            </div>
+                            <div class="ui-renren-publisher-toolbar ui-helper-sprite" style="background: url(__PUBLIC__/home/images/sprite_201406051546.png) no-repeat -200px 0; ">
+                                <button type="button" data-app="photo" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnPhoto" style="margin:0px" onclick="photoAppClick()"><span class="ui-button-text">传照片</span></button>
+                                <button type="button" data-app="share" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnShare"><span class="ui-button-text">发链接</span></button>
+                                <button type="button" data-app="blog" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnBlog" onclick="location.href='__MODULE__/diary/index/id/{$Think.get.id}'"><span class="ui-button-text">写日志</span></button>
+                                <button type="button" data-app="movie" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnMovie" onclick="movieAppClick()"><span class="ui-button-text">评电影</span></button>
+                            </div>
+                        </div>
+                        <div class="ui-renren-publisher-preview">
+                            <div class="ui-renren-publisher-toolbar" style="display: block;">
+                                <label>添加：</label>
+                                <button type="button" data-app="photo" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-pphoto ui-iconfont"></span><span class="ui-button-text">照片</span></button>
+                <button type="button" data-app="share" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-pshare ui-iconfont"></span><span class="ui-button-text">链接</span></button>
+                <button type="button" data-app="movie" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-pmovie ui-iconfont"></span><span class="ui-button-text">电影</span></button>
+            </div>
+        </div>
+        <div class="ui-renren-publisher-buttonset">
+            <div class="buttonset">
+                <div class="ui-button-white ui-button-quit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">取消</span></div>
+                <div class="ui-button-white ui-button-blue ui-button-send ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button"onclick="fabu(this)" ><span class="ui-button-text">发布</span></div>
+            </div>
+            <div class="ui-renren-privacy ui-widget ui-select">
+                <div class="ui-select-dock">
+                    <div class="ui-select-selected"> <span class="ui-icon ui-icon-public ui-iconfont"></span> 公开 </div>
+                    <div class="ui-select-arrow ui-icon ui-iconfont"></div>
+                </div>
+                <div class="ui-select-options">
+                    <ul id="ui-id-4" class="ui-menu ui-widget ui-widget-content ui-menu-icons" role="menu" tabindex="0">
+                        <li title="公开" data-value="99" class="ui-menu-item ui-select-optionselected" id="ui-id-5" tabindex="-1" role="menuitem"> <span class="ui-icon ui-icon-public ui-iconfont"></span> 公开 </li>
+                        <li title="好友可见" data-value="0" class="ui-menu-item" id="ui-id-6" tabindex="-1" role="menuitem"> <span class="ui-icon ui-icon-friends ui-iconfont"></span> 好友可见 </li>
+                        <li title="密码可见" data-value="4" class="ui-menu-item" id="ui-id-7" tabindex="-1" role="menuitem" style="display: none;"> <span class="ui-icon ui-icon-password ui-iconfont"></span> 密码可见 </li>
+                        <li title="自定义隐私" data-value="7" class="ui-menu-item" id="ui-id-8" tabindex="-1" role="menuitem"> <span class="ui-icon ui-icon-privacysetting ui-iconfont"></span> 自定义隐私 </li>
+                        <li title="仅自己可见" data-value="-1" class="ui-menu-item" id="ui-id-9" tabindex="-1" role="menuitem"> <span class="ui-icon ui-icon-lock ui-iconfont"></span> 仅自己可见 </li>
+                        <li class="ui-widget-content ui-menu-divider">-</li>
+                        <li title="中国矿业大学圈1" data-value="731525197643950635" class="ui-menu-item" id="ui-id-10" tabindex="-1" role="menuitem"> <span class="ui-icon ui-icon-whitelist ui-iconfont"></span> 中国矿业大学圈1 <span class="ui-icon ui-icon-menu ui-iconfont"></span> </li>
+                        <li title="中国矿业大学圈2" data-value="731525197643950637" class="ui-menu-item" id="ui-id-11" tabindex="-1" role="menuitem"> <span class="ui-icon ui-icon-whitelist ui-iconfont"></span> 中国矿业大学圈2 <span class="ui-icon ui-icon-menu ui-iconfont"></span> </li>
+                        <li title="好友圈" data-value="731525197643950639" class="ui-menu-item" id="ui-id-12" tabindex="-1" role="menuitem"> <span class="ui-icon ui-icon-whitelist ui-iconfont"></span> 好友圈 <span class="ui-icon ui-icon-menu ui-iconfont"></span> </li>
+                        <li class="ui-widget-content ui-menu-divider">-</li>
+                        <li class="ui-widget-content ui-menu-divider" style="display: none;">-</li>
+                        <li title="中国矿业大学圈1" data-value="731525197643950635" class="ui-menu-item" id="ui-id-13" tabindex="-1" role="menuitem" style="display: none;"> <span class="ui-icon ui-icon-whitelist ui-iconfont"></span> 中国矿业大学圈1 <span class="ui-icon ui-icon-menu ui-iconfont"></span> </li>
+                        <li title="中国矿业大学圈2" data-value="731525197643950637" class="ui-menu-item" id="ui-id-14" tabindex="-1" role="menuitem" style="display: none;"> <span class="ui-icon ui-icon-whitelist ui-iconfont"></span> 中国矿业大学圈2 <span class="ui-icon ui-icon-menu ui-iconfont"></span> </li>
+                        <li title="好友圈" data-value="731525197643950639" class="ui-menu-item" id="ui-id-15" tabindex="-1" role="menuitem" style="display: none;"> <span class="ui-icon ui-icon-whitelist ui-iconfont"></span> 好友圈 <span class="ui-icon ui-icon-menu ui-iconfont"></span> </li>
+                        <li title="郑集中学圈" data-value="731525197643950641" class="ui-menu-item" id="ui-id-16" tabindex="-1" role="menuitem" style="display: none;"> <span class="ui-icon ui-icon-whitelist ui-iconfont"></span> 郑集中学圈 <span class="ui-icon ui-icon-menu ui-iconfont"></span> </li>
+                        <li title="中国矿业大学..." data-value="731525197643950931" class="ui-menu-item" id="ui-id-17" tabindex="-1" role="menuitem" style="display: none;"> <span class="ui-icon ui-icon-whitelist ui-iconfont"></span> 中国矿业大学... <span class="ui-icon ui-icon-menu ui-iconfont"></span> </li>
+                        <li class="ui-widget-content ui-menu-divider" style="display: none;">-</li>
+                        <div class="privacy-more" id="ui-id-18" tabindex="-1" role="menuitem"><a href="javascript:;">显示更多分组</a></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <div class="advert-box" style="float:none;">
+                    <div class="side-item-advert" data-adzone-id="100000000121"></div>
+                </div>
+               
+                <!--guide 引导 begin-->
+                <div id="feed-list" class="feed-list">
+                    <div class="new-feed-tip">
+                        <a href="#nogo" onclick="return false;">有<span>0</span>条新鲜事，点击显示</a> <span class="tips-close ui-icon ui-icon-close"></span>
+                    </div>
+
+                    <volist name="allNews" id="vo">
+                        <switch name="vo.typeid">
+                            
+                            <case value="0">
+                            <!-- 纯文字说说 -->
+
+                                <div class="a-feed" typeid="{$vo.typeid}" uid="{$vo.uid}" gid="{$vo.gid}">
+                                    <div class="clearfix header">
+                                        <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="99" data-stype="502" data-id="429182327" data-source="5287125686" data-create-time="1446313952256">
+                                            <a target="_blank" href="__MODULE__/FriendPage/friendPageIndex/id/{$Think.get.id}/fid/{$vo.uid}" class="avatar" namecard="429182327">
+                                                <img src="__PUBLIC__/home/images/m_{$vo.head}" width="50" title="{$vo.name}" /></a>
+                                        </div>
+                                        <div class="feed-user-info clearfix">
+                                            <a target="_blank" href="http://www.renren.com/profile.do?id=429182327" class="feed-user-name" namecard="429182327">{$vo.name}</a>&nbsp;</div>
+                                        <div class="feed-action-info">
+                                            <p>公开发布状态&nbsp;-
+                                                <span class="pub-time">{:date("Y-m-d H:i:s",$vo['addtime'])}</span>
+                                            </p>
+                                        </div>
+                                        <div class="feed-tool" type="toolbar">
+                                            <div class="feed-menu">
+                                                <li><a href="#nogo" class="feed-focus-user">添加TA为特别关注</a></li>
+                                                <li><a href="#nogo" class="feed-block-user">屏蔽TA的新鲜事</a></li>
+                                                <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                            </div>
+                                        </div>
+                                        <a href="#nogo" class="feed-hide">
+                                            <p>标记为已读<i></i></p>
+                                        </a>
+                                    </div>
+                                    <div class="feed-content">
+                                        <p class="status">{:htmlspecialchars_decode($vo['content'])}</p>
+                                    </div>
+                                    <div class="appendix clearfix">
+                                        <a href="#nogo" class="feed-btn like <if condition='$vo.supportstate eq true'>liked</if>" title="赞" data-addurl="" style="width:10px" data-removeurl="" data-like='{type:"{$vo.typeid}",typeid:"{$vo.id}",uid:"{$Think.get.id}"}' onclick="clicksupport(this)">
+                                            <i></i><span style="margin-left:5px">{$vo.support}</span></a>
+                                        <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"status_forward","id":"5287125686","owner":"429182327"}'><i></i></a>
+                                            <i class="split-icon"></i>
+                                            <a href="#nogo" class="feed-to-talk"></a>
+                                        </div>
+                                        <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"status","sourceId":"5287125686","owner":"429182327"}' style="display:none;">
+                                            <i></i>
+                                        </a>
+                                        <div class="like-friend-list clearfix">
+                                        </div>
+                                    </div>
+
+
+
+                                    
+                                        <div class="feed-reply-container">
+                                          <div class="feed-replies">
+                                            <if condition="$vo.discussNum gt 0">
+                                              <if condition="$vo.discussNum gt 2">
+                                                <div class="more-replies">
+                                                  <span>还有{$vo['discussNum'] - 2}条评论</span>
+                                                  <i></i>
+                                                </div>
+
+
+
+
+                                              </if>
+                                              <if condition="$vo.discussNum gt 1">
+                                              <div class="a-reply clearfix">
+                                                <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+                                                  <img src="__PUBLIC__/home/images/s_{$vo['discuss']['1']['headName']}" class="user-avatar">
+                                                </a>
+                                                <div class="reply-content">
+                                                  
+                                                    <p class="reply-info clearfix">
+                                                      <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['1']['userName']}
+                                                      </a>
+                                                      <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['1']['addtime'])}
+                                                      </span>
+                                                      <span class="reply-tool clearfix">
+                                                        <a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+                                                        </a>
+                                                        <a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞
+                                                        </a>
+                                                      </span>
+                                                    </p>
+                                                    <p class="text">{:htmlspecialchars_decode($vo['discuss']['1']['content'])}</p>
+                                                  
+                                                </div>
+                                              </div>
+                                            </if> 
+                                            <div class="a-reply clearfix">
+                                              <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+                                                <img src="__PUBLIC__/home/images/s_{$vo['discuss']['0']['headName']}" class="user-avatar">
+                                              </a>
+                                              <div class="reply-content">
+                                                <p class="reply-info clearfix">
+                                                  <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['0']['userName']}</a>
+                                                  <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['0']['addtime'])}</span>
+                                                  <span class="reply-tool clearfix"><a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+                                                  </a>
+                                                  <a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞</a>
+                                                </span>
+                                              </p>
+                                              <p class="text">{:htmlspecialchars_decode($vo['discuss']['0']['content'])}</p>
+                                            </div>
+                                          </div>
+                                        </if>
+                                       </div>
+                                    </div>
+                                        
+
+                                    <div class="own-reply clearfix">
+                                        <a class="avatar">
+                                            <img src="__PUBLIC__/home/images/s_{$head}">
+                                        </a>
+                                        <div class="own-reply-content"  onclick="zhankaipinglun(this)">
+                                            <div class="input-container">
+                                                <div contenteditable="true" class="reply-input" data-privacy="{&quot;control&quot;:99,&quot;createTime&quot;:&quot;1446313952256&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;owner&quot;:429182327,&quot;ugcGID&quot;:&quot;3530822113145594550&quot;,&quot;public&quot;:true}"></div>
+                                                <div class="tool-bar clearfix">
+                                                    <a class="emotion" title="表情" href="#nogo" style="display:inline-block;background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: -36px -110px;width:18px;height:18px;margin-left:10px" onclick="biaoqingShow(this)"></a>
+                                                    <p>
+                                                        
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="reply-btns clearfix"  style="display:none">
+                                                <a href="#nogo" class="add-comment disabled" type="0" typeid="{$vo.id}" fid="{$Think.get.id}" did="0" style="display:block" onclick="fabupinglun(this)">发布评论</a>
+                                                <a href="#nogo" class="cancel-comment" style="display:block" onclick="shouqipinglun(this)">取消</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="get-params-for-27885107523" style="display:none;">
+                                        { "no_desc":"0", "isUserFeed":1, "cid": "5287125686", "oid":"429182327", "type": "status", "typeNum": "3", "rpLength": "", "userDigged":"", "digged":"", "stype":"502", "feedOwnerId":"429182327","loadURI": "http://comment.renren.com/comment/xoa2/", "sendURI": "http://comment.renren.com/comment/xoa2/create", "delURI": "http://comment.renren.com/comment/xoa2/commentId/remove", "cSection": "true"}
+                                    </div>
+                                </div>
+
+
+
+
+                            </case>
+
+
+
+                            
+                            <case value="1">
+                            <!-- 日志 -->
+                               
+
+
+
+                                <div class="a-feed" typeid="{$vo.typeid}" uid="{$vo.uid}" gid="{$vo.gid}">
+                                    <div class="clearfix header">
+                                        <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="99" data-stype="601" data-id="436513776" data-source="963094416" data-create-time="1446360727404">
+                                            <a target="_blank" href="__MODULE__/FriendPage/friendPageIndex/id/{$Think.get.id}/fid/{$vo.uid}" class="avatar" namecard="436513776">
+                                                <img src="__PUBLIC__/home/images/m_{$vo.head}" width="50" title="{$vo.name}" /></a>
+                                        </div>
+                                        <div class="feed-user-info clearfix">
+                                            <a target="_blank" href="http://www.renren.com/436513776/profile" class="feed-user-name" namecard="436513776">{$vo.name}</a>&nbsp;</div>
+                                        <div class="feed-action-info"  >
+                                            <p>公开发布日志&nbsp;-
+                                                <span class="pub-time">{:date("Y-m-d H:i:s",$vo['addtime'])}</span>
+                                            </p>
+                                        </div>
+                                        <div class="feed-tool" type="toolbar">
+                                            <div class="feed-menu">
+                                                <li><a href="#nogo" class="hide-feed">对好友不显示该条</a></li>
+                                                <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                            </div>
+                                        </div>
+                                        <a href="#nogo" class="feed-hide">
+                                            <p>标记为已读<i></i></p>
+                                        </a>
+                                    </div>
+                                    <div class="feed-content blog-content" id="$vo['id']" style="max-height:350px">
+                                        <a href="__MODULE__/Diary/displayDiary/id/{$Think.get.id}/diaryid/{$vo.id}" class="blog-title" data-viewer='{"type":"blog","id":"963094416","owner":"436513776"}'>{$vo.title}</a>
+                                        <p class="blog-text">{:htmlspecialchars_decode($vo['content'])}</p>
+
+                                    </div>
+                                    <div class="appendix clearfix">
+                                        <a href="#nogo" class="feed-btn like <if condition='$vo.supportstate eq true'>liked</if>" title="赞" data-addurl="" style="width:10px" data-removeurl="" data-like='{type:"{$vo.typeid}",typeid:"{$vo.id}",uid:"{$Think.get.id}"}' onclick="clicksupport(this)">
+                                            <i></i><span style="margin-left:5px">{$vo.support}</span></a>
+                                        <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"963094416","owner":"436513776","type":"blog"}'><i></i></a>
+                                            <i class="split-icon"></i>
+                                            <a href="#nogo" class="feed-to-talk"></a>
+                                        </div>
+                                        <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"blog","sourceId":"963094416","owner":"436513776"}' style="display:none;">
+                                            <i></i>
+                                        </a>
+                                        <div class="like-friend-list clearfix">
+                                        </div>
+                                    </div>
+
+
+                                
+                                    <div class="feed-reply-container">
+                                          <div class="feed-replies">
+                                            <if condition="$vo.discussNum gt 0">
+                                            <if condition="$vo.discussNum gt 2">
+
+                                                <div class="more-replies">
+                                                    <span>还有{$vo['discussNum'] - 2}条评论</span>
+                                                    <i></i>
+                                                </div>
+                                           </if>
+
+                                            <if condition="$vo.discussNum gt 1">
+                                                    <div class="a-reply clearfix">
+                                                <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+                                                  <img src="__PUBLIC__/home/images/s_{$vo['discuss']['1']['headName']}" class="user-avatar">
+                                                </a>
+                                                <div class="reply-content">
+                                                  <p class="reply-info clearfix">
+                                                    <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['1']['userName']}</a>
+                                                  <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['1']['addtime'])}</span><span class="reply-tool clearfix"><a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+                                                      </a><a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞</a></span>
+                                                 </p><p class="text">{:htmlspecialchars_decode($vo['discuss']['1']['content'])}</p></div>
+                                                </div>
+                                                    
+                                                </if>
+
+
+                                            <div class="a-reply clearfix">
+                                                <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+                                                  <img src="__PUBLIC__/home/images/s_{$vo['discuss']['0']['headName']}" class="user-avatar">
+                                                </a>
+                                                <div class="reply-content">
+                                                  <p class="reply-info clearfix">
+                                                    <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['0']['userName']}</a>
+                                                  <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['0']['addtime'])}</span><span class="reply-tool clearfix"><a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+                                                      </a><a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞</a></span>
+                                                 </p><p class="text">{:htmlspecialchars_decode($vo['discuss']['0']['content'])}</p></div>
+                                                </div>
+
+
+                                                 </if>
+                                            </div>
+                                     </div>
+                                
+
+
+
+
+                                    <div class="own-reply clearfix">
+                                        <a class="avatar">
+                                            <img src="__PUBLIC__/home/images/s_{$head}">
+                                        </a>
+                                        <div class="own-reply-content"  onclick="zhankaipinglun(this)">
+                                            <div class="input-container">
+                                                <div contenteditable="true" class="reply-input" data-privacy="{&quot;createTime&quot;:&quot;1446360727389&quot;,&quot;owner&quot;:436513776,&quot;public&quot;:true,&quot;ugcGID&quot;:&quot;3602879702859491216&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;control&quot;:99}"></div>
+                                                <div class="tool-bar clearfix">
+                                                    <a class="emotion" title="表情" href="javascript:void(0)" style="display:inline-block;background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: -36px -110px;width:18px;height:18px;margin-left:10px" onclick="biaoqingShow(this)"></a>
+                                                    <p>
+                                                        
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="reply-btns clearfix" style="display:none">
+                                                 <a href="#nogo" class="add-comment disabled" type="1" typeid="{$vo.id}" fid="{$Think.get.id}" did="0" style="display:block" onclick="fabupinglun(this)">发布评论</a>
+                                                <a href="#nogo" class="cancel-comment" style="display:block" onclick="shouqipinglun(this)">取消</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="get-params-for-27885763767" style="display:none;">
+                                        { "no_desc":"0", "isUserFeed":1, "cid": "963094416", "oid":"436513776", "type": "blog", "typeNum": "0", "rpLength": "", "userDigged":"", "digged":"", "stype":"601", "feedOwnerId":"436513776","loadURI": "http://comment.renren.com/comment/xoa2/", "sendURI": "http://comment.renren.com/comment/xoa2/create", "delURI": "http://comment.renren.com/comment/xoa2/commentId/remove", "cSection": "true"}
+                                    </div>
+                                   
+                                </div>
+
+                                <script>
+                                    $('.blog-content').find('img').eq(0).css({'height':'250px',cursor:'pointer'});
+                                    for (var i = $('.blog-content').find('img').length - 1; i >= 1; i--) {
+                                        $('.blog-content').find('img').eq(i).remove();
+                                    };
+                                </script>
+
+
+
+                          
+
+                            </case>
+
+
+
+
+
+
+                            
+                            <case value="2">
+                            <!-- 照片 -->
+                            </case>
+
+    
+
+
+
+                            
+
+    
+
+
+                            
+                            <case value="4">
+                            <!-- 影评 -->
+                            </case>
+
+    
+
+
+                            
+                            <case value="5">
+                            <!-- 图文并茂 -->
+
+                                <div class="a-feed" typeid="{$vo.typeid}" uid="{$vo.uid}" gid="{$vo.gid}">
+                                    <div class="clearfix header">
+                                        <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="99" data-stype="701" data-id="436513776" data-source="8331789952" data-create-time="">
+                                            <a target="_blank" href="__MODULE__/FriendPage/friendPageIndex/id/{$Think.get.id}/fid/{$vo.uid}" class="avatar" namecard="436513776">
+                                                <img src="__PUBLIC__/home/images/m_{$vo.head}" width="50" title="{$vo.name}" /></a>
+                                        </div>
+                                        <div class="feed-user-info clearfix">
+                                            <a target="_blank" href="http://www.renren.com/profile.do?id=436513776" class="feed-user-name" namecard="436513776">{$vo.name}</a>&nbsp;</div>
+                                        <div class="feed-action-info">
+                                            <p>公开发布照片&nbsp;-
+                                                <span class="pub-time">{:date('Y-m-d H:i:s',$vo['addtime'])}</span>
+                                            </p>
+                                        </div>
+                                        <div class="feed-tool" type="toolbar">
+                                            <div class="feed-menu">
+                                                <li><a href="#nogo" class="hide-feed">对好友不显示该条</a></li>
+                                                <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                            </div>
+                                        </div>
+                                        <a href="#nogo" class="feed-hide">
+                                            <p>标记为已读<i></i></p>
+                                        </a>
+                                    </div>
+                                    <div class="photo-feed-content">
+                                        <div class="photo-info">
+                                            <p><span class="photo-desc">{:htmlspecialchars_decode($vo['content'])}</span></p>
+                                        </div>
+                                        <div class="photo-content-1 clearfix">
+                                            <foreach name="vo.talkpic" item="pvo" key="k">
+                                            <a href="javascript:void(0)" class="cursor-all location-left" data-pic="{picNum:'{$vo.talkpicnum}',presentSrc:'__PUBLIC__/upload/images/{$pvo.picname}',presentNum:'{$k}'}" <if condition="$k gt 5">style="display:none"</if> onclick="xsPicdes(this)">
+                                                
+                                                <img width="150" height="150" class="photo-feed-pic1" src="__PUBLIC__/upload/images/s_{$pvo.picname}" data-src="__PUBLIC__/home/images/m2w470h350q85lt_original_cNcB_2b900005c8461e83.jpg" data-viewer='{"type":"photo","owner":"436513776","id":"8331789952","url":"__PUBLIC__/home/images/original_cNcB_2b900005c8461e83.jpg","width":256,"height":256}' /></a>
+
+                                            </foreach>
+
+                                        </div>
+                                    </div>
+                                    <div class="appendix clearfix">
+                                        <a href="#nogo" class="feed-btn like <if condition='$vo.supportstate eq true'>liked</if>" title="赞" data-addurl="" style="width:10px" data-removeurl="" data-like='{type:"{$vo.typeid}",typeid:"{$vo.id}",uid:"{$Think.get.id}"}' onclick="clicksupport(this)">
+                                            <i></i><span style="margin-left:5px">{$vo.support}</span></a>
+                                        <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"963094416","owner":"436513776","type":"blog"}'><i></i></a>
+                                            <i class="split-icon"></i>
+                                            <a href="#nogo" class="feed-to-talk"></a>
+                                        </div>
+                                        <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"blog","sourceId":"963094416","owner":"436513776"}' style="display:none;">
+                                            <i></i>
+                                        </a>
+                                        <div class="like-friend-list clearfix">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="feed-reply-container">
+                                          <div class="feed-replies">
+                                            <if condition="$vo.discussNum gt 0">
+                                            <if condition="$vo.discussNum gt 2">
+
+                                                <div class="more-replies">
+                                                    <span>还有{$vo['discussNum'] - 2}条评论</span>
+                                                    <i></i>
+                                                </div>
+                                           </if>
+
+                                            <if condition="$vo.discussNum gt 1">
+                                                    <div class="a-reply clearfix">
+                                                <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+                                                  <img src="__PUBLIC__/home/images/s_{$vo['discuss']['1']['headName']}" class="user-avatar">
+                                                </a>
+                                                <div class="reply-content">
+                                                  <p class="reply-info clearfix">
+                                                    <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['1']['userName']}</a>
+                                                  <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['1']['addtime'])}</span><span class="reply-tool clearfix"><a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+                                                      </a><a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞</a></span>
+                                                 </p><p class="text">{:htmlspecialchars_decode($vo['discuss']['1']['content'])}</p></div>
+                                                </div>
+                                                    
+                                                </if>
+
+
+                                            <div class="a-reply clearfix">
+                                                <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+                                                  <img src="__PUBLIC__/home/images/s_{$vo['discuss']['0']['headName']}" class="user-avatar">
+                                                </a>
+                                                <div class="reply-content">
+                                                  <p class="reply-info clearfix">
+                                                    <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['0']['userName']}</a>
+                                                  <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['0']['addtime'])}</span><span class="reply-tool clearfix"><a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+                                                      </a><a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞</a></span>
+                                                 </p><p class="text">{:htmlspecialchars_decode($vo['discuss']['0']['content'])}</p></div>
+                                                </div>
+
+
+                                                 </if>
+                                            </div>
+                                     </div>
+                                
+
+                                
+
+
+                                    <div class="own-reply clearfix">
+                                        <a class="avatar">
+                                            <img src="__PUBLIC__/home/images/m_{$head}">
+                                        </a>
+                                        <div class="own-reply-content"  onclick="zhankaipinglun(this)">
+                                            <div class="input-container">
+                                                <div contenteditable="true" class="reply-input" data-privacy="{&quot;createTime&quot;:&quot;1446360727389&quot;,&quot;owner&quot;:436513776,&quot;public&quot;:true,&quot;ugcGID&quot;:&quot;3602879702859491216&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;control&quot;:99}"></div>
+                                                <div class="tool-bar clearfix">
+                                                    <a class="emotion" title="表情" href="javascript:void(0)" style="display:inline-block;background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: -36px -110px;width:18px;height:18px;margin-left:10px" onclick="biaoqingShow(this)"></a>
+                                                    <p>
+                                                        
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="reply-btns clearfix" style="display:none">
+                                                 <a href="#nogo" class="add-comment disabled" type="{$vo.typeid}" typeid="{$vo.id}" fid="{$Think.get.id}" did="0" style="display:block" onclick="fabupinglun(this)">发布评论</a>
+                                                <a href="#nogo" class="cancel-comment" style="display:block" onclick="shouqipinglun(this)">取消</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="get-params-for-27885764140" style="display:none;">
+                                        { "no_desc":"0", "isUserFeed":1, "cid": "8331789952", "oid":"436513776", "type": "photo", "typeNum": "1", "rpLength": "", "userDigged":"", "digged":"", "stype":"701", "feedOwnerId":"436513776","loadURI": "http://comment.renren.com/comment/xoa2/", "sendURI": "http://comment.renren.com/comment/xoa2/create", "delURI": "http://comment.renren.com/comment/xoa2/commentId/remove", "cSection": "true"}
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </case>
+
+    
+
+
+
+
+
+                            
+                            <case value="6">
+                                <!-- 分享 -->
+                            </case>
+
+                            <case value="7">
+                            <!-- 相册 -->
+                                <div class="a-feed" typeid="{$vo.typeid}" uid="{$vo.uid}" gid="{$vo.gid}">
+                                    <div class="clearfix header">
+                                        <div class="user-avatar">
+                                            <a target="_blank" href="__MODULE__/FriendPage/friendPageIndex/id/{$Think.get.id}/fid/{$vo.uid}" class="avatar" namecard="436513776">
+                                                <img src="__PUBLIC__/home/images/m_{$vo.head}" width="50" title="{$vo.name}" /></a>
+                                        </div>
+                                        <div class="feed-user-info clearfix">
+                                            <a target="_blank" href="http://www.renren.com/profile.do?id=436513776" class="feed-user-name" namecard="436513776">{$vo.name}</a>&nbsp;</div>
+                                        <div class="feed-action-info">
+                                            <p>公开发布照片&nbsp;-
+                                                <span class="pub-time">{:date('Y-m-d H:i:s',$vo['addtime'])}</span>
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="photo-feed-content">
+                                        <div class="photo-info">
+                                            <p><span class="photo-desc">{:htmlspecialchars_decode($vo['title'])}</span></p>
+                                        </div>
+                                        <div class="photo-content-1 clearfix">
+                                            <foreach name="vo.pic" item="pvo" key="k">
+                                            <a href="javascript:void(0)" class="cursor-all location-left" data-pic="{picNum:'{$vo.picnum}',presentSrc:'__PUBLIC__/upload/images/{$pvo.picname}',presentNum:'{$k}'}" <if condition="$k gt 5">style="display:none"</if> onclick="xsPicdes(this)">
+                                                
+                                                <img width="150" height="150" class="photo-feed-pic1" src="__PUBLIC__/upload/images/s_{$pvo.picname}" data-src="__PUBLIC__/home/images/m2w470h350q85lt_original_cNcB_2b900005c8461e83.jpg" data-viewer='{"type":"photo","owner":"436513776","id":"8331789952","url":"__PUBLIC__/home/images/original_cNcB_2b900005c8461e83.jpg","width":256,"height":256}' /></a>
+
+                                            </foreach>
+
+                                        </div>
+                                    </div>
+                                    <div class="appendix clearfix">
+                                        <a href="#nogo" class="feed-btn like <if condition='$vo.supportstate eq true'>liked</if>" title="赞" data-addurl="" style="width:10px" data-removeurl="" data-like='{type:"{$vo.typeid}",typeid:"{$vo.id}",uid:"{$Think.get.id}"}' onclick="clicksupport(this)">
+                                            <i></i><span style="margin-left:5px">{$vo.support}</span></a>
+                                        <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"963094416","owner":"436513776","type":"blog"}'><i></i></a>
+                                            <i class="split-icon"></i>
+                                            <a href="#nogo" class="feed-to-talk"></a>
+                                        </div>
+                                        <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"blog","sourceId":"963094416","owner":"436513776"}' style="display:none;">
+                                            <i></i>
+                                        </a>
+                                        <div class="like-friend-list clearfix">
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="feed-reply-container">
+                                          <div class="feed-replies">
+                                            <if condition="$vo.discussNum gt 0">
+                                            <if condition="$vo.discussNum gt 2">
+
+                                                <div class="more-replies">
+                                                    <span>还有{$vo['discussNum'] - 2}条评论</span>
+                                                    <i></i>
+                                                </div>
+                                           </if>
+
+                                            <if condition="$vo.discussNum gt 1">
+                                                    <div class="a-reply clearfix">
+                                                <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+                                                  <img src="__PUBLIC__/home/images/s_{$vo['discuss']['1']['headName']}" class="user-avatar">
+                                                </a>
+                                                <div class="reply-content">
+                                                  <p class="reply-info clearfix">
+                                                    <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['1']['userName']}</a>
+                                                  <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['1']['addtime'])}</span><span class="reply-tool clearfix"><a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+                                                      </a><a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞</a></span>
+                                                 </p><p class="text">{:htmlspecialchars_decode($vo['discuss']['1']['content'])}</p></div>
+                                                </div>
+                                                    
+                                                </if>
+
+
+                                            <div class="a-reply clearfix">
+                                                <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+                                                  <img src="__PUBLIC__/home/images/s_{$vo['discuss']['0']['headName']}" class="user-avatar">
+                                                </a>
+                                                <div class="reply-content">
+                                                  <p class="reply-info clearfix">
+                                                    <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['0']['userName']}</a>
+                                                  <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['0']['addtime'])}</span><span class="reply-tool clearfix"><a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+                                                      </a><a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞</a></span>
+                                                 </p><p class="text">{:htmlspecialchars_decode($vo['discuss']['0']['content'])}</p></div>
+                                                </div>
+
+
+                                                 </if>
+                                            </div>
+                                     </div>
+                                
+
+                                
+
+
+                                    <div class="own-reply clearfix">
+                                        <a class="avatar">
+                                            <img src="__PUBLIC__/home/images/m_{$head}">
+                                        </a>
+                                        <div class="own-reply-content"  onclick="zhankaipinglun(this)">
+                                            <div class="input-container">
+                                                <div contenteditable="true" class="reply-input" data-privacy="{&quot;createTime&quot;:&quot;1446360727389&quot;,&quot;owner&quot;:436513776,&quot;public&quot;:true,&quot;ugcGID&quot;:&quot;3602879702859491216&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;control&quot;:99}"></div>
+                                                <div class="tool-bar clearfix">
+                                                    <a class="emotion" title="表情" href="javascript:void(0)" style="display:inline-block;background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: -36px -110px;width:18px;height:18px;margin-left:10px" onclick="biaoqingShow(this)"></a>
+                                                    <p>
+                                                        
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="reply-btns clearfix" style="display:none">
+                                                 <a href="#nogo" class="add-comment disabled" type="{$vo.typeid}" typeid="{$vo.id}" fid="{$Think.get.id}" did="0" style="display:block" onclick="fabupinglun(this)">发布评论</a>
+                                                <a href="#nogo" class="cancel-comment" style="display:block" onclick="shouqipinglun(this)">取消</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+
+
+
+
+
+                            </case>
+
+                            
+
+                            
+
+
+                            <defalut />
+
+                        </switch>
+                    </volist>
+
+        
+    
+
+
+
+
+
+
+
+
+
+                    <!-- <div class="a-feed" id="27885764140">
+                        <div class="clearfix header">
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="99" data-stype="701" data-id="436513776" data-source="8331789952" data-create-time="">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776&ref=hotnewsfeed&sfet=701&fin=0&fid=27885764140&ff_id=436513776&platform=10&expose_time=1446366433" class="avatar" namecard="436513776">
+                                    <img src="__PUBLIC__/home/images/h_tiny_UoCX_a1ce00000040113e.jpg" width="50" title="张宇" /></a>
+                            </div>
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776" class="feed-user-name" namecard="436513776">张宇</a>&nbsp;</div>
+                            <div class="feed-action-info">
+                                <p>公开发布照片&nbsp;-
+                                    <span class="pub-time">今天 14:52</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="hide-feed">对好友不显示该条</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="photo-feed-content">
+                            <div class="photo-info">
+                                <p><span class="photo-desc">少时诵诗书</span></p>
+                            </div>
+                            <div class="photo-content-1 clearfix">
+                                <a href="http://photo.renren.com/photo/436513776/photo-8331789952" target="_blank" class="cursor-all location-left">
+                                    <img width="256" height="256" class="photo-feed-pic1" src="__PUBLIC__/home/images/a.gif" data-src="__PUBLIC__/home/images/m2w470h350q85lt_original_cNcB_2b900005c8461e83.jpg" data-viewer='{"type":"photo","owner":"436513776","id":"8331789952","url":"__PUBLIC__/home/images/original_cNcB_2b900005c8461e83.jpg","width":256,"height":256}' /></a>
+                            </div>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" data-removeurl="" data-like='{"stype":"photo","sourceId":"8331789952","owner":"436513776","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i></a>
+                            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"8331789952","owner":"436513776","type":"photo"}'><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"photo","sourceId":"8331789952","owner":"436513776"}' style="display:none;">
+                                <i></i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div class="feed-reply-container">
+                            <div class="feed-replies"></div>
+                        </div>
+                        <div class="own-reply clearfix">
+                            <a class="avatar">
+                                <img src="__PUBLIC__/home/images/a.gif">
+                            </a>
+                            <div class="own-reply-content">
+                                <div class="input-container">
+                                    <div contenteditable="true" class="reply-input" data-privacy="{&quot;createTime&quot;:&quot;0&quot;,&quot;owner&quot;:436513776,&quot;public&quot;:true,&quot;ugcGID&quot;:&quot;3674937304266114688&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;control&quot;:99,&quot;parPublic&quot;:true,&quot;parUgcGID&quot;:3819052484564778301,&quot;parCreateTime&quot;:1325517436000}"></div>
+                                    <div class="tool-bar clearfix">
+                                        <a class="emotion" title="表情" href="#nogo">表情</a>
+                                        <p>
+                                            <span class="rest-count">0</span> /
+                                            <span>140</span>
+                                            <span class="tips-text">Ctrl+Enter发送</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btns clearfix">
+                                    <a href="#nogo" class="add-comment">发布评论</a>
+                                    <a href="#nogo" class="cancel-comment">取消</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="get-params-for-27885764140" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":1, "cid": "8331789952", "oid":"436513776", "type": "photo", "typeNum": "1", "rpLength": "", "userDigged":"", "digged":"", "stype":"701", "feedOwnerId":"436513776","loadURI": "http://comment.renren.com/comment/xoa2/", "sendURI": "http://comment.renren.com/comment/xoa2/create", "delURI": "http://comment.renren.com/comment/xoa2/commentId/remove", "cSection": "true"}
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27885763767">
+                        <div class="clearfix header">
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="99" data-stype="601" data-id="436513776" data-source="963094416" data-create-time="1446360727404">
+                                <a target="_blank" href="http://www.renren.com/436513776/profile?ref=hotnewsfeed&sfet=601&fin=1&fid=27885763767&ff_id=436513776&platform=10&expose_time=1446366433" class="avatar" namecard="436513776">
+                                    <img src="__PUBLIC__/home/images/h_tiny_UoCX_a1ce00000040113e.jpg" width="50" title="张宇" /></a>
+                            </div>
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://www.renren.com/436513776/profile" class="feed-user-name" namecard="436513776">张宇</a>&nbsp;</div>
+                            <div class="feed-action-info">
+                                <p>公开发布日志&nbsp;-
+                                    <span class="pub-time">今天 14:52</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="hide-feed">对好友不显示该条</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="feed-content blog-content">
+                            <a href="http://blog.renren.com/blog/436513776/963094416?bfrom=01020650100" target="_blank" class="blog-title" data-viewer='{"type":"blog","id":"963094416","owner":"436513776"}'>2015-11-1</a>
+                            <p class="blog-text">是顶顶顶顶顶顶顶顶顶顶顶顶顶顶的顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶的顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶的水水水水谁谁谁水水水水水水水水水水水水水水水水水水水水水水水水水水水水...</p>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" data-removeurl="" data-like='{"stype":"blog","sourceId":"963094416","owner":"436513776","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i></a>
+                            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"963094416","owner":"436513776","type":"blog"}'><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"blog","sourceId":"963094416","owner":"436513776"}' style="display:none;">
+                                <i></i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div class="feed-reply-container">
+                            <div class="feed-replies"></div>
+                        </div>
+                        <div class="own-reply clearfix">
+                            <a class="avatar">
+                                <img src="__PUBLIC__/home/images/a.gif">
+                            </a>
+                            <div class="own-reply-content">
+                                <div class="input-container">
+                                    <div contenteditable="true" class="reply-input" data-privacy="{&quot;createTime&quot;:&quot;1446360727389&quot;,&quot;owner&quot;:436513776,&quot;public&quot;:true,&quot;ugcGID&quot;:&quot;3602879702859491216&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;control&quot;:99}"></div>
+                                    <div class="tool-bar clearfix">
+                                        <a class="emotion" title="表情" href="#nogo">表情</a>
+                                        <p>
+                                            <span class="rest-count">0</span> /
+                                            <span>140</span>
+                                            <span class="tips-text">Ctrl+Enter发送</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btns clearfix">
+                                    <a href="#nogo" class="add-comment">发布评论</a>
+                                    <a href="#nogo" class="cancel-comment">取消</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="get-params-for-27885763767" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":1, "cid": "963094416", "oid":"436513776", "type": "blog", "typeNum": "0", "rpLength": "", "userDigged":"", "digged":"", "stype":"601", "feedOwnerId":"436513776","loadURI": "http://comment.renren.com/comment/xoa2/", "sendURI": "http://comment.renren.com/comment/xoa2/create", "delURI": "http://comment.renren.com/comment/xoa2/commentId/remove", "cSection": "true"}
+                        </div>
+                        <div class="more-similar-feeds">
+                            <a href="#" data-similar-feeds="27885762317">还有ta的1条相似新鲜事</a>
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27885747585">
+                        <div class="clearfix header">
+                            <div class="user-avatar" original_actor="0" original_source="0" data-sourcecontrol="" data-stype="107" data-id="436513776" data-source="17975975433" data-create-time="1446359274101">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776&ref=hotnewsfeed&sfet=107&fin=2&fid=27885747585&ff_id=436513776&platform=10&expose_time=1446366433" class="avatar" namecard="436513776">
+                                    <img src="__PUBLIC__/home/images/h_tiny_UoCX_a1ce00000040113e.jpg" width="50" title="张宇" /></a>
+                            </div>
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776" class="feed-user-name" namecard="436513776">张宇</a>&nbsp;</div>
+                            <div class="feed-action-info">
+                                <p>公开分享链接&nbsp;-
+                                    <span class="pub-time">今天 14:27</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="hide-feed">对好友不显示该条</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="feed-content">
+                            <p class="share-desc">666</p>
+                            <div class="share-link-content">
+                                <div class="link-desc none-img">
+                                    <a href="https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E4%BA%BA%E4%BA%BA&amp;rsv_pq=d0af3683000b59a2&amp;rsv_t=4563tsB1WC%2FoThcgvRtrzsEwS8iJ61b8VrubLRnHzqGgDPGwlehKs%2FHVbn0&amp;rsv_enter=1&amp;rsv_sug3=7&amp;rsv_sug1=4&amp;rsv_sug2=0&amp;prefixsug=%E4%BA%BA%E4%BA%BA&amp;rsp=2&amp;inputT=1292&amp;rsv_sug4=1292" target="_blank" class="link-title"><h2>https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=0&amp...</h2></a>
+                                    <p>https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E4%BA%BA...</p><a href="https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=0&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E4%BA%BA%E4%BA%BA&amp;rsv_pq=d0af3683000b59a2&amp;rsv_t=4563tsB1WC%2FoThcgvRtrzsEwS8iJ61b8VrubLRnHzqGgDPGwlehKs%2FHVbn0&amp;rsv_enter=1&amp;rsv_sug3=7&amp;rsv_sug1=4&amp;rsv_sug2=0&amp;prefixsug=%E4%BA%BA%E4%BA%BA&amp;rsp=2&amp;inputT=1292&amp;rsv_sug4=1292" target="_blank" class="link-page"><span class="link-icon">链接网页</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" data-removeurl="" data-like='{"stype":"share","sourceId":"17975975433","owner":"436513776","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i></a>
+                            <div class="feed-talk-container clearfix"><a class="share" data-share='{"stype":"create_share_div","id":"17975975433","owner":"436513776","host":"0","ref":"feed","from":"0101010403"}' href="#nogo"><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"share","sourceId":"17975975433","owner":"436513776"}' style="display:none;">
+                                <i>1</i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div class="feed-reply-container">
+                            <div class="feed-replies">
+                                <div class="a-reply clearfix">
+                                    <a href="http://www.renren.com/profile.do?id=436513776&ref=hotnewsfeed&sfet=107&fin=2&fid=27885747585&ff_id=436513776&platform=10&expose_time=1446366433" class="avatar" target="_blank" namecard="436513776">
+                                        <img src="__PUBLIC__/home/images/h_tiny_UoCX_a1ce00000040113e.jpg" class="user-avatar" />
+                                    </a>
+                                    <div class="reply-content">
+                                        <p class="reply-info clearfix">
+                                            <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">张宇</a>
+                                            <span class="time">2015-11-01 14:27</span><span class="reply-tool clearfix"><a href="#nogo" class="delete" data-fid="27885747585" data-rid="173978161758367744" data-uname="张宇" data-uid="436513776">删除</a><a href="#nogo" class="trigger-like-comment" data-like='{"stype":"share","sourceId":"173978161758367744","resource":"17975975433","owner":"436513776","resourceownerid":"436513776","url":"http://share.renren.com/share/436513776/17975975433?from=0101010302","liked":false}'>赞</a></span>
+                                        </p>
+                                        <p class="text">666</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="own-reply clearfix">
+                            <a class="avatar">
+                                <img src="__PUBLIC__/home/images/a.gif">
+                            </a>
+                            <div class="own-reply-content">
+                                <div class="input-container">
+                                    <div contenteditable="true" class="reply-input" data-privacy=""></div>
+                                    <div class="tool-bar clearfix">
+                                        <a class="emotion" title="表情" href="#nogo">表情</a>
+                                        <p>
+                                            <span class="rest-count">0</span> /
+                                            <span>140</span>
+                                            <span class="tips-text">Ctrl+Enter发送</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btns clearfix">
+                                    <a href="#nogo" class="add-comment">发布评论</a>
+                                    <a href="#nogo" class="cancel-comment">取消</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="get-params-for-27885747585" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":1, "cid": "17975975433", "oid":"436513776", "type": "share", "typeNum": "4", "rpLength": "1", "userDigged":"", "digged":"", "stype":"107", "feedOwnerId":"436513776","loadURI": "http://comment.renren.com/comment/xoa2/", "sendURI": "http://comment.renren.com/comment/xoa2/create", "delURI": "http://comment.renren.com/comment/xoa2/commentId/remove", "cSection": "true"}
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27885745869">
+                        <div class="clearfix header">
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776" class="feed-user-name" namecard="436513776">张宇</a>&nbsp;</div>
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="" data-stype="9803" data-id="436513776" data-source="33339384" data-create-time="1446359079610">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776&ref=hotnewsfeed&sfet=9803&fin=3&fid=27885745869&ff_id=&platform=10&expose_time=1446366433" class="avatar" namecard="436513776">
+                                    <img src="__PUBLIC__/home/images/h_tiny_UoCX_a1ce00000040113e.jpg" width="50" title="张宇" /></a>
+                            </div>
+                            <div class="feed-action-info">
+                                <p>想看电影&nbsp;-
+                                    <span class="pub-time">今天 14:24</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="hide-feed">对好友不显示该条</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="feed-content" data-wikimid="610562547">
+                            <p class="movie-user-desc">666</p>
+                            <div class="share-link-content">
+                                <div class="link-img">
+                                    <a href="http://wiki.renren.com/610562547?ref=hotnewsfeed&sfet=9803&fin=3&fid=27885745869&ff_id=&platform=10&expose_time=1446366433" target="_blank">
+                                        <img src="__PUBLIC__/home/images/main_WKqM_927b000026d91e83.jpg">
+                                    </a>
+                                </div>
+                                <div class="link-desc wiki-desc">
+                                    <p class="wiki-title-con">
+                                        <a href="http://wiki.renren.com/610562547?ref=hotnewsfeed&sfet=9803&fin=3&fid=27885745869&ff_id=&platform=10&expose_time=1446366433" target="_blank">
+                                            <span class="wiki-title clearfix">捉妖记</span></a><span class="wiki-score clearfix"><em class="score-1">7</em><em class="score-2">.</em><em class="score-3">3</em></span></p>
+                                    		<p class="wiki-actor">主演：白百何 / 井柏然 / 姜武 / 金燕玲 / 钟汉良 / 曾志伟 / 吴君如 / 汤唯 / 姚晨 / 闫妮 / 保剑锋 / 王栎鑫 / 郭晓冬 / 李菁菁 / 田雨橙 / 张悦轩</p>
+                                    		<p class="wiki-summary">　山雄伟，海辽阔，经奇幻。自古以来人妖共存于世，人欲主天下，妖遂被驱逐入山。其后历朝，妖偶有越界，皆由捉妖天师秘密处理。老妖王辞世，妖界大乱，众妖越界流窜，一时间世间人妖难辨。在偏安深山的永宁村中，村长宋天荫（井柏然 饰）偶遇一路逐妖而来的菜鸟天师霍小岚（白百何 饰），在意外共度一夜后，被妖后托胎，随即生下了小妖王胡巴。为了自己的私心，小岚带着天荫一路同行前往顺天府，保护他躲过各种妖怪，也渐渐与天荫及胡巴产生了感情。然而为时已晚，胡巴已落入坏人之手，为营救胡巴，小岚与天荫在众人的帮助下勇闯登仙楼，与大反派葛千户（钟汉良 饰）展开一场殊死对决…… 　　人妖相克，究竟谁主天下？
+                                    		</p>
+                                    <p class="wiki-count">478人看过<em>/</em>220人评论</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="http://wiki.renren.com/ajax/commentlike/add" data-removeurl="http://wiki.renren.com/ajax/commentlike/del" data-like='{"stype":"wikicomment","sourceId":"33339384","owner":"436513776","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i></a>
+                            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"33339384","owner":"436513776","type":"wikicomment"}'><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"","sourceId":"33339384","owner":"436513776"}' style="display:none;">
+                                <i></i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div class="feed-reply-container">
+                            <div class="feed-replies"></div>
+                        </div>
+                        <div class="own-reply clearfix">
+                            <a class="avatar">
+                                <img src="__PUBLIC__/home/images/a.gif">
+                            </a>
+                            <div class="own-reply-content">
+                                <div class="input-container">
+                                    <div contenteditable="true" class="reply-input" data-privacy=""></div>
+                                    <div class="tool-bar clearfix">
+                                        <a class="emotion" title="表情" href="#nogo">表情</a>
+                                        <p>
+                                            <span class="rest-count">0</span> /
+                                            <span>140</span>
+                                            <span class="tips-text">Ctrl+Enter发送</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btns clearfix">
+                                    <a href="#nogo" class="add-comment">发布评论</a>
+                                    <a href="#nogo" class="cancel-comment">取消</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="get-params-for-27885745869" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":1, "cid": "33339384", "oid":"436513776", "type": "", "typeNum": "", "rpLength": "", "userDigged":"", "digged":"", "stype":"9803", "feedOwnerId":"436513776","loadURI": "http://wiki.renren.com/ajax/action/reply/list?actionOwner=436513776&actionId=33339384&type=", "sendURI": "http://wiki.renren.com/ajax/action/reply/add?type=", "delURI": "http://wiki.renren.com/ajax/action/reply/delete?type="}
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27885107523">
+                        <div class="clearfix header">
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="99" data-stype="502" data-id="429182327" data-source="5287125686" data-create-time="1446313952256">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=429182327&ref=hotnewsfeed&sfet=502&fin=4&fid=27885107523&ff_id=429182327&platform=10&expose_time=1446366433" class="avatar" namecard="429182327">
+                                    <img src="__PUBLIC__/home/images/h_tiny_HFCL_2afd00000151111a.jpg" width="50" title="冯玉雪" /></a>
+                            </div>
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=429182327" class="feed-user-name" namecard="429182327">冯玉雪</a>&nbsp;</div>
+                            <div class="feed-action-info">
+                                <p>公开发布状态&nbsp;-
+                                    <span class="pub-time">今天 01:52</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="feed-focus-user">添加TA为特别关注</a></li>
+                                    <li><a href="#nogo" class="feed-block-user">屏蔽TA的新鲜事</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="feed-content">
+                            <p class="status">夜深人静的时候，写首歌给自己唱。往事不再提吧。。<img src='__PUBLIC__/home/images/23.gif' alt='住嘴' /><img src='__PUBLIC__/home/images/23.gif' alt='住嘴' />再见。</p>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" data-removeurl="" data-like='{"stype":"status","sourceId":"5287125686","owner":"429182327","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i></a>
+                            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"status_forward","id":"5287125686","owner":"429182327"}'><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"status","sourceId":"5287125686","owner":"429182327"}' style="display:none;">
+                                <i></i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div class="feed-reply-container">
+                            <div class="feed-replies"></div>
+                        </div>
+                        <div class="own-reply clearfix">
+                            <a class="avatar">
+                                <img src="__PUBLIC__/home/images/a.gif">
+                            </a>
+                            <div class="own-reply-content">
+                                <div class="input-container">
+                                    <div contenteditable="true" class="reply-input" data-privacy="{&quot;control&quot;:99,&quot;createTime&quot;:&quot;1446313952256&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;owner&quot;:429182327,&quot;ugcGID&quot;:&quot;3530822113145594550&quot;,&quot;public&quot;:true}"></div>
+                                    <div class="tool-bar clearfix">
+                                        <a class="emotion" title="表情" href="#nogo">表情</a>
+                                        <p>
+                                            <span class="rest-count">0</span> /
+                                            <span>240</span>
+                                            <span class="tips-text">Ctrl+Enter发送</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btns clearfix">
+                                    <a href="#nogo" class="add-comment">发布评论</a>
+                                    <a href="#nogo" class="cancel-comment">取消</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="get-params-for-27885107523" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":1, "cid": "5287125686", "oid":"429182327", "type": "status", "typeNum": "3", "rpLength": "", "userDigged":"", "digged":"", "stype":"502", "feedOwnerId":"429182327","loadURI": "http://comment.renren.com/comment/xoa2/", "sendURI": "http://comment.renren.com/comment/xoa2/create", "delURI": "http://comment.renren.com/comment/xoa2/commentId/remove", "cSection": "true"}
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27884978806">
+                        <div class="clearfix header">
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://page.renren.com/601621937?" class="feed-user-name" namecard="601621937">小黄鸡</a>&nbsp;<img src="__PUBLIC__/home/images/hotpoint-1.png" title="热门主页" />&nbsp;
+                                <a target="_blank" class="feed-icon-android" title="Android" href=http://page.renren.com/600006117>
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="" data-stype="4004" data-id="601621937" data-source="8331310482" data-create-time="1446299457167">
+                                <a target="_blank" href="http://page.renren.com/601621937?&ref=hotnewsfeed&sfet=4004&fin=5&fid=27884978806&ff_id=601621937&platform=10&expose_time=1446366433" class="avatar" namecard="601621937">
+                                    <img src="__PUBLIC__/home/images/h_tiny_yKEs_3c5a0000251b1376.jpg" width="50" title="小黄鸡" /></a>
+                            </div>
+                            <div class="feed-action-info">
+                                <p>公开上传照片&nbsp;-
+                                    <span class="pub-time">昨天 21:50</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="feed-block-user">屏蔽TA的新鲜事</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="photo-feed-content">
+                            <div class="photo-info">
+                                <p><span class="photo-desc">鬼啊<img src='__PUBLIC__/home/images/7.gif?' alt='惊恐'  /></span></p>
+                            </div>
+                            <div class="photo-content-1 clearfix">
+                                <a href="http://page.renren.com/601621937/photo/8331310482" target="_blank" class="cursor-all">
+                                    <img width="500" height="280" class="photo-feed-pic1" src="__PUBLIC__/home/images/a.gif" data-src="__PUBLIC__/home/images/m2w500h350q85lt_original_AIid_42780005f0081e83.jpg" data-viewer='{"type":"photo","owner":"601621937","id":"8331310482","url":"__PUBLIC__/home/images/original_AIid_42780005f0081e83.jpg","width":1080,"height":606}' /></a>
+                            </div>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" data-removeurl="" data-like='{"stype":"photo","sourceId":"8331310482","owner":"601621937","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i>1674</a>
+                            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"8331310482","owner":"601621937","type":"photo"}'><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"page","sourceId":"8331310482","owner":"601621937"}'>
+                                <i>452</i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div id="get-params-for-27884978806" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":0, "cid": "8331310482", "oid":"601621937", "type": "page", "typeNum": "", "rpLength": "452", "userDigged":"", "digged":"1674", "stype":"4004", "feedOwnerId":"601621937","loadURI": "http://page.renren.com/601621937/photo/replyList", "sendURI": "http://page.renren.com/601621937/photo/reply", "delURI": "http://page.renren.com/601621937/photo/replyDelete"}
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27883874831">
+                        <div class="clearfix header">
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="99" data-stype="502" data-id="436513776" data-source="5287098606" data-create-time="1446205471152">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776&ref=hotnewsfeed&sfet=502&fin=6&fid=27883874831&ff_id=436513776&platform=10&expose_time=1446366433" class="avatar" namecard="436513776">
+                                    <img src="__PUBLIC__/home/images/h_tiny_UoCX_a1ce00000040113e.jpg" width="50" title="张宇" /></a>
+                            </div>
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776" class="feed-user-name" namecard="436513776">张宇</a>&nbsp;</div>
+                            <div class="feed-action-info">
+                                <p>公开发布状态&nbsp;-
+                                    <span class="pub-time">10-30 19:44</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="hide-feed">对好友不显示该条</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="feed-content">
+                            <p class="status">在右下角的那个top按钮，也就是那个id为nogo的a标签，是有bug的，预期效果应该是当window.scrollTop为0的时候，他的状态应该是隐藏，没错,有的时候他竟然不隐藏了，而且当鼠标移开的时候，那个a标签竟然还是hover时候的样式~~哈哈，装一波<img src='__PUBLIC__/home/images/21.gif' alt='晕' /><img src='__PUBLIC__/home/images/18.gif' alt='偷笑' /> <img src='__PUBLIC__/home/images/20.gif' alt='吻' /><img src='__PUBLIC__/home/images/17.gif' alt='舔' /><img src='__PUBLIC__/home/images/sowhat.gif' alt='SoWhat？' /><img src='__PUBLIC__/home/images/hehen.gif' alt='呵呵' /><img src='__PUBLIC__/home/images/memeda2.gif' alt='么么哒' /> <img src='__PUBLIC__/home/images/geili.gif' alt='给力' /><img src='__PUBLIC__/home/images/cold.gif' alt='降温' /> <img src='__PUBLIC__/home/images/rain.gif' alt='下雨' /></p>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" data-removeurl="" data-like='{"stype":"status","sourceId":"5287098606","owner":"436513776","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i></a>
+                            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"status_forward","id":"5287098606","owner":"436513776"}'><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"status","sourceId":"5287098606","owner":"436513776"}' style="display:none;">
+                                <i></i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div class="feed-reply-container">
+                            <div class="feed-replies"></div>
+                        </div>
+                        <div class="own-reply clearfix">
+                            <a class="avatar">
+                                <img src="__PUBLIC__/home/images/a.gif">
+                            </a>
+                            <div class="own-reply-content">
+                                <div class="input-container">
+                                    <div contenteditable="true" class="reply-input" data-privacy="{&quot;control&quot;:99,&quot;createTime&quot;:&quot;1446205471152&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;owner&quot;:436513776,&quot;ugcGID&quot;:&quot;3530822113145567470&quot;,&quot;public&quot;:true}"></div>
+                                    <div class="tool-bar clearfix">
+                                        <a class="emotion" title="表情" href="#nogo">表情</a>
+                                        <p>
+                                            <span class="rest-count">0</span> /
+                                            <span>240</span>
+                                            <span class="tips-text">Ctrl+Enter发送</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="reply-btns clearfix">
+                                    <a href="#nogo" class="add-comment">发布评论</a>
+                                    <a href="#nogo" class="cancel-comment">取消</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="get-params-for-27883874831" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":1, "cid": "5287098606", "oid":"436513776", "type": "status", "typeNum": "3", "rpLength": "", "userDigged":"", "digged":"", "stype":"502", "feedOwnerId":"436513776","loadURI": "http://comment.renren.com/comment/xoa2/", "sendURI": "http://comment.renren.com/comment/xoa2/create", "delURI": "http://comment.renren.com/comment/xoa2/commentId/remove", "cSection": "true"}
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27883854737">
+                        <div class="clearfix header">
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://page.renren.com/601621937?" class="feed-user-name" namecard="601621937">小黄鸡</a>&nbsp;<img src="__PUBLIC__/home/images/hotpoint-1.png" title="热门主页" />&nbsp;
+                                <a target="_blank" class="feed-icon-android" title="Android" href=http://page.renren.com/600006117>
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="" data-stype="4004" data-id="601621937" data-source="8330507623" data-create-time="1446203285711">
+                                <a target="_blank" href="http://page.renren.com/601621937?&ref=hotnewsfeed&sfet=4004&fin=7&fid=27883854737&ff_id=601621937&platform=10&expose_time=1446366433" class="avatar" namecard="601621937">
+                                    <img src="__PUBLIC__/home/images/h_tiny_yKEs_3c5a0000251b1376.jpg" width="50" title="小黄鸡" /></a>
+                            </div>
+                            <div class="feed-action-info">
+                                <p>公开上传照片&nbsp;-
+                                    <span class="pub-time">10-30 19:08</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="feed-block-user">屏蔽TA的新鲜事</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="photo-feed-content">
+                            <div class="photo-info">
+                                <p><span class="photo-desc">点赞转身<img src='__PUBLIC__/home/images/xhj.gif' alt='小黄鸡'  />据说你的点赞数和智商值一致，你敢试试吗<img src='__PUBLIC__/home/images/23.gif' alt='住嘴'  /></span></p>
+                            </div>
+                            <div class="photo-content-1 clearfix">
+                                <a href="http://page.renren.com/601621937/photo/8330507623" target="_blank" class="cursor-all">
+                                    <img width="500" height="332" class="photo-feed-pic1" src="__PUBLIC__/home/images/a.gif" data-src="__PUBLIC__/home/images/m2w500h350q85lt_original_xMpP_86c900035aeb1e7f.jpg" data-viewer='{"type":"photo","owner":"601621937","id":"8330507623","url":"__PUBLIC__/home/images/original_xMpP_86c900035aeb1e7f.jpg","width":847,"height":563}' /></a>
+                            </div>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" data-removeurl="" data-like='{"stype":"photo","sourceId":"8330507623","owner":"601621937","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i>5929</a>
+                            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"8330507623","owner":"601621937","type":"photo"}'><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"page","sourceId":"8330507623","owner":"601621937"}'>
+                                <i>1322</i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div id="get-params-for-27883854737" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":0, "cid": "8330507623", "oid":"601621937", "type": "page", "typeNum": "", "rpLength": "1322", "userDigged":"", "digged":"5929", "stype":"4004", "feedOwnerId":"601621937","loadURI": "http://page.renren.com/601621937/photo/replyList", "sendURI": "http://page.renren.com/601621937/photo/reply", "delURI": "http://page.renren.com/601621937/photo/replyDelete"}
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27883868627">
+                        <div class="clearfix header">
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776" class="feed-user-name" namecard="436513776">张宇</a>&nbsp;</div>
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="" data-stype="1806" data-id="436513776" data-source="2697" data-create-time="1446204729071">
+                                <a target="_blank" href="http://www.renren.com/profile.do?id=436513776&ref=hotnewsfeed&sfet=1806&fin=8&fid=27883868627&ff_id=436513776&platform=10&expose_time=1446366433" class="avatar" namecard="436513776">
+                                    <img src="__PUBLIC__/home/images/h_tiny_UoCX_a1ce00000040113e.jpg" width="50" title="张宇" /></a>
+                            </div>
+                            <div class="feed-action-info">
+                                <p>公开应用装扮&nbsp;-
+                                    <span class="pub-time">10-30 19:32</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="hide-feed">对好友不显示该条</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="feed-content">
+                            <div class="feed-use-skin clearfix">
+                                <h4><a class="feed-user-name vip-feed-skin-btn" href="#" data-tplV7Id="2697">恼人的烦恼</a></h4>
+                                <div class="skin-thumb">
+                                    <a class="vip-feed-skin-btn" href="#" data-tplV7Id="2697"><img src="__PUBLIC__/home/images/thumbnail_pre.jpg"></a>
+                                </div>
+                                <div class="btns-group">
+                                    <a class="txts-info-btn btn1 vip-feed-skin-btn" href="#" data-tplV7Id="2697">立即试用</a><a class="txts-info-btn vip-feed-skin-btn" href="#">更多模板</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="a-feed" id="27882600665">
+                        <div class="clearfix header">
+                            <div class="feed-user-info clearfix">
+                                <a target="_blank" href="http://page.renren.com/601621937?" class="feed-user-name" namecard="601621937">小黄鸡</a>&nbsp;<img src="__PUBLIC__/home/images/hotpoint-1.png" title="热门主页" />&nbsp;
+                                <a target="_blank" class="feed-icon-android" title="Android" href=http://page.renren.com/600006117>
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="user-avatar" original_actor="" original_source="" data-sourcecontrol="" data-stype="4004" data-id="601621937" data-source="8329741040" data-create-time="1446106502345">
+                                <a target="_blank" href="http://page.renren.com/601621937?&ref=hotnewsfeed&sfet=4004&fin=9&fid=27882600665&ff_id=601621937&platform=10&expose_time=1446366433" class="avatar" namecard="601621937">
+                                    <img src="__PUBLIC__/home/images/h_tiny_yKEs_3c5a0000251b1376.jpg" width="50" title="小黄鸡" /></a>
+                            </div>
+                            <div class="feed-action-info">
+                                <p>公开上传照片&nbsp;-
+                                    <span class="pub-time">10-29 16:15</span>
+                                </p>
+                            </div>
+                            <div class="feed-tool" type="toolbar">
+                                <div class="feed-menu">
+                                    <li><a href="#nogo" class="feed-block-user">屏蔽TA的新鲜事</a></li>
+                                    <li><a href="#nogo" class="feed-setting-item">新鲜事设置</a></li>
+                                </div>
+                            </div>
+                            <a href="#nogo" class="feed-hide">
+                                <p>标记为已读<i></i></p>
+                            </a>
+                        </div>
+                        <div class="photo-feed-content">
+                            <div class="photo-info">
+                                <p><span class="photo-desc">录了段小视频给大家<img src='__PUBLIC__/home/images/shy.gif' alt='害羞'  />点开看看<img src='__PUBLIC__/home/images/4.gif' alt='调皮'  />不行就使劲点！</span></p>
+                            </div>
+                            <div class="photo-content-1 clearfix">
+                                <a href="http://page.renren.com/601621937/photo/8329741040" target="_blank" class="cursor-all">
+                                    <img width="500" height="312" class="photo-feed-pic1" src="__PUBLIC__/home/images/a.gif" data-src="__PUBLIC__/home/images/m2w500h350q85lt_original_4dWb_825a00017a851e7f.jpg" data-viewer='{"type":"photo","owner":"601621937","id":"8329741040","url":"__PUBLIC__/home/images/original_4dWb_825a00017a851e7f.jpg","width":1080,"height":676}' /></a>
+                            </div>
+                        </div>
+                        <div class="appendix clearfix">
+                            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" data-removeurl="" data-like='{"stype":"photo","sourceId":"8329741040","owner":"601621937","uid":"436513776","name":"张宇","othfirst":"","othsecond":"","oththird":"","othforth":""}'>
+                                <i></i>6319</a>
+                            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"8329741040","owner":"601621937","type":"photo"}'><i></i></a>
+                                <i class="split-icon"></i>
+                                <a href="#nogo" class="feed-to-talk"></a>
+                            </div>
+                            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"page","sourceId":"8329741040","owner":"601621937"}'>
+                                <i>2164</i>
+                            </a>
+                            <div class="like-friend-list clearfix">
+                            </div>
+                        </div>
+                        <div id="get-params-for-27882600665" style="display:none;">
+                            { "no_desc":"0", "isUserFeed":0, "cid": "8329741040", "oid":"601621937", "type": "page", "typeNum": "", "rpLength": "2164", "userDigged":"", "digged":"6319", "stype":"4004", "feedOwnerId":"601621937","loadURI": "http://page.renren.com/601621937/photo/replyList", "sendURI": "http://page.renren.com/601621937/photo/reply", "delURI": "http://page.renren.com/601621937/photo/replyDelete"}
+                        </div>
+                    </div> -->
+                    <input id="needRequestMissFlag" type="hidden" value="1" />
+                </div>
+                <div class="advert-box">
+                    <div class="side-item-advert" data-adzone-id="100000000101"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!------------------------纯文字------------------------>
+<div id="chunwenzi" style="display:none">
+    <div class="ui-renren-publisher ui-helper-clearfix ui-renren-publisher-active" style="z-index: 99; left: 156.5px;">
+        <a class="ui-renren-publisher-avatar" style="display: block; opacity: 1;"><img width="50" height="50" src="__PUBLIC__/home/images/m_{$head}"></a>
+        <div class="ui-renren-publisher-body ui-helper-grid">
+            <div class="ui-renren-publisher-edit">
+                <div class="ui-renren-publisher-textbox">
+                    <div class="triangle" style="display: block; opacity: 1;">
+                        <div></div>
+                    </div>
+                    <div class="textarea ui-scrollbar">
+                        <div class="textarea-wrapper">
+                            <div class="textarea-textzone ui-textbox" style="height: 127px;">
+                                <div style="position: absolute; left: 0px; top: 0px; width: 480px; height: 127px; padding: 0px 10px 0px 0px; outline: none; color: rgb(169, 169, 169);">你现在在想什么？</div>
+                                <div contenteditable="true" style="position: absolute; left: 0px; top: 0px; width: 480px; height: 127px; padding: 0px 10px 0px 0px; outline: none; background: none;"></div>
+                            </div>
+                            <div class="textarea-withwrapper" style="visibility: hidden;">——— 和 <span class="with-results"></span> 在一起</div>
+                            <div class="textarea-emotionplaceholder"></div>
+                        </div>
+                        <div class="ui-scrollbar-bar ui-scrollbar-bar-y" style="top: 0px; height: 0px;"></div>
+                    </div>
+                    <div class="tools">
+                        <div class="ui-textbox-buttonPane">
+                            <span class="ui-icon ui-iconfont ui-icon-with" style="margin-right: 10px; cursor: pointer;background-position:-170px -18px;"></span>
+                            <span class="ui-icon ui-iconfont ui-icon-emotion2" style="margin-right: 10px; cursor: pointer;background-position:-36px -110px;" onclick="biaoqingShow(this)"></span></div>
+                    </div>
+                    <div class="counter" id="counterLength">0/240</div>
+                </div>
+                <div class="ui-renren-publisher-toolbar ui-helper-sprite">
+                    <button type="button" data-app="photo" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnPhoto"><span class="ui-button-icon-primary ui-icon ui-icon-square-pphoto ui-iconfont"></span><span class="ui-button-text">传照片</span></button>
+                    <button type="button" data-app="share" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnShare"><span class="ui-button-icon-primary ui-icon ui-icon-square-pshare ui-iconfont"></span><span class="ui-button-text">发链接</span></button>
+                    <button type="button" data-app="blog" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnBlog"><span class="ui-button-icon-primary ui-icon ui-icon-square-pblog ui-iconfont"></span><span class="ui-button-text">写日志</span></button>
+                    <button type="button" data-app="movie" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnMovie"><span class="ui-button-icon-primary ui-icon ui-icon-square-pmovie ui-iconfont"></span><span class="ui-button-text">评电影</span></button>
+                </div>
+            </div>
+            <div class="ui-renren-publisher-preview">
+                <div class="ui-renren-publisher-toolbar">
+                    <label>添加：</label>
+                    <button type="button" data-app="photo" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-text">照片</span></button>
+                    <button type="button" data-app="share" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-text">链接</span></button>
+                    <button type="button" data-app="movie" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-text">电影</span></button>
+                </div>
+            </div>
+            <div class="ui-renren-publisher-buttonset">
+                <div class="buttonset">
+                    <div class="ui-button-white ui-button-quit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="shou()" role="button"><span class="ui-button-text">取消</span></div>
+                    <div class="ui-button-white ui-button-blue ui-button-send ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button" onclick="fabuShuoshuo(this)"><span class="ui-button-text">发布</span></div>
+                </div>
+                <div class="ui-renren-privacy ui-widget ui-select">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------------纯文字结束------------------------------>
+
+<!------------------------传照片-------------------------->
+
+<div id="photoShow" style="display:none">
+
+<div class="ui-renren-publisher ui-helper-clearfix ui-renren-publisher-appstart ui-renren-publisher-active" style="z-index: 99; left: 156.5px;">
+    <a class="ui-renren-publisher-avatar" style="display: block; opacity: 1;"><img width="50" height="50" src="__PUBLIC__/home/images/m_{$head}"></a>
+    <div class="ui-renren-publisher-body ui-helper-grid">
+        <div class="ui-renren-publisher-edit">
+            <div class="ui-renren-publisher-textbox">
+                <div class="triangle" style="display: block; opacity: 1;">
+                    <div></div>
+                </div>
+                <div class="textarea ui-scrollbar">
+                    <div class="textarea-wrapper">
+                        <div class="textarea-textzone ui-textbox" style="height: 67px;">
+                            <div style="position: absolute; left: 0px; top: 0px; width: 480px; height: 67px; padding: 0px 10px 0px 0px; outline: none; color: rgb(169, 169, 169);">你现在在想什么？</div>
+                            <div contenteditable="true" style="position: absolute; left: 0px; top: 0px; width: 480px; height: 67px; padding: 0px 10px 0px 0px; outline: none; background: none;"></div>
+                        </div>
+                        <div class="textarea-withwrapper" style="visibility: hidden;">——— 和 <span class="with-results"></span> 在一起</div>
+                        <div class="textarea-emotionplaceholder"></div>
+                    </div>
+                    <div class="ui-scrollbar-bar ui-scrollbar-bar-y" style="top: 0px; height: 0px;"></div>
+                </div>
+                <div class="tools">
+                    <div class="ui-textbox-buttonPane"><span class="ui-icon ui-iconfont ui-icon-with" style="margin-right: 10px; cursor: pointer;background-position:-170px -18px;"></span><span class="ui-icon ui-iconfont ui-icon-emotion2" style="margin-right: 10px; cursor: pointer;background-position:-36px -110px;" onclick="biaoqingShow(this)"></div>
+                </div>
+                <div class="counter" id="counterLength">0/240</div>
+            </div>
+            <div class="ui-renren-publisher-toolbar ui-helper-sprite">
+                <button type="button" data-app="photo" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnPhoto"><span class="ui-button-icon-primary ui-icon ui-icon-square-pphoto ui-iconfont"></span><span class="ui-button-text">传照片</span></button>
+                <button type="button" data-app="share" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnShare"><span class="ui-button-icon-primary ui-icon ui-icon-square-pshare ui-iconfont"></span><span class="ui-button-text">发链接</span></button>
+                <button type="button" data-app="blog" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnBlog"><span class="ui-button-icon-primary ui-icon ui-icon-square-pblog ui-iconfont"></span><span class="ui-button-text">写日志</span></button>
+                <button type="button" data-app="movie" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" id="appPublisherBtnMovie"><span class="ui-button-icon-primary ui-icon ui-icon-square-pmovie ui-iconfont"></span><span class="ui-button-text">评电影</span></button>
+            </div>
+        </div>
+        <div class="ui-renren-publisher-preview">
+            <div class="ui-renren-publisher-toolbar" style="display: none;">
+                <label>添加：</label>
+                <button type="button" data-app="photo" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-pphoto ui-iconfont"></span><span class="ui-button-text">照片</span></button>
+                <button type="button" data-app="share" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-pshare ui-iconfont"></span><span class="ui-button-text">链接</span></button>
+                <button type="button" data-app="movie" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button"><span class="ui-button-icon-primary ui-icon ui-icon-pmovie ui-iconfont"></span><span class="ui-button-text">电影</span></button>
+            </div>
+            <div class="ui-renren-publisher-stage">
+                <div class="app-publisher-photo" id="tuozhuaishangchuangkuang">
+                    <div class="photo-factory ui-fileupload">
+                        <div class="bg ui-helper-sprite"></div>
+                        
+                        <p class="tips">点击上传<br>
+                            或拖拽照片上传</p>
+                        <button class="ui-button ui-button-cancel ui-button-icon-only">
+                            
+                        </button>
+                        <iframe hidden name="zhuanmenshangchuantupian"></iframe>
+                        <form action="__MODULE__/HomePage/uploadImages" enctype="multipart/form-data" method="post" target="zhuanmenshangchuantupian" id="uploadForm">
+                        <input type="file" onchange="uploadImageFile(this)" multiple name="uPic[]"/>
+                        </form>
+                    </div>
+                    <div class="photo-status">
+                        <div class="loading"><img src="__PUBLIC__/home/images/loading.gif"><span>0</span>%</div>
+                        <div class="progress ui-progressbar ui-widget">
+                            <div class="ui-progressbar-value" style="display: none; width: 0%;"></div>
+                        </div>
+                        <div class="error"><span>上传失败</span>
+                            <button class="ui-button">重新上传</button>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="jsonPic" id="jsonPic" />
+                    <!----图片插入位置---->
+                    <div id="tupiancharuweizhi"></div>
+
+                    <!-------------------->
+
+                    <div class="photo-buttonset">
+                        <div class="ui-select ui-widget">
+                            <div class="ui-select-dock">
+                                <div class="ui-select-selected"> 快速上传 </div>
+                                <div class="ui-select-arrow ui-icon ui-iconfont"></div>
+                            </div>
+                            <div class="ui-select-options">
+                                <ul id="ui-id-23" class="ui-menu ui-widget ui-widget-content" role="menu" tabindex="0">
+                                    <div class="ui-select-edit" id="ui-id-24" tabindex="-1" role="menuitem">
+                                        <input type="text" placeholder="新相册名..."> <a href="javascript:;">确认</a> </div>
+                                    <li data-value="554597693" class="ui-select-optionselected ui-menu-item" id="ui-id-25" tabindex="-1" role="menuitem">快速上传</li>
+                                    <li data-value="1128377047" class="ui-menu-item" id="ui-id-26" tabindex="-1" role="menuitem">xx</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ui-button upload">管理照片</div>
+                        <button class="ui-button ui-button-cancel ui-button-icon-only">
+                            <span class="ui-icon ui-icon-square-lclose ui-iconfont"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui-renren-publisher-buttonset">
+            <div class="buttonset">
+                <div class="ui-button-white ui-button-quit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" onclick="shou()"><span class="ui-button-text">取消</span></div>
+                <div class="ui-button-white ui-button-blue ui-button-send ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-disabled ui-state-disabled" role="button"><span class="ui-button-text"  onclick="fabuTuwen(this)">发布</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+<!--------------------------传照片结束------------------------>
+
+
+
+
+
+<!---------------------新鲜事列表的头部和尾部-------------------------->
+<div id="ajaxShuoshuo" style="display:none">
+    <div class="a-feed" typeid="" uid="{$Think.get.id}">
+        <div class="clearfix header">
+            <div class="user-avatar">
+                <a target="_blank" href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}" class="avatar">
+                    <img src="__PUBLIC__/home/images/m_{$head}" width="50" title="{$info['name']}" /></a>
+            </div>
+            <div class="feed-user-info clearfix">
+                <a target="_blank" href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}" class="feed-user-name">{$info['name']}</a>&nbsp;</div>
+            <div class="feed-action-info">
+                <p>公开发布状态&nbsp;-
+                    <span class="pub-time">{:date("Y-m-d H:i:s",time())}</span>
+                </p>
+            </div>
+        </div>
+        <div class="feed-content">
+            <p class="status">放置内容</p>
+        </div>
+        <div class="appendix clearfix">
+            <a href="#nogo" class="feed-btn like" title="赞" data-addurl="" style="width:10px" data-removeurl="" data-like='{type:"0",typeid:"",uid:"{$Think.get.id}"}' onclick="clicksupport(this)">
+                <i></i><span style="margin-left:5px">0</span></a>
+            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"status_forward","id":"5287125686","owner":"429182327"}'><i></i></a>
+                <i class="split-icon"></i>
+                <a href="#nogo" class="feed-to-talk"></a>
+            </div>
+            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"status","sourceId":"5287125686","owner":"429182327"}' style="display:none;">
+                <i></i>
+            </a>
+            <div class="like-friend-list clearfix">
+            </div>
+        </div>
+
+            <div class="feed-reply-container">
+              <div class="feed-replies">
+           </div>
+        </div>
+            
+
+        <div class="own-reply clearfix">
+            <a class="avatar">
+                <img src="__PUBLIC__/home/images/s_{$head}">
+            </a>
+            <div class="own-reply-content"  onclick="zhankaipinglun(this)">
+                <div class="input-container">
+                    <div contenteditable="true" class="reply-input"></div>
+                    <div class="tool-bar clearfix">
+                        <a class="emotion" title="表情" href="#nogo" style="display:inline-block;background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: -36px -110px;width:18px;height:18px;margin-left:10px" onclick="biaoqingShow(this)"></a>
+                        <p>
+                            
+                        </p>
+                    </div>
+                </div>
+                <div class="reply-btns clearfix"  style="display:none">
+                    <a href="#nogo" class="add-comment disabled" type="0" typeid="" fid="{$Think.get.id}" did="0" style="display:block" onclick="fabupinglun(this)">发布评论</a>
+                    <a href="#nogo" class="cancel-comment" style="display:block" onclick="shouqipinglun(this)">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---------------------------新鲜事列表的头尾部的结束---------------------->
+
+
+<!---------------------------图文并茂的发布-------------------------------->
+<div id="tuwenbingmaosuipian" style="display:none">
+    <div class="a-feed" typeid="" uid="{$Think.get.id}">
+        <div class="clearfix header">
+            <div class="user-avatar">
+                <a target="_blank" href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}" class="avatar">
+                    <img src="__PUBLIC__/home/images/m_{$head}" width="50" title="{$info['name']}" /></a>
+            </div>
+            <div class="feed-user-info clearfix">
+                <a target="_blank" href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}" class="feed-user-name">{$info['name']}</a>&nbsp;</div>
+            <div class="feed-action-info">
+                <p>公开发布照片&nbsp;-
+                    <span class="pub-time">{:date('Y-m-d H:i:s',time())}</span>
+                </p>
+            </div>
+        </div>
+        <div class="photo-feed-content">
+            <div class="photo-info">
+                <p><span class="photo-desc">放置内容</span></p>
+            </div>
+            <div class="photo-content-1 clearfix">
+            </div>
+        </div>
+        <div class="appendix clearfix">
+            <a href="#nogo" class="feed-btn like" title="赞" data-like="{type:'5',typeid:',uid:'{$Think.get.id}'}" onclick="clicksupport(this)">
+                <i></i><span style="margin-left:5px">0</span></a>
+            <div class="feed-talk-container clearfix"><a href="#nogo" class="share" title="分享" data-share='{"stype":"create_share_feed","id":"963094416","owner":"436513776","type":"blog"}'><i></i></a>
+                <i class="split-icon"></i>
+                <a href="#nogo" class="feed-to-talk"></a>
+            </div>
+            <a href="#nogo" class="feed-btn reply" title="评论" data-reply='{"stype":"blog","sourceId":"963094416","owner":"436513776"}' style="display:none;">
+                <i></i>
+            </a>
+            <div class="like-friend-list clearfix">
+            </div>
+        </div>
+       
+        <div class="feed-reply-container">
+              <div class="feed-replies">
+                </div>
+         </div>
+
+        <div class="own-reply clearfix">
+            <a class="avatar">
+                <img src="__PUBLIC__/home/images/m_{$head}">
+            </a>
+            <div class="own-reply-content"  onclick="zhankaipinglun(this)">
+                <div class="input-container">
+                    <div contenteditable="true" class="reply-input"></div>
+                    <div class="tool-bar clearfix">
+                        <a class="emotion" title="表情" href="javascript:void(0)" style="display:inline-block;background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: -36px -110px;width:18px;height:18px;margin-left:10px" onclick="biaoqingShow(this)"></a>
+                        <p>
+                            
+                        </p>
+                    </div>
+                </div>
+                <div class="reply-btns clearfix" style="display:none">
+                     <a href="#nogo" class="add-comment disabled" type="5" typeid="" fid="{$Think.get.id}" did="0" style="display:block" onclick="fabupinglun(this)">发布评论</a>
+                    <a href="#nogo" class="cancel-comment" style="display:block" onclick="shouqipinglun(this)">取消</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+
+<!---------------------------图文并茂发布结束----------------------------->
+
+<!----------------------评论楼层---------------------------------->
+<div id="pinglunlouceng" style="display:none">
+<div class="a-reply clearfix">
+    <a href="http://www.renren.com/profile.do?id=436513776&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137" class="avatar" target="_blank" namecard="436513776">
+      <img src="" class="user-avatar">
+    </a>
+    <div class="reply-content">
+      
+        <p class="reply-info clearfix">
+          <a href="http://www.renren.com/profile.do?id=436513776" target="_blank" class="user-name" namecard="436513776">{$vo['discuss']['1']['userName']}
+          </a>
+          <span class="time">{:date('Y-m-d H:i:s',$vo['discuss']['1']['addtime'])}
+          </span>
+          <span class="reply-tool clearfix">
+            <a href="#nogo" class="delete" data-fid="27902448435" data-rid="47888692575488000" data-uname="张宇" data-uid="436513776">删除
+            </a>
+            <a href="#nogo" class="trigger-like-comment" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;,&quot;resource&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;,&quot;resourceownerid&quot;:&quot;436513776&quot;,&quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?bfrom=01020650100&amp;ref=hotnewsfeed&amp;sfet=601&amp;fin=4&amp;fid=27902448435&amp;ff_id=436513776&amp;platform=10&amp;expose_time=1447845137&quot;,&quot;liked&quot;:false}">赞
+            </a>
+          </span>
+        </p>
+        <p class="text">{:htmlspecialchars_decode($vo['discuss']['1']['content'])}</p>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-------------------------评论楼层结束---------------------->
+
+
+
+
+
+
+
+<!--------------------------图片上传-------------------------->
+<div id="tpsckuang" style="display:none">
+    <div class="photo-grids ui-sortable" style="height: 332px; display: block;overflow:hidden">
+        <div class="grid ui-sortable-handle" style="width:166px;height:166px;left:0px;top:0px;" data-uuid="0">
+            <div class="grid-button" id="picdisplaykuang">
+                <span class="ui-button ui-button-trash ui-button-icon-only">
+              <span class="ui-icon ui-icon-square-trash ui-iconfont"></span>
+                </span>
+             <!--   <img width="50" height="50" src="__PUBLIC__/home/images/original_0Cwe_84be0007d7cc1e84.gif" data-width="50" data-height="50">-->
+            </div>
+        </div>
+        <div class="photo-number"><strong>9</strong>张</div>
+    </div>
+
+
+</div>
+
+
+<!-------------------------图片上传结束---------------------------->
+
+
+
+<!-------------------------图片详情弹窗-------------------------->
+
+<div id="displayPicDetail" style="display:none">
+
+<div class="ui-widget-overlay ui-front"></div>
+<div class="ui-dialog ui-widget ui-front dialog-viewer" tabindex="-1" style="height: auto; width: auto; top: 0px; left: 58.5px; display: block;">
+   <div id="closePicDetail" style="position:absolute;right:10px;top:10px;color:#FFF;font-size:30px;z-index:999;cursor:pointer">×</div>
+    <div class="pop-layer ui-widget-content" id="viewerLayer" style="display: block; width: auto; min-height: 150px; max-height: none; height: auto;">
+        <div class="pop-layer-container" id="viewerContainer" style="width: 1266px; height: 667px;">
+            <div class="pop-main" style="margin-right:0px;">
+                <div class="pop-content pop-content-wrap pop-next-active" id="viewerContent" js-click="flip" style="cursor:auto">
+                   
+                    <div class="pop-photo-content" js-click="flip">
+                        <div class="pop-img-outer" id="viewerImgOuter"js-click="flip">
+                            <div class="pop-img-container no-scroll" id="photoScrollContainer" js-click="flip"> 
+                                <img class="pop-content-img " src="__PUBLIC__/home/images/loading.gif" style="cursor:pointer;max-height:567px;" js-click="flip">
+                             </div>
+                           
+                        </div>
+                        <div class="pop-loading-wrap" id="viewerLoading"> <img src="__PUBLIC__/home/images/loading.gif"> </div>
+                    </div>
+                    <div class="pop-photo-prev" js-click="prev" id="viewerPrev" style="color:#FFF;font-size:80px"></div>
+                    <div class="pop-photo-next" js-click="next" id="viewerNext" style="color:#FFF;font-size:80px"></div>
+                </div>
+                <div class="pop-toolbar" id="viewerToolbar">
+                    <div class="pop-photo-toolbar">
+                        <div class="photo-toolbar-bd">
+                            <div class="pop-album-info" style="right:0px"><span class="album-photo-index" id="photoIndex">1</span><span class="index-slash">/</span> <span class="album-photo-count" id="viewerPhotoCount">20</span> </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+
+
+
+<!-------------------------图片详情弹窗结束---------------------------->
+
+
+
+
+
+
+
+<script>
+    // //拖拽上传
+    // var kuang=document.body;
+    // //拖进
+    // kuang.addEventListener('dragenter', function(e) {
+    // 　e.preventDefault();
+    // }, false);
+
+    // //拖离
+    // kuang.addEventListener('dragleave', function(e) {
+    // 　dragleaveHandler(e);
+    // }, false);
+
+    // //拖来拖去 , 一定要注意dragover事件一定要清除默认事件
+    // //不然会无法触发后面的drop事件
+    // kuang.addEventListener('dragover', function(e) {
+    // 　e.preventDefault();
+    // }, false);
+
+    // //扔
+    // kuang.addEventListener('drop', function(e) {
+    // 　dropHandler(e);
+    // }, false);
+
+    // var dropHandler = function(e) {
+    //     //alert('aa');
+    //     e.preventDefault();
+    //     //将本地图片拖拽到页面中后要进行的处理都在这
+    //     var fileList = e.dataTransfer.files;
+    //     var fileNum = fileList.length;
+    //     //alert(fileNum);
+    //     //检测是否是拖拽文件到页面的操作
+    //     if (fileList.length === 0) {return;};
+    //     for(var i=0;i<fileList.length;i++){
+    //         //alert('aa');
+    //         //检测文件是不是图片
+    //         if (fileList[i].type.indexOf('image') === -1) {return;}
+    //         //实例化file reader对象
+    //     　  var reader = new FileReader();
+    //     　  var img = document.createElement('img');
+            
+    //         img.height=250;
+
+    //         $('.ui-fileupload').hide();
+
+
+    //       　reader.onload = function(e) {
+    //             //alert('aa');
+    //     　    　//img.src = this.result;
+    //     　    　//document.getElementById('picdisplaykuang').appendChild(img);
+    //             $('#picdisplaykuang').append('<img src="'+e.target.result+'" alt="" />');
+    //     　  }
+    //         reader.readAsDataURL(fileList[i]);
+    //     }
+        
+    //     $('#tupiancharuweizhi').html($('#tpsckuang').html());
+    // 　
+
+        
+    // }
+
+    $.fn.listen=function(type,fn){
+    return this.each(function(){
+        $(this)[0].addEventListener(type,function(e){
+            if(!fn.call($(this),e)){
+                e.stopPropagation();
+                e.preventDefault();
+            }
+        },0);
+    });
+
+    var isuploading=0;
+    var hasBtSize=0;
+    var errorArray=[];
+
+    $(document).bind("dragenter",function(){
+        return false;
+    }).bind("dragover",function(){
+        return false;
+    }).listen("drop",function(e){
+        if(isuploading)return;
+        var error='';
+        var num=1;
+        var files=e.dataTransfer.files;
+        var j=files.length;
+        for (var i = 0; i < j; i++) {
+            (function(i){
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    $('#picdisplaykuang').append('<img src="'+e.target.result+'" alt="" />');
+                    if(files[i].size>1024*400 || !/image/.test(files[i].type)){
+                        errorArray.push(num);
+                    }
+                    num++;
+                    if(num>j){
+                        if(errorArray.length){
+                            error=errorArray.join(',');
+                            alert("其中第  "+error+" 个文件大小超过限制或不是图片，本次上传已被取消。");
+                            errorArray=[];
+                            return;
+                        }
+                        upload(files);
+                    }
+                };
+                reader.readAsDataURL(files[i]);
+            })(i);
+        }
+        $('#tupiancharuweizhi').html($('#tpsckuang').html());
+        return false;
+    });
+
+    function upload(files){
+        if(isuploading)return;
+        isuploading=1;
+        var formData=new FormData();
+        var isComplete=0;
+
+        for (var i=0; i <files.length; i++) {
+            formData.append("files[]",files[i]);
+        };
+
+        var xhr=new XMLHttpRequest();
+        xhr.open('post','__MODULE__/HomePage/uploadImages');
+        // xhr.onload=function(){
+        //     $progress.html("上传完成！");
+        // };
+        // xhr.onreadystatechange=function(){
+        //     if (xhr && xhr.readyState === 4) {
+        //         status = xhr.status;
+        //         if (!isComplete && status >= 200 && status < 300 || status === 304) {
+        //             isComplete = true;
+        //             var json=$.parseJSON(xhr.responseText);
+        //             $box2.empty();
+        //             $box.empty();
+        //             $message.empty();
+        //             $.each(json,function(key,val){
+        //                 $box2.append("<img src='"+ val +"' />");
+        //             });
+        //             isuploading=0;
+        //         } else if (!isComplete) {
+        //             isComplete = true;
+        //             $box.html("网络错误！");
+        //             isuploading=0;
+        //         }
+        //         xhr = null;
+        //     }
+        // }
+        // xhr.upload.onprogress = function (event) {
+        //     if (event.lengthComputable) {
+        //         var percent = (event.loaded / event.total * 100 | 0)+"%";
+        //         $progress.html(percent);
+        //     }
+        // }
+        xhr.send(formData);
+    }
+
+
+}
+
+
+
+</script>
+
+</block>

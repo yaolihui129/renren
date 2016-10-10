@@ -1,0 +1,1219 @@
+<extend name="Public/Base" />
+<block name="main-css">
+    <link href="__PUBLIC__/home/images/favicon-rr.ico?ver=3" type="image/x-icon" rel="shortcut icon">
+    <link href="__PUBLIC__/home/images/apple_icon_.png" rel="apple-touch-icon">
+    <link href="__PUBLIC__/home/css/base.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/photoList.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/viewer.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/uploadAndCreate.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/webpager.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/roomkeeper.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/picde.css" rel="stylesheet">
+</block>
+
+<block name="main-body">
+<!------ 主体内容 ------>
+                
+<div class="photo-list-bar bd-main" style="position:absolute; top: 50px;left:159px; width:980px;padding-left:210px">
+    <div class="album-ctrl">
+    <div class="album-btn">
+        <!------ 添加图片处 ------>
+        <a class="a-b-btn btn-upload" onclick="openPage()" style="background:url(__PUBLIC__/home/images/photo_list_sprite.png) 0px -357px no-repeat;"></a>
+    </div>
+</div>
+    <div class="p-l-b-box">
+        <a href="http://www.renren.com/333960397/profile" target="_blank" namecard="333960397" class="owner-avata"><img src="__PUBLIC__/home/images/s_{$head}"></a>
+        <ul id="photo-tab">
+            <!-- <li>
+                <a href="http://photo.renren.com/photo/333960397/latest/v7" class="p-t-i">最近照片</a>
+            </li>
+            <li>
+                <a href="http://photo.renren.com/photo/333960397/tag/v7" class="p-t-i">被圈照片</a>
+            </li> -->
+            <li style="width: 115px;overflow:hidden">
+                <a href="__MODULE__/Album/albumIndex/id/{$info.id}" class="p-t-i">W的相册</a>
+            </li>
+            <li>
+                <a href="javascript:;" class="p-t-i p-t-i-hover" title="封面相册"><span id="album-name">{$picAlbum.title}</span> <span id="album-count">{$picNum}</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+    <div class="album-ctrl">
+        <div class="vp-box">
+            <span id="more-choose" class="drop-tips">
+                <span class="drop-box-arrow">
+                </span>
+                <div class="drop-box" id="more-choose-tips" style="display: none;">
+                    <ul>
+                        <li class="drop-item d-i-copy" id="copyBtn" data-clipboard-target="copy-text"
+                        data-copy="http://photo.renren.com/photo/885992102/album-1127956402/v7">
+                            <a href="javascript:;" class="drop-i">
+                                <i class="d-i-coin icon-copy">
+                                </i>
+                                复制链接
+                            </a>
+                            <div class="copy-flash">
+                                <object type="application/x-shockwave-flash" data="http://s.xnimg.cn/nx/core/swf/clipboard.swf"
+                                width="100%" height="100%">
+                                    <param name="wmode" value="transparent">
+                                    <param name="scale" value="noscale">
+                                    <param name="menu" value="false">
+                                    <param name="allowScriptAccess" value="always">
+                                    <param name="allowNetworking" value="all">
+                                    <param name="salign" value="t1">
+                                    <param name="flashvars" value="domid=copyBtn&amp;attrFuncName=copyComplate&amp;attrContentName=data-copy">
+                                </object>
+                            </div>
+                        </li>
+                        <li class="drop-item d-i-del">
+                            <a href="javascript:;" class="drop-i ">
+                                <i class="d-i-coin icon-del-album">
+                                </i>
+                                删除相册
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </span>
+        </div>
+    </div>
+<!------ 页面主体 ------>
+<div class="bd-main" style="margin-top:38px;margin-left:0px">
+    <div class="bd-content clearfix">
+        <div class="photo-list-main" style="margin-top: 11px;margin-left:-35px; width: 920px;">
+            <div class="container-box">
+                <!------ 编辑相册 ------>
+                <div class="con-bar clearfix">
+                    <div id="c-b-describe" class="c-b-t">
+                        相册描述：{$picAlbum.describe}
+                    </div>
+                    <div class="c-b-l" id="">
+                    </div>
+                    <!-- <a id="c-b-edit" href="javascript:;">编辑相册</a> -->
+                    <div class="c-b-edit-btn" id="editAlbum">
+                        <span id="edit-more" class="drop-tips">
+                            <span class="drop-box-arrow">
+                                <a href="javascript:void(0)">相册操作</a>
+                            </span>
+                            <div class="drop-box2 edit-more" id="edit-more-tips" style="display: none;">
+                                <ul>
+                                    <li class="drop-item d-i-own">
+                                        <a href="javascript:void(0)" data-album-id="{$picAlbum.id}" class="drop-i" data-edittype="info"  onclick="openAlbumEditPageOne()">
+                                            编辑相册
+                                        </a>
+                                    </li>
+                                    <li class="drop-item d-i-own">
+                                        <a  onclick="openAlbumEditPageTwo()" href="javascript:void(0)" class="drop-i" data-edittype="bulk">
+                                            批量删除
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <!------ 循环遍历图片处开始 ------>
+                <div id="photo-list">
+                    
+                </div>
+                <!------ 循环遍历图片处结束 ------>
+                <div class="com-box" >
+                    <div data-admin="false" class="comment-wrapper commnet-box">
+                        <div class="comment-center-wrapper">
+                            <ul class="comment-center-nav clearfix">
+                                <li>
+                                    <a href="javascript:void(0)" style="cursor:pointer" class="comment-center-tab select" id="toggleDiscuss">
+                                        　展开评论　
+                                    </a>
+                                </li>
+                            </ul>
+                            <!------ 相册评论显示 ------>
+                            <div class="comment-center-comments" style="width: 620px;">
+                                <div class="comment-center-lists" tab="0">
+                                    <ul id="albumDiscussList" style="display:none" class="comment-center-list">
+                                        <!------ js遍历评论处 ------>
+                                    </ul>
+                                </div>
+                            </div>
+                            <form class="comment-center-form clearfix comment-center-form-active"
+                            id="commentCenterForm">
+                                <span namecard="436513776" class="comment-center-avatar">
+                                    <img width="30" height="30" src="__PUBLIC__/home/images/s_{$head}">
+                                </span>
+                                <div class="comment-center-wbox">
+                                    <div  class="comment-center-box ui-textbox"style="display:block">
+                                        <div contenteditable="true" id="albumDiscussEdit"   style="display:block;position: absolute; left: 0px; top: 0px; width: 510px; height: 50px; padding: 10px; outline: medium none; background: rgb(255, 255, 255) none repeat scroll 0% 0%;">请在此输入评论。。。</div>
+                                    </div>
+                                </div>
+                                <div class="form-btns clearfix">
+                                    <a class="comment-center-submit ui-button ui-button-blue" href="javascript:void(0)" onclick="addAlbumDiscuss()">
+                                        发布评论
+                                    </a>
+                                    <a class="comment-center-cancel ui-button" href="#nogo">
+                                        取消
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------ 相册评论准备加载 ------>
+<div id="readyAlbumSupport" style="display:none">
+    <li id="" class="comment-center-item comment-83922743775490048 clearfix">
+        <a class="comment-center-avatar" href="JavaScript:void(0)">
+            <img src=""width="30" height="30">  <!-- 评论人头像 -->
+        </a>
+        <p class="comment-center-info clearfix">
+            <a href="JavaScript:void(0)"  class="comment-center-author">
+                      <!-- 评论人真实姓名 -->
+            </a>
+            <span class="time">
+                       <!-- 评论时间 -->
+            </span>
+        </p>
+        <p class="comment-center-content">
+            <span class="comment-center-body"></span>     <!-- 评论内容 -->
+        </p>
+    </li>
+</div>
+<!------ 图片加载准备html ------>
+<div id="readyLoadPic" style="display:none">
+    <div id="" class="photo-box">
+        <a class="" href="javascript:void(0)">
+            <img thisId="" id="" class="p-b-item" onclick="showPicDetail(this)" src="" style="height:150px;">
+        </a>
+    </div>
+</div>
+<!------ 相册操作，图片批量删除界面 ------>
+<div class="ui-widget-overlay ui-front" style="display:none"></div>
+<div class="ui-dialog ui-widget ui-front" tabindex="-1" id="editAlbumPage" style="height: auto; width: 560px; top: 126px; left: 452.5px; display:none;">
+    <!-- 顶部 header -->
+    <div class="ui-widget-header ui-helper-clearfix">
+        <span id="ui-id-2" class="ui-dialog-title">
+        </span>
+        <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-close" onclick="closeEditAlbumPage()" role="button" title="关闭">
+            <span class="ui-button-icon-primary ui-iconfont">
+                ×
+            </span>
+            <span class="ui-button-text" >
+                关闭
+            </span>
+        </button>
+    </div>
+    <!-- 中间图片展示 -->
+    <div class="ui-widget-content" style="display: block; width:500px; min-height: 38px; max-height: none; height: auto;">
+        <ul class="e-b-tab">
+            <li class="e-b-i">
+                <a onclick="openAlbumEditPageOne()" class="e-b-n" id="album-info" href="javascript:;">
+                    相册信息
+                </a>
+            </li>
+            <li class="e-b-i">
+                <a onclick="openAlbumEditPageTwo()" class="e-b-n e-b-n-active" id="bat-ctrl" href="javascript:;">
+                    批量操作
+                </a>
+            </li>
+        </ul>
+        <!------ 相册编辑 ------>
+        <div id="albumEditPageOne" class="e-b-box" style="display: none;">
+            <label class="a-i-list">
+                <span class="a-i-name">
+                    相册名：
+                </span>
+                <input class="a-i-input" type="text" id="album-nm">
+                <div class="a-i-n-erro">
+                    <span class="limit-num" id="limit-album-nm">
+                        4
+                    </span>
+                    /30
+                </div>
+            </label>
+            <label class="a-i-list">
+                <span class="a-i-name">
+                    描述：
+                </span>
+                <textarea class="a-i-input a-i-textarea" id="album-des">
+                </textarea>
+                <div class="a-i-n-erro">
+                    <span class="limit-num" id="limit-album-des">
+                        0
+                    </span>
+                    /240
+                </div>
+            </label>
+            <label class="a-i-list">
+                <span class="a-i-name">
+                    地点：
+                </span>
+                <input class="a-i-input" type="text" id="album-plc">
+                <div class="a-i-n-erro">
+                    <span class="limit-num" id="limit-album-plc">
+                        0
+                    </span>
+                    /60
+                </div>
+            </label>
+        </div>
+        <!------ 图片批量操作 ------>
+        <div id="albumEditPageTwo"  class="e-b-box" style="display: block;width:500px;">
+            <div class="e-b-p-box">
+                <div id="e-b-p-list" style="width:530px;">
+                    <!-- 循环 -->
+                </div>
+            </div>
+            <div class="e-b-ctrl">
+                <span id="select-all" class="e-b-lable select-all">
+                    <span id="icon-select" class="icon-select" cmt-type="cmtToAuthor">
+                        ✔
+                    </span>
+                    全选
+                </span>
+                <span class="select-box">
+                    已选
+                    <span id="select-num">
+                        2
+                    </span>
+                    张
+                </span>
+                <!-- <span id="move-photo-box" class="e-b-lable e-b-radio e-b-move">
+                    <input id="move-photo" type="radio" name="e-b-ctrl" value="转移照片" class="photo-btn-radio">
+                    <label for="move-photo" class="p-b-r-box">
+                        转移照片
+                    </label>
+                    <span id="move-to-box" class="select-cover" style="display: none;">
+                        <span id="move-to" data-checked="">
+                        </span>
+                        <ul id="choose-album-name" style="display: none;">
+                        </ul>
+                    </span>
+                </span>
+                <span id="del-photo-box" class="e-b-lable e-b-radio">
+                    <input id="del-photo" type="radio" name="e-b-ctrl" value="删除" checked="checked"
+                    class="photo-btn-radio">
+                    <label for="del-photo" class="p-b-r-box-checked">
+                        删除
+                    </label>
+                </span> -->
+            </div>
+        </div>
+    </div>
+    <!-- 底部foorter -->
+    <div class="ui-widget-footer ui-helper-clearfix">
+        <div class="ui-dialog-buttonset">
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="closeEditAlbumPage()" role="button">
+                <span class="ui-button-text">
+                    取消
+                </span>
+            </button>
+            <button type="button" id="btn-sbm-del" class="ui-button-blue ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="delMorePic()"
+            role="button">
+                <span class="ui-button-text">
+                    删除
+                </span>
+            </button>
+            <button type="button" id="btn-sbm-submit" class="ui-button-blue ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="updateAlbumEditPageTwo()"
+            role="button">
+                <span class="ui-button-text">
+                    提交
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
+<!------ 批量操作图片准备界面 ------>
+<div id="readyMorePicLoad" style="display:none" >
+    <div class="e-b-p-i" style="width:100px;height:100px"onclick="choose(this)">
+        <img src="" style="width:100px;height:100px" class="e-b-p">
+        <a href="javascript:void(0)" style="width:92px;height:92px" class="e-b-p-ctrl"></a>
+    </div>
+</div>
+<!------ 图片详情 ------>
+<div class="ui-widget-overlay ui-front" id="picDetailBack" style="display:none"></div>
+<div class="ui-dialog ui-widget ui-front dialog-viewer" id="picDetailPage" tabindex="-1"
+style="height: auto; width: auto; top: 8.5px; left: 58.5px; display:none;">
+    <div class="ui-widget-header ui-helper-clearfix">
+        <span id="ui-id-21" class="ui-dialog-title">
+        </span>
+        <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-close"
+        role="button" title="关闭">
+            <span class="ui-button-icon-primary ui-icon ui-icon-lclose ui-iconfont">
+                ×
+            </span>
+            <span class="ui-button-text">
+                关闭
+            </span>
+        </button>
+    </div>
+    <div class="pop-layer ui-widget-content" id="viewerLayer" style="display: block; width: auto; min-height: 150px; max-height: none; height: auto;">
+        <div class="pop-layer-container" id="viewerContainer" style="width:1260px; height:600px;">
+            <a href="javascript:void(0)" title="关闭" id="closePicDetailPage" class="pop-close ui-button ui-button-icon-only"
+            js-click="close">
+                <span class="ui-icon ui-icon-square-lclose"  style="background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: 0px 0px;background-repeat: no-repeat;" js-click="close">
+                </span>
+            </a>
+            <div class="pop-main">
+                <div class="pop-content pop-content-wrap pop-photo-one pop-prev-active"
+                id="viewerContent" js-click="flip">
+                    <div class="pop-photo-content" id="phoneContentBody" js-click="flip">
+                        <div class="pop-img-outer" id="viewerImgOuter" style="width: 720px; height: 424px;"
+                        js-click="flip">
+                            <div class="pop-img-container no-scroll" id="photoScrollContainer" js-click="flip">
+                                <img class="pop-content-img viewer-img-show" id="detailPicName" src="" style="max-height:424px;max-width:720px" js-click="flip">
+                                <img class="pop-content-img viewer-img-hidden" js-click="flip">
+                            </div>
+                            <div class="photo-full" id="photoFull" js-click="full">
+                            </div>
+                            <div class="circle-tips" id="circleTips">
+                            </div>
+                        </div>
+                        <div class="pop-loading-wrap" id="viewerLoading">
+                            <img src="__PUBLIC__/home/images/loading.gif">
+                        </div>
+                    </div>
+                    <div class="pop-photo-prev" js-click="prev" id="viewerPrev"></div>
+                    <div class="pop-photo-next" js-click="next" id="viewerNext"></div>
+                </div>
+                <div class="pop-toolbar" id="viewerToolbar">
+                    <div class="pop-photo-toolbar">
+                        <div class="photo-toolbar-bd">
+                            <span class="pop-thumb-menu" js-click="thumb">
+                            </span>
+                            <div class="pop-album-info">
+                                <!-- <a class="toolbar-album-name" href="http://photo.renren.com/photo/436513776/album-1128377047/v7"
+                                target="_blank" title="xx">
+                                    xx
+                                </a> -->
+                                <span class="album-photo-index" id="photoIndex">
+                                    1
+                                </span>
+                                <span class="index-slash">
+                                    /
+                                </span>
+                                <span class="album-photo-count" id="viewerPhotoCount">
+                                    1
+                                </span>
+                            </div>
+                            <ul class="photo-tool-act clearfix">
+                                <li class="p-t-act-item pb-edit">
+                                    <i class="pb-edit-ico">
+                                    </i>
+                                    编辑照片
+                                    <div class="p-t-menu p-t-edit-menu">
+                                        <span class="p-t-menu-triangle">
+                                            <i class="p-t-menu-triangle-inner">
+                                            </i>
+                                        </span>
+                                        <ul class="pop-menu-list edit-menu-list">
+                                            <li js-click="cover" id="setPicAsCover">
+                                                <i  class="pop-menu-ico p-cover-ico" js-click="cover">
+                                                </i>
+                                                设为封面
+                                            </li>
+                                            <li js-click="shift">
+                                                <!-- <i class="pop-menu-ico p-transfer-ico" js-click="shift"></i> -->
+                                                　<!-- 转移 -->
+                                            </li>
+                                            <li js-click="delete" id="delPic">
+                                                <i class="pop-menu-ico p-delete-ico" js-click="delete">
+                                                </i>
+                                                删除
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <!-- <li class="p-t-act-item pb-info" id="toolbarExif" style="display: none;">
+                                    <i class="pb-info-ico">
+                                    </i>
+                                    照片信息
+                                    <div class="p-t-menu photo-info-exif" id="photoExif">
+                                    </div>
+                                </li>
+                                <li class="p-t-act-item pb-info" id="toolbarNoExif" style="margin-right: -10px;">
+                                    <i class="pb-info-ico">
+                                    </i>
+                                    <span id="detailPicTitle">照片title</span>
+                                </li> -->
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="photoRightPage" class="pop-aside ui-scrollbar">
+                <div class="pop-aside-inner" id="viewerSidebar">
+                    <div id="viewerSideContent">
+                        <div class="pop-side-hd" id="sideHD">
+                            <div class="pop-side-photo">
+                                <div class="pop-side-info clearfix">
+                                    <a href="http://www.renren.com/profile.do?id=436513776" class="pop-avatar"
+                                    namecard="436513776" target="_blank">
+                                        <img src="__PUBLIC__/home/images/m_{$head}"
+                                        alt="张宇">
+                                    </a>
+                                    <div class="pop-info-bd">
+                                        <div class="pop-info-bd-top clearfix">
+                                            <a href="http://www.renren.com/profile.do?id=436513776" namecard="436513776" target="_blank" class="pop-author" title="张宇">
+                                                {$info.name}
+                                            </a>
+                                            <!-- <select class="photo-limit-state ui-renren-privacy ui-widget ui-select" style="border:0px solid #fff;">
+                                                <option value="" >所有可见</option>
+                                                <option value="" >好友可见</option>
+                                                <option value="" >私人照片</option>
+                                            </select> -->
+                                        </div>
+                                        <div class="photo-date-loc clearfix">
+                                            <span id="viewerDate" class="photo-up-date">
+                                                
+                                            </span>
+                                            <div class="photo-loc-wrapper pop-hidden" id="locWrapper">
+                                                <span class="photo-loc-split">
+                                                    -
+                                                </span>
+                                                在
+                                                <a class="photo-loc" id="photoLoc" href="" target="_blank">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <!------ 照片描述 <------>
+                                <a href="javascript:void(0)"><span> </span></a>
+                                <div class="pop-photo-desc photo-desc-editable" id="photoDescWrapper" js-click="descEdit" style="display: block;">
+                                    图片描述：<span id="photoDesc" js-click="descEdit">这是一个描述</span>
+                                    <span class="photo-with" id="photoWith" js-click="descEdit">
+                                    </span>
+                                </div>
+                                <div class="photo-desc-edit-content " id="photoDescEditContent" style="display:none">
+                                    <textarea class="photo-edit-input photo-desc-in" placeholder="输入照片描述" id="photoDescInput" style="background: rgb(255, 255, 255);" ></textarea>
+                                </div>
+                                <div class="photo-edit-btns clearfix" style="display:none">
+                                    <a href="javascript:" class="photo-edit-btn photo-edit-cancel" onclick="closePicDescribe()">取消</a>
+                                    <a href="javascript:" class="photo-edit-btn photo-edit-ok" onclick="updatePicDescribe()">确定</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-scrollbar-bar ui-scrollbar-bar-y" style="top: 0px; height: 0px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-widget-footer ui-helper-clearfix" style="display: none;">
+        <div class="ui-dialog-buttonset">
+        </div>
+    </div>
+</div>
+<!------ 图片全屏 ------>
+<!-- <div class="photo-fullscreen slide-prev-active" id="photoFullScreen" js-click="fullSlide" style="display:block">
+    <img class="photo-full-img" id="viewerFullImg" src="http://fmn.rrimg.com/fmn073/20151122/1940/original_LaB9_cdb90000598f1e7f.jpg"
+    js-click="fullSlide">
+    <span class="vertical-middle">
+    </span>
+    <div class="photo-full-btn clearfix">
+        <div class="full-quit-btn" js-click="exitFull">
+        </div>
+        <div class="full-play-btn" id="fullSlideBtn" js-click="slideFull">
+        </div>
+    </div>
+    <div class="pop-photo-prev" js-click="fullPrev">
+    </div>
+    <div class="pop-photo-next" js-click="fullNext">
+    </div>
+</div> -->
+<!------ 选择上传图片 ------>
+<textarea name="" id="getPicInfo" style="display:none" cols="30" rows="10"></textarea>
+<div id="updateBack" style="display:none" class="ui-widget-overlay ui-front"></div>
+<div id="updatePage" class="ui-dialog ui-widget ui-front ui-renren-photoupload-bootstrap" style="height: auto; width:60%; top:60px; left:25%; display: none;" tabindex="-1">
+    <div class="ui-widget-header ui-helper-clearfix" style="">
+        <span id="ui-id-52" class="ui-dialog-title">
+            <a href="javascript:void(0)" >选择上传图片</a>
+        </span>
+        <input type="file" id="uploadInput" multiple  onchange="upload(this.files)" style="display:none">
+    </div>
+    <div id="seePicDiv" style="display: block; width: auto; max-height: none; min-height:300px;padding:10px 20px;"
+    class="ui-widget-content">
+        <div id="seePic" src="" alt="" style="border-radius:5px;min-height:300px;border:2px solid #ddd;"></div>
+        <div id="tzPic" style="font-size:30px;color:#fc8;line-height:283px;position:absolute;top:10px;left:90px">拖拽图片到此即可上传</div>
+    </div>
+    <div class="ui-widget-footer ui-helper-clearfix" style="">
+        <div class="ui-dialog-buttonset">
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" thisId="{$info.id}" id="submitUpdatePic"
+            role="button" disabled>
+                <span class="ui-button-text">
+                    确定
+                </span>
+            </button>
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="closePage()" id="cancelUpdateHead"
+            role="button">
+                <span class="ui-button-text">
+                    取消
+                </span>
+            </button>
+        </div>
+    </div>
+</div> 
+<div id="readyImg" style="display:none">
+    <img height="150px" style="margin:2px;border-radius:5px" src="" alt="">
+</div> 
+<div id="readyToImg"></div>
+<input type="text" id="thisAid" value="{$Think.get.aid}" style="display:none">
+<input type="text" id="thisUid" value="{$Think.get.id}" style="display:none">
+<input type="text" id="thisPicId" value="{$Think.get.picId}" style="display:none">
+<script type="text/javascript">
+    // 调用自动加载函数
+    $(function(){
+        loadPic();
+        loadAlbumDiscuss();
+        picSetPosition();
+        // 判断是否是主页跳转过来的
+        if($('#thisPicId').val() != ''){
+            $('#pic'+$('#thisPicId').val()).trigger('click');
+        }
+    });
+    // 图片加载函数
+    function loadPic(){
+        var aid = $('#thisAid').val();
+        var uid = $('#thisUid').val();
+        $.ajax({
+            url:'__MODULE__/Pic/picLoad',
+            type:'POST',
+            data:'aid='+aid+'&uid='+uid,
+            dataType:'json',
+            async:false,
+            success:function(res){
+                // console.log(res);
+                
+                $('#photo-list').empty();
+                if(res == null){
+                    selectPicNumTotal();
+                    return;
+                }
+                for(var i=0;i<res.length;i++){
+                    $('#readyLoadPic').find('img').attr('src','__PUBLIC__/upload/images/'+res[i].picname);
+                    $('#readyLoadPic').find('img').attr('thisId',res[i].id);
+                    $('#readyLoadPic').find('img').attr('thisCode',i);
+                    $('#readyLoadPic').find('img').attr('thisCodeMax',res.length-1);
+                    $('#readyLoadPic').find('img').attr('id','pic'+res[i].id);
+                    $('#readyLoadPic').find('img').attr('bili',res[i].bili);
+                    $('#readyLoadPic').find('.photo-box').attr('id','photo'+res[i].id);
+                    $('#readyLoadPic').find('.photo-box').attr('thisId',res[i].id);
+                    $('#photo-list').append($('#readyLoadPic').html());    
+                }
+                selectPicNumTotal();
+                picSetPosition();
+            },
+            error:function(){
+                alert('无刷新加载失败');
+            }
+        });
+    }
+    // 打开关闭图片上传界面
+    function closePage(){
+        $('#updatePage,#updateBack').hide();
+    }
+    function openPage(){
+        $('#updatePage,#updateBack').show();
+        $('#seePic').attr('src','');
+        $('#tzPic').empty().html('拖拽图片到此即可上传'); 
+        $('#seePic').empty(); 
+    }
+    // 选择上传图片
+    $('#ui-id-52').click(function(){
+        $('#uploadInput').trigger('click');
+    });
+    // 图片上传
+    $(document).ready(function(){
+        $(document).on({
+            dragleave:function(e){
+                e.preventDefault();
+            },
+            drop:function(e){
+                e.preventDefault();
+            },
+            dragenter:function(e){
+                e.preventDefault();
+            },
+            dragover:function(e){
+                e.preventDefault();
+            }
+        });
+        var box = document.getElementById('seePicDiv');
+
+        box.addEventListener("dragleave",function(e){
+            e.preventDefault();
+            $('#tzPic').html('拖拽图片到此即可上传');
+        });
+        box.addEventListener("dragenter",function(e){
+            e.preventDefault();
+            $('#tzPic').html('松手即可完成');
+        });
+        box.addEventListener("drop",function(e){
+            e.preventDefault();
+            var fileList = e.dataTransfer.files;
+            // $('#show').html(fileList);
+            upload(fileList);
+        });
+        
+    });
+    function upload(files){
+        var errorStr = '';
+        // $('#readyToImg').empty();
+        $('#tzPic').html('正在上传，马上就能预览，请稍后。。。');
+        for(var i=0;i<files.length;i++){
+            //检测文件是不是图片
+            if(files[i].type.indexOf('image') === -1){
+                errorStr += files[i].name+' ';
+            }else{
+                // 将图片放入div标签中
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#readyImg').find('img').attr('src',e.target.result);
+                    $('#seePic').append($('#readyImg').html());
+                    $('#tzPic').html('');
+                }
+                reader.readAsDataURL(files[i]);
+            }
+        }
+        if(errorStr != ''){
+            $('#tanchaungneirong').html('您上传的'+errorStr+'不是图片，请重新上传');
+            $('#tanchuang').show();
+            $('#seePic').empty();
+            return;
+        }
+
+        var fd = new FormData();
+        for(var i=0;i<files.length;i++){
+            fd.append('pic[]',files[i]);
+        }
+        // fd.append('pic',files[0]);
+        //1.创建请求对象 
+        if (window.XMLHttpRequest){
+            xmlhttp=new XMLHttpRequest();
+        }else{
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        //2.定义回调函数
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState==4){
+                var str = xmlhttp.responseText;
+                // console.log(str);
+                if(str == ''){
+                    alert('上传失败！');
+                }
+                $('#getPicInfo').val(str);
+                // console.log($('#getPicInfo').val()) ;
+                $('#submitUpdatePic').attr('disabled',false);
+            }
+        }
+        //3.初始化
+        xmlhttp.open("POST","__MODULE__/Pic/uploadPic",true);
+        xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        //4.发送执行
+        xmlhttp.send(fd);
+    }
+    // 图片提交 裁剪
+    $('#submitUpdatePic').click(function(){
+        $('#tanchaungneirong').html('正在拼命上传，请稍后...');
+        $('#tanchuang').show();
+        var picName = $('#getPicInfo').val();
+        var aid = $('#thisAid').val();
+        var uid = $('#thisUid').val();
+        // console.log(picName.length,aid,uid);
+        $.ajax({
+            url:'__MODULE__/Pic/addPic',
+            type:'POST',
+            data:'aid='+aid+'&uid='+uid+'&picName='+picName,
+            dataType:'text',
+            async:false,
+            success:function(res){
+                if(res == 'y'){
+                    $('#updatePage,#updateBack').hide();
+                    $('#tanchaungneirong').html('图片上传成功');
+                    // $('#tanchuang').show();
+                    $('#photo-list').html('');
+                    loadPic();
+                }else{
+                    $('#tanchaungneirong').html('添加失败,原因：'+res);
+                    $('#tanchuang').show();
+                }
+            }
+        });
+    });
+
+    // 相册修改hover
+    $('#editAlbum').hover(function(){
+        $('#edit-more-tips').show();
+    },function(){
+        $('#edit-more-tips').hide();
+    });
+
+    $(function(){
+        $('li[data-tip="首页"]').removeClass('app-nav-item-cur');
+        $('li[data-tip="我的相册"]').addClass('app-nav-item-cur');
+        $('.nx-main760 .hd-nav, .nx-main760 .bd-content, .nx-main760 .frame-nav-inner').css('width','870px');
+    });
+
+    // 显示图片详情
+    function  showPicDetail(res){
+        $('#picDetailPage').show();
+        $('#picDetailBack').show();
+        var id=$(res).attr('thisId');
+        // console.log();
+        $.ajax({
+            url:'__MODULE__/Pic/showPicDetail',
+            type:'POST',
+            data:'id='+id,
+            dataType:'json',
+            async:false,
+            success:function(data){
+                // console.log(data);
+                // console.log(data.length);
+                $('#detailPicName').attr('src','__PUBLIC__/upload/images/'+data['picname']);
+                $('#viewerDate').html(data['year']+'年'+data['mouth']+'月'+data['day']+'日');
+                $('#viewerLikeCount').html(data['supportNum']);
+                $('#viewerShareCount').html(data['shareNum']);
+                $('#viewerCommentCount').html(data['discussNum']);
+                $('#photoDesc').html(data['picdes']);
+                $('#setPicAsCover').attr('thisId',data['id']);
+                $('#delPic').attr('thisId',data['id']);
+                $('#delPic').attr('thisPicName',data['picname']);
+                var picIndex = parseInt($(res).attr('thisCode'))+1;
+                var picCountNum = parseInt($(res).attr('thisCodeMax'))+1;
+                $('#photoIndex').html(picIndex);
+                $('#viewerPhotoCount').html(picCountNum);
+            },
+        });
+    }
+    $('#closePicDetailPage,#sureToClose,#sureClose').click(function(){
+        $('#picDetailPage').hide();
+        $('#picDetailBack').hide();
+    });
+    // 设置相册封面
+    $('#setPicAsCover').click(function(){
+        var id = $(this).attr('thisId');
+        $.ajax({
+            url:'__MODULE__/Pic/setAlbumCover',
+            type:'POST',
+            data:'id='+id,
+            dataType:'text',
+            async:false,
+            success:function(data){
+                if(data == 'y'){
+                    // alert('chenggong');
+                    $('#tanchaungneirong').html('设置封面成功');
+                    $('#tanchuang').show();
+                }else{
+                    $('#tanchaungneirong').html('设置封面失败，原因：'+data);
+                    $('#tanchuang').show();
+                }
+            },
+        });
+    });
+    // 删除图片
+    $('#delPic').click(function(){
+        if(confirm('确定要删除吗？')){
+            var id = $(this).attr('thisId');
+            var picName = $(this).attr('thisPicName');
+            $.ajax({
+                url:'__MODULE__/Pic/delPic',
+                type:'POST',
+                data:'id='+id+'&picName='+picName,
+                dataType:'text',
+                async:false,
+                success:function(data){
+                    if(data == 'y'){
+                        $('#tanchaungneirong').html('删除图片成功');
+                        $('#tanchuang').show();
+                        $('#picDetailPage').hide();
+                        $('#picDetailBack').hide();
+                        $('#pic'+id).remove();
+                    }else{
+                        $('#tanchaungneirong').html('删除图片失败，原因：'+data);
+                        $('#tanchuang').show();
+                    }
+                },
+            });
+        }
+    });
+    // 左右方向的hover
+    $('#phoneContentBody').hover(function(){
+        $('#viewerPrev').show();
+        $('#viewerNext').show();
+        return false;
+    });
+    $('#picDetailBack,#photoRightPage').hover(function(){
+        $('#viewerPrev').hide();
+        $('#viewerNext').hide();
+    });
+    $('#viewerPrev').hover(function(){
+        $('#viewerPrev').show();
+    });
+    // 图片详情向next
+    $('#viewerNext').click(function(){
+        var picId = $('#delPic').attr('thisId');
+        var thisCode = parseInt($('#pic'+picId).attr('thisCode'));
+        var thisCodeMax = parseInt($('#pic'+picId).attr('thisCodeMax'));
+        if(thisCode >= thisCodeMax){
+            var next = $("img[thisCode='0']");
+        }else{
+            var next = $("img[thisCode='"+(thisCode+1)+"']");
+        }
+        showPicDetail(next);
+    });
+    // 图片详情向prev
+    $('#viewerPrev').click(function(){
+        var picId = $('#delPic').attr('thisId');
+        var thisCode = parseInt($('#pic'+picId).attr('thisCode'));
+        var thisCodeMax = parseInt($('#pic'+picId).attr('thisCodeMax'));
+        if(thisCode <= 0){
+            var prev = $("img[thisCode='"+thisCodeMax+"']");
+        }else{
+            var prev = $("img[thisCode='"+(thisCode-1)+"']");
+        }
+        showPicDetail(prev);
+    });
+    $('#albumDiscussEdit').focus(function(){
+        if($(this).html() == '请在此输入评论。。。'){
+            $(this).html('');
+        }
+    });
+    $('#albumDiscussEdit').blur(function(){
+        if($(this).html() == ''){
+            $(this).html('请在此输入评论。。。');
+        }
+    });
+    // 评论加载函数
+    function loadAlbumDiscuss(){
+        var aid = $('#thisAid').val();
+        $.ajax({
+            url:'__MODULE__/Pic/loadAlbumDiscuss',
+            type:'POST',
+            data:'typeid='+aid,
+            dataType:'json',
+            async:false,
+            success:function(data){
+                if(data == null){
+                    return;
+                }
+                $('#albumDiscussList').empty();
+                for(var i=0;i<data.length;i++){
+                    $('#readyAlbumSupport').find('img').attr('src','__PUBLIC__/home/images/s_'+data[i].headName);
+                    $('#readyAlbumSupport').find('.comment-center-author').html(data[i].userName);
+                    var d = new Date(parseInt(data[i].addtime))
+                    var dateD = d.getYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
+                    $('#readyAlbumSupport').find('.time').html(dateD);
+                    $('#readyAlbumSupport').find('.comment-center-body').html(data[i].content);
+                    $('#albumDiscussList').append($('#readyAlbumSupport').html());
+                }
+            },
+        });
+    }
+    // 提交相册评论
+    function addAlbumDiscuss(){
+        var aid = $('#thisAid').val();
+        var fid = $('#thisUid').val();
+        var content = $('#albumDiscussEdit').html();
+        $.ajax({
+            url:'__MODULE__/Pic/addAlbumDiscuss',
+            type:'POST',
+            data:'typeid='+aid+'&fid='+fid+'&content='+content,
+            dataType:'text',
+            async:false,
+            success:function(data){
+                if(data == 'y'){
+                    $('#tanchaungneirong').html('评论成功');
+                    $('#tanchuang').show();
+                    loadAlbumDiscuss();
+                    $('#albumDiscussEdit').html('请在此输入评论。。。');
+                    $('#albumDiscussList').slideDown();
+                    $('#toggleDiscuss').html('　收起评论　');
+                }else{
+                    $('#tanchaungneirong').html('评论失败，原因：'+data);
+                    $('#tanchuang').show();
+                }
+            },
+        });
+    }
+    // 相册评论显示的切换
+    $('#toggleDiscuss').click(function(){
+        if($('#albumDiscussList').css('display') == 'none'){
+            $('#albumDiscussList').slideDown();
+            $(this).html('　收起评论　');
+        }else{
+            $('#albumDiscussList').slideUp();
+            $(this).html('　展开评论　');
+        }
+    });
+    // 相册编辑页面的打开，关闭
+    function openEditAlbumPage(){
+        $('#editAlbumPage').show('fast');
+    }
+    function closeEditAlbumPage(){
+        $('#editAlbumPage').hide('fast');
+    }
+    // 打开编辑相册界面
+    function openAlbumEditPageOne(){
+        $('#editAlbumPage').show('fast');
+        $('#albumEditPageOne').show();
+        $('#albumEditPageTwo').hide();
+        $('#album-info').addClass('e-b-n-active');
+        $('#bat-ctrl').removeClass('e-b-n-active');
+        loadAlbumEditPageTwo();
+        $('#btn-sbm-del').hide();
+        $('#btn-sbm-submit').show();
+    }
+    // 打开批量管理图片界面
+    function openAlbumEditPageTwo(){
+        $('#editAlbumPage').show('fast');
+        $('#albumEditPageOne').hide();
+        $('#albumEditPageTwo').show();
+        $('#album-info').removeClass('e-b-n-active');
+        $('#bat-ctrl').addClass('e-b-n-active');
+        loadAlbumEditPageOne();
+        $('#btn-sbm-del').show();
+        $('#btn-sbm-submit').hide();
+        $('#icon-select').attr('class','icon-select');
+    }
+    // 加载批量操作界面的图片
+    function loadAlbumEditPageOne(){
+        var aid = $('#thisAid').val();
+        var uid = $('#thisUid').val();
+        $.ajax({
+            url:'__MODULE__/Pic/picLoad',
+            type:'POST',
+            data:'aid='+aid+'&uid='+uid,
+            dataType:'json',
+            async:false,
+            success:function(res){
+                if(res == null){
+                    return;
+                }
+                $('#e-b-p-list').empty();
+                for(var i=0;i<res.length;i++){
+                    $('#readyMorePicLoad').find('img').attr('src','__PUBLIC__/upload/images/s_'+res[i].picname);
+                    $('#readyMorePicLoad').find('a').attr('thisId',res[i].id);
+                    $('#readyMorePicLoad').find('a').attr('thisPic',res[i].picname);
+                    $('#e-b-p-list').append($('#readyMorePicLoad').html());
+                    selectPicNum();
+                }
+            },
+            error:function(){
+                alert('无刷新加载失败');
+            }
+        });
+    }
+    // 批量操作多选框
+    function choose(res){
+        if($(res).find('a').attr('class') == 'e-b-p-ctrl'){
+            $(res).find('a').removeClass('e-b-p-ctrl');
+            $(res).find('a').addClass('e-b-p-c-choose');
+            selectPicNum();
+        }else{
+            $(res).find('a').addClass('e-b-p-ctrl');
+            $(res).find('a').removeClass('e-b-p-c-choose');
+            selectPicNum();
+        }
+    }
+    // 查询批量删除已选条数
+    function selectPicNum(){
+        var list = $('#e-b-p-list').find('a');
+        var num = 0;
+        for(var i=0;i<list.length;i++){
+            if($(list[i]).attr('class') == 'e-b-p-c-choose'){
+                num ++;
+            }
+        }
+        $('#select-num').html(num);
+        var numTotal = $('#photo-list').find('.photo-box').length;
+        if(numTotal == num){
+            $('#icon-select').attr('class','icon-select-checked');
+        }else{
+            $('#icon-select').attr('class','icon-select');
+        }
+    }
+    // 查询相册中的图片数目
+    function selectPicNumTotal(){
+        var num = $('#photo-list').find('.photo-box').length;
+        $('#album-count').html(num+'张');
+    }
+    $('#select-all').click(function(){
+        // console.log($('#icon-select').attr('checked'));
+        if($('#icon-select').attr('checked') == 'checked'){
+            $('#icon-select').attr('checked',false);
+        }else{
+            $('#icon-select').attr('checked','checked');
+        }
+        
+    });
+
+    $('#select-all').toggle(function(){
+        $('#e-b-p-list').find('a').removeClass('e-b-p-ctrl');
+        $('#e-b-p-list').find('a').addClass('e-b-p-c-choose');
+        selectPicNum();
+        $('#icon-select').attr('class','icon-select-checked');
+    },function(){
+        $('#e-b-p-list').find('a').addClass('e-b-p-ctrl');
+        $('#e-b-p-list').find('a').removeClass('e-b-p-c-choose');
+        selectPicNum();
+        $('#icon-select').attr('checked',true);
+        $('#icon-select').attr('class','icon-select');
+    });
+    // 无刷新批量删除图片
+    function delMorePic(){
+        var listAppend = new Array();
+        var list = $('#e-b-p-list').find('a');
+        for(var i=0;i<list.length;i++){
+            if($(list[i]).attr('class') == 'e-b-p-c-choose'){
+                var str = $(list[i]).attr('thisId')+'='+$(list[i]).attr('thisPic');
+                listAppend[listAppend.length] = str;
+            }
+        }
+        listStr = listAppend.join('&');
+        $.ajax({
+            url:'__MODULE__/Pic/delMorePic',
+            type:'POST',
+            data:listStr,
+            dataType:'text',
+            async:false,
+            success:function(res){
+                if(res == 'y'){
+                    $('#tanchaungneirong').html('删除成功');
+                    $('#tanchuang').show();
+                    loadPic();
+                    $('#editAlbumPage').hide('fast');
+                }
+            },
+            error:function(){
+                alert('批量删除失败');
+            }
+        });
+    }
+    // 加载修改相册内容
+    function loadAlbumEditPageTwo(){
+        var aid = $('#thisAid').val();
+        $.ajax({
+            url:'__MODULE__/Pic/loadAlbumEditPageTwo',
+            type:'POST',
+            data:'id='+aid,
+            dataType:'json',
+            async:false,
+            success:function(data){
+                // console.log(data);
+                if(data == null){
+                    return;
+                }
+                $('#album-nm').val(data.title);
+                $('#album-des').val(data.describe);
+                $('#album-plc').val(data.address);
+            },
+        });
+    }
+    // 加载相册基本内容
+    function loadAlbumEditPageBaseTwo(){
+        var aid = $('#thisAid').val();
+        $.ajax({
+            url:'__MODULE__/Pic/loadAlbumEditPageTwo',
+            type:'POST',
+            data:'id='+aid,
+            dataType:'json',
+            async:false,
+            success:function(data){
+                if(data == null){
+                    return;
+                }
+                $('#album-name').html(data.title);
+                $('#c-b-describe').html(data.describe);
+                // console.log($('#album-name').val());
+            },
+        });
+    }
+    // 进行相册修改
+    function updateAlbumEditPageTwo(){
+        var aid = $('#thisAid').val();
+        var title = $('#album-nm').val();
+        var describe = $('#album-des').val();
+        var address = $('#album-plc').val();
+        $.ajax({
+            url:'__MODULE__/Pic/updateAlbumEditPageTwo',
+            type:'POST',
+            data:'id='+aid+'&title='+title+'&describe='+describe+'&address='+address,
+            dataType:'text',
+            async:false,
+            success:function(data){
+                if(data == 'y'){
+                    $('#tanchaungneirong').html('修改成功');
+                    $('#tanchuang').show();
+                    closeEditAlbumPage();
+                    loadAlbumEditPageBaseTwo();
+                }else{
+                    $('#tanchaungneirong').html('修改失败');
+                    $('#tanchuang').show();
+                }
+            },
+        });
+    }
+    // 图片描述的开启与关闭
+    $('#photoDescWrapper').click(function(){
+        $(this).hide();
+        $('#photoDescEditContent').show();
+        $('div.photo-edit-btns').show();
+    });
+    function closePicDescribe(){
+        $('#photoDescWrapper').show();
+        $('#photoDescEditContent').hide();
+        $('div.photo-edit-btns').hide();
+    }
+    // 修改图片描述
+    function updatePicDescribe(){
+        var describe = $('#photoDescInput').val();
+        var id = $('#delPic').attr('thisId');
+        $.ajax({
+            url:'__MODULE__/Pic/updatePicDescribe',
+            type:'POST',
+            data:'id='+id+'&describe='+describe,
+            dataType:'text',
+            async:false,
+            success:function(data){
+                if(data == 'y'){
+                    $('#photoDesc').html(describe);
+                    closePicDescribe();
+                }else{
+                    $('#tanchaungneirong').html('修改失败');
+                    $('#tanchuang').show();
+                }
+            },
+        });
+    }
+
+    // 图片位置调整
+    function picSetPosition(){
+        var img = $('#photo-list').find('img');
+        var width = 0;
+        var num = 0;
+        for(var i=0;i<img.length;i++){
+            var imgWidth = 150/$(img[i]).attr('bili');
+            if((width+imgWidth)<917){
+                width += imgWidth;
+                num++;
+            }else{
+                var left = i-num;
+                var right = i-1;
+                var height = (917/width)*150-3;
+                // console.log(left,right,width,height);
+                for(var j=left;j<=right;j++){
+                    $("img[thiscode='"+j+"']").css('height',height);
+                }
+                width = imgWidth;
+                num = 1;
+            }
+        }
+    }
+</script>
+</block>             

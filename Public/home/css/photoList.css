@@ -1,0 +1,938 @@
+@charset "UTF-8";
+.btn-upload,
+.btn-create,
+.icon-ai-album,
+.icon-own-album,
+.icon-copy,
+.icon-del-album,
+.d-i-ai:hover .icon-ai-album,
+.d-i-own:hover .icon-own-album,
+.d-i-copy:hover .icon-copy,
+.d-i-del:hover .icon-del-album,
+#c-b-edit,
+#c-b-edit:hover,
+.p-b-like,
+.p-b-like:hover,
+.p-b-ilike,
+.icon-com,
+.ui-button-com:hover .icon-com,
+.e-b-p-c-choose,
+.drop-box-arrow,
+.p-b-r-box,
+.p-b-r-box:hover,
+.p-b-r-box-checked,
+#move-to {
+    background: url(../images/photo_list_sprite.png) no-repeat
+}
+
+.bd-container {
+    margin-right: 0
+}
+
+.photo-list-main {
+    position: relative;
+    background: #fff
+}
+
+.photo-list-bar {
+    height: 60px;
+    background: #f8f8f8;
+    z-index: 111;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 1px 5px #ddd
+}
+
+.p-l-b-box {
+    margin-left: 50px;
+    height: 60px;
+    width: auto
+}
+
+.owner-avata {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    float: left;
+    display: block;
+    margin-top: 15px
+}
+
+.owner-avata img {
+    width: 30px;
+    height: 30px
+}
+
+#photo-tab {
+    float: left;
+    list-style: none;
+    height: 60px
+}
+
+#photo-tab li {
+    float: left;
+    height: 60px
+}
+
+#photo-tab .p-t-i {
+    margin-left: 50px;
+    height: 57px;
+    line-height: 57px;
+    display: block;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none
+}
+
+#photo-tab .p-t-i:hover,
+#photo-tab .p-t-i-hover {
+    border-bottom: 3px solid #227dc5;
+    font-weight: bold
+}
+
+#album-name {
+    float: left;
+    padding-right: 10px
+}
+
+#album-count {
+    float: left;
+    font-weight: 500;
+    color: #333
+}
+
+.album-ctrl {
+    padding-right: 20px;
+    float: right;
+    height: 60px;
+    width: 310px;
+    position: relative
+}
+
+.vp-box {
+    float: right;
+    display: block;
+    width: 35px;
+    height: 60px;
+    text-align: left;
+    position: relative
+}
+
+#more-choose {
+    width: 20px;
+    height: 60px;
+    cursor: pointer;
+    display: block
+}
+
+.drop-box-arrow {
+    width: 20px;
+    height: 9px;
+    display: block;
+    background-position: 0 -249px;
+    margin-top: 25px
+}
+
+.album-btn {
+    float: right;
+    width: 250px;
+    overflow: hidden;
+    height: 35px;
+    margin-top: 12px
+}
+
+.a-b-btn {
+    width: 111px;
+    height: 31px;
+    display: inline-block;
+    line-height: 31px;
+    margin-right: 10px;
+    cursor: pointer
+}
+
+.btn-upload {
+    background-position: 0 -357px
+}
+
+.btn-create {
+    background-position: 0 -389px
+}
+
+.drop-box,
+.drop-box2 {
+    background: #fff;
+    position: absolute;
+    z-index: 9999;
+    border: 1px solid #d4d4d4;
+    box-shadow: 0 -1px 10px #bbb;
+    border-radius: 4px;
+    padding: 10px 0;
+    display: none;
+    zoom: 1
+}
+
+.drop-box ul {
+    list-style: none;
+    overflow: hidden;
+    display: block
+}
+
+.drop-item {
+    width: 123px;
+    height: 35px
+}
+
+.drop-item .drop-i {
+    position: relative;
+    float: right;
+    width: 80px;
+    height: 35px;
+    display: block;
+    line-height: 35px;
+    font-size: 14px;
+    padding-left: 40px;
+    color: #333;
+    text-decoration: none
+}
+
+.drop-i:hover {
+    background: #e1e9f0;
+    border-left: 3px solid #e1e9f0
+}
+
+.drop-item:hover .copy-flash {
+    background: #013b6e;
+    opacity: .1;
+    filter: alpha(opacity=10);
+    -ms-filter: "alpha(opacity=10)"
+}
+
+.drop-i-active {
+    border-left: 3px solid #227dc5;
+    font-weight: bolder
+}
+
+.d-i-coin {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 10px;
+    left: 15px
+}
+
+.icon-ai-album {
+    background-position: -1px -1px
+}
+
+.d-i-ai:hover .icon-ai-album {
+    background-position: -1px -19px
+}
+
+.icon-own-album {
+    background-position: -1px -37px
+}
+
+.d-i-own:hover .icon-own-album {
+    background-position: -1px -55px
+}
+
+.icon-copy {
+    background-position: -1px -73px
+}
+
+.d-i-copy:hover .icon-copy {
+    background-position: -1px -91px
+}
+
+.icon-del-album {
+    background-position: -1px -109px
+}
+
+.d-i-del:hover .icon-del-album {
+    background-position: -1px -127px
+}
+
+.d-i-copy {
+    position: relative
+}
+
+.copy-flash {
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    top: 0
+}
+
+#more-choose-tips {
+    top: 25px;
+    left: -100px
+}
+
+.container-box {
+    background: #fff;
+    width: 100%;
+    overflow: hidden
+}
+
+.con-bar {
+    padding: 20px 30px;
+    display: block
+}
+
+.c-b-t {
+    float: left;
+    display: block;
+    width: 610px;
+    padding-right: 10px;
+    color: #666;
+    font-size: 14px;
+    word-wrap: break-word;
+    word-break: break-all
+}
+
+.c-b-l {
+    float: left;
+    width: 100px;
+    height: 20px;
+    line-height: 20px;
+    color: #999
+}
+
+.c-b-edit-btn {
+    background-position: 0 -145px;
+    width: 80px;
+    float: right;
+    height: 16px;
+    line-height: 16px;
+    color: #a4aab4;
+    font-size: 14px;
+    position: relative
+}
+
+.c-b-edit-btn .drop-box-arrow {
+    width: 60px;
+    padding-right: 20px;
+    margin-top: 0;
+    background-position: 60px -247px;
+    height: 16px
+}
+
+.c-b-edit-btn .drop-item {
+    width: 103px
+}
+
+.c-b-edit-btn .drop-item .drop-i {
+    padding-left: 20px
+}
+
+.c-b-edit-btn .drop-box2 {
+    right: 0
+}
+
+#c-b-edit {
+    background-position: 0 -145px;
+    width: 60px;
+    float: right;
+    height: 16px;
+    line-height: 16px;
+    padding-left: 20px;
+    color: #a4aab4;
+    font-size: 14px;
+    margin-left: 10px
+}
+
+#c-b-edit:hover {
+    background-position: 0 -163px
+}
+
+#photo-list {
+    width: 100%;
+    display: block;
+    overflow: hidden
+}
+
+.photo-box {
+    float: left;
+    padding: 3px 0 0 3px
+}
+
+.p-b-item {
+    background: #ddd
+}
+
+.p-b-like-bg {
+    position: absolute;
+    display: none;
+    bottom: 0;
+    left: 3px;
+    background: url('../images/like-bg.png') repeat-x
+}
+
+.photo-box:hover {
+    position: relative
+}
+
+.photo-box:hover .p-b-like-bg {
+    display: block
+}
+
+.photo-box .subscript {
+    height: 20px;
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: #afcce5;
+    background: rgba(84, 169, 237, 0.3);
+    font-style: normal;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 10px;
+    line-height: 20px
+}
+
+.p-b-like {
+    display: block;
+    width: 35px;
+    height: 35px;
+    margin: 0 auto 5px;
+    background-position: 0 -215px
+}
+
+.p-b-like:hover,
+.p-b-ilike {
+    background-position: 0 -181px
+}
+
+.com-box {
+    box-shadow: 0 -1px 2px #ddd;
+    border: 1px solid #ddd
+}
+
+.com-follow {
+    position: fixed;
+    bottom: 0;
+    padding: 0
+}
+
+.con-ctrl {
+    background: #fff;
+    display: block;
+    overflow: hidden;
+    padding: 20px 30px
+}
+
+.btn-com-ctl {
+    float: left;
+    margin-right: 10px
+}
+
+.ui-icon-share {
+    margin-right: 5px
+}
+
+.ui-button-com {
+    padding: 0 10px
+}
+
+.ui-button-com:hover {
+    border: 1px solid #727986
+}
+
+.icon-com {
+    width: 22px;
+    height: 18px;
+    float: left;
+    margin-top: 5px;
+    background-position: 0 -317px
+}
+
+.ui-button-com:hover .icon-com {
+    background-position: 0 -337px
+}
+
+.commnet-box {
+    background: #f8f8f8;
+    border-top: 1px solid #ddd;
+    padding: 20px 30px
+}
+
+.c-b-tab {
+    list-style: none;
+    height: 20px
+}
+
+.c-b-tab li {
+    float: left;
+    padding-right: 30px;
+    height: 25px
+}
+
+.c-b-t-item {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    line-height: 22px;
+    height: 25px;
+    padding: 0 3px
+}
+
+.c-b-t-item:hover,
+.c-b-t-item-active {
+    border-bottom: 3px solid #227dc5;
+    font-weight: bold
+}
+
+#edit-box {
+    width: 522px;
+    padding: 0
+}
+
+.e-b-tab {
+    list-style: none;
+    display: block;
+    height: 40px
+}
+
+.e-b-tab .e-b-i {
+    float: left;
+    width: 90px;
+    height: 40px
+}
+
+.e-b-tab .e-b-n {
+    display: block;
+    float: right;
+    height: 37px;
+    line-height: 37px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #666;
+    outline: 0
+}
+
+.e-b-tab .e-b-n:hover,
+.e-b-tab .e-b-n-active {
+    border-bottom: 3px solid #227dc5;
+    font-weight: bold;
+    outline: 0
+}
+
+#album-info-box {
+    padding: 20px 30px
+}
+
+.a-i-list {
+    padding: 5px 0 0;
+    display: block
+}
+
+.a-i-name {
+    width: 60px;
+    height: 29px;
+    line-height: 29px;
+    font-size: 14px;
+    text-align: right;
+    float: left;
+    margin-top: 0
+}
+
+.a-i-list .a-i-input {
+    width: 360px;
+    padding: 2px 3px;
+    border: 1px solid #bbb;
+    box-shadow: 0 0 1px #aaa;
+    outline: 0;
+    font-size: 13px;
+    line-height: 25px;
+    height: 25px
+}
+
+.a-i-list .a-i-textarea {
+    height: 100px;
+    resize: none
+}
+
+.a-i-input:focus {
+    border: 1px solid #9cc6e8
+}
+
+.a-i-list .a-i-input-erro {
+    border: 1px solid #e83928
+}
+
+.a-i-n-erro {
+    overflow: hidden;
+    margin-left: 60px;
+    width: 368px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    text-align: right
+}
+
+.limit-num-error {
+    color: red
+}
+
+.sub-limit {
+    background: #fbfbfb;
+    border: 1px #dbdbdb solid;
+    color: #d8dbe0;
+    cursor: default
+}
+
+.sub-limit:hover {
+    border: 1px #dbdbdb solid
+}
+
+#bat-ctrl-box {
+    display: none;
+    width: 100%;
+    overflow: hidden
+}
+
+.e-b-p-box {
+    width: 521px;
+    height: 523px;
+    overflow: hidden;
+    position: relative
+}
+
+#e-b-p-list {
+    width: 521px;
+    margin: 1px 0 0 1px;
+    height: 521px;
+    overflow: hidden;
+    overflow-y: scroll
+}
+
+.e-b-p-i {
+    position: relative;
+    width: 166px;
+    height: 166px;
+    padding: 0 1px 1px 0;
+    float: left
+}
+
+.e-b-p {
+    width: 166px;
+    height: 166px
+}
+
+.e-b-p-ctrl {
+    position: absolute;
+    width: 166px;
+    height: 166px;
+    top: 0;
+    left: 0;
+    display: block;
+    cursor: pointer;
+    background: #fff;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "alpha(opacity=0)"
+}
+
+.e-b-p-ctrl:hover {
+    width: 158px;
+    height: 158px;
+    border: 4px solid #ddd
+}
+
+.e-b-p-c-choose {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 158px;
+    height: 158px;
+    border: 4px solid #80b865;
+    background-position: bottom right
+}
+
+.e-b-ctrl {
+    position: relative;
+    padding: 20px;
+    height: 30px
+}
+
+.e-b-lable {
+    height: 25px;
+    font-size: 13px;
+    line-height: 25px;
+    color: #666;
+    vertical-align: middle
+}
+
+.e-b-lable input {
+    margin-right: 3px
+}
+
+.photo-btn-radio {
+    display: none
+}
+
+.p-b-r-box {
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;
+    padding-left: 20px;
+    line-height: 16px;
+    background-position: 0 -264px
+}
+
+.p-b-r-box:hover,
+.p-b-r-box-checked {
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;
+    padding-left: 20px;
+    line-height: 16px;
+    background-position: 0 -292px
+}
+
+.select-all {
+    cursor: pointer;
+    width: 60px;
+    float: left
+}
+
+.select-all .icon-select {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: #fff;
+    background: #fff;
+    border: solid 2px #bdc8d4;
+    border-radius: 2px
+}
+
+.select-all .icon-select:hover {
+    border-color: #94c37d
+}
+
+.select-all .icon-select-checked,
+.select-all .icon-select-checked:hover {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 14px;
+    text-align: center;
+    border: solid 2px #94c37d;
+    border-radius: 2px;
+    background: #eee;
+    color: #94c37d;
+    font-weight: bold
+}
+
+.e-b-radio {
+    width: 85px;
+    float: right
+}
+
+.e-b-move {
+    width: 180px
+}
+
+.select-box {
+    height: 25px;
+    line-height: 25px;
+    float: left;
+    width: 70px
+}
+
+.erro {
+    border: 1px solid #e83928
+}
+
+.select-cover {
+    display: none;
+    width: 90px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 13px;
+    float: right;
+    position: relative;
+    cursor: pointer
+}
+
+*+html .select-cover {
+    position: absolute;
+    left: 410px;
+    top: 18px
+}
+
+#move-to {
+    color: #4091d5;
+    float: left;
+    padding-right: 11px;
+    background-position: right top
+}
+
+#choose-album-name {
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    box-shadow: 0 0 3px #bbb;
+    display: none;
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    width: 150px;
+    height: 200px;
+    line-height: 30px;
+    font-size: 14px;
+    list-style: none;
+    overflow-y: scroll
+}
+
+#choose-album-name .name-list {
+    cursor: pointer;
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px 20px
+}
+
+#choose-album-name .name-list:hover {
+    background: #e1e9f0
+}
+
+.comment-center-wrapper {
+    width: 100%
+}
+
+.set-album-privacy {
+    float: left
+}
+
+#no-image-box {
+    width: 100%
+}
+
+.no-image-text {
+    line-height: 100px;
+    display: block;
+    font-size: 18px;
+    margin: 200px auto;
+    height: 104px;
+    width: 350px;
+    background: url('../images/icon-no-img.png') no-repeat;
+    padding-left: 140px
+}
+
+.c-b-s-model {
+    display: none;
+    background: #333;
+    position: fixed;
+    _position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+.c-b-s-box {
+    display: none;
+    position: fixed;
+    _position: absolute;
+    height: 100%;
+    top: 0
+}
+
+.c-b-s-list-wrapper {
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    overflow: hidden
+}
+
+.c-b-s-list {
+    height: 100%;
+    overflow: auto
+}
+
+.c-b-s-li {
+    float: left;
+    border: 2px solid transparent;
+    height: 166px;
+    width: 166px;
+    overflow: hidden
+}
+
+.c-b-s-header,
+.c-b-s-footer {
+    position: absolute;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center
+}
+
+.c-b-s-header {
+    top: 0
+}
+
+.c-b-s-footer {
+    bottom: 0
+}
+
+.c-b-s-btn {
+    background: url(../images/photos-sort-save-btn.png) no-repeat scroll transparent;
+    padding-left: 90px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 18px;
+    display: inline-block;
+    color: #fff;
+    zoom: 1
+}
+
+.c-b-s-light-btn {
+    background-position: 0 0
+}
+
+.c-b-s-light-btn:hover {
+    background-position: -287px 0;
+    color: #80b865
+}
+
+.input-for-album-info,
+.input-for-pswd {
+    font-size: 14px;
+    height: 18px;
+    line-height: 18px;
+    padding: 8px 10px 4px;
+    color: #aaa;
+    border: 1px solid #ddd;
+    background: #fff;
+    vertical-align: middle;
+    transition: border linear .2s, box-shadow linear .2s;
+    width: 100px
+}
+
+.input-for-pswd {
+    width: 210px
+}
+
+.photo-list-admin-btns {
+    float: right;
+    padding-right: 10px;
+    font-size: 14px
+}
+
+.photo-list-admin-btn {
+    margin-left: 5px
+}
+
+.photo-list-admin-btn:hover {
+    font-weight: bold
+}
+
+.myFooter {
+    position: relative;
+    margin-bottom: -20px;
+    padding-bottom: 20px;
+    z-index: 10
+}

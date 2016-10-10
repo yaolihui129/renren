@@ -1,0 +1,953 @@
+/**
+ * @author chao.gao
+ * @fileOverview black css 文件
+ */
+/*蒙层效果*/
+.privacy-modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.privacy-btn {
+  display: inline-block;
+  padding: 2px 5px;
+  border: 1px solid #aaaaaa;
+  border-radius: 3px;
+  background-image: linear-gradient(bottom, #dedede 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -o-linear-gradient(bottom, #dedede 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -moz-linear-gradient(bottom, #dedede 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -webkit-linear-gradient(bottom, #dedede 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -ms-linear-gradient(bottom, #dedede 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.01, #dedede), color-stop(0.51, #efefef), color-stop(0.9, #efefef), color-stop(1, #f8f8f8)) !important;
+  *display: inline;
+  *zoom: 1;
+}
+.privacy-btn:link,
+.privacy-btn:visited {
+  color: #333333;
+}
+.privacy-btn:hover {
+  text-decoration: none;
+}
+.error-border {
+  border-color: red;
+}
+/*timeline下重写样式、 icon的基本样式*/
+#timeline .tl-new-feed .privacy-icon,
+.privacy-icon {
+  background: url(../images/privacy-icons-51766f4bb65a3.png) no-repeat top left;
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  vertical-align: middle;
+  position: static;
+  text-indent: 0;
+}
+
+#timeline .tl-new-feed .privacy-icon.picon-white,
+.privacy-icon.picon-white {
+  background-position: 0 -130px;
+}
+#timeline .tl-new-feed .privacy-icon.picon-black,
+.privacy-icon.picon-black {
+  background-position: 0 -325px;
+}
+#timeline .tl-new-feed .privacy-icon.picon-password,
+.privacy-icon.picon-password {
+  background-position: 0 -520px;
+}
+#timeline .tl-new-feed .privacy-icon.picon-private,
+.privacy-icon.picon-private {
+  background-position: 0 -715px;
+}
+#timeline .tl-new-feed .privacy-icon.picon-public,
+.privacy-icon.picon-public {
+  background-position: 0 -910px;
+}
+#timeline .tl-new-feed .privacy-icon.picon-custom,
+.privacy-icon.picon-custom {
+  background-position: 0 -1105px;
+}
+#timeline .tl-new-feed .privacy-icon.picon-friend,
+.privacy-icon.picon-friend {
+  background-position: 0 -130px;
+}
+#timeline .tl-new-feed .privacy-icon.picon-detail,
+.privacy-icon.picon-detail {
+  background-position: 0 -1235px;
+}
+#timeline .tl-new-feed .privacy-icon.picon-detail:hover,
+.privacy-icon.picon-detail:hover {
+  background-position: 0 -1170px;
+}
+.picon-detail {
+  cursor: pointer;
+}
+#timeline .tl-new-feed .privacy-icon.picon-close,
+.privacy-icon.picon-close {
+  background: url(../images/close-btn.png) no-repeat left top;
+  width: 20px;
+  height: 20px;
+}
+#timeline .tl-new-feed .privacy-trigger {
+  margin-top: 4px\9;
+}
+/*将一些常用的需要点亮图标的情况写在这里*/
+.privacy-container .active .picon-white,
+.privacy-trigger .picon-white,
+.privacy-tabs .picon-white,
+.privacy-container .item-link:hover .picon-white {
+  background-position: 0 0;
+}
+.privacy-container .active .picon-black,
+.privacy-trigger .picon-black,
+.privacy-tabs .picon-black,
+.privacy-container .item-link:hover .picon-black {
+  background-position: 0 -195px;
+}
+.privacy-container .active .picon-password,
+.privacy-trigger .picon-password,
+.privacy-tabs .picon-password,
+.privacy-container .item-link:hover .picon-password {
+  background-position: 0 -390px;
+}
+.privacy-container .active .picon-private,
+.privacy-trigger .picon-private,
+.privacy-tabs .picon-private,
+.privacy-container .item-link:hover .picon-private {
+  background-position: 0 -585px;
+}
+.privacy-container .active .picon-public,
+.privacy-trigger .picon-public,
+.privacy-tabs .picon-public,
+.privacy-container .item-link:hover .picon-public {
+  background-position: 0 -780px;
+}
+.privacy-container .active .picon-custom,
+.privacy-trigger .picon-custom,
+.privacy-tabs .picon-custom,
+.privacy-container .item-link:hover .picon-custom {
+  background-position: 0 -1040px;
+}
+.privacy-container .active .picon-friend,
+.privacy-trigger .picon-friend,
+.privacy-tabs .picon-friend,
+.privacy-container .item-link:hover .picon-friend {
+  background-position: 0 0;
+}
+.privacy-container .active .picon-arrow-down,
+.privacy-trigger .picon-arrow-down,
+.privacy-tabs .picon-arrow-down,
+.privacy-container .item-link:hover .picon-arrow-down {
+  background: url(../images/album-icon.png?timestamp=100112) no-repeat -188px -23px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-white {
+  background-position: 0 -130px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-black {
+  background-position: 0 -325px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-password {
+  background-position: 0 -520px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-private {
+  background-position: 0 -715px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-public {
+  background-position: 0 -910px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-custom {
+  background-position: 0 -1105px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-friend {
+  background-position: 0 -130px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-detail {
+  background-position: 0 -1235px;
+}
+.privacy-trigger.privacy-trigger-feed .picon-detail:hover {
+  background-position: 0 -1170px;
+}
+/**触发隐私的图标button样式**/
+.tl-new-feed .legend .privacy-trigger,
+.privacy-trigger {
+  line-height: 19px;
+  padding: 6px 5px;
+  border: 1px solid transparent;
+  display: inline-block;
+  font-size: 12px;
+  position: relative;
+  vertical-align: middle;
+  *display: inline;
+  *zoom: 1;
+  *margin-bottom: 4px;
+  _border-color: tomato;
+  _filter: chroma(color=#ff6347);
+  /*For IE6-*/
+
+}
+
+.tl-new-feed .legend .privacy-trigger {
+  line-height: 35px;
+}
+.tl-new-feed .legend .privacy-trigger .privacy-icon,
+.privacy-trigger .privacy-icon {
+  margin: 0 3px 3px 0;
+  *margin: 2px 3px 0 0;
+}
+.tl-new-feed .legend .privacy-trigger:link,
+.privacy-trigger:link,
+.tl-new-feed .legend .privacy-trigger:visited,
+.privacy-trigger:visited {
+  color: #333333;
+}
+.tl-new-feed .legend .privacy-trigger:hover,
+.privacy-trigger:hover,
+.tl-new-feed .legend .privacy-trigger.active,
+.privacy-trigger.active {
+  background-color: #d6ddeb;
+  border: 1px solid #c5cee0;
+  text-decoration: none;
+}
+.tl-new-feed .legend .privacy-trigger-small,
+.privacy-trigger-small {
+  font-size: 12px;
+  padding: 2px 2px 2px 0;
+}
+.title-article .privacy-trigger-small {
+  padding-left: 10px;
+}
+.title-article .privacy-trigger-feed {
+  padding-left: 0;
+}
+.tl-new-feed .legend .privacy-trigger.privacy-trigger-small .privacy-icon,
+.privacy-trigger.privacy-trigger-small .privacy-icon {
+  margin-right: 0;
+  *margin-right: 3px;
+  *margin-top: 3px;
+}
+.tl-new-feed .legend .privacy-trigger-input,
+.privacy-trigger-input {
+  width: 180px;
+  height: 21px;
+  line-height: 16px;
+  padding: 1px 1px 1px 10px;
+  border: 1px solid #BDC7D8;
+}
+.blogeditor .privacy-trigger-input,
+.pop_content .privacy-trigger-input {
+  width: 189px;
+  line-height: 19px;
+}
+.tl-new-feed .legend .privacy-trigger.privacy-trigger-input:hover,
+.privacy-trigger.privacy-trigger-input:hover,
+.tl-new-feed .legend .privacy-trigger.privacy-trigger-input.active,
+.privacy-trigger.privacy-trigger-input.active {
+  background-color: transparent;
+  border: 1px solid #BDC7D8;
+}
+.tl-new-feed .legend .privacy-trigger.privacy-trigger-input .picon-arrow-down,
+.privacy-trigger.privacy-trigger-input .picon-arrow-down {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+}
+
+.privacy-trigger-input span {
+  padding-top: 2px;
+  display: inline-block;
+  zoom: 1;
+  width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.tl-new-feed .legend .privacy-trigger.privacy-trigger-feed,
+.privacy-trigger.privacy-trigger-feed {
+  color: #888;
+  border: 1px solid transparent;
+  background-color: transparent;
+  _border-color: tomato;
+  /*For IE6-*/
+  _filter: chroma(color=#ff6347);
+  /*For IE6-*/
+
+}
+.tl-new-feed .legend .privacy-trigger.privacy-trigger-feed span,
+.privacy-trigger.privacy-trigger-feed span {
+  cursor: text;
+}
+.tl-new-feed .legend .privacy-trigger.privacy-trigger-feed:hover,
+.privacy-trigger.privacy-trigger-feed:hover {
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: text;
+  _border-color: tomato;
+  _filter: chroma(color=#ff6347);
+  /*For IE6-*/
+}
+
+.privacy-trigger,
+.privacy-trigger:link,
+.privacy-trigger:hover,
+.privacy-trigger:visited,
+td.pop_content .dialog_body .privacy-trigger-input,
+td.pop_content .dialog_body .privacy-trigger-input:link,
+td.pop_content .dialog_body .privacy-trigger-input:hover,
+td.pop_content .dialog_body .privacy-trigger-input:visited {
+  color: #333;
+}
+
+.privacy-trigger-disabled span {
+  color: #888888;
+}
+.privacy-trigger-disabled:hover {
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: default;
+  _border-color: tomato;
+  _filter: chroma(color=#ff6347);
+  /*For IE6-*/
+}
+
+.privacy-trigger-disabled .picon-white {
+  background-position: 0 -130px !important;
+}
+.privacy-trigger-disabled .picon-black {
+  background-position: 0 -325px !important;
+}
+.privacy-trigger-disabled .picon-password {
+  background-position: 0 -520px !important;
+}
+.privacy-trigger-disabled .picon-private {
+  background-position: 0 -715px !important;
+}
+.privacy-trigger-disabled .picon-public {
+  background-position: 0 -910px !important;
+}
+.privacy-trigger-disabled .picon-custom {
+  background-position: 0 -1105px !important;
+}
+.privacy-trigger-disabled .picon-friend {
+  background-position: 0 -130px !important;
+}
+
+.privacy-trigger-feed,
+.privacy-trigger-feed:link,
+.privacy-trigger-feed:hover,
+.privacy-trigger-feed:visited,
+.feed-module .privacy-trigger-feed,
+.feed-module .privacy-trigger-feed:link,
+.feed-module .privacy-trigger-feed:hover,
+.feed-module .privacy-trigger-feed:visited {
+  color: #888;
+}
+
+.privacy-trigger {
+  background: url(../images/a.gif);
+}
+
+
+/*新鲜事timeline增加间距*/
+.a-feed .privacy-trigger-feed,
+.tl-a-feed .privacy-trigger-feed {
+  margin-right: 5px;
+}
+.privacy-container {
+  width: 200px;
+  padding-top: 5px;
+  border: 1px solid #c5cee0;
+  background-color: white;
+}
+.privacy-container ul {
+  padding-top: 5px;
+  border-bottom: 1px solid #c5cee0;
+}
+.privacy-container ul.privacy-more-groups,
+.privacy-container ul.privacy-return {
+  border-bottom: 1px solid transparent;
+  _border-color: tomato;
+  /*For IE6-*/
+  _filter: chroma(color=#ff6347);
+  /*For IE6-*/
+
+  _border: 0;
+}
+.privacy-container ul.privacy-more-groups .item-link,
+.privacy-container ul.privacy-return .item-link {
+  width: 160px;
+  padding-left: 32px;
+}
+.privacy-container ul.privacy-more-groups .item-link:link,
+.privacy-container ul.privacy-return .item-link:link,
+.privacy-container ul.privacy-more-groups .item-link:visited,
+.privacy-container ul.privacy-return .item-link:visited,
+.privacy-container ul.privacy-more-groups .item-link:hover,
+.privacy-container ul.privacy-return .item-link:hover {
+  color: #005eac;
+}
+.privacy-container ul .item-link {
+  display: block;
+  width: auto;
+  padding: 5px 8px;
+  *padding-right: 5px;
+  margin-bottom: 3px;
+  background-color: white;
+  line-height: 16px;
+  line-height: 20px\9;
+  *line-height: 13px;
+  _line-height: 16px; 
+  height: 16px;
+  zoom: 1;
+}
+
+.privacy-container ul.privacy-groups .item-link,
+.privacy-container ul.privacy-more-groups .item-link,
+.privacy-container ul.privacy-return .item-link  {
+  height: 18px;
+  line-height: 16px\9;
+  *line-height: 20px;
+  _line-height: 16px;
+  overflow: hidden;
+}
+
+.privacy-container ul .item-link .privacy-icon {
+  margin-right: 5px;
+}
+.privacy-container ul .item-link .picon-detail {
+  display: none;
+  margin-right: 0;
+}
+.privacy-container ul .item-link:hover {
+  background-color: #d6ddeb;
+  text-decoration: none;
+}
+.privacy-container ul .item-link:hover .picon-detail {
+  display: inline-block;
+}
+.privacy-container ul .item-link:link,
+.privacy-container ul .item-link:visited,
+.privacy-container ul .item-link:hover {
+  color: #333333;
+}
+.privacy-container ul .picon-detail {
+  float: right;
+}
+.privacy-container ul .privacy-groupName {
+  width: 120px;
+  height: 16px;
+  display: inline-block;
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow: hidden;
+  cursor: hand;
+  vertical-align: middle;
+}
+.privacy-container ul .active {
+  border: 0;
+}
+.privacy-container ul .active .item-link {
+  font-weight: bold;
+  color: #333333 !important;
+  border: none;
+}
+.privacy-container .show-scroll {
+  margin-top: -5px;
+}
+.privacy-container .show-scroll .privacy-groups-container {
+  height: 290px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/*.privacy-container .show-scroll ul .privacy-icon {
+  margin-right: 10px;
+}
+.privacy-container .show-scroll ul .picon-detail {
+  margin-right: 15px;
+  _margin-right: 0px;
+}*/
+.privacy-container .show-scroll .privacy-return {
+  margin-top: -1px;
+  position: relative;
+  border-top: 1px solid #C5CEE0;
+}
+/** 滚动条样式**/
+.privacy-groups::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+.privacy-groups::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
+}
+.privacy-groups::-webkit-scrollbar:hover {
+  background-color: #ececec;
+}
+.privacy-groups::-webkit-scrollbar-thumb {
+  background-color: rgba(202, 206, 214, 0.8);
+  -webkit-border-radius: 4px;
+  outline-offset: -2px;
+  overflow: hidden;
+}
+.privacy-groups::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(204, 204, 204, 0.8);
+}
+.privacy-groups::-webkit-scrollbar-button {
+  height: 0px;
+  width: 0px;
+}
+/** 弹出框的样式 **/
+.privacy-tabs li {
+  float: left;
+}
+.privacy-tabs li a {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-width: 3px 1px 1px 1px;
+  font-size: 14px;
+  color: #333333 !important;
+  *zoom: 1;
+  *display: inline;
+  _border-color: tomato;
+  _filter: chroma(color=#ff6347);
+  /*For IE6-*/
+}
+.privacy-tabs li.active {
+  position: relative;
+  bottom: -1px;
+}
+.privacy-tabs li.active a {
+  border: 1px solid #e9e9e9;
+  border-bottom: 1px solid #f7f7f7;
+  background-color: #f7f7f7;
+  font-weight: bold;
+  color: #333333 !important;
+}
+.privacy-tabs li.active .privacy-tab-black {
+  border-top: 3px solid #d77161;
+}
+.privacy-tabs li.active .privacy-tab-white {
+  border-top: 3px solid #72b054;
+}
+.privacy-tabs li .privacy-icon {
+  margin-right: 10px;
+}
+.privacy-friendsSelector-content {
+  padding: 10px 0;
+  background-color: #f7f7f7;
+  border: 1px solid #e9e9e9;
+}
+.privacy-friendsSelector-content .privacy-friendsSelector-info {
+  margin: 0 10px 10px 10px;
+  color: #888888;
+}
+.privacy-friendsSelector-content .friendsSelector-selectedlist-content {
+  padding: 5px;
+  height: 70px;
+  border: 1px solid #e9e9e9;
+  background-color: white;
+  overflow: auto;
+}
+/**弹出的组详细信息**/
+.privacy-groupdetail .privacy-groupdetail-action {
+  position: relative;
+  margin-bottom: 10px;
+}
+.privacy-groupdetail .privacy-groupdetail-action p a {
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.privacy-groupdetail .privacy-groupdetail-action p.privacy-groupInfo {
+  color: #888888;
+}
+.privacy-groupdetail .privacy-groupdetail-action input {
+  height: 18px;
+  line-height: 18px;
+}
+.privacy-groupdetail .privacy-groupdetail-action .privacy-groupName-error {
+  position: absolute;
+  left: 0;
+  top: -18px;
+  color: red;
+}
+.privacy-groupdetail .placeholder {
+  color: #d1d1d1;
+}
+.privacy-groupdetail-friends {
+  height: 300px;
+  overflow-y: auto;
+  border-top: 1px solid #d6ddeb;
+  border-bottom: 1px solid #d6ddeb;
+  padding: 10px 0;
+  position: relative;
+}
+.privacy-groupdetail-friends li {
+  float: left;
+  position: relative;
+  margin: 0 10px 10px 0;
+  width: 120px;
+  height: 65px;
+  overflow: hidden;
+}
+.privacy-groupdetail-friends li .friendsSelector-user {
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 12px;
+  border: 1px solid transparent;
+  cursor: default;
+  _border-color: tomato;
+  _filter: chroma(color=#ff6347);
+  /*For IE6-*/
+}
+.privacy-groupdetail-friends li .friendsSelector-user span {
+  display: inline-block;
+  width: 45px;
+  vertical-align: top;
+  margin-left: 5px;
+  color: #333333;
+  font-weight: bold;
+  *zoom: 1;
+  *display: inline;
+}
+.privacy-groupdetail-friends li .friendsSelector-user .friendsSelector-headimg {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+.privacy-groupdetail-friends li .friendsSelector-user img {
+  float: left;
+}
+/** password 设置弹窗 **/
+.privacy-password-content {
+  padding: 20px 0;
+}
+.privacy-password-content .privacy-password-main {
+  position: relative;
+  margin: 0 auto;
+  width: 330px;
+}
+.privacy-password-content .privacy-password-main p span {
+  vertical-align: middle;
+}
+.privacy-password-content .privacy-password-main p input {
+  height: 18px;
+  width: 260px;
+  line-height: 18px;
+}
+.privacy-password-content .privacy-password-main .privacy-password-info {
+  margin-top: 10px;
+  padding-left: 60px;
+  color: #888888;
+}
+.privacy-password-content .privacy-password-main .privacy-password-error {
+  color: red;
+  position: absolute;
+  left: 60px;
+  top: -18px;
+}
+/*自定义隐私超出显示弹窗*/
+.privacy-custom-limit img {
+  float: left;
+  margin-right: 20px;
+}
+.privacy-custom-limit .main-text {
+  padding-top: 30px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #333333;
+}
+.privacy-custom-limit .info-text {
+  font-size: 12px;
+  color: #888888;
+}
+/*引导弹窗*/
+.privacy-guide-content {
+  position: relative;
+  width: 370px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #c5cee0;
+  border-radius: 3px;
+}
+.privacy-guide-content img {
+  margin-right: 10px;
+  float: left;
+}
+.privacy-guide-content .privacy-guide-title {
+  margin-bottom: 10px;
+  padding-top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+}
+.privacy-guide-content .privacy-guide-details {
+  font-size: 14px;
+  color: #888888;
+}
+.privacy-guide-content .privacy-guide-btn {
+  float: right;
+  margin-top: 10px;
+  padding: 7px 20px;
+  font-weight: bold;
+  background-image: linear-gradient(bottom, #eeeeee 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -o-linear-gradient(bottom, #eeeeee 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -moz-linear-gradient(bottom, #eeeeee 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -webkit-linear-gradient(bottom, #eeeeee 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -ms-linear-gradient(bottom, #eeeeee 1%, #efefef 51%, #efefef 90%, #f8f8f8 100%) !important;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.01, #eeeeee), color-stop(0.51, #efefef), color-stop(0.9, #efefef), color-stop(1, #f8f8f8)) !important;
+  color: #333333;
+  border: 1px solid #c5cee0;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.privacy-guide-content .privacy-guide-btn:link,
+.privacy-guide-content .privacy-guide-btn:hover,
+.privacy-guide-content .privacy-guide-btn:visited {
+  color: #333;
+  text-decoration: none;
+}
+
+.privacy-guide-content .arrow-top {
+  display: block;
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: -10px;
+  right: 50px;
+  background: url(../images/arrow-top.png) no-repeat top left;
+}
+.privacy-guide-content .arrow-right {
+  display: block;
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: 25px;
+  right: -10px;
+  background: url(../images/arrow-right.png) no-repeat top left;
+}
+.privacy-guide-content .picon-close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+/*好友选择弹出的修改*/
+.privacy-friendsSelector-content-black .friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li .ficons-friend-selected {
+  background: url(../images/friend-selected-b.png) no-repeat top left;
+}
+
+/* import by . */
+/* import by ../../friendsSelector/skin/default.css */
+/**
+ * @author chao.gao
+ * @fileOverview 好友选择的默认皮肤，less文件，修改时需要改less文件，不要直接改 css 文件
+ */
+.friendsSelector-icons {
+  background: url(../images/firendsselector-icons-5174ba4de03a1.png) no-repeat top left;
+}
+.friendsSelector-icons.ficons-friend-close {
+  background-position: 0 -63px;
+}
+.friendsSelector-icons.ficons-friend-close:hover {
+  background-position: 0 0;
+}
+.friendsSelector-container .friendsSelector-row {
+  margin-bottom: 10px;
+}
+.friendsSelector-container .friendsSelector-pane-left {
+  float: left;
+  padding: 10px 0 10px 0;
+  width: 149px;
+  height: 240px;
+  border-width: 1px 1px 1px 0;
+  border-color: #d1d1d1;
+  border-style: solid;
+  overflow-y: auto;
+}
+.friendsSelector-container .friendsSelector-pane-left .friendsSelector-search {
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+.friendsSelector-container .friendsSelector-pane-left .friendsSelector-search input {
+  padding: 4px 0 4px 5px;
+  border: 1px solid #d6ddeb;
+  width: 100px;
+}
+.friendsSelector-container .friendsSelector-pane-left .friendsSelector-search .placeholder {
+  color: #d1d1d1;
+}
+.friendsSelector-container .friendsSelector-pane-left .friendsSelector-group a {
+  display: block;
+  padding: 5px 5px 5px 16px;
+  color: #333333;
+  text-decoration: none;
+  font-size: 12px;
+}
+.friendsSelector-container .friendsSelector-pane-left .friendsSelector-group a:hover {
+  font-weight: bold;
+  background-color: #d6ddeb;
+}
+.friendsSelector-container .friendsSelector-pane-left .friendsSelector-group li.active {
+  border: 0;
+}
+.friendsSelector-container .friendsSelector-pane-left .friendsSelector-group li.active a {
+  font-weight: bold;
+  background-color: #d6ddeb;
+  color: #333333 !important;
+}
+.friendsSelector-container .friendsSelector-pane-right {
+  float: left;
+  position: relative;
+  padding: 15px 10px 10px 10px;
+  width: 450px;
+  height: 235px;
+  border-width: 1px 0 1px 0;
+  border-color: #d1d1d1;
+  border-style: solid;
+  overflow: auto;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-select-all {
+  margin-bottom: 10px;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-select-all label {
+  font-size: 12px;
+  color: #888888;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-select-all label input {
+  margin: 0 5px 2px 0;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li {
+  float: left;
+  position: relative;
+  margin: 0 10px 10px 0;
+  width: 130px;
+  *zoom: 1;
+  *display: inline;
+  *float: none;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li .ficons-friend-selected {
+  display: none;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: -5px;
+  bottom: -5px;
+  background: url(../images/friend-selected.png) no-repeat top left;
+  _right: 0px;
+  _bottom: 0px;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li .friendsSelector-user {
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 12px;
+  border: 1px solid transparent;
+  _border: 0;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li .friendsSelector-user span {
+  display: inline-block;
+  width: 55px;
+  height: 50px;
+  vertical-align: top;
+  margin-left: 5px;
+  color: #333333;
+  font-weight: bold;
+  overflow: hidden;
+  *zoom: 1;
+  *display: inline;
+  line-height: 16px;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li .friendsSelector-user .friendsSelector-headimg {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li .friendsSelector-user img {
+  float: left;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li .friendsSelector-user:hover {
+  border: 1px solid #005eac;
+  background-color: #d6ddeb;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li.active .friendsSelector-user {
+  border: 1px solid #005eac;
+  background-color: #d6ddeb;
+  color: #333333 !important;
+}
+.friendsSelector-container .friendsSelector-pane-right .friendsSelector-friends li.active .ficons-friend-selected {
+  display: block;
+}
+.friendsSelector-container .friendsSelector-seletedlist {
+  width: 600px;
+  margin: 0 auto;
+}
+.friendsSelector-container .friendsSelector-seletedlist p {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #333333;
+}
+.friendsSelector-container .friendsSelector-seletedlist p .friendsSelector-selectedlist-description {
+  font-weight: bold;
+}
+.friendsSelector-container .friendsSelector-seletedlist p .friendsSelector-selectedlist-maxdescription {
+  color: #e83928;
+}
+.friendsSelector-container .friendsSelector-seletedlist p .friendsSelector-selectedlist-clear {
+  float: right;
+}
+.friendsSelector-container .friendsSelector-seletedlist p .over {
+  color: #e83928;
+}
+.friendsSelector-container .friendsSelector-seletedlist .friendsSelector-selectedlist-content {
+  font-size: 12px;
+}
+.friendsSelector-container .friendsSelector-seletedlist .friendsSelector-selectedlist-content .private-username {
+  float: left;
+  padding: 3px;
+  line-height: 16px;
+  height: 16px;
+  margin: 0 5px 5px 0;
+  background-color: #d6ddeb;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  overflow: hidden;
+  *zoom: 1;
+  *display: inline;
+  *float: none;
+}
+.friendsSelector-container .friendsSelector-seletedlist .friendsSelector-selectedlist-content .private-username a {
+  display: inline-block;
+  margin-left: 2px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  vertical-align: text-bottom;
+  color: #333333;
+  *display: inline;
+  *zoom: 1;
+}
+
+
+
+
+
+/*ie7-模拟placeholder的元素在切换cass时莫名导致后面元素margin失效*/
+.privacy-groupdetail .privacy-groupdetail-action p .privacy-btn {
+  *margin-left: 0;
+}
+.privacy-groupdetail-action input {
+  *margin-right: 8px;
+}
+
+.global-publisher-actions .privacy-trigger {
+  *margin-bottom: 0;
+}
+
+

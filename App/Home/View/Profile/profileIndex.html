@@ -1,0 +1,1352 @@
+<extend name="Public/Base" />
+<block name="main-css">
+     <link type="text/css" href="__PUBLIC__/home/css/global2-all-min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/info.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/privacy-setting.css">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="http://a.xnimg.cn/favicon-rr.ico?ver=3">
+    <link rel="apple-touch-icon" href="http://a.xnimg.cn/wap/apple_icon_.png">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/base.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile-all-min.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/home/css/style.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/home/css/jebe-widgetbox-style.css">
+    <link href="__PUBLIC__/home/css/webpager.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/roomkeeper.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/home/css/advert.css" rel="stylesheet" class="lazyload" charset="utf-8">
+</block>
+
+<block name="main-body">
+<!------------ 我的主页，资料，相册，分享，状态，日志 ------------>
+<div class="bd-container ">
+    <div class="frame-nav-wrap">
+        <div style="width: 1189px;margin-left:10px" id="frameFixedNav" class="frame-nav-fixed-wraper">
+            <div class="frame-nav-inner">
+                <ul class="fd-nav-list clearfix">
+                    <li class="fd-nav-item">
+                        <span class="fd-nav-icon fd-sub-nav">
+                        </span>
+                        <!-- <a href="__MODULE__/UserPage/index/id/{$Think.get.id}"> -->
+                        <a href="__MODULE__/UserPage/userPageIndex/id/{$Think.get.id}">
+                            W的主页
+                        </a>
+                    </li>
+                    <li class="fd-nav-item fd-nav-cur-item">
+                        <a href="__MODULE__/Profile/profileIndex/id/{$Think.get.id}">
+                            资料
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Album/albumIndex/id/{$Think.get.id}">
+                            相册
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Share/index/id/{$Think.get.id}">
+                            分享
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/SelfNews/index/id/{$Think.get.id}/type/0">
+                            状态
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/SelfNews/index/id/{$Think.get.id}/type/1">
+                            日志
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Friend/index/id/{$Think.get.id}">
+                            好友
+                        </a>
+                    </li>
+                    <li class="fd-nav-item fd-nav-showmore">
+                        <a href="#">
+                            更多
+                            <em class="fd-arr-down">
+                                <span class="fd-arr-outer">
+                                    <span class="fd-arr-inner">
+                                    </span>
+                                </span>
+                            </em>
+                        </a>
+                        <div class="nf-group-list-container">
+                            <ul class="nf-group-list">
+                                <li class="nf-group-item">
+                                    <a href="http://follow.renren.com/list/885992102/sub/v7">
+                                        关注
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://photo.renren.com/photo/zuji/885992102" target="_blank">
+                                        足迹
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://gift.renren.com/show/box/otherbox?userId=885992102" target="_blank">
+                                        礼物
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://page.renren.com/home/mypages" target="_blank">
+                                        公共主页
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://www.renren.com/lifeevent/index/885992102">
+                                        生活纪事
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://mvideo.renren.com/video/885992102/list">
+                                        短视频
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 主体部分 -->
+    <div class="bd-main">
+        <div class="clearfix">
+            <div class="top-attach clearfix" id="top-attach">
+            </div>
+            <div id="tabBody" class="profile-infobox clearfix" style="padding-top:0;">
+                <div id="feedInfoAjaxDiv">
+                    <!---------- 左侧主体部分... ---------->
+                    <div class="info-left">
+                        <!------ 工作信息浏览 ------>
+                        <div class="info-section clearfix" id="workInfoShow"  style="display:none">
+                            <div class="details-infoedit" id="workInfo_detail">
+                                <h4 id="workInfo_display" class="legend">
+                                    <span class="icon-box">
+                                        <img src="__PUBLIC__/home/images/work.png">
+                                    </span>
+                                    工作信息
+                                </h4>
+                                <div id="workInfo_message" class="errors_div ajax_msgerror" style="display: none;">
+                                </div>
+                                <div id="workInfo_loading" class="profileLoading" style="display: none; ">
+                                    <span>
+                                        工作信息读取中...
+                                    </span>
+                                </div>
+                                <form name="myWorkInfoForm" id="workInfo_form" method="post" action="/MyWorkInfo.do?v=info_timeline" onsubmit="return false"
+                                class="panel">
+                                    <div id="work_div_0" class="posrela">
+                                        <p>
+                                            <label for="company_name_0">
+                                                <span>
+                                                    公司名称
+                                                </span>
+                                            </label>
+                                            <input type="text" name="company_name_0" size="20" value="lamp兄弟连" id="workInfoContent"
+                                            class="input-text" autocomplete="off">
+                                        </p>
+                                    </div>
+                                    <div class="info-submit-box">
+                                        <input type="button" connectId="workInfo" class="cancle-btn" onclick="closeSave(this)" value="取消">
+                                        <input thisType="work" type="submit" connectId="workInfo" class="save-submit" onclick="submitSave(this)" value="保存">
+                                    </div>
+                                    <p>
+                                        <a stats="info_setting" href="#nogo" id="workInfoPrivacy" class="lock">
+                                            隐私设置
+                                        </a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                        <!------ 工作信息修改 ------>
+                        <div class="info-section clearfix" id="workInfoEdit">
+                            <div class="info-section-head">
+                                <h4>
+                                    <span class="icon-box">
+                                        <img src="__PUBLIC__/home/images/work.png">
+                                    </span>
+                                    <span>
+                                        工作信息
+                                    </span>
+                                </h4>
+                                <a connectId="workInfo" class="edit" href="javascript:void(0)" onclick="editChange(this)">
+                                    编辑
+                                </a>
+                            </div>
+                            <div class="info-section-info">
+                                <dl class="info">
+                                    <dt>
+                                        公司
+                                    </dt>
+                                    <dd>
+                                        <a stats="info_info" id="workInfoContentShow" class="pop-module-mark" href="javascript:void(0)">
+                                            lamp兄弟连
+                                        </a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!------ 个人爱好部分 ------>
+                        <div class="info-section clearfix" id="personalInfoShow" style="display:none">
+                            <div class="info-section-head">
+                                <h4>
+                                    <span class="icon-box">
+                                        <img src="__PUBLIC__/home/images/like.png">
+                                    </span>
+                                    <span>
+                                        喜欢
+                                    </span>
+                                </h4>
+                                <div class="info-submit-box">
+                                    <input type="button" connectId="personalInfo" class="cancle-btn" onclick="closeSave(this)" value="取消">
+                                    <input thisType="love" type="submit" connectId="personalInfo" class="save-submit" onclick="submitSave(this)" value="保存">
+                                </div>
+                            </div>
+                            <p id="loveEdit">
+                                <label for="interest">
+                                    <span>爱好</span>
+                                </label>
+                                <textarea tabindex="2" rows="5" cols="45" class="textarea" id="personalInfoContent" name="interest" style="color: rgb(136, 136, 136);"></textarea>
+                            </p>
+                        </div>
+                        <div class="info-section clearfix" id="personalInfoEdit">
+                            <div class="info-section-head">
+                                <h4>
+                                    <span class="icon-box">
+                                        <img src="__PUBLIC__/home/images/like.png">
+                                    </span>
+                                    <span>
+                                        喜欢
+                                    </span>
+                                </h4>
+                                <a connectId="personalInfo" class="edit" href="javascript:void(0)" onclick="editChange(this)">
+                                    编辑
+                                </a>
+                            </div>
+                            <div id="personalShow" class="info-section-info">
+                                <dl class="info">
+                                    <dt>
+                                        音乐
+                                    </dt>
+                                    <dd>
+                                        <span id="personalInfoContentShow">music</span>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!------ 感情状态 ------>
+                        <div class="info-section clearfix" id="loveInfoShow" style="display:none">
+                            <div class="details-infoedit" id="loveInfo_detail">
+                                <h4 id="loveInfo_display" class="legend">
+                                    <span class="icon-box">
+                                        <img src="__PUBLIC__/home/images/metion.png">
+                                    </span>
+                                    感情状态
+                                </h4>
+                                <div id="loveInfo_message" class="errors_div ajax_msgerror" style="display: none;">
+                                </div>
+                                <div id="loveInfo_loading" class="profileLoading" style="display: none; ">
+                                    <span>
+                                        感情状态读取中...
+                                    </span>
+                                </div>
+                                <form id="" method="post" action="http://www.renren.com/loveinfo/update?v=info_timeline" onsubmit="return false"
+                                class="panel" name="loveInfoForm">
+                                    <input name="profile" type="hidden" value="1">
+                                    <input name="albumId" id="with_albumId" type="hidden" value="0">
+                                    <input name="photoId" id="with_photoId" type="hidden" value="0">
+                                    <input name="photoUrl" id="with_photoUrl" type="hidden" value="">
+                                    <input type="hidden" name="loveInfoId" value="0">
+                                    <input name="yScale" id="with_yscale" type="hidden" value="0.0">
+                                    <div class="love-edit">
+                                        <dl>
+                                            <dt>
+                                                感情状态
+                                            </dt>
+                                            <dd>
+                                                <select name="loveType" id="loveInfoContent">
+                                                    <option value="0" selected="selected">
+                                                        不填写
+                                                    </option>
+                                                    <option value="1">
+                                                        单身
+                                                    </option>
+                                                    <option value="2">
+                                                        求勾搭
+                                                    </option>
+                                                    <option value="3">
+                                                        暧昧期
+                                                    </option>
+                                                    <option value="4">
+                                                        恋爱中
+                                                    </option>
+                                                    <option value="5">
+                                                        已婚
+                                                    </option>
+                                                    <option value="6">
+                                                        失恋了
+                                                    </option>
+                                                </select>
+                                            </dd>
+                                        </dl>
+                                        <div class="info-submit-box">
+                                            <input type="button" connectId="loveInfo" class="cancle-btn" onclick="closeSave(this)" value="取消">
+                                            <input thisType="fell" connectId="loveInfo" onclick="submitSave(this)" type="submit" class="save-submit" value="保存">
+                                        </div>
+                                        <p>
+                                            <a href="#nogo" id="loveInfoPrivacy" class="lock">
+                                                隐私设置
+                                            </a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="info-section clearfix" id="loveInfoEdit">
+                            <div class="info-section-head">
+                                <h4>
+                                    <span class="icon-box">
+                                        <img src="__PUBLIC__/home/images/metion.png">
+                                    </span>
+                                    <span>
+                                        感情状态
+                                    </span>
+                                </h4>
+                                <a connectId="loveInfo" class="edit" href="javascript:void(0)" onclick="editChange(this)">
+                                    编辑
+                                </a>
+                            </div>
+                            <div id="loveShow" class="info-section-info">
+                                <dl class="info">
+                                    <dt>
+                                        心情
+                                    </dt>
+                                    <dd>
+                                        <span id="loveInfoContentShow">music</span>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="info-section-info">
+                                <div class="love-infobox">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---------- 右侧主体部分... ---------->
+                    <div class="info-right">
+                        <!-- 基本信息 -->
+                        <div class="info-section clearfix" id="basicInfoEdit" style="display:none">
+                            <div class="details-infoedit" id="basicInfo_detail">
+                                <h4 id="basicInfo_display" class="legend">
+                                    <span class="icon-box">
+                                        <img src="__PUBLIC__/home/images/basic.png">
+                                    </span>
+                                    基本信息
+                                </h4>
+                                <form onsubmit="return false" class="panel">
+                                    <input type="hidden" id="singlenature" name="singlenatrue" value="true">
+                                    <p>
+                                        <label for="name">
+                                            <span>
+                                                <em>　</em>姓名
+                                            </span>
+                                        </label>
+                                        <input type="text" id="userNameEdit" class="input-text">
+                                    </p>
+                                    <p>
+                                        <label for="gender">
+                                            <span>
+                                                <em>　</em>性别
+                                            </span>
+                                        </label>
+                                        <label for="userSexMan" class="labelRadio">
+                                            <input type="radio" name="userSex" id="userSexMan" >
+                                            男
+                                        </label>
+                                        <label for="userSexWoman" class="labelRadio">
+                                            <input type="radio" checked name="userSex" id="userSexWoman">
+                                            女
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="myProvince">
+                                            <span>
+                                                <em>　</em>家乡
+                                            </span>
+                                        </label>
+                                        <select class="cur-home select" id="userAddressSheng" tabindex="4">
+                                            <option value="">
+                                                省份
+                                            </option>
+                                            <option value="110000">
+                                                北京市
+                                            </option>
+                                            <option value="120000">
+                                                天津市
+                                            </option>
+                                            <option value="130000">
+                                                河北省
+                                            </option>
+                                            <option value="140000">
+                                                山西省
+                                            </option>
+                                            <option value="150000">
+                                                内蒙古自治区
+                                            </option>
+                                            <option value="210000">
+                                                辽宁省
+                                            </option>
+                                            <option value="220000">
+                                                吉林省
+                                            </option>
+                                            <option value="230000">
+                                                黑龙江省
+                                            </option>
+                                            <option value="310000">
+                                                上海市
+                                            </option>
+                                            <option value="320000">
+                                                江苏省
+                                            </option>
+                                            <option value="330000">
+                                                浙江省
+                                            </option>
+                                            <option value="340000">
+                                                安徽省
+                                            </option>
+                                            <option value="350000">
+                                                福建省
+                                            </option>
+                                            <option value="360000">
+                                                江西省
+                                            </option>
+                                            <option value="370000">
+                                                山东省
+                                            </option>
+                                            <option value="410000">
+                                                河南省
+                                            </option>
+                                            <option value="420000">
+                                                湖北省
+                                            </option>
+                                            <option value="430000">
+                                                湖南省
+                                            </option>
+                                            <option value="440000">
+                                                广东省
+                                            </option>
+                                            <option value="450000">
+                                                广西壮族自治区
+                                            </option>
+                                            <option value="460000">
+                                                海南省
+                                            </option>
+                                            <option value="500000">
+                                                重庆市
+                                            </option>
+                                            <option value="510000">
+                                                四川省
+                                            </option>
+                                            <option value="520000">
+                                                贵州省
+                                            </option>
+                                            <option value="530000">
+                                                云南省
+                                            </option>
+                                            <option value="540000">
+                                                西藏自治区
+                                            </option>
+                                            <option value="610000">
+                                                陕西省
+                                            </option>
+                                            <option value="620000">
+                                                甘肃省
+                                            </option>
+                                            <option value="630000">
+                                                青海省
+                                            </option>
+                                            <option value="640000">
+                                                宁夏回族自治区
+                                            </option>
+                                            <option value="650000">
+                                                新疆维吾尔自治区
+                                            </option>
+                                            <option value="710000">
+                                                台湾省
+                                            </option>
+                                            <option value="810000">
+                                                香港特别行政区
+                                            </option>
+                                            <option value="820000">
+                                                澳门特别行政区
+                                            </option>
+                                        </select>
+                                        <select class="select" tabindex="5" id="userAddressCity">
+                                            <option value="">
+                                                选择城市
+                                            </option>
+                                        </select>
+                                    </p>
+                                    <p>
+                                        <label>
+                                            <span>
+                                                <em>　</em>生日
+                                            </span>
+                                        </label>
+                                        <span id="birthDaySunSelect" style="">
+                                            <!-- 年 -->
+                                            <select name="birthYear" tabindex="6" id="birth-year" class="select">
+                                                <option value="">
+                                                    选择年
+                                                </option>
+                                                <option value="2015">
+                                                    2015
+                                                </option>
+                                                <option value="2014">
+                                                    2014
+                                                </option>
+                                                <option value="2013">
+                                                    2013
+                                                </option>
+                                                <option value="2012">
+                                                    2012
+                                                </option>
+                                                <option value="2011">
+                                                    2011
+                                                </option>
+                                                <option value="2010">
+                                                    2010
+                                                </option>
+                                                <option value="2009">
+                                                    2009
+                                                </option>
+                                                <option value="2008">
+                                                    2008
+                                                </option>
+                                                <option value="2007">
+                                                    2007
+                                                </option>
+                                                <option value="2006">
+                                                    2006
+                                                </option>
+                                                <option value="2005">
+                                                    2005
+                                                </option>
+                                                <option value="2004">
+                                                    2004
+                                                </option>
+                                                <option value="2003">
+                                                    2003
+                                                </option>
+                                                <option value="2002">
+                                                    2002
+                                                </option>
+                                                <option value="2001">
+                                                    2001
+                                                </option>
+                                                <option value="2000">
+                                                    2000
+                                                </option>
+                                                <option value="1790">
+                                                    90后
+                                                </option>
+                                                <option value="1999">
+                                                    1999
+                                                </option>
+                                                <option value="1998">
+                                                    1998
+                                                </option>
+                                                <option value="1997">
+                                                    1997
+                                                </option>
+                                                <option value="1996">
+                                                    1996
+                                                </option>
+                                                <option value="1995">
+                                                    1995
+                                                </option>
+                                                <option value="1994">
+                                                    1994
+                                                </option>
+                                                <option value="1993">
+                                                    1993
+                                                </option>
+                                                <option value="1992" selected="selected">
+                                                    1992
+                                                </option>
+                                                <option value="1991">
+                                                    1991
+                                                </option>
+                                                <option value="1990">
+                                                    1990
+                                                </option>
+                                                <option value="1780">
+                                                    80后
+                                                </option>
+                                                <option value="1989">
+                                                    1989
+                                                </option>
+                                                <option value="1988">
+                                                    1988
+                                                </option>
+                                                <option value="1987">
+                                                    1987
+                                                </option>
+                                                <option value="1986">
+                                                    1986
+                                                </option>
+                                                <option value="1985">
+                                                    1985
+                                                </option>
+                                                <option value="1984">
+                                                    1984
+                                                </option>
+                                                <option value="1983">
+                                                    1983
+                                                </option>
+                                                <option value="1982">
+                                                    1982
+                                                </option>
+                                                <option value="1981">
+                                                    1981
+                                                </option>
+                                                <option value="1980">
+                                                    1980
+                                                </option>
+                                                <option value="1770">
+                                                    70后
+                                                </option>
+                                                <option value="1979">
+                                                    1979
+                                                </option>
+                                                <option value="1978">
+                                                    1978
+                                                </option>
+                                                <option value="1977">
+                                                    1977
+                                                </option>
+                                                <option value="1976">
+                                                    1976
+                                                </option>
+                                                <option value="1975">
+                                                    1975
+                                                </option>
+                                                <option value="1974">
+                                                    1974
+                                                </option>
+                                                <option value="1973">
+                                                    1973
+                                                </option>
+                                                <option value="1972">
+                                                    1972
+                                                </option>
+                                                <option value="1971">
+                                                    1971
+                                                </option>
+                                                <option value="1970">
+                                                    1970
+                                                </option>
+                                                <option value="1760">
+                                                    60后
+                                                </option>
+                                                <option value="1969">
+                                                    1969
+                                                </option>
+                                                <option value="1968">
+                                                    1968
+                                                </option>
+                                                <option value="1967">
+                                                    1967
+                                                </option>
+                                                <option value="1966">
+                                                    1966
+                                                </option>
+                                                <option value="1965">
+                                                    1965
+                                                </option>
+                                                <option value="1964">
+                                                    1964
+                                                </option>
+                                                <option value="1963">
+                                                    1963
+                                                </option>
+                                                <option value="1962">
+                                                    1962
+                                                </option>
+                                                <option value="1961">
+                                                    1961
+                                                </option>
+                                                <option value="1960">
+                                                    1960
+                                                </option>
+                                                <option value="1959">
+                                                    1959
+                                                </option>
+                                                <option value="1958">
+                                                    1958
+                                                </option>
+                                                <option value="1957">
+                                                    1957
+                                                </option>
+                                                <option value="1956">
+                                                    1956
+                                                </option>
+                                                <option value="1955">
+                                                    1955
+                                                </option>
+                                                <option value="1954">
+                                                    1954
+                                                </option>
+                                                <option value="1953">
+                                                    1953
+                                                </option>
+                                                <option value="1952">
+                                                    1952
+                                                </option>
+                                                <option value="1951">
+                                                    1951
+                                                </option>
+                                                <option value="1950">
+                                                    1950
+                                                </option>
+                                                <option value="1949">
+                                                    1949
+                                                </option>
+                                                <option value="1948">
+                                                    1948
+                                                </option>
+                                                <option value="1947">
+                                                    1947
+                                                </option>
+                                                <option value="1946">
+                                                    1946
+                                                </option>
+                                                <option value="1945">
+                                                    1945
+                                                </option>
+                                                <option value="1944">
+                                                    1944
+                                                </option>
+                                                <option value="1943">
+                                                    1943
+                                                </option>
+                                                <option value="1942">
+                                                    1942
+                                                </option>
+                                                <option value="1941">
+                                                    1941
+                                                </option>
+                                                <option value="1940">
+                                                    1940
+                                                </option>
+                                                <option value="1939">
+                                                    1939
+                                                </option>
+                                                <option value="1938">
+                                                    1938
+                                                </option>
+                                                <option value="1937">
+                                                    1937
+                                                </option>
+                                                <option value="1936">
+                                                    1936
+                                                </option>
+                                                <option value="1935">
+                                                    1935
+                                                </option>
+                                                <option value="1934">
+                                                    1934
+                                                </option>
+                                                <option value="1933">
+                                                    1933
+                                                </option>
+                                                <option value="1932">
+                                                    1932
+                                                </option>
+                                                <option value="1931">
+                                                    1931
+                                                </option>
+                                                <option value="1930">
+                                                    1930
+                                                </option>
+                                                <option value="1929">
+                                                    1929
+                                                </option>
+                                                <option value="1928">
+                                                    1928
+                                                </option>
+                                                <option value="1927">
+                                                    1927
+                                                </option>
+                                                <option value="1926">
+                                                    1926
+                                                </option>
+                                                <option value="1925">
+                                                    1925
+                                                </option>
+                                                <option value="1924">
+                                                    1924
+                                                </option>
+                                                <option value="1923">
+                                                    1923
+                                                </option>
+                                                <option value="1922">
+                                                    1922
+                                                </option>
+                                                <option value="1921">
+                                                    1921
+                                                </option>
+                                                <option value="1920">
+                                                    1920
+                                                </option>
+                                                <option value="1919">
+                                                    1919
+                                                </option>
+                                                <option value="1918">
+                                                    1918
+                                                </option>
+                                                <option value="1917">
+                                                    1917
+                                                </option>
+                                                <option value="1916">
+                                                    1916
+                                                </option>
+                                                <option value="1915">
+                                                    1915
+                                                </option>
+                                                <option value="1914">
+                                                    1914
+                                                </option>
+                                                <option value="1913">
+                                                    1913
+                                                </option>
+                                                <option value="1912">
+                                                    1912
+                                                </option>
+                                                <option value="1911">
+                                                    1911
+                                                </option>
+                                                <option value="1910">
+                                                    1910
+                                                </option>
+                                                <option value="1909">
+                                                    1909
+                                                </option>
+                                                <option value="1908">
+                                                    1908
+                                                </option>
+                                                <option value="1907">
+                                                    1907
+                                                </option>
+                                                <option value="1906">
+                                                    1906
+                                                </option>
+                                                <option value="1905">
+                                                    1905
+                                                </option>
+                                                <option value="1904">
+                                                    1904
+                                                </option>
+                                                <option value="1903">
+                                                    1903
+                                                </option>
+                                                <option value="1902">
+                                                    1902
+                                                </option>
+                                                <option value="1901">
+                                                    1901
+                                                </option>
+                                                <option value="1900">
+                                                    1900
+                                                </option>
+                                            </select>
+                                            <!-- 月 -->
+                                            <select name="birthMonth" tabindex="7" id="birth-month" class="select">
+                                                <option value="">
+                                                    选择月份
+                                                </option>
+                                                <option value="1">
+                                                    1
+                                                </option>
+                                                <option value="2">
+                                                    2
+                                                </option>
+                                                <option value="3">
+                                                    3
+                                                </option>
+                                                <option value="4">
+                                                    4
+                                                </option>
+                                                <option value="5">
+                                                    5
+                                                </option>
+                                                <option value="6">
+                                                    6
+                                                </option>
+                                                <option value="7">
+                                                    7
+                                                </option>
+                                                <option value="8">
+                                                    8
+                                                </option>
+                                                <option value="9" selected="selected">
+                                                    9
+                                                </option>
+                                                <option value="10">
+                                                    10
+                                                </option>
+                                                <option value="11">
+                                                    11
+                                                </option>
+                                                <option value="12">
+                                                    12
+                                                </option>
+                                            </select>
+                                            <!-- 日 -->
+                                            <select name="birthDay" tabindex="8"  id="birth-day" class="select">
+                                                <option value="">
+                                                    选择日期
+                                                </option>
+                                                <option value="1">
+                                                    1
+                                                </option>
+                                                <option value="2">
+                                                    2
+                                                </option>
+                                                <option value="3">
+                                                    3
+                                                </option>
+                                                <option value="4">
+                                                    4
+                                                </option>
+                                                <option value="5">
+                                                    5
+                                                </option>
+                                                <option value="6">
+                                                    6
+                                                </option>
+                                                <option value="7">
+                                                    7
+                                                </option>
+                                                <option value="8">
+                                                    8
+                                                </option>
+                                                <option value="9">
+                                                    9
+                                                </option>
+                                                <option value="10">
+                                                    10
+                                                </option>
+                                                <option value="11">
+                                                    11
+                                                </option>
+                                                <option value="12">
+                                                    12
+                                                </option>
+                                                <option value="13">
+                                                    13
+                                                </option>
+                                                <option value="14">
+                                                    14
+                                                </option>
+                                                <option value="15">
+                                                    15
+                                                </option>
+                                                <option value="16">
+                                                    16
+                                                </option>
+                                                <option value="17">
+                                                    17
+                                                </option>
+                                                <option value="18">
+                                                    18
+                                                </option>
+                                                <option value="19">
+                                                    19
+                                                </option>
+                                                <option value="20">
+                                                    20
+                                                </option>
+                                                <option value="21">
+                                                    21
+                                                </option>
+                                                <option value="22">
+                                                    22
+                                                </option>
+                                                <option value="23" selected="selected">
+                                                    23
+                                                </option>
+                                                <option value="24">
+                                                    24
+                                                </option>
+                                                <option value="25">
+                                                    25
+                                                </option>
+                                                <option value="26">
+                                                    26
+                                                </option>
+                                                <option value="27">
+                                                    27
+                                                </option>
+                                                <option value="28">
+                                                    28
+                                                </option>
+                                                <option value="29">
+                                                    29
+                                                </option>
+                                                <option value="30">
+                                                    30
+                                                </option>
+                                            </select>
+                                        </span>
+                                        <span data-lunar="[1992, 9, 23]" id="birthDayLunSelect" style="display:none;">
+                                            <select id="birthYearL">
+                                            </select>
+                                            <select id="birthMonthL">
+                                            </select>
+                                            <select id="birthDayLs">
+                                            </select>
+                                        </span>
+                                    </p>
+                                    <!--用户没有输入高中，大学和公司信息下面不显示-->
+                                    <p>
+                                        <label>
+                                            <span>
+                                                <em>　</em>学校
+                                            </span>
+                                        </label>
+                                        <input type="text" id="userSchoolEdit">
+                                    </p>
+                                    <p class="reginfo">
+                                        <label>
+                                            <span>
+                                                &nbsp;
+                                            </span>
+                                        </label>
+                                        <span class="hint gray">
+                                            
+                                        </span>
+                                    </p>
+                                    <div class="info-submit-box">
+                                        <input type="button"  onclick="closeBasicInfoEdit()" class="cancle-btn" value="取消"
+                                        tabindex="11">
+                                        <input type="submit" tabindex="10" value="保存" class="save-submit"  onclick="baseSubmitSave()"
+                                        name="submit">
+                                    </div>
+                                    <p>
+                                        <a stats="info_setting" href="#nogo" id="basicInfoPrivacy" class="lock">
+                                            隐私设置
+                                        </a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                        <!------ 基本信息show ------>
+                        <div class="info-section clearfix" id="basicInfoShow">
+                            <div class="info-section-head">
+                                <h4>
+                                    <span class="icon-box">
+                                        <img src="__PUBLIC__/home/images/basic.png">
+                                    </span>
+                                    <span>
+                                        基本信息
+                                    </span>
+                                </h4>
+                                <a stats="info_edit" class="edit" href="JavaScript:void(0)"
+                                id="basicInfo_hander" onclick="openBasicInfoEdit()">
+                                    编辑
+                                </a>
+                            </div>
+                            <div class="info-section-info">
+                                <dl class="info">
+                                    <dt>
+                                        姓名
+                                    </dt>
+                                    <dd id="userName">
+                                        张三
+                                    </dd>
+                                </dl>
+                                <dl class="info">
+                                    <dt>
+                                        性别
+                                    </dt>
+                                    <dd id="userSex">
+                                        男
+                                    </dd>
+                                </dl>
+                                <dl class="info">
+                                    <dt>
+                                        生日
+                                    </dt>
+                                    <dd>
+                                        <span id="birthOfYear">1992</span>年
+                                        <span id="birthOfMouth">9</span>月
+                                        <span id="birthOfDay">23</span>日
+                                    </dd>
+                                </dl>
+                                <dl class="info">
+                                    <dt>
+                                        家乡
+                                    </dt>
+                                    <dd id="userAddress">
+                                        白水村
+                                    </dd>
+                                </dl>
+                                <dl class="info">
+                                    <dt>
+                                        学校
+                                    </dt>
+                                    <dd id="userSchool">
+                                        中国矿业大学
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="thisUid" value="{$info.id}">
+<script type="text/javascript">
+    $(function(){
+        detailProfileLoad();
+        baseProfileLoad();
+    });
+    // 无刷新加载 个人详细信息
+    function detailProfileLoad(){
+        var uid = $('#thisUid').val();
+        $.ajax({
+            url:'__MODULE__/Profile/detailProfileLoad',
+            type:'POST',
+            data:'uid='+uid,
+            dataType:'text',
+            async:false,
+            success:function(data){
+                eval('var list='+data);
+                switch(list.fell){
+                    case '0':var fell = '保密';break;
+                    case '1':var fell = '单身';break;
+                    case '2':var fell = '求勾搭';break;
+                    case '3':var fell = '暧昧中';break;
+                    case '4':var fell = '恋爱中';break;
+                    case '5':var fell = '已婚';break;
+                    case '6':var fell = '失恋';break;
+                }
+                $('#workInfoContentShow').html(list.work);
+                $('#workInfoContent').val(list.work);
+                $('#personalInfoContentShow').html(list.love);
+                $('#personalInfoContent').val(list.love);
+                $('#loveInfoContentShow').html(fell);
+                $('#loveInfoContent').find("option[value="+list.fell+"]").attr('selected',true);
+            },
+        });
+    }
+    // 无刷新加载个人基本信息
+    function baseProfileLoad(){
+        var id = $('#thisUid').val();
+        $.ajax({
+            url:'__MODULE__/Profile/baseProfileLoad',
+            type:'POST',
+            data:'id='+id,
+            dataType:'json',
+            async:false,
+            success:function(list){
+                $('#userName').html(list.name);
+                $('#userNameEdit').val(list.name);
+
+                if(list.sex == '0'){
+                    $('#userSexWoman').attr('checked',true);
+                    $('#userSex').html('女');
+                }else{
+                    $('#userSexMan').attr('checked',true);
+                    $('#userSex').html('男');
+                }
+
+                $('#userAddressSheng').append('<option selected value="">'+list.addressSheng+'</option>');
+                $('#userAddressCity').append('<option selected value="">'+list.addressCity+'</option>');
+                $('#userAddress').html(list.address);
+
+                $('#birthOfYear').html(list.birthYear);
+                $('#birthOfMouth').html(list.birthMouth);
+                $('#birthOfDay').html(list.birthDay);
+                $('#birth-year').find("option:contains('"+list.birthYear+"')").attr('selected',true);
+                $('#birth-month').find("option[value="+list.birthMouth+"]").attr('selected',true);
+                $('#birth-day').find("option[value="+list.birthDay+"]").attr('selected',true);
+
+                $('#userSchool').html(list.school);
+                $('#userSchoolEdit').val(list.school);
+                
+            },
+        });
+    }
+
+    // 保存基本信息编辑
+    function baseSubmitSave(res){
+        var id = $('#thisUid').val();
+        var name = $('#userNameEdit').val();
+        // console.log($('#userSexMan').attr('checked'));return;
+        if($('#userSexMan').attr('checked') == 'checked'){
+            sex = 1;
+        }else{
+            sex = 0;
+        }
+        var provinceCode = $('#userAddressSheng').val();
+        var cityCode = $('#userAddressCity').val();
+        var year = $('#birth-year').find('option:selected').val();
+        var month = $('#birth-month').find('option:selected').val();
+        var day = $('#birth-day').find('option:selected').val();
+        var school = $('#userSchoolEdit').val();
+        console.log(id,name,sex,provinceCode,cityCode,year,month,day,school);
+        $.ajax({
+            url:'__MODULE__/Profile/saveBaseProfileLoad',
+            type:'POST',
+            data:'id='+id+'&name='+name+'&sex='+sex+'&provinceCode='+provinceCode+'&cityCode='+cityCode+'&year='+year+'&month='+month+'&day='+day+'&school='+school,
+            dataType:'text',
+            async:false,
+            success:function(data){
+                if(data == 'y'){
+                    $('#tanchaungneirong').html('修改成功');
+                    baseProfileLoad();
+                    $('#tanchuang').show();
+                    $('#basicInfoShow').show();
+                    $('#basicInfoEdit').hide();
+                }else{
+                    $('#tanchaungneirong').html('修改失败');
+                    $('#tanchuang').show();
+                }
+            },
+        });
+
+    }
+    // 打开编辑
+    function editChange(res){
+        var id = $(res).attr('connectId');
+        $('#'+id+'Show').show();
+        $('#'+id+'Edit').hide();
+        // $('#'+id+'Content').val('');
+        $('#'+id+'Content').focus();
+    }
+    // 取消编辑
+    function closeSave(res){
+        var id = $(res).attr('connectId');
+        $('#'+id+'Show').hide();
+        $('#'+id+'Edit').show();
+    }
+    // 保存详细信息编辑
+    function submitSave(res){
+        var id = $(res).attr('connectId');
+        var uid = $('#thisUid').val();
+        var type = $(res).attr('thisType');
+        var content = $('#'+id+'Content').val();
+        $.ajax({
+            url:'__MODULE__/Profile/updateDetail',
+            type:'POST',
+            data:'id='+uid+'&type='+type+'&content='+content,
+            dataType:'text',
+            async:false,
+            success:function(data){
+                if(data == 'y'){
+                    $('#tanchaungneirong').html('修改成功');
+                    $('#tanchuang').show();
+                    $('#'+id+'Show').hide();
+                    $('#'+id+'Edit').show();
+                    detailProfileLoad();
+                }else{
+                    $('#tanchaungneirong').html('修改失败，原因：'+data);
+                    $('#tanchuang').show();
+                }
+            },
+        });
+    }
+    // 基本信息编辑的打开关闭
+    function openBasicInfoEdit(){
+        $('#basicInfoShow').hide();
+        $('#basicInfoEdit').show();
+    }
+    function closeBasicInfoEdit(){
+        $('#basicInfoShow').show();
+        $('#basicInfoEdit').hide();
+    }
+    $(function(){
+        $('li[data-tip="首页"]').removeClass('app-nav-item-cur');
+        $('li[data-tip="个人主页"]').addClass('app-nav-item-cur');
+        $('.nx-main760 .hd-nav, .nx-main760 .bd-content, .nx-main760 .frame-nav-inner').css('width','870px');
+    });
+    // 生日的判断
+    $('#birth-year').change(function(){
+        $('#birth-month>option:nth-child(n+2)').remove();
+        $('#birth-day>option:nth-child(n+2)').remove();
+        if($(this).val().length>0){
+            for(var i=1;i<13;i++){
+                $('#birth-month').append('<option value="'+i+'">'+i+'</option>');
+            }
+        }else{
+            $('#birth-month>option:nth-child(n+2)').remove();
+        }
+    });    
+    $('#birth-month').change(function(){
+        if($(this).val().length>0){
+            $('#birth-day>option:nth-child(n+2)').remove();
+            var $m=$(this).val();
+            //alert($m);
+            switch(parseInt($m)){
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    for(var i=1;i<32;i++){
+                        $('#birth-day').append('<option value="'+i+'">'+i+'</option>');
+                    };
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    for(var i=1;i<31;i++){
+                        $('#birth-day').append('<option value="'+i+'">'+i+'</option>');
+                    }
+                    break;
+                case 2:
+                    if($('#birth-year').val()%400==0 || ($('#birth-year').val()%4==0 && $('#birth-year').val()%100!=0)){
+                        for(var i=1;i<30;i++){
+                            $('#birth-day').append('<option value="'+i+'">'+i+'</option>');
+                        }
+                    }else{
+                        for(var i=1;i<29;i++){
+                            $('#birth-day').append('<option value="'+i+'">'+i+'</option>');
+                        }
+                    }
+                    break;
+                default:
+                    $('#birth-day>option:nth-child(n+2)').remove();
+            }
+        }else{
+            $('#birth-day>option:nth-child(n+2)').remove();
+        }
+    });
+    // 家乡的判断
+    $('#userAddressSheng').change(function(){
+        $('#userAddressCity').empty();
+        $.ajax({
+            url:'__MODULE__/Profile/loadAddress',
+            type:'POST',
+            data:'code='+$(this).val(),
+            dataType:'json',
+            async:false,
+            success:function(data){
+                for(var i=0;i<data.length;i++){
+                    $('#userAddressCity').append('<option value="'+data[i].code+'">'+data[i].name+'</option>');
+                }
+            },
+        });
+    });
+</script>
+    
+</block>

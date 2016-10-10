@@ -1,0 +1,48 @@
+<extend name="Public/base" />
+<block name="main-body">
+	<iframe src="" frameborder="0" hidden name="operateDiary">
+		
+
+	</iframe>
+	<div style="margin:0 auto;width:720px;background:#FFF;margin-top:20px;min-height:630px">
+		<form method="POST" action="__URL__/updateDiary" style="width:690px;min-height:550px;margin-left:16px" name="mydiaryform" target="operateDiary">
+			<input type="hidden" name="uid" value="{$Think.get.id}" />
+			<input type="hidden" name="diaryid" value="{$Think.get.diaryid}" />
+			<div style="height:10px">
+				
+			</div>
+			<div style="width:690px;height:50px;border:1px solid #DDD;margin-top:16px;border-bottom:2px solid #1AAF5E;" >
+				
+				<input type="text" name="title" placeholder="输入日志标题" style="width:681px;height:40px;font-size:20px;line-height:20px;font-weight:bold;text-align:center" value="{$diaryinfo.title}">
+			</div>
+			<!-- 加载编辑器容器 -->
+			<script id="container" name="content" type="text/plain" style="width:690px;height:450px">
+				{:htmlspecialchars_decode($diaryinfo['content'])}
+			</script>
+			<div style="height:65px;width:681px">
+				<input type="button" style="float:left;border-color: #727986;color: #333;-webkit-appearance: button;cursor: pointer;height: 28px;line-height: 24px;display: inline-block;zoom: 1;padding: 0 20px;font-size: 14px;background: #fbfbfb;border: 1px solid #a7acb5;border-radius: 3px;box-shadow: 0 1px 0 rgba(0,0,0,0.15);margin-top:20px" id="cancelDiary" value="取消">
+				
+				<input type="button" style="float:right;border-color: #418BC4;color: #FFF;-webkit-appearance: button;cursor: pointer;height: 28px;line-height: 24px;display: inline-block;zoom: 1;padding: 0 20px;font-size: 14px;background: #3E94D7;border: 1px solid #a7acb5;border-radius: 3px;box-shadow: 0 1px 0 rgba(0,0,0,0.15);margin-top:20px" id="releseDiary" value="保存修改，并发布">
+				<input type="button" style="float:right;border-color: #727986;color: #333;-webkit-appearance: button;cursor: pointer;height: 28px;line-height: 24px;display: inline-block;zoom: 1;padding: 0 20px;font-size: 14px;background: #fbfbfb;border: 1px solid #a7acb5;border-radius: 3px;box-shadow: 0 1px 0 rgba(0,0,0,0.15);margin-top:20px;margin-right:20px" id="buttonDiary" value="保存为草稿">
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="__PUBLIC__/edit/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/edit/ueditor.all.min.js"> </script>
+    <script type="text/javascript" src="__PUBLIC__/home/js/diary.js"></script>
+    <script type="text/javascript">
+    	var editor=UE.getEditor('container',{
+    		toolbars:[
+    			['simpleupload', 'insertimage', 'bold', 'italic', 'underline','fontfamily', 'fontsize','indent', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify']
+    		],
+    		autoHeightEnabled: true,
+    		autoFloatEnabled: false,
+    		zIndex : 1,
+    		wordCount:false,
+    		elementPathEnabled : false,
+    	});
+
+    </script>
+	
+</block>

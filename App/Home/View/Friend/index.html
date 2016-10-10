@@ -1,0 +1,341 @@
+<extend name="Public/base" />
+<block name="main-css">
+    <link href="__PUBLIC__/home/images/apple_icon_.png" rel="apple-touch-icon">
+    <link href="__PUBLIC__/home/css/base.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/home.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/global2-all-min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile-all-min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/publisher-all-min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index-all-min.css"
+    media="all">
+    <style class="lazyload" charset="utf-8">
+    @import "__PUBLIC__/home/css/webpager.css";
+    </style>
+    <link href="__PUBLIC__/home/css/webpager.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/roomkeeper.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/friends.css" rel="stylesheet">
+    <style type="text/css">
+        #top:hover{background-color:#fc0;opacity:0.8;cursor:move;}
+    </style>
+</block>
+<block name="main-body">
+	<div class="frame-nav-wrap">
+        <div style="width: 1189px;" id="frameFixedNav" class="frame-nav-fixed-wraper">
+            <div class="frame-nav-inner">
+                <ul class="fd-nav-list clearfix">
+                    <li class="fd-nav-item">
+                        <span class="fd-nav-icon fd-sub-nav">
+                        </span>
+                        <a href="__MODULE__/UserPage/index/id/{$Think.get.id}">
+                            W的主页
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Profile/profileIndex/id/{$Think.get.id}">
+                            资料
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Album/index/id/{$Think.get.id}">
+                            相册
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Share/index/id/{$Think.get.id}">
+                            分享
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/SelfNews/index/id/{$Think.get.id}/type/0">
+                            状态
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/SelfNews/index/id/{$Think.get.id}/type/1">
+                            日志
+                        </a>
+                    </li>
+                    <li class="fd-nav-item fd-nav-cur-item">
+                        <a href="__MODULE__/Friend/index/id/{$Think.get.id}">
+                            好友
+                        </a>
+                    </li>
+                    <li class="fd-nav-item fd-nav-showmore">
+                        <a href="#">
+                            更多
+                            <em class="fd-arr-down">
+                                <span class="fd-arr-outer">
+                                    <span class="fd-arr-inner">
+                                    </span>
+                                </span>
+                            </em>
+                        </a>
+                        <div class="nf-group-list-container">
+                            <ul class="nf-group-list">
+                                <li class="nf-group-item">
+                                    <a href="http://follow.renren.com/list/885992102/sub/v7">
+                                        关注
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://photo.renren.com/photo/zuji/885992102" target="_blank">
+                                        足迹
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://gift.renren.com/show/box/otherbox?userId=885992102" target="_blank">
+                                        礼物
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://page.renren.com/home/mypages" target="_blank">
+                                        公共主页
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://www.renren.com/lifeevent/index/885992102">
+                                        生活纪事
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://mvideo.renren.com/video/885992102/list">
+                                        短视频
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+	<div class="bd-main">
+	    <div class="bd-content clearfix" style="">
+	        <div id="friends-box" class="" style="margin-left: 50px;">
+	            <div id="friend_head_bar">
+	                <div id="friend_head_bar_bg" style=""></div>
+	                <ul class="friend-manage-list">
+	                    
+	                    <li class="friend-cur-group-li"><a class="friend-cur-group-a curr-a" href="#nogo"><span class="group-name fl" id="f_group-name">全部好友</span><span class="friend-cur-num-span" id="f_group-num">{$friendNum}</span></a></li>
+	                    
+	                    
+	                </ul>
+	                
+	                <div id="friend_head_bar_bg2"></div>
+	            </div>
+	            <div class="friends-con clearfix">
+	                <div id="friends-list">
+	                    <div class="friends-list-top" id="friends-top">
+	                        <!-- 好友头部功能区 显示当前分组与搜索-->
+	                        <div class="friends-top-bar clearfix">
+	                            <div class="special-name" style="display:none">
+	                                <a href="javascript:;" class="png add-special-friends"></a>
+	                                <a href="javascript:;" class="png save-special-rank"></a>
+	                                <span class="save-special-tips">您已经修改了特别好友的排序</span>
+	                            </div>
+	                        </div>
+	                        <div class="group-batch-manage" id="f_manage-con">
+	                            <div class="group-edit  clearfix">
+	                                <a id="friend-sort" class="btn_sort fl png" href="javascript:;">排序<!--<span class="png fr friends-sort-btn"></span>--></a>
+
+	                                <!-- 炫酷分组 -->
+	                                <ul class="group-edit-option" id="group_edit-option" style="display:none;">
+	                                    <li class="no-sepcial"><a class="group-option png rename">重命名分组</a></li>
+	                                    <li><a class="group-option png add">添加组员</a></li>
+	                                    <li><a class="group-option png delete">删除组员</a></li>
+	                                    <li class="no-sepcial"><a class="group-option png shift">转移组员</a></li>
+	                                    <li class="no-sepcial"><a class="group-option png dismiss">解散分组</a></li>
+	                                </ul>
+	                                <!-- 编辑分组操作-->
+	                                <div id="friend_group-edit" class="group-edit-wrap fl" style="">
+	                                    <span class="group-batch-edit-btn png fl" id="group_batch-edit" style="display:none">批量分组</span>
+	                                    <span class="group-edit-btn png fl edit" id="group_edit" style="display:none;">编辑分组</span>
+	                                    <div class="group-edit-selector  fl" style="display:none" id="f_group-edit-detail">
+	                                        <span class="from fl reset" style="display:none;">从</span>
+	                                        <span class="to fl reset" style="display:none;">至</span>
+	                                        <div class="btn-group-choose fl batch reset png" style="display:none;">
+	                                            <span class="group-open" id="f_packet-msg"></span>
+	                                        </div>
+	                                        <!-- <span class="check fl batch reset" id="f_check"></span>
+	                                        <span class="check-all fl batch reset">全选</span> -->
+	                                    </div>
+	                                </div>
+	                                <!-- 卡片模式与列表模式tip-->
+	                                
+	                            </div>
+	                            <!-- 选中区域-->
+	                            <div class="del-checked" style="display:none;" id="f_checked-con">
+	                                <div class="batch-selector-con clearfix" id="friends_selected">
+	                                	<!-- <a class="fl selected-wrap" id="batch501651988" href="javascript:;" data-id="501651988">                白刚<span class="batch-selected png "></span></a>
+	                                	 -->
+	                                </div>
+	                                <div class="del-btn-wrap">
+	                                    <a class="btn-del-ok png" id="btn-batch-submit" type="button"></a>
+	                                    <a class="btn-del-clear png" id="btn-batch-cancel" type="button"></a>
+	                                </div>
+	                            </div>
+	                            <!-- 排序 -->
+	                            <ul id="sort-container" style="display: none;">
+	                                <li>
+	                                    <a data-type="data-time" class="up png">按添加时间</a>
+	                                </li>
+	                                <li class="on">
+	                                    <a data-type="data-name" class="up png">按字母顺序</a>
+	                                </li>
+	                                <!-- <li>
+	                                    <a data-type="common" class="up png">按共同好友</a>
+	                                </li> -->
+	                            </ul>
+	                            <!-- 编辑分组下拉  -->
+	                            <!-- 纯文字 -->
+	                            <div id="group-edit-selection" style="display: none; top: 104px;left: 3px;">
+	                                <ul id="group-selecter-wrap" class="group-selecter-wrap" style="background:#FFF;overflow:hidden">
+	                                    <li>
+	                                        <a href="javascript:;" class="rename-group">重命名分组</a>
+	                                    </li>
+	                                    <li>
+	                                        <a href="javascript:;" class="add-group add-member">添加组员</a>
+	                                    </li>
+	                                    <li>
+	                                        <a href="javascript:;" class="del-group del-member">删除组员</a>
+	                                    </li>
+	                                    <!-- <li>
+	                                        <a href="javascript:;" class="shift-group shift-member">转移组员</a>
+	                                    </li> -->
+	                                    <li>
+	                                        <a href="javascript:;" class="dissolve-group dissolve-member">解散分组</a>
+	                                    </li>
+	                                </ul>
+	                            </div>
+	                            <div id="group_list" style="display:none;" class="edit-mem">
+	                                <ul id="group_list-container">
+	                                	<li class="group on" data-name="全部好友">
+	                                		<a class="icon png clearfix">
+	                                			全部好友
+	                                		</a>
+	                                	</li>
+	                                	<li class="group" data-name="全部好友">
+	                                		<a class="icon png clearfix">
+	                                			未分组好友
+	                                		</a>
+	                                	</li>
+										
+	                                </ul>
+	                                <div class="create-group">
+	                                    <span class="create" style="">创建新的分组</span>
+	                                    <input type="text" class="input-gname create-group-option" placeholder="新建分组..." maxlength="10" style="display:none;">
+	                                    <a class="submit png fr create-group-option" style="display:none;"></a>
+	                                    <a class="png loading" style="display:none;"></a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!-- 添加至分组下拉框 -->
+	                    <div id="group-selector" class="selector" style="top:106px;left: 109px; display: none;">
+	                        <ul id="groups-selector-list" class="over-scroll">
+	                        </ul>
+	                        <div class="create-group">
+	                            <span class="create" style="">创建新的分组</span>
+	                            <input type="text" class="input-gname create-group-option" placeholder="新建分组..." maxlength="10" style="display:none;">
+	                            <a class="submit png fr create-group-option" style="display:none;"></a>
+	                            <a class="png loading" style="display:none;"></a>
+	                        </div>
+	                    </div>
+	                    <!--添加至分组下拉框结束-->
+	                    <div class="list-loading" id="list-loading" style="display: none;">
+	                        <div class="loading-cover"></div>
+	                        <div class="loading-con">
+	                            <img src="__PUBLIC__/home/images/loading.gif">
+	                            <div class="loading-text">正在努力为您加载...</div>
+	                        </div>
+	                    </div>
+	                    <div class="list-empty png" id="list-empty" style="display:none;">
+	                        <span class="list-empty-tip">抱歉！没有找到相应的结果...</span>
+	                    </div>
+	                    <div class="list-empty-friend" id="list-empty-friend" style="display:none;">
+	                        该分组没有好友，赶快添加吧~ <a href="javascript:;" class="edit-group">添加组员</a>
+	                    </div>
+	                    <!--修改分组下拉-->
+	                    <div id="group_selector" style="top:107px;left: 109px;display:none;" data-groups="," data-keep="" class="group-batch-selector group-selecter">
+	                        <ul></ul>
+	                        <div class="group-batch-selector-submit group-quick-creator">
+	                            <input type="text" placeholder="新建分组..." maxlength="10">
+	                        </div>
+	                    </div>
+	                    <ul id="friends-list-con" class="card-on clearfix">
+	                        
+	                        
+	                        <foreach name="friend" item="vo" key="k">
+	                        <li class="friend-detail hover" data-id="{$vo.fid}" group-id="{$vo.gid}" data-status="{$vo.status}" data-name="{$vo.name}" data-time="{$vo.addtime}">
+	                            <div style="display: none;" data-id="{$vo.id}" class="friend-tips">
+	                                <a href="javascript:;" class="png x-to-hide" style=""></a>
+	                                <a href="javascript:;" class="png special-up-tip" style="display:none;"></a>
+	                                <a href="javascript:;" class="png special-down-tip" style="display: none;"></a>
+	                                <a href="javascript:;" class="png d-to-select" style="display:none;"></a>
+	                                <a href="javascript:;" class="png special-remove-tip" style="display:none;"></a>
+	                                <a href="javascript:;" class="png special-edit-desc-tip" style="display:none;"></a>
+	                                <div id="friends-common-tip" class="friends-common-fri-tip" style="display: none;">
+	                                    <em class="png"></em>
+	                                    <div id="friends-common-txt" class="common-detail"></div>
+	                                </div>
+	                            </div>
+	                            <a class="tiny_photo userhead" href="javascript:void(0)" turnto="__MODULE__/FriendPage/friendPageIndex/id/{$Think.get.id}/fid/{$vo.fid}" target="_blank"><img src="__PUBLIC__/home/images/{$vo.head}" data-list="card" data-tinyurl="http://hdn.xnimg.cn/photos/hdn521/20120819/0920/h_tiny_3HeO_0f720000d7f81375.jpg" data-largeurl="http://hdn.xnimg.cn/photos/hdn521/20120819/0920/h_large_qh8b_0f720000d7f81375.jpg" class="userheadimg large" width="168" height="168" style="display: inline; visibility: visible;"></a>
+	                            <ul class="friends-item-con">
+	                                <li class="username"><a class="name" href="http://www.renren.com/profile.do?id=394907013" target="_blank" title="{$vo.name}">{$vo.name}</a></li>
+	                                <li class="friends-loc-info" title="中国矿业大学">{$vo.gname}</li>
+	                                <li class="friends-com-info " data-id="394907013">{$vo.school}</li>
+	                            </ul>
+	                            
+	                        </li>
+	                        
+	                        </foreach>
+	                        
+	                        
+	                    </ul>
+	                    <div class="clearfix"></div>
+	                    <div class="list-bottom-loading" style="display:none;" id="list-bloading">正在加载...</div>
+	                </div>
+	                <div id="friends_groups">
+	                    <div class="friends-groups-top clearfix" id="group-container">
+	                        <div class="group-list">
+	                            <ul id="groups-list-con">
+	                                <li data-name="全部好友" data-type="all" class="group  on">
+	                                    <a class="all" title="全部好友" data-name="全部好友" href="javascript:;"> <span class="gname">全部好友</span><span class="group-num">{$friendNum}</span> </a>
+	                                </li>
+	                                <li data-name="未分组好友" class="group" data-gid="0">
+	                                    <a class="nogroup" title="未分组好友" data-name="未分组好友" href="javascript:;"> <span class="gname">未分组好友</span><span class="group-num">{$noGroup.num}</span> </a>
+	                                </li>
+	                                <li data-name="特别好友" data-status="1" class="group">
+	                                    <a class="special" title="特别好友" data-name="特别好友" href="javascript:;"> <span class="gname">特别好友</span><span class="group-num">{$sFListNum}</span> </a>
+	                                </li>
+	                               <foreach name="group" item="vo">
+	                                <li data-name="{$vo.gname}" class="group normal-group" data-gid="{$vo.id}">
+	                                    <a class="normal" title="{$vo.gname}" data-name="{$vo.gname}" href="javascript:;"> <span class="gname">{$vo.gname}</span><span class="group-num">{$vo.friNum}</span> </a>
+	                                </li>
+	                               </foreach>
+	                                <li class="createNewGroup"> <a href="javascript:;" title="新建分组" class="add png " onclick="createNewGroupDisplay()">新建分组</a>
+	                                    <div class="new-group " style="display:none;">
+	                                        <input class="new-group-name name-num-overflow"> <span class="new-name-ok">确认</span> <span class="new-name-cancel">取消</span> </div>
+	                                </li>
+	                                
+	                                
+	                            </ul>
+	                        </div>
+	                    </div>
+
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+
+
+<script src="__PUBLIC__/home/js/friend.js"></script>
+
+
+</block>
+
+

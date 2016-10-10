@@ -1,0 +1,2418 @@
+<extend name="Public/Base" />
+<block name="main-css">
+    <link href="__PUBLIC__/home/images/apple_icon_.png" rel="apple-touch-icon">
+    <link href="__PUBLIC__/home/css/base.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/home.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/global2-all-min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile-all-min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/publisher-all-min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index-all-min.css"
+    media="all">
+    <style class="lazyload" charset="utf-8">
+    @import "__PUBLIC__/home/css/webpager.css";
+    </style>
+    <link href="__PUBLIC__/home/css/webpager.css" rel="stylesheet">
+    <link href="__PUBLIC__/home/css/roomkeeper.css" rel="stylesheet">
+</block>
+<block name="main-body">
+    <!------------ 我的主页，资料，相册，分享，状态，日志 ------------>
+    <div class="frame-nav-wrap">
+        <div style="width: 1189px;" id="frameFixedNav" class="frame-nav-fixed-wraper">
+            <div class="frame-nav-inner">
+                <ul class="fd-nav-list clearfix">
+                    <li class="fd-nav-item fd-nav-cur-item">
+                        <span class="fd-nav-icon fd-sub-nav">
+                        </span>
+                        <a href="__MODULE__/FriendPage/friendPageIndex/id/{$Think.get.id}/fid/{$Think.get.fid}">
+                            TA的主页
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/FriendPage/friendProfileIndex/id/{$Think.get.id}/fid/{$Think.get.fid}">
+                            TA资料
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Album/index/id/{$Think.session.homeuserid}">
+                            相册
+                        </a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/FriendNews/index/id/{$Think.get.id}/fid/{$Think.get.fid}/type/6">分享</a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/FriendNews/index/id/{$Think.get.id}/fid/{$Think.get.fid}/type/0">状态</a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/FriendNews/index/id/{$Think.get.id}/fid/{$Think.get.fid}/type/1">日志</a>
+                    </li>
+                    <li class="fd-nav-item">
+                        <a href="__MODULE__/Friend/index/id/{$Think.session.homeuserid}">
+                            好友
+                        </a>
+                    </li>
+                    <li class="fd-nav-item fd-nav-showmore">
+                        <a href="#">
+                            更多
+                            <em class="fd-arr-down">
+                                <span class="fd-arr-outer">
+                                    <span class="fd-arr-inner">
+                                    </span>
+                                </span>
+                            </em>
+                        </a>
+                        <div class="nf-group-list-container">
+                            <ul class="nf-group-list">
+                                <li class="nf-group-item">
+                                    <a href="http://follow.renren.com/list/885992102/sub/v7">
+                                        关注
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://photo.renren.com/photo/zuji/885992102" target="_blank">
+                                        足迹
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://gift.renren.com/show/box/otherbox?userId=885992102" target="_blank">
+                                        礼物
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://page.renren.com/home/mypages" target="_blank">
+                                        公共主页
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://www.renren.com/lifeevent/index/885992102">
+                                        生活纪事
+                                    </a>
+                                </li>
+                                <li class="nf-group-item">
+                                    <a href="http://mvideo.renren.com/video/885992102/list">
+                                        短视频
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!------------ 主体内容中部 ------------>
+    <div class="bd-main">
+        <div class="bd-content clearfix">
+            <div id="profile_wrapper">
+                <div class="top-attach clearfix" id="top-attach">
+                </div>
+                <div id="timeline_wrapper">
+                    <!------------ 主体内容中部 头像所在行 ------------>
+                    <div id="cover">
+                        <!------------ 主体内容中部 头像 ------------>
+                        <div class="avatar">
+                            <div class="figure_con">
+                                <figure id="uploadPic">
+                                    <a href="http://photo.renren.com/getalbumprofile.do?owner=885992102" target="_blank" style="vertical-align:middle">
+                                        <img src="__PUBLIC__/home/images/{$friendInfo.head|default='men_main.gif'}" id="userpic"
+                                        width="177" style="line-height:100%">
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="avatar_edit">
+                                <h1>
+                                    编辑头像
+                                </h1>
+                            </div>
+                            <img src="__PUBLIC__/home/images/{$friendInfo.head}" id="largepic" style="display:none;">
+                        </div>
+                        <div class="cover-bg">
+                            <h1 class="avatar_title no_auth">
+                                {$friendInfo.name}
+                                <span>
+                                    (0人看过)
+                                    <a href="http://www.renren.com/notselectuser.do?action=no">
+                                        <img src="__PUBLIC__/home/images/no_stars.png" alt="成为星级用户，你可以更好的享受人人网">
+                                    </a>
+                                </span>
+                            </h1>
+                            <!------ 好友设置 ------>
+                            <div class="friend-area clearfix" id="setRelation">
+                                <button id="followAdd" data - id="343739299" data - flag="0" data - name="史星海" class="ui-button ui-button-green btn-follow">
+                                    <span class="ui-button-text" id="setRelationOne" style="font-size:18px">设置 </span>
+                                    <span class="ui-button-text" id="setRelationTwo" >({$relationInfo})</span>
+                                </button>
+                                
+                                <a id="settingMenu" class="setting" href="javascript:;" title="设置"></a>
+                                <div id="settingList" style="top: 30px; left: 127px; display:none;">
+                                    <ul class="clearfix" id="settingListUl" style="margin-top:5px;margin-left:15px;width:100%">
+                                        <switch name="relationNum">
+                                            
+                                            <case value="0">
+                                                <!-- 普通好友 -->
+                                                <li>
+                                                    <a id="addFriend" userId="{$info.id}" friendId="{$Think.get.fid}" onclick="removeFriend(this)" href="javascript:void(0)">解除好友关系</a>
+                                                </li>
+                                                <li>
+                                                    <a id="addAction" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="1" onclick="updateFriend(this)" href="javascript:void(0)">添加特别关注</a>
+                                                </li>
+                                                <li>
+                                                    <a id="addXhw" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="2" onclick="updateFriend(this)" href="javascript:void(0)">加入黑名单</a>
+                                                </li>
+                                            </case>
+                                            <case value="1">
+                                                <!-- 特别关注 -->
+                                                <li>
+                                                    <a id="removeFriendAction" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="0" onclick="updateFriend(this)" href="javascript:void(0)">取消关注</a>
+                                                </li>
+                                            </case>
+                                            <case value="2">
+                                                <!-- 黑名单 -->
+                                                <li>
+                                                    <a id="moveFriendXhw" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="0" onclick="updateFriend(this)" href="javascript:void(0)">移除黑名单</a>
+                                                </li>
+                                            </case>
+                                            <default />
+                                                <!-- 不是好友 -->
+                                                <li id="addFriendGeneral">
+                                                    <a id="addFriend" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="1" href="javascript:void(0)" onclick="addFriend(this)">添加好友</a>
+                                                </li>
+                                        </switch>
+                                        <li>
+                                            <a id="removeFriend" href="javascript:;">举报</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="" style="overflow:hidden;">
+                            <img style="margin-top: -92px; display: block;" src="__PUBLIC__/home/images/xlarge_kvZD_90e20003a0431e84.jpg"
+                            height="482" width="860">
+                            <div class="comboBox">
+                                <h1>
+                                    改变封面
+                                </h1>
+                            </div>
+                        </div>
+                        <span style="display: block;" class="cover-like">
+                            赞封面
+                        </span>
+                    </div>
+                    <div>
+                    </div>
+                    <!------------ 主体内容中部 个人基本信息 ------------>
+                    <div id="operate_area" class="clearfix">
+                        <div class="tl-information">
+                            <ul>
+                                <li class="work">
+                                    <span title="{$friendInfo.work}">
+                                        {$friendInfo.work}...
+                                    </span>
+                                </li>
+                                <li class="birthday">
+                                    <span>
+                                        <eq name="firendInfo.sex" value="1">
+                                            老汉
+                                            <else/>
+                                            女生
+                                        </eq>
+                                    </span>
+                                    <span>
+                                        ，{:date('m',$friendInfo['birth'])}月{:date('d',$friendInfo['birth'])}日
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="func_area" class="clearfix">
+                            <section>
+                                <button class="func_button button_save" id="save_action">
+                                    保存
+                                </button>
+                                <button class="func_button button_cancel" id="cancel_action">
+                                    取消
+                                </button>
+                            </section>
+                        </div>
+                    </div>
+                    <div style="padding-bottom: 25px;" id="timeline" class="clearfix">
+                        <!------------ 主体内容中部 状态 那些故事 我的故事 ------------>
+                        <div class="tl-left-module">
+                            <div id="global-publisher-box">
+                                <div id="global-publisher" class="global-publisher-box">
+                                    <div class="global-publisher-module" data-publishtogroupsapi="http://shell.renren.com/885992102/channel">
+                                        <div id="global-publisher-status-box" class="global-publisher-status-box">
+                                            <article id="global-publisher-status" class="global-publisher-status">
+                                                <section>
+                                                    <div class="editor-box">
+                                                        <form class="status-global-publisher" action="http://shell.renren.com/885992102/status"
+                                                        method="post">
+                                                            <div class="status-inputer">
+                                                                <dl class="global-publisher-selector clearfix">
+                                                                    <dd class="global-publisher-selector-status">
+                                                                        <a class="global-publisher-status-trigger" href="#" title="状态" onfocus="this.blur()">
+                                                                            状态
+                                                                        </a>
+                                                                    </dd>
+                                                                    <dd class="global-publisher-selector-photo">
+                                                                        <a class="global-publisher-photo-trigger" href="javascript:;" title="那些照片"
+                                                                        onfocus="this.blur()">
+                                                                            那些照片
+                                                                        </a>
+                                                                    </dd>
+                                                                    <dd class="global-publisher-selector-lifeevent last">
+                                                                        <a class="global-publisher-lifeevent-trigger" href="javascript:;" title="我的故事">
+                                                                            我的故事
+                                                                        </a>
+                                                                    </dd>
+                                                                </dl>
+                                                                <div class="content-container" style="display:none;">
+                                                                    <menu>
+                                                                        <li>
+                                                                            <a class="close" style="display:none;" href="#" onclick="return false;">
+                                                                                关闭
+                                                                            </a>
+                                                                        </li>
+                                                                    </menu>
+                                                                    <div class="status-textarea">
+                                                                        <textarea name="content" class="status-content" defaultpos="" defaultmodule=""
+                                                                        placeholder="说说那些事...">
+                                                                        </textarea>
+                                                                        <div class="publisher-toolbar" style="display:none">
+                                                                            <a class="at-button" href="#at" title="点名">
+                                                                            </a>
+                                                                            <a class="emotion-button" href="#emotion" title="表情">
+                                                                            </a>
+                                                                            <input class="speech-button" style="display:none;" x-webkit-speech="speech"
+                                                                            title="语音输入" lang="zh_CN" type="text">
+                                                                            <div class="chars-info" style="display:none">
+                                                                                <span class="chars-remain">
+                                                                                    240
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="global-publisher-modules-box">
+                                                                    </div>
+                                                                    <div class="global-publisher-footer clearfix" style="display:none">
+                                                                        <div style="display: none;" data-old-display="block" class="global-publisher-date">
+                                                                            <span>
+                                                                                发生于
+                                                                            </span>
+                                                                            <select class="year-select">
+                                                                                <option selected="selected">
+                                                                                    2015
+                                                                                </option>
+                                                                                <option>
+                                                                                    2014
+                                                                                </option>
+                                                                                <option>
+                                                                                    2013
+                                                                                </option>
+                                                                                <option>
+                                                                                    2012
+                                                                                </option>
+                                                                                <option>
+                                                                                    2011
+                                                                                </option>
+                                                                                <option>
+                                                                                    2010
+                                                                                </option>
+                                                                                <option>
+                                                                                    2009
+                                                                                </option>
+                                                                                <option>
+                                                                                    2008
+                                                                                </option>
+                                                                                <option>
+                                                                                    2007
+                                                                                </option>
+                                                                                <option>
+                                                                                    2006
+                                                                                </option>
+                                                                                <option>
+                                                                                    2005
+                                                                                </option>
+                                                                                <option>
+                                                                                    2004
+                                                                                </option>
+                                                                                <option>
+                                                                                    2003
+                                                                                </option>
+                                                                                <option>
+                                                                                    2002
+                                                                                </option>
+                                                                                <option>
+                                                                                    2001
+                                                                                </option>
+                                                                                <option>
+                                                                                    2000
+                                                                                </option>
+                                                                                <option>
+                                                                                    1999
+                                                                                </option>
+                                                                                <option>
+                                                                                    1998
+                                                                                </option>
+                                                                                <option>
+                                                                                    1997
+                                                                                </option>
+                                                                                <option>
+                                                                                    1996
+                                                                                </option>
+                                                                                <option>
+                                                                                    1995
+                                                                                </option>
+                                                                                <option>
+                                                                                    1994
+                                                                                </option>
+                                                                                <option>
+                                                                                    1993
+                                                                                </option>
+                                                                                <option>
+                                                                                    1992
+                                                                                </option>
+                                                                            </select>
+                                                                            <select class="month-select">
+                                                                                <option selected="selected">
+                                                                                    请选择
+                                                                                </option>
+                                                                                <option>
+                                                                                    1
+                                                                                </option>
+                                                                                <option>
+                                                                                    2
+                                                                                </option>
+                                                                                <option>
+                                                                                    3
+                                                                                </option>
+                                                                                <option>
+                                                                                    4
+                                                                                </option>
+                                                                                <option>
+                                                                                    5
+                                                                                </option>
+                                                                                <option>
+                                                                                    6
+                                                                                </option>
+                                                                                <option>
+                                                                                    7
+                                                                                </option>
+                                                                                <option>
+                                                                                    8
+                                                                                </option>
+                                                                                <option>
+                                                                                    9
+                                                                                </option>
+                                                                                <option>
+                                                                                    10
+                                                                                </option>
+                                                                                <option>
+                                                                                    11
+                                                                                </option>
+                                                                            </select>
+                                                                            <select class="day-select">
+                                                                                <option selected="selected">
+                                                                                    请选择
+                                                                                </option>
+                                                                                <option>
+                                                                                    1
+                                                                                </option>
+                                                                                <option>
+                                                                                    2
+                                                                                </option>
+                                                                                <option>
+                                                                                    3
+                                                                                </option>
+                                                                                <option>
+                                                                                    4
+                                                                                </option>
+                                                                                <option>
+                                                                                    5
+                                                                                </option>
+                                                                                <option>
+                                                                                    6
+                                                                                </option>
+                                                                                <option>
+                                                                                    7
+                                                                                </option>
+                                                                                <option>
+                                                                                    8
+                                                                                </option>
+                                                                                <option>
+                                                                                    9
+                                                                                </option>
+                                                                                <option>
+                                                                                    10
+                                                                                </option>
+                                                                                <option>
+                                                                                    11
+                                                                                </option>
+                                                                                <option>
+                                                                                    12
+                                                                                </option>
+                                                                                <option>
+                                                                                    13
+                                                                                </option>
+                                                                                <option>
+                                                                                    14
+                                                                                </option>
+                                                                                <option>
+                                                                                    15
+                                                                                </option>
+                                                                                <option>
+                                                                                    16
+                                                                                </option>
+                                                                                <option>
+                                                                                    17
+                                                                                </option>
+                                                                                <option>
+                                                                                    18
+                                                                                </option>
+                                                                                <option>
+                                                                                    19
+                                                                                </option>
+                                                                                <option>
+                                                                                    20
+                                                                                </option>
+                                                                                <option>
+                                                                                    21
+                                                                                </option>
+                                                                                <option>
+                                                                                    22
+                                                                                </option>
+                                                                                <option>
+                                                                                    23
+                                                                                </option>
+                                                                                <option>
+                                                                                    24
+                                                                                </option>
+                                                                                <option>
+                                                                                    25
+                                                                                </option>
+                                                                                <option>
+                                                                                    26
+                                                                                </option>
+                                                                                <option>
+                                                                                    27
+                                                                                </option>
+                                                                                <option>
+                                                                                    28
+                                                                                </option>
+                                                                                <option>
+                                                                                    29
+                                                                                </option>
+                                                                                <option>
+                                                                                    30
+                                                                                </option>
+                                                                                <option>
+                                                                                    31
+                                                                                </option>
+                                                                            </select>
+                                                                            <a href="javascript:;" class="add-month">
+                                                                                添加月份
+                                                                            </a>
+                                                                            <a href="javascript:;" class="add-day">
+                                                                                添加日期
+                                                                            </a>
+                                                                            <input id="tlTime" value="" type="hidden">
+                                                                        </div>
+                                                                        <div class="global-publisher-actions">
+                                                                            <input name="channel" value="renren" type="hidden">
+                                                                            <a href="#nogo" class="privacy-trigger" id="privacy_create_status" data-toggle="privacy"
+                                                                            data-option="{&quot;ugcType&quot;: &quot;status&quot;, &quot;offsetX&quot;: 3, &quot;offsetY&quot;: 2}">
+                                                                                <i class="privacy-icon picon-public">
+                                                                                </i>
+                                                                                <input value="{&quot;sourceControl&quot;: 99}" name="privacyParams" type="hidden">
+                                                                                <span>
+                                                                                    公开
+                                                                                </span>
+                                                                                <i class="privacy-icon picon-arrow-down">
+                                                                                </i>
+                                                                            </a>
+                                                                            <input class="submit" value="发布" type="submit">
+                                                                        </div>
+                                                                        <div class="last-status" style="display:none;">
+                                                                            <a ui-async="async" title="afda" href="http://status.renren.com/status?id=702071657">
+                                                                                2小时前:afda
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <input name="hostid" value="885992102" type="hidden">
+                                                            <input value="-1709812924" name="requestToken" type="hidden">
+                                                            <input value="65d7519e" name="_rtk" type="hidden">
+                                                        </form>
+                                                    </div>
+                                                </section>
+                                            </article>
+                                        </div>
+                                        <div class="loading-module" style="display:none;">
+                                            <p>
+                                                <img src="__PUBLIC__/home/images/indicator.gif" height="16" width="16">
+                                                正在发布，请稍候...
+                                            </p>
+                                        </div>
+                                        <div class="success-module" style="display:none;">
+                                            <p>
+                                                <img src="__PUBLIC__/home/images/right.png">
+                                                发布成功！
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gossip-box">
+                                <div class="my-gossip">
+                                    留言功能已全面升级为聊天，查看
+                                    <a href="http://gossip.renren.com/getgossiplist.do?id=885992102&amp;age=recent"
+                                    target="_blank">
+                                        历史留言记录
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="visit-special-con">
+                        </div>
+                        <div style="display: none;" data-time="2015-11" class="timeline_marker">
+                            <span>
+                                现在
+                            </span>
+                        </div>
+                        <!------------ 循环遍历我的新鲜事处 ------------>
+                        <section id="content">
+                            <foreach name="friendNews" item="vo">
+                                <switch name="vo.typeid">
+                                    <case value="0">
+                                        <!-- 说说 -->
+                                        <div class="timeline_feed tll_feed" style="display: block;">
+                                            <section id="newsfeed-27893523526" class="tl-a-feed tl-new-feed" style="display: block;">
+                                                <input type="hidden" value="2015-11-09">
+                                                <article class="content">
+                                                    <div class="content-header">
+                                                        <div class="time">
+                                                            <span class="day">
+                                                                {:date('d',$vo['addtime'])}
+                                                            </span>
+                                                            <div class="time-right">
+                                                                <span class="month">
+                                                                    {:date('m',$vo['addtime'])}月
+                                                                </span>
+                                                                <span class="year">
+                                                                    {:date('Y',$vo['addtime'])}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content-main">
+                                                        <div>
+                                                            {:htmlspecialchars_decode($vo['content'])}
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                <div class="legend">
+                                                    <a title="公开" href="javascript:" class="privacy-trigger privacy-trigger-small privacy-trigger-feed"
+                                                    id="privacy_27893523526">
+                                                        <span class="privacy-icon picon-public">
+                                                        </span>
+                                                    </a>
+                                                    <span class="type">
+                                                        状态
+                                                    </span>
+                                                    <a  href="javascript:void(0)" thisType="reply"onclick="openDiscuss(this)" class="replied">
+                                                        回复(<span id="reply{$vo.typeid}{$vo.id}">{$vo.discussNum}</span>)
+                                                    </a>
+                                                    <a stats="NF_27893523526_502_885992102" href="#nogo" onclick="forwardDoing('5287298625', '885992102', '','');"
+                                                    class="shared">
+                                                        分享
+                                                    </a>
+                                                </div>
+                                                <div class="feed-replies" id="feedbody27893523526">
+                                                </div>
+                                                <!------ 评论部分 ------>
+                                                <foreach name="vo.discuss" item="ob" key="k">
+                                                    <div class="a-reply bigemotion" style="background-color:#A1DFC5;margin-top:1px;display:none">
+                                                        <a namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                        target="_blank" class="avatar">
+                                                            <img width="50" src="__PUBLIC__/home/images/{$ob.headName}">
+                                                        </a>
+                                                        <div class="reply-content">
+                                                            <p class="text">
+                                                                <a target="_blank" namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                class="name">
+                                                                    {$ob.userName}
+                                                                </a>
+                                                                ：{$ob.content}
+                                                            </p>
+                                                            <div class="bottom-bar">
+                                                                <span class="time">
+                                                                    {:date('Y-m-d H:i:s',$ob['addtime'])}
+                                                                </span>
+                                                                <div class="action">
+                                                                    <a class="ilike_comment" href="#nogo" comment-data="{'stype':'status','cid':'462220608114028544','rid':5287298625,'uid':885992102, 'oid':885992102, 'roid':885992102,'name':'%25E6%25B5%25B7%25E5%25BF%2583','url':'http://status.renren.com/getdoing.do?id=885992102&amp;doingId=5287298625', 'liked': false}"
+                                                                    style="margin-left: 10px;">
+                                                                         
+                                                                    </a>
+                                                                    <a data-fid="27893523526" data-uid="885992102" data-uname="海心" data-rid="462220608114028544"
+                                                                    href="#nogo" onclick="return false;" class="delet">
+                                                                         
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </foreach>
+                                                <div class="feed-comment" name="feedContent" style="display: none;">
+                                                    <span class="avatar">
+                                                        <img src="__PUBLIC__/home/images/tiny_CgtE_53f8000461211986.jpg">
+                                                    </span>
+                                                    <div class="comment-box">
+                                                        <textarea href="javascript:void(0)" onclick="openDiscuss(this)" data-fid="27901813496" data-privacy="" autocomplete="off" placeholder="评论..."
+                                                        eicons_obj_id="3"></textarea>
+                                                        <div class="action">
+                                                            <div class="action-l">
+                                                                <a href="#nogo" onclick="return false;" class="emotion">
+                                                                    表情
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        表情
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" class="mention">
+                                                                    @
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        点名
+                                                                    </span>
+                                                                </a>
+                                                                <span class="share">
+                                                                    <input id="shareThis_27901813496" type="checkbox">
+                                                                    <label for="shareThis_27901813496">
+                                                                        同时分享
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="action-r">
+                                                                <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                    回复
+                                                                </a>
+                                                                <span class="count">
+                                                                    <span class="inputed">
+                                                                        0
+                                                                    </span>
+                                                                    /
+                                                                    <span class="maxlength">
+                                                                        140
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-comment feed-comment-expand" id="asas" style="display: none;">
+                                                    <span class="avatar">
+                                                        <img src="__PUBLIC__/home/images/{$head}">
+                                                    </span>
+                                                    <div class="comment-box" name="contentBox">
+                                                        <textarea data-fid="27901813496" data-privacy="" autocomplete="off" placeholder=""
+                                                        eicons_obj_id="3"></textarea>
+                                                        <div class="action">
+                                                            <div class="action-l">
+                                                                <a href="#nogo" onclick="return false;" class="emotion">
+                                                                    表情
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        表情
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" class="mention">
+                                                                    @
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        点名
+                                                                    </span>
+                                                                </a>
+                                                                <span class="share">
+                                                                    <input id="shareThis_27901813496" type="checkbox">
+                                                                    <label for="shareThis_27901813496">
+                                                                        同时分享
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="action-r">
+                                                                <a href="javascript:void(0)" data='{type:{$vo.typeid},typeid:{$vo.id},fid:{$Think.get.id}}' id="replySubmit{$vo.typeid}{$vo.id}" onclick="submitReply(this)" class="submit ">
+                                                                    回复
+                                                                </a>
+                                                                <span class="count">
+                                                                    <span class="inputed">
+                                                                        0
+                                                                    </span>
+                                                                    /
+                                                                    <span class="maxlength">
+                                                                        140
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="get-params-for-ilike-5287298625" style="display:none;">
+                                                    <div id="reply-params-27893523526" style="display:none;">
+                                                        { "cid": "5287298625", "oid":"885992102", "type": "status", "typeNum":
+                                                        "3", "rpLength": "", "userDigged":"", "digged":"","loadURI": "http://status.renren.com/feedcommentretrieve.do",
+                                                        "sendURI": "http://status.renren.com/feedcommentreply.do?fin=1&amp;ft=status&amp;ff_id=885992102",
+                                                        "delURI": "http://status.renren.com/feedcommentdelete.do"}
+                                                    </div>
+                                                </div>
+                                                <div class="tl-feed-actions">
+                                                    <menu>
+                                                        <a href="javascript:void(0)" onclick="widthBigger(this)" class="highlight-this" title="宽屏">
+                                                            <span data-fid="27893523526" class="highlight-btn">
+                                                            </span>
+                                                        </a>
+                                                        <a href="#nogo" onclick="return false;" title="编辑" class="edit-this">
+                                                            <span class="edit-btn">
+                                                            </span>
+                                                            <ul class="menu-list">
+                                                                <li data-fid="27893523526" class="del">
+                                                                    隐藏
+                                                                </li>
+                                                            </ul>
+                                                        </a>
+                                                    </menu>
+                                                </div>
+                                            </section>
+                                            <i>
+                                            </i>
+                                        </div>
+                                    </case>
+                                    <case value="1">
+                                        <!-- 日志 -->
+                                        <div class="timeline_feed tll_feed">
+                                            <section style="display: block;" id="newsfeed-27885972890" class="tl-a-feed tl-new-feed">
+                                                <input value="2015-11-01" type="hidden">
+                                                <article class="share-feed">
+                                                    <div class="content-source">
+                                                        <aside>
+                                                            <div class="main-text">
+                                                                <span class="section-title">
+                                                                    <a href="http://blog.renren.com/share/885992102/17976001945?from=0101010202&amp;ref=timelinefeed&amp;sfet=102&amp;fin=4&amp;fid=27885972890&amp;ff_id=885992102&amp;platform=6&amp;expose_time=1446419812"
+                                                                    target="_blank">
+                                                                        {$vo.title}普通日志
+                                                                    </a>
+                                                                </span>
+                                                                <span class="section-from">
+                                                                    :{:htmlspecialchars_decode($vo['content'])}
+                                                                    <a href="http://blog.renren.com/share/885992102/17976001945?from=0101010202&amp;ref=timelinefeed&amp;sfet=102&amp;fin=4&amp;fid=27885972890&amp;ff_id=885992102&amp;platform=6&amp;expose_time=1446419812"
+                                                                    target="_blank">
+                                                                        阅读全文
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        </aside>
+                                                    </div>
+                                                    <div class="tl-share-time">
+                                                        {:date('Y-m-d',$vo[addtime])}
+                                                    </div>
+                                                </article>
+                                                <div class="legend">
+                                                    <span class="type">
+                                                        分享日志
+                                                    </span>
+                                                    <a  href="javascript:void(0)" thisType="reply"onclick="openDiscuss(this)" class="replied">
+                                                        回复(<span id="reply{$vo.typeid}{$vo.id}">{$vo.discussNum}</span>)
+                                                    </a>
+                                                    <a class="shared share_new" onclick="return false;" href="#nogo" data-share="{stype:'create_share_div',id:17976001945,owner:885992102,host:0,ref:'feed',from:'0101010403' }">
+                                                        分享
+                                                    </a>
+                                                    <a  href="javascript:void(0)" thisId="{$vo.id}" thisType="{$vo.typeid}" thisTypeid="{$vo.id}" thisUid="{$vo.uid}" id='addSupport{$vo.typeid}{$vo.id}' onclick="addSupport(this)" class="ilike-button like">
+                                                        赞
+                                                    </a>
+                                                    <a href="javascript:void(0)" thisType="{$vo.typeid}" thisTypeid="{$vo.id}" thisUid="{$vo.uid}" thisId='{$vo.id}' id='removeSupport{$vo.typeid}{$vo.id}' onclick="removeSupport(this)" class="ilike-button like ilike-button-liked liked">
+                                                        取消赞(1)
+                                                    </a>
+                                                </div>
+                                                <div class="feed-replies" id="feedbody27885972890">
+                                                </div>
+                                                <!------ 评论部分 ------>
+                                                <foreach name="vo.discuss" item="ob" key="k">
+                                                    <div class="a-reply bigemotion" style="background-color:#A1DFC5;margin-top:1px;display:none">
+                                                        <a namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                        target="_blank" class="avatar">
+                                                            <img width="50" src="__PUBLIC__/home/images/{$ob.headName}">
+                                                        </a>
+                                                        <div class="reply-content">
+                                                            <p class="text">
+                                                                <a target="_blank" namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                class="name">
+                                                                    {$ob.userName}
+                                                                </a>
+                                                                ：{$ob.content}
+                                                            </p>
+                                                            <div class="bottom-bar">
+                                                                <span class="time">
+                                                                    {:date('Y-m-d H:i:s',$ob['addtime'])}
+                                                                </span>
+                                                                <div class="action">
+                                                                    <a class="ilike_comment" href="#nogo" comment-data="{'stype':'status','cid':'462220608114028544','rid':5287298625,'uid':885992102, 'oid':885992102, 'roid':885992102,'name':'%25E6%25B5%25B7%25E5%25BF%2583','url':'http://status.renren.com/getdoing.do?id=885992102&amp;doingId=5287298625', 'liked': false}"
+                                                                    style="margin-left: 10px;">
+                                                                         
+                                                                    </a>
+                                                                    <a data-fid="27893523526" data-uid="885992102" data-uname="海心" data-rid="462220608114028544"
+                                                                    href="#nogo" onclick="return false;" class="delet">
+                                                                         
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </foreach>
+                                                <div class="feed-comment" name="feedContent" style="display: none;">
+                                                    <span class="avatar">
+                                                        <img src="__PUBLIC__/home/images/tiny_CgtE_53f8000461211986.jpg">
+                                                    </span>
+                                                    <div class="comment-box">
+                                                        <textarea href="javascript:void(0)" onclick="openDiscuss(this)" data-fid="27901813496" data-privacy="" autocomplete="off" placeholder="评论..."
+                                                        eicons_obj_id="3"></textarea>
+                                                        <div class="action">
+                                                            <div class="action-l">
+                                                                <a href="#nogo" onclick="return false;" class="emotion">
+                                                                    表情
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        表情
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" class="mention">
+                                                                    @
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        点名
+                                                                    </span>
+                                                                </a>
+                                                                <span class="share">
+                                                                    <input id="shareThis_27901813496" type="checkbox">
+                                                                    <label for="shareThis_27901813496">
+                                                                        同时分享
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="action-r">
+                                                                <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                    回复
+                                                                </a>
+                                                                <span class="count">
+                                                                    <span class="inputed">
+                                                                        0
+                                                                    </span>
+                                                                    /
+                                                                    <span class="maxlength">
+                                                                        140
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-comment feed-comment-expand" id="asas" style="display: none;">
+                                                    <span class="avatar">
+                                                        <img src="__PUBLIC__/home/images/{$head}">
+                                                    </span>
+                                                    <div class="comment-box" name="contentBox">
+                                                        <textarea data-fid="27901813496" data-privacy="" autocomplete="off" placeholder=""
+                                                        eicons_obj_id="3"></textarea>
+                                                        <div class="action">
+                                                            <div class="action-l">
+                                                                <a href="#nogo" onclick="return false;" class="emotion">
+                                                                    表情
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        表情
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" class="mention">
+                                                                    @
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        点名
+                                                                    </span>
+                                                                </a>
+                                                                <span class="share">
+                                                                    <input id="shareThis_27901813496" type="checkbox">
+                                                                    <label for="shareThis_27901813496">
+                                                                        同时分享
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="action-r">
+                                                                <a href="javascript:void(0)" data='{type:{$vo.typeid},typeid:{$vo.id},fid:{$Think.get.id}}' id="replySubmit{$vo.typeid}{$vo.id}" onclick="submitReply(this)" class="submit ">
+                                                                    回复
+                                                                </a>
+                                                                <span class="count">
+                                                                    <span class="inputed">
+                                                                        0
+                                                                    </span>
+                                                                    /
+                                                                    <span class="maxlength">
+                                                                        140
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="get-params-for-ilike-17976001945" style="display:none;">
+                                                    <div id="reply-params-27885972890" style="display:none;">
+                                                        { "cid": "17976001945", "oid":"885992102", "type": "share", "typeNum":
+                                                        "4", "rpLength": "", "userDigged":"", "digged":"","loadURI": "http://status.renren.com/feedcommentretrieve.do",
+                                                        "sendURI": "http://status.renren.com/feedcommentreply.do?fin=4&amp;ft=share&amp;ff_id=885992102",
+                                                        "delURI": "http://status.renren.com/feedcommentdelete.do"}
+                                                    </div>
+                                                </div>
+                                                <div class="tl-feed-actions">
+                                                    <menu>
+                                                        <a href="javascript:void(0)" onclick="widthBigger(this)" class="highlight-this" title="宽屏">
+                                                            <span data-fid="27885972890" class="highlight-btn">
+                                                            </span>
+                                                        </a>
+                                                        <a href="#nogo" onclick="return false;" title="编辑" class="edit-this">
+                                                            <span class="edit-btn">
+                                                            </span>
+                                                            <ul class="menu-list">
+                                                                <li data-fid="27885972890" class="del">
+                                                                    隐藏
+                                                                </li>
+                                                            </ul>
+                                                        </a>
+                                                    </menu>
+                                                </div>
+                                            </section>
+                                            <i>
+                                            </i>
+                                        </div>
+                                    </case>
+                                    <case value="2">
+                                        <!-- 图片 -->
+                                        <div class="timeline_feed tlr_feed">
+                                            <section style="display: block;" id="newsfeed-27885979467" class="tl-a-feed tl-new-feed">
+                                                <input value="2015-11-01" type="hidden">
+                                                <article class="content">
+                                                    <div class="content-header">
+                                                        <div class="time">
+                                                            <span class="day">
+                                                                {:date('d',$vo['addtime'])}
+                                                            </span>
+                                                            <div class="time-right">
+                                                                <span class="month">
+                                                                    {:date('m',$vo['addtime'])}月
+                                                                </span>
+                                                                <span class="year">
+                                                                    {:date('Y',$vo['addtime'])}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content-media">
+                                                        <div class="cover-photo">
+                                                            <a target="_blank" href="http://photo.renren.com/photo/885992102/photo-8331967936?t=null?ref=timelinefeed&amp;sfet=1206&amp;fin=1&amp;fid=27885979467&amp;ff_id=885992102&amp;platform=6&amp;expose_time=1446419812">
+                                                                <img src="__PUBLIC__/upload/images/{$vo.picname}" style="margin-top:-45px;">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                                <div class="legend">
+                                                    <span class="type">
+                                                        更新封面
+                                                    </span>
+                                                    <a  href="javascript:void(0)" thisType="reply"onclick="openDiscuss(this)" class="replied">
+                                                        回复(<span id="reply{$vo.typeid}{$vo.id}">{$vo.discussNum}</span>)
+                                                    </a>
+                                                    <a  href="javascript:void(0)" thisId="{$vo.id}" thisType="{$vo.typeid}" thisTypeid="{$vo.id}" thisUid="{$vo.uid}" id='addSupport{$vo.typeid}{$vo.id}' onclick="addSupport(this)" class="ilike-button like">
+                                                        赞
+                                                    </a>
+                                                    <a href="javascript:void(0)" thisType="{$vo.typeid}" thisTypeid="{$vo.id}" thisUid="{$vo.uid}" thisId='{$vo.id}' id='removeSupport{$vo.typeid}{$vo.id}' onclick="removeSupport(this)" class="ilike-button like ilike-button-liked liked" style="display:none">
+                                                        取消赞(1)
+                                                    </a>
+                                                </div>
+                                                <!------ 评论部分 ------>
+                                                <foreach name="vo.discuss" item="ob" key="k">
+                                                    <div class="a-reply bigemotion" style="background-color:#A1DFC5;margin-top:1px;display:none">
+                                                        <a namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                        target="_blank" class="avatar">
+                                                            <img width="50" src="__PUBLIC__/home/images/{$ob.headName}">
+                                                        </a>
+                                                        <div class="reply-content">
+                                                            <p class="text">
+                                                                <a target="_blank" namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                class="name">
+                                                                    {$ob.userName}
+                                                                </a>
+                                                                ：{$ob.content}
+                                                            </p>
+                                                            <div class="bottom-bar">
+                                                                <span class="time">
+                                                                    {:date('Y-m-d H:i:s',$ob['addtime'])}
+                                                                </span>
+                                                                <div class="action">
+                                                                    <a class="ilike_comment" href="#nogo" comment-data="{'stype':'status','cid':'462220608114028544','rid':5287298625,'uid':885992102, 'oid':885992102, 'roid':885992102,'name':'%25E6%25B5%25B7%25E5%25BF%2583','url':'http://status.renren.com/getdoing.do?id=885992102&amp;doingId=5287298625', 'liked': false}"
+                                                                    style="margin-left: 10px;">
+                                                                         
+                                                                    </a>
+                                                                    <a data-fid="27893523526" data-uid="885992102" data-uname="海心" data-rid="462220608114028544"
+                                                                    href="#nogo" onclick="return false;" class="delet">
+                                                                         
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </foreach>
+                                                <div class="feed-comment" name="feedContent" style="display: none;">
+                                                    <span class="avatar">
+                                                        <img src="__PUBLIC__/home/images/tiny_CgtE_53f8000461211986.jpg">
+                                                    </span>
+                                                    <div class="comment-box">
+                                                        <textarea href="javascript:void(0)" onclick="openDiscuss(this)" data-fid="27901813496" data-privacy="" autocomplete="off" placeholder="评论..."
+                                                        eicons_obj_id="3"></textarea>
+                                                        <div class="action">
+                                                            <div class="action-l">
+                                                                <a href="#nogo" onclick="return false;" class="emotion">
+                                                                    表情
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        表情
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" class="mention">
+                                                                    @
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        点名
+                                                                    </span>
+                                                                </a>
+                                                                <span class="share">
+                                                                    <input id="shareThis_27901813496" type="checkbox">
+                                                                    <label for="shareThis_27901813496">
+                                                                        同时分享
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="action-r">
+                                                                <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                    回复
+                                                                </a>
+                                                                <span class="count">
+                                                                    <span class="inputed">
+                                                                        0
+                                                                    </span>
+                                                                    /
+                                                                    <span class="maxlength">
+                                                                        140
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-comment feed-comment-expand" id="asas" style="display: none;">
+                                                    <span class="avatar">
+                                                        <img src="__PUBLIC__/home/images/{$head}">
+                                                    </span>
+                                                    <div class="comment-box" name="contentBox">
+                                                        <textarea data-fid="27901813496" data-privacy="" autocomplete="off" placeholder=""
+                                                        eicons_obj_id="3"></textarea>
+                                                        <div class="action">
+                                                            <div class="action-l">
+                                                                <a href="#nogo" onclick="return false;" class="emotion">
+                                                                    表情
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        表情
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" class="mention">
+                                                                    @
+                                                                    <span class="tip">
+                                                                        <span class="arrow">
+                                                                        </span>
+                                                                        点名
+                                                                    </span>
+                                                                </a>
+                                                                <span class="share">
+                                                                    <input id="shareThis_27901813496" type="checkbox">
+                                                                    <label for="shareThis_27901813496">
+                                                                        同时分享
+                                                                    </label>
+                                                                </span>
+                                                            </div>
+                                                            <div class="action-r">
+                                                                <a href="javascript:void(0)" data='{type:{$vo.typeid},typeid:{$vo.id},fid:{$Think.get.id}}' id="replySubmit{$vo.typeid}{$vo.id}" onclick="submitReply(this)" class="submit ">
+                                                                    回复
+                                                                </a>
+                                                                <span class="count">
+                                                                    <span class="inputed">
+                                                                        0
+                                                                    </span>
+                                                                    /
+                                                                    <span class="maxlength">
+                                                                        140
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tl-feed-actions">
+                                                    <menu>
+                                                        <a href="javascript:void(0)" onclick="widthBigger(this)" class="highlight-this" title="宽屏">
+                                                            <span data-fid="27885979467" class="highlight-btn">
+                                                            </span>
+                                                        </a>
+                                                        <a href="#nogo" onclick="return false;" title="编辑" class="edit-this">
+                                                            <span class="edit-btn">
+                                                            </span>
+                                                            <ul class="menu-list">
+                                                                <li data-fid="27885979467" class="del">
+                                                                    隐藏
+                                                                </li>
+                                                            </ul>
+                                                        </a>
+                                                    </menu>
+                                                </div>
+                                            </section>
+                                            <i>
+                                            </i>
+                                        </div>
+                                    </case>
+                                    <case value="6">
+                                        <!-- 分享 -->
+                                        <switch name="vo.type">
+                                            <case value="0">
+                                                <!------ 说说 ------>
+                                                <div class="timeline_feed tlr_feed">
+                                                    <section id="newsfeed-27902208594" class="tl-a-feed tl-new-feed" style="display: block;">
+                                                        <input type="hidden" value="2015-11-17">
+                                                        <article class="share-feed">
+                                                            <div class="tl-share-title">
+                                                                转自
+                                                                <a href="http://www.renren.com/profile.do?id=312066055" namecard="312066055"
+                                                                target="_blank">
+                                                                    {$vo.fromuser}
+                                                                </a>
+                                                            </div>
+                                                            <div class="content-source">
+                                                                <aside>
+                                                                    <div class="main-text tl-share-status">
+                                                                        <div>
+                                                                            <a stats="NF_27902208594_505_885992102" href="http://www.renren.com/profile.do?id=312066055"
+                                                                            namecard="312066055" target="_blank">
+                                                                                {$vo.fromuser}
+                                                                            </a>
+                                                                            :{:htmlspecialchars_decode($vo['sharecontent'])}
+                                                                        </div>
+                                                                    </div>
+                                                                </aside>
+                                                            </div>
+                                                            <div class="tl-share-time">
+                                                                {:date('Y-m-d',$vo.addtime)}
+                                                            </div>
+                                                        </article>
+                                                        <div class="legend">
+                                                            <span class="type">
+                                                                分享状态
+                                                            </span>
+                                                            <a  href="javascript:void(0)" thisType="reply"onclick="openDiscuss(this)" class="replied">
+                                                                回复(<span id="reply{$vo.typeid}{$vo.id}">{$vo.discussNum}</span>)
+                                                            </a>
+                                                            <a stats="NF_27902208594_505_885992102" href="#nogo" onclick="forwardDoing('5287468320', '885992102', '','');"
+                                                            class="shared">
+                                                                分享
+                                                            </a>
+                                                        </div>
+                                                        <div class="feed-replies" id="feedbody27902208594">
+                                                        </div>
+                                                        <!-- <div class="feed-comment">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/a.gif">
+                                                            </span>
+                                                            <div class="comment-box">
+                                                                <textarea data-fid="27902208594" data-privacy="" autocomplete="off">
+                                                                    评论...
+                                                                </textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27902208594" type="checkbox">
+                                                                            <label for="shareThis_27902208594">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                240
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <!------ 评论部分 ------>
+                                                        <foreach name="vo.discuss" item="ob" key="k">
+                                                            <div class="a-reply bigemotion" style="background-color:#A1DFC5;margin-top:1px;display:none">
+                                                                <a namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                target="_blank" class="avatar">
+                                                                    <img width="50" src="__PUBLIC__/home/images/{$ob.headName}">
+                                                                </a>
+                                                                <div class="reply-content">
+                                                                    <p class="text">
+                                                                        <a target="_blank" namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                        class="name">
+                                                                            {$ob.userName}
+                                                                        </a>
+                                                                        ：{$ob.content}
+                                                                    </p>
+                                                                    <div class="bottom-bar">
+                                                                        <span class="time">
+                                                                            {:date('Y-m-d H:i:s',$ob['addtime'])}
+                                                                        </span>
+                                                                        <div class="action">
+                                                                            <a class="ilike_comment" href="#nogo" comment-data="{'stype':'status','cid':'462220608114028544','rid':5287298625,'uid':885992102, 'oid':885992102, 'roid':885992102,'name':'%25E6%25B5%25B7%25E5%25BF%2583','url':'http://status.renren.com/getdoing.do?id=885992102&amp;doingId=5287298625', 'liked': false}"
+                                                                            style="margin-left: 10px;">
+                                                                                 
+                                                                            </a>
+                                                                            <a data-fid="27893523526" data-uid="885992102" data-uname="海心" data-rid="462220608114028544"
+                                                                            href="#nogo" onclick="return false;" class="delet">
+                                                                                 
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </foreach>
+                                                        <div class="feed-comment" name="feedContent" style="display: none;">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/tiny_CgtE_53f8000461211986.jpg">
+                                                            </span>
+                                                            <div class="comment-box">
+                                                                <textarea href="javascript:void(0)" onclick="openDiscuss(this)" data-fid="27901813496" data-privacy="" autocomplete="off" placeholder="评论..."
+                                                                eicons_obj_id="3"></textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27901813496" type="checkbox">
+                                                                            <label for="shareThis_27901813496">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                140
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="feed-comment feed-comment-expand" id="asas" style="display: none;">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/{$head}">
+                                                            </span>
+                                                            <div class="comment-box" name="contentBox">
+                                                                <textarea data-fid="27901813496" data-privacy="" autocomplete="off" placeholder=""
+                                                                eicons_obj_id="3"></textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27901813496" type="checkbox">
+                                                                            <label for="shareThis_27901813496">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="javascript:void(0)" data='{type:{$vo.typeid},typeid:{$vo.id},fid:{$Think.get.id}}' id="replySubmit{$vo.typeid}{$vo.id}" onclick="submitReply(this)" class="submit ">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                140
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="get-params-for-ilike-5287468320" style="display:none;">
+                                                            <div id="reply-params-27902208594" style="display:none;">
+                                                                { "cid": "5287468320", "oid":"885992102", "type": "status", "typeNum":
+                                                                "3", "rpLength": "", "userDigged":"", "digged":"","loadURI": "http://status.renren.com/feedcommentretrieve.do",
+                                                                "sendURI": "http://status.renren.com/feedcommentreply.do?fin=0&amp;ft=status&amp;ff_id=885992102",
+                                                                "delURI": "http://status.renren.com/feedcommentdelete.do"}
+                                                            </div>
+                                                        </div>
+                                                        <div class="tl-feed-actions">
+                                                            <menu>
+                                                                <a href="javascript:void(0)" onclick="widthBigger(this)" class="highlight-this" title="宽屏">
+                                                                    <span data-fid="27902208594" class="highlight-btn">
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" title="编辑" class="edit-this">
+                                                                    <span class="edit-btn">
+                                                                    </span>
+                                                                    <ul class="menu-list">
+                                                                        <li data-fid="27902208594" class="del">
+                                                                            隐藏
+                                                                        </li>
+                                                                    </ul>
+                                                                </a>
+                                                            </menu>
+                                                        </div>
+                                                    </section>
+                                                    <i>
+                                                    </i>
+                                                </div>
+                                            </case>
+                                            <case value="2">
+                                                <!------ 图片 ------>
+                                                <div class="timeline_feed tll_feed">
+                                                    <section id="newsfeed-27901813496" class="tl-a-feed  tl-new-feed" style="display: block;">
+                                                        <input type="hidden" value="2015-11-17">
+                                                        <article class="share-feed">
+                                                            <div class="content-source">
+                                                                <aside>
+                                                                    <div class="share-pic">
+                                                                        <a target="_blank" href="http://share.renren.com/share/885992102/17981050723?from=0101010302&amp;ref=timelinefeed&amp;sfet=2009&amp;fin=3&amp;fid=27901813496&amp;ff_id=885992102&amp;platform=6&amp;expose_time=1447720056">
+                                                                            <img  src="__PUBLIC__/home/images/{$vo.sharepic}"
+                                                                             widt6h="145" height="90" style="left: -12.5px;">
+                                                                        </a>
+                                                                    </div>
+                                                                    <p class="main-text">
+                                                                        <span class="section-title">
+                                                                            <a href="http://share.renren.com/share/885992102/17981050723?from=0101010302&amp;ref=timelinefeed&amp;sfet=2009&amp;fin=3&amp;fid=27901813496&amp;ff_id=885992102&amp;platform=6&amp;expose_time=1447720056"
+                                                                            target="_blank">
+                                                                                {$vo.formalbum}
+                                                                            </a>
+                                                                        </span>
+                                                                        <span class="section-from">
+                                                                            共 {$vo.formalbumnum} 张照片
+                                                                        </span>
+                                                                        <span class="section-from">
+                                                                            来自：
+                                                                            <a href="http://www.renren.com/601499186/profile?ref=timelinefeed&amp;sfet=2009&amp;fin=3&amp;fid=27901813496&amp;ff_id=885992102&amp;platform=6&amp;expose_time=1447720056"
+                                                                            target="_blank">
+                                                                                {$vo.fromuser}
+                                                                            </a>
+                                                                        </span>
+                                                                    </p>
+                                                                </aside>
+                                                            </div>
+                                                            <div class="tl-share-time">
+                                                                {:date('Y-m-d',$vo['addtime'])}
+                                                            </div>
+                                                        </article>
+                                                        <div class="legend">
+                                                            <span class="type">
+                                                                分享相册
+                                                            </span>
+                                                            <a  href="javascript:void(0)" thisType="reply"onclick="openDiscuss(this)" class="replied">
+                                                                回复(<span id="reply{$vo.typeid}{$vo.id}">{$vo.discussNum}</span>)
+                                                            </a>
+                                                            <a class="shared share_new" onclick="return false;" href="#nogo" data-share="{stype:'create_share_div',id:17981050723,owner:885992102,host:0,ref:'feed',from:'0101010403' }">
+                                                                分享
+                                                            </a>
+                                                            <a  href="javascript:void(0)" thisId="{$vo.id}" thisType="{$vo.typeid}" thisTypeid="{$vo.id}" thisUid="{$vo.uid}" id='addSupport{$vo.typeid}{$vo.id}' onclick="addSupport(this)" class="ilike-button like">
+                                                                赞
+                                                            </a>
+                                                            <a href="javascript:void(0)" thisType="{$vo.typeid}" thisTypeid="{$vo.id}" thisUid="{$vo.uid}" thisId='{$vo.id}' id='removeSupport{$vo.typeid}{$vo.id}' onclick="removeSupport(this)" class="ilike-button like ilike-button-liked liked" style="display:none">
+                                                                取消赞(1)
+                                                            </a>
+                                                        </div>
+                                                        <div class="feed-replies" id="feedbody27901813496">
+                                                        </div>
+                                                        <!-- <div class="feed-comment">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/a.gif">
+                                                            </span>
+                                                            <div class="comment-box">
+                                                                <textarea data-fid="27901813496" data-privacy="" autocomplete="off">
+                                                                    评论...
+                                                                </textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27901813496" type="checkbox">
+                                                                            <label for="shareThis_27901813496">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                140
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <!------ 评论部分 ------>
+                                                        <foreach name="vo.discuss" item="ob" key="k">
+                                                            <div class="a-reply bigemotion" style="background-color:#A1DFC5;margin-top:1px;display:none">
+                                                                <a namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                target="_blank" class="avatar">
+                                                                    <img width="50" src="__PUBLIC__/home/images/{$ob.headName}">
+                                                                </a>
+                                                                <div class="reply-content">
+                                                                    <p class="text">
+                                                                        <a target="_blank" namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                        class="name">
+                                                                            {$ob.userName}
+                                                                        </a>
+                                                                        ：{$ob.content}
+                                                                    </p>
+                                                                    <div class="bottom-bar">
+                                                                        <span class="time">
+                                                                            {:date('Y-m-d H:i:s',$ob['addtime'])}
+                                                                        </span>
+                                                                        <div class="action">
+                                                                            <a class="ilike_comment" href="#nogo" comment-data="{'stype':'status','cid':'462220608114028544','rid':5287298625,'uid':885992102, 'oid':885992102, 'roid':885992102,'name':'%25E6%25B5%25B7%25E5%25BF%2583','url':'http://status.renren.com/getdoing.do?id=885992102&amp;doingId=5287298625', 'liked': false}"
+                                                                            style="margin-left: 10px;">
+                                                                                 
+                                                                            </a>
+                                                                            <a data-fid="27893523526" data-uid="885992102" data-uname="海心" data-rid="462220608114028544"
+                                                                            href="#nogo" onclick="return false;" class="delet">
+                                                                                 
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </foreach>
+                                                        <div class="feed-comment" name="feedContent" style="display: none;">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/tiny_CgtE_53f8000461211986.jpg">
+                                                            </span>
+                                                            <div class="comment-box">
+                                                                <textarea href="javascript:void(0)" onclick="openDiscuss(this)" data-fid="27901813496" data-privacy="" autocomplete="off" placeholder="评论..."
+                                                                eicons_obj_id="3"></textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27901813496" type="checkbox">
+                                                                            <label for="shareThis_27901813496">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                140
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="feed-comment feed-comment-expand" id="asas" style="display: none;">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/{$head}">
+                                                            </span>
+                                                            <div class="comment-box" name="contentBox">
+                                                                <textarea data-fid="27901813496" data-privacy="" autocomplete="off" placeholder=""
+                                                                eicons_obj_id="3"></textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27901813496" type="checkbox">
+                                                                            <label for="shareThis_27901813496">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="javascript:void(0)" data='{type:{$vo.typeid},typeid:{$vo.id},fid:{$Think.get.id}}' id="replySubmit{$vo.typeid}{$vo.id}" onclick="submitReply(this)" class="submit ">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                140
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="get-params-for-ilike-17981050723" style="display:none;">
+                                                            <div id="reply-params-27901813496" style="display:none;">
+                                                                { "cid": "17981050723", "oid":"885992102", "type": "share", "typeNum":
+                                                                "4", "rpLength": "", "userDigged":"", "digged":"","loadURI": "http://status.renren.com/feedcommentretrieve.do",
+                                                                "sendURI": "http://status.renren.com/feedcommentreply.do?fin=3&amp;ft=share&amp;ff_id=885992102",
+                                                                "delURI": "http://status.renren.com/feedcommentdelete.do"}
+                                                            </div>
+                                                        </div>
+                                                        <div class="tl-feed-actions">
+                                                            <menu>
+                                                                <a href="javascript:void(0)" onclick="widthBigger(this)" class="highlight-this" title="宽屏">
+                                                                    <span data-fid="27901813496" class="highlight-btn">
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" title="编辑" class="edit-this">
+                                                                    <span class="edit-btn">
+                                                                    </span>
+                                                                    <ul class="menu-list">
+                                                                        <li data-fid="27901813496" class="del">
+                                                                            隐藏
+                                                                        </li>
+                                                                    </ul>
+                                                                </a>
+                                                            </menu>
+                                                        </div>
+                                                    </section>
+                                                    <i>
+                                                    </i>
+                                                </div>
+                                            </case>
+                                            <case value="1">
+                                                <!------ 日志 ------>
+                                                <div class="timeline_feed tlr_feed">
+                                                    <section id="newsfeed-27901813811" class="tl-a-feed tl-new-feed" style="display: block;">
+                                                        <input type="hidden" value="2015-11-17">
+                                                        <article class="share-feed">
+                                                            <div class="content-source">
+                                                                <aside>
+                                                                    <div class="main-text">
+                                                                        <span class="section-title">
+                                                                            <a href="http://blog.renren.com/share/885992102/17981050780?from=0101010202&amp;ref=timelinefeed&amp;sfet=102&amp;fin=2&amp;fid=27901813811&amp;ff_id=885992102&amp;platform=6&amp;expose_time=1447720488"
+                                                                            target="_blank">
+                                                                                {$vo.sharetitle}（{$vo.fromuser}）分享日志
+                                                                            </a>
+                                                                        </span>
+                                                                        <span class="section-from">
+                                                                            <p style="overflow:hidden;width:100%;white-space:nowrap;text-overflow:ellipsis;float:left"> {:htmlspecialchars_decode($vo[sharecontent])}</p>
+                                                                           
+                                                                            <a href="http://blog.renren.com/share/885992102/17981050780?from=0101010202&amp;ref=timelinefeed&amp;sfet=102&amp;fin=2&amp;fid=27901813811&amp;ff_id=885992102&amp;platform=6&amp;expose_time=1447720488"
+                                                                            target="_blank" >
+                                                                                阅读全文
+                                                                            </a>
+                                                                        </span>
+                                                                    </div>
+                                                                </aside>
+
+                                                            </div>
+                                                            <div class="tl-share-time">
+                                                                {:date('Y-m-d',$vo.addtime)}
+                                                            </div>
+                                                        </article>
+                                                        <div class="legend">
+                                                            <span class="type">
+                                                                分享日志
+                                                            </span>
+                                                            <a  href="javascript:void(0)" thisType="reply"onclick="openDiscuss(this)" class="replied">
+                                                                回复(<span id="reply{$vo.typeid}{$vo.id}">{$vo.discussNum}</span>)
+                                                            </a>
+                                                            <a class="shared share_new" onclick="return false;" href="#nogo" data-share="{stype:'create_share_div',id:17981050780,owner:885992102,host:0,ref:'feed',from:'0101010403' }">
+                                                                分享
+                                                            </a>
+                                                            <a  href="javascript:void(0)" thisId="{$vo.id}" thisType="{$vo.typeid}" thisTypeid="{$vo.id}" thisUid="{$vo.uid}" id='addSupport{$vo.typeid}{$vo.id}' onclick="addSupport(this)" class="ilike-button like">
+                                                                赞
+                                                            </a>
+                                                            <a href="javascript:void(0)" thisType="{$vo.typeid}" thisTypeid="{$vo.id}" thisUid="{$vo.uid}" thisId='{$vo.id}' id='removeSupport{$vo.typeid}{$vo.id}' onclick="removeSupport(this)" class="ilike-button like ilike-button-liked liked" style="display:none">
+                                                                取消赞(1)
+                                                            </a>
+                                                        </div>
+                                                        <div class="feed-replies" id="feedbody27901813811">
+                                                        </div>
+                                                        <!-- <div class="feed-comment">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/a.gif">
+                                                            </span>
+                                                            <div class="comment-box">
+                                                                <textarea data-fid="27901813811" data-privacy="" autocomplete="off">
+                                                                    评论...
+                                                                </textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27901813811" type="checkbox">
+                                                                            <label for="shareThis_27901813811">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                140
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <!------ 评论部分 ------>
+                                                        <foreach name="vo.discuss" item="ob" key="k">
+                                                            <div class="a-reply bigemotion" style="background-color:#A1DFC5;margin-top:1px;display:none">
+                                                                <a namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                target="_blank" class="avatar">
+                                                                    <img width="50" src="__PUBLIC__/home/images/{$ob.headName}">
+                                                                </a>
+                                                                <div class="reply-content">
+                                                                    <p class="text">
+                                                                        <a target="_blank" namecard="885992102" href="http://www.renren.com/885992102/profile"
+                                                                        class="name">
+                                                                            {$ob.userName}
+                                                                        </a>
+                                                                        ：{$ob.content}
+                                                                    </p>
+                                                                    <div class="bottom-bar">
+                                                                        <span class="time">
+                                                                            {:date('Y-m-d H:i:s',$ob['addtime'])}
+                                                                        </span>
+                                                                        <div class="action">
+                                                                            <a class="ilike_comment" href="#nogo" comment-data="{'stype':'status','cid':'462220608114028544','rid':5287298625,'uid':885992102, 'oid':885992102, 'roid':885992102,'name':'%25E6%25B5%25B7%25E5%25BF%2583','url':'http://status.renren.com/getdoing.do?id=885992102&amp;doingId=5287298625', 'liked': false}"
+                                                                            style="margin-left: 10px;">
+                                                                                 
+                                                                            </a>
+                                                                            <a data-fid="27893523526" data-uid="885992102" data-uname="海心" data-rid="462220608114028544"
+                                                                            href="#nogo" onclick="return false;" class="delet">
+                                                                                 
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </foreach>
+                                                        <div class="feed-comment" name="feedContent" style="display: none;">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/tiny_CgtE_53f8000461211986.jpg">
+                                                            </span>
+                                                            <div class="comment-box">
+                                                                <textarea href="javascript:void(0)" onclick="openDiscuss(this)" data-fid="27901813496" data-privacy="" autocomplete="off" placeholder="评论..."
+                                                                eicons_obj_id="3"></textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27901813496" type="checkbox">
+                                                                            <label for="shareThis_27901813496">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="#nogo" onclick="return false;" class="submit submit-disabled">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                140
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="feed-comment feed-comment-expand" id="asas" style="display: none;">
+                                                            <span class="avatar">
+                                                                <img src="__PUBLIC__/home/images/{$head}">
+                                                            </span>
+                                                            <div class="comment-box" name="contentBox">
+                                                                <textarea data-fid="27901813496" data-privacy="" autocomplete="off" placeholder=""
+                                                                eicons_obj_id="3"></textarea>
+                                                                <div class="action">
+                                                                    <div class="action-l">
+                                                                        <a href="#nogo" onclick="return false;" class="emotion">
+                                                                            表情
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                表情
+                                                                            </span>
+                                                                        </a>
+                                                                        <a href="#nogo" onclick="return false;" class="mention">
+                                                                            @
+                                                                            <span class="tip">
+                                                                                <span class="arrow">
+                                                                                </span>
+                                                                                点名
+                                                                            </span>
+                                                                        </a>
+                                                                        <span class="share">
+                                                                            <input id="shareThis_27901813496" type="checkbox">
+                                                                            <label for="shareThis_27901813496">
+                                                                                同时分享
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="action-r">
+                                                                        <a href="javascript:void(0)" data='{type:{$vo.typeid},typeid:{$vo.id},fid:{$Think.get.id}}' id="replySubmit{$vo.typeid}{$vo.id}" onclick="submitReply(this)" class="submit ">
+                                                                            回复
+                                                                        </a>
+                                                                        <span class="count">
+                                                                            <span class="inputed">
+                                                                                0
+                                                                            </span>
+                                                                            /
+                                                                            <span class="maxlength">
+                                                                                140
+                                                                            </span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="get-params-for-ilike-17981050780" style="display:none;">
+                                                            <div id="reply-params-27901813811" style="display:none;">
+                                                                { "cid": "17981050780", "oid":"885992102", "type": "share", "typeNum":
+                                                                "4", "rpLength": "", "userDigged":"", "digged":"","loadURI": "http://status.renren.com/feedcommentretrieve.do",
+                                                                "sendURI": "http://status.renren.com/feedcommentreply.do?fin=2&amp;ft=share&amp;ff_id=885992102",
+                                                                "delURI": "http://status.renren.com/feedcommentdelete.do"}
+                                                            </div>
+                                                        </div>
+                                                        <div class="tl-feed-actions">
+                                                            <menu>
+                                                                <a href="javascript:void(0)" onclick="widthBigger(this)" class="highlight-this" title="宽屏">
+                                                                    <span data-fid="27901813811" class="highlight-btn">
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#nogo" onclick="return false;" title="编辑" class="edit-this">
+                                                                    <span class="edit-btn">
+                                                                    </span>
+                                                                    <ul class="menu-list">
+                                                                        <li data-fid="27901813811" class="del">
+                                                                            隐藏
+                                                                        </li>
+                                                                    </ul>
+                                                                </a>
+                                                            </menu>
+                                                        </div>
+                                                    </section>
+                                                    <i>
+                                                    </i>
+                                                </div>
+                                            </case>
+                                        </switch>
+                                    </case>
+                                </switch>
+                            </foreach>
+                        </section>
+                    </div>
+                    <div class="born" id="born-le">
+                        <div class="timeline_marker" data-time="born">
+                            <span>
+                                出生
+                            </span>
+                        </div>
+                        <div class="timeline_feed tlf_feed">
+                            <section class="tl-a-feed">
+                                <article class="content">
+                                    <div class="content-main">
+                                        <div class="life-event">
+                                            <span class="avatar">
+                                                <img src="__PUBLIC__/home/images/le-born.png">
+                                            </span>
+                                            <h3 class="event-type">
+                                                呱呱坠地鸟
+                                            </h3>
+                                            <p class="event-info">
+                                                {:date('Y年m月d日',$friendInfo['birth'])}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </section>
+                            <i>
+                            </i>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div style="left: 1204.5px; display: block;" id="timeline_nav">
+                    <ul>
+                        <li class="current" data-time="2015-11">
+                            <a href="javascript:;">
+                                现在
+                            </a>
+                        </li>
+                        <li data-time="2015-10">
+                            <a href="javascript:;">
+                                10月
+                            </a>
+                        </li>
+                        <li data-time="born">
+                            <a href="javascript:;">
+                                出生
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="ad_box">
+                    </div>
+                </div> -->
+            </div>
+            <input id="showLoverPage" value="false" type="hidden">
+            <input id="showSite" value="false" type="hidden">
+            <input id="showMovie" value="false" type="hidden">
+        </div>
+        <div class="time-machine-side clearfix" id="time-machine-side">
+            <a href="http://motion.renren.com/#from=profile" class="time-machine-enter"
+            onfocus="this.blur()" target="_blank">
+                开启人人时光机
+            </a>
+        </div>
+        <!------ 评论 ------>
+        <div id="waitReply" style="display:none">
+            <div class="a-reply bigemotion" style="background-color:#A1DFC5;margin-top:1px">
+                <a namecard="885992102" href="http://www.renren.com/885992102/profile"
+                target="_blank" class="avatar">
+                    <img width="50" thisType="head" src="__PUBLIC__/home/images/{$ob.headName}">
+                </a>
+                <div class="reply-content">
+                    <p class="text">
+                        <a target="_blank" thisType="userName" namecard="885992102" href="http://www.renren.com/885992102/profile"
+                        class="name">
+                            名字
+                        </a>
+                        <span thisType="content">：{$ob.content}</span>
+                    </p>
+                    <div class="bottom-bar">
+                        <span class="time" thisType="addtime">
+                            {:date('Y-m-d H:i:s',$ob['addtime'])}
+                        </span>
+                        <div class="action">
+                            <a class="ilike_comment" href="#nogo" comment-data="{'stype':'status','cid':'462220608114028544','rid':5287298625,'uid':885992102, 'oid':885992102, 'roid':885992102,'name':'%25E6%25B5%25B7%25E5%25BF%2583','url':'http://status.renren.com/getdoing.do?id=885992102&amp;doingId=5287298625', 'liked': false}"
+                            style="margin-left: 10px;">
+                                赞
+                            </a>
+                            <a data-fid="27893523526" data-uid="885992102" data-uname="海心" data-rid="462220608114028544"
+                            href="#nogo" onclick="return false;" class="delet">
+                                删除
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!------ 好友关系 ------>
+        <div id="waitRelation" style="display:none">
+            <!-- 不是好友 -->
+            <div id="addFriendGeneral">
+                <li>
+                    <a id="addFriend" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="1" href="javascript:void(0)" onclick="addFriend(this)">添加好友</a>
+                </li>
+                <li>
+                    <a id="removeFriend" href="javascript:;">举报</a>
+                </li>
+            </div>
+                
+            <!-- 普通好友 -->
+            <div id="setFriendGeneral">
+                <li>
+                    <a id="addFriend" userId="{$info.id}" friendId="{$Think.get.fid}" onclick="removeFriend(this)" href="javascript:void(0)">解除好友关系</a>
+                </li>
+                <li>
+                    <a id="addAction" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="1" onclick="updateFriend(this)" href="javascript:;">添加特别关注</a>
+                </li>
+                <li>
+                    <a id="addXhw" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="2" onclick="updateFriend(this)" href="javascript:;">加入黑名单</a>
+                </li>
+                <li>
+                    <a id="removeFriend" href="javascript:;">举报</a>
+                </li>
+            </div>
+            <!-- 特别关注 -->
+            <div id="setFriendAction">
+                <li>
+                    <a id="removeFriendAction" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="0" onclick="updateFriend(this)" href="javascript:;">取消关注</a>
+                </li>
+                <li>
+                    <a id="removeFriend" href="javascript:;">举报</a>
+                </li>
+            </div>
+            <!-- 黑名单 -->
+            <div id="setFriendXhw">
+                <li id="setFriendXhw">
+                    <a id="moveFriendXhw" userId="{$info.id}" friendId="{$Think.get.fid}" groupId="0" onclick="updateFriend(this)" href="javascript:;">移除黑名单</a>
+                </li>
+                <li>
+                    <a id="removeFriend" href="javascript:;">举报</a>
+                </li>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="__PUBLIC__/home/js/userpage.js">
+    </script>
+    <script type="text/javascript">
+        // 修改日志中图片样式
+        $(function(){
+            $('.section-from').each(function(){
+                var img = $(this).find('img');
+                var thisWidth = parseInt($(img['0']).css('width'));
+                if(thisWidth>360){
+                    $(img['0']).css('width',260);
+                }
+
+                for(var i=$(img).length;i>=1;i--){
+                    $(img[i]).remove();
+                }
+            });
+        });
+        // 排版
+        $(function(){
+            var content = $('#content').find('.timeline_feed');
+            if(typeof(content[0])=='undefined'){return;}
+            var height = content[0].offsetTop+$(content[0]).height();
+            $(content[0]).attr('class','timeline_feed tlr_feed');
+            for(var i=1;i<content.length;i++){
+                if(height < content[i].offsetTop){
+                    if($(content[i]).attr('class') == 'timeline_feed tlr_feed'){
+                        $(content[i]).attr('class','timeline_feed tll_feed');
+                    }else{
+                        $(content[i]).attr('class','timeline_feed tlr_feed');       
+                    }
+                    height = content[i].offsetTop+$(content[i]).height();
+                }
+
+            }
+        });
+        // 宽屏特效
+        function widthBigger(res){
+            var biggerDiv = $(res).parents('div.timeline_feed');
+            if(($(biggerDiv).attr('class') == 'timeline_feed tll_feed') || ($(biggerDiv).attr('class') == 'timeline_feed tlr_feed') ){
+                $(biggerDiv).attr('class','timeline_feed tlf_feed');
+            }else if(($(biggerDiv).attr('class') == 'timeline_feed tlf_feed')){
+                var pre = $(biggerDiv).prev('div.timeline_feed');
+                console.log($(pre).attr('class'));
+                if($(pre).attr('class') == 'timeline_feed tll_feed'){
+                    $(biggerDiv).attr('class','timeline_feed tlr_feed');
+                }else{
+                    $(biggerDiv).attr('class','timeline_feed tll_feed');
+                }
+            }
+            // console.log($(biggerDiv).attr('class'));
+        }
+        // 无刷新赞
+        function addSupport(res){
+            var type = $(res).attr('thisType');
+            var typeid = $(res).attr('thisTypeid');
+            var uid = $(res).attr('thisUid');
+            var id = $(res).attr('thisId');
+            $.ajax({
+                url:'__MODULE__/userPage/userPageAddSupport',
+                type:'POST',
+                data:'type='+type+'&typeid='+typeid+'&uid='+uid,
+                dataType:'text',
+                async:false,
+                success:function(res){
+                    if(res == 'y'){
+                        $('#addSupport'+type+id).hide('slow');
+                        $('#removeSupport'+type+id).show('slow');
+                    }else{
+                        console.log('点赞失败');
+                    }
+                }
+            });
+        }
+        function removeSupport(res){
+            var type = $(res).attr('thisType');
+            var typeid = $(res).attr('thisTypeid');
+            var uid = $(res).attr('thisUid');
+            var id = $(res).attr('thisId');
+            $.ajax({
+                url:'__MODULE__/userPage/userPageRemoveSupport',
+                type:'POST',
+                data:'type='+type+'&typeid='+typeid+'&uid='+uid,
+                dataType:'text',
+                async:false,
+                success:function(res){
+                    if(res == 'y'){
+                        $('#removeSupport'+type+id).hide('slow');
+                        $('#addSupport'+type+id).show('slow');
+                    }else{
+                        console.log('取消点赞失败');
+                    }
+                }
+            });
+        }
+        // 无刷新评论
+        function openDiscuss(res){
+            $(res).parents('section').children('div.feed-comment-expand').show('fast');
+            $(res).parents('section').children("div[name='feedContent']").hide('fast');
+            $(res).parents('section').children('.feed-comment-expand').find('textarea').focus();
+            $(res).parents('section').children('.feed-comment-expand').find('textarea').val('');
+        }
+        // 评论框的切换
+        $('body:not(a.replied)').click(function(e){
+            if(!$(e.target).is('a.replied') && !$(e.target).is('textarea') ){
+                $('div.feed-comment-expand').each(function(){
+                    if($(this).css('display') == 'block'){
+                        $(this).hide('fast');
+                        $(this).parents('section').children("div[name='feedContent']").show('fast');
+                    }
+                });
+            }
+            if(!$(e.target).is('#followAdd') && !$(e.target).is('#settingMenu') && !$(e.target).is('#setRelationOne') && !$(e.target).is('#setRelationTwo')){
+                $('#settingList').hide('fast');
+            }
+        });
+        
+        // 提交评论
+        function submitReply(res){
+            var content = $(res).parents("div[name='contentBox']").children('textarea').val();
+            eval('var list='+$(res).attr('data'));
+            // console.log($(res).parents('section').children('span.replyNum').html());
+            
+            $.ajax({
+                url:'__MODULE__/userPage/addReply',
+                type:'POST',
+                dataType:'text',
+                data:'type='+list.type+'&typeid='+list.typeid+'&content='+content+'&fid='+list.fid,
+                success:function(data){
+                    if(data == 'y'){
+                        console.log('提交成功');
+                        var divStr = $('#waitReply').find('.bigemotion');
+                        $(divStr).find("a[thisType='userName']").html($('#name').val());
+                        $(divStr).find("span[thisType='content']").html(' ：'+content);
+                        var strDate = getDate();
+                        $(divStr).find("span[thisType='addtime']").html(strDate);
+                        $(divStr).find("img[thisType='head']").attr('src','__PUBLIC__/home/images/'+$('#head').val());
+                        var str = $('#waitReply').html();
+                        var lastReply = $(res).parents('.feed-comment-expand').prev('.feed-comment');
+                        $(str).insertBefore(lastReply);
+                        var replyNum = parseInt($("#reply"+list.type+list.typeid).html());
+                        $("#reply"+list.type+list.typeid).html(replyNum+1);
+                    }else{
+                        console.log('提交失败');
+                    }
+                }
+            });
+        }
+
+        // 获取日期函数
+        function getDate(){   
+            d = new Date();                           // 创建 Date 对象。
+            var mouth = (d.getMonth() + 1);            // 获取月份。
+            var day = d.getDate();                   // 获取日。
+            var year = d.getYear();
+            var str = year+'-'+mouth+'-'+day;                         // 获取年份。
+            return(str);                                // 返回日期。
+        }   
+
+        // 点击评论 评论的切换
+        $("a.replied").toggle(function(){
+            $(this).parents('section').children('.bigemotion').show('fast');
+            $(this).parents('section').children('.feed-comment-expand').find('textarea').focus();
+            $(this).parents('section').children('.feed-comment-expand').find('textarea').val('');
+        },function(){
+            $(this).parents('section').children('.bigemotion').hide('fast');
+            $(this).parents('section').children('.feed-comment-expand').css('display','none');
+        });
+
+        // 好友添加设置的切换
+        $('#setRelation').click(function(){
+            if($('#settingList').css('display') == 'none'){
+                $('#settingList').show('fast');
+            }else{
+                $('#settingList').hide('fast');
+            }
+        });
+
+        // 添加好友
+        function addFriend(res){
+            var id = $(res).attr('userId');
+            var fid = $(res).attr('friendId');
+            var gid = $(res).attr('groupId');
+            // console.log(id,fid,gid);
+            $.ajax({
+                url:'__MODULE__/FriendPage/addFriend',
+                type:'POST',
+                data:'id='+id+'&fid='+fid+'&gid=0',
+                dateType:'text',
+                async:false,
+                success:function(data){
+                    if(data == 'y'){
+                        $('#tanchaungneirong').html('成功向好友发送请求，等待对方回复...');
+                        $('#tanchuang').show();
+                    }else  if(data == 'repeat'){
+                        $('#tanchaungneirong').html('点一下就够了，你个蠢货...');
+                        $('#tanchuang').show();
+                    }else{
+                        $('#tanchaungneirong').html('请求失败，请稍后在再试...');
+                        $('#tanchuang').show();
+                    }
+                }
+            });
+        }
+        // 解除好友关系
+        function removeFriend(res){
+            $('#setRelationTwo').html('陌生人');
+            var id = $(res).attr('userId');
+            var fid = $(res).attr('friendId');
+            $.ajax({
+                url:'__MODULE__/FriendPage/removeFriend',
+                type:'POST',
+                data:'id='+id+'&fid='+fid,
+                dateType:'text',
+                async:false,
+                success:function(data){
+                    if(data == 'y'){
+                        $('#tanchaungneirong').html('从此便是陌生人...');
+                        $('#tanchuang').show();
+                        $('#setRelationTwo').html('陌生人');
+                        $('#settingListUl').empty();
+                        var str = $('#waitRelation').find('#addFriendGeneral').html();
+                        $('#settingListUl').prepend(str);
+                    }else if(data == 'repeat'){
+                        $('#tanchaungneirong').html('对方已不是您好友...');
+                        $('#tanchuang').show();
+                    }else{
+                        $('#tanchaungneirong').html('请求失败，请稍后在再试...');
+                        $('#tanchuang').show();
+                    }
+                }
+            });
+        }
+        // 修改好友关系
+        function updateFriend(res){
+            var id = $(res).attr('userId');
+            var fid = $(res).attr('friendId');
+            var gid = $(res).attr('groupId');
+            // console.log(id,fid,gid);
+            $.ajax({
+                url:'__MODULE__/FriendPage/updateFriend',
+                type:'POST',
+                data:'id='+id+'&fid='+fid+'&gid='+gid,
+                dateType:'text',
+                async:false,
+                success:function(data){
+                    if(data == 'y'){
+                        console.log(gid);
+                        switch(gid){
+                            case '0':
+                                $('#tanchaungneirong').html('成功修改，目前为普通好友...');
+                                $('#setRelationTwo').html('已是好友');
+                                $('#settingListUl').empty();
+                                var str = $('#waitRelation').find('#setFriendGeneral').html();
+                                $('#settingListUl').prepend(str);
+                                break;
+                            case '1':
+                                $('#tanchaungneirong').html('关注成功...');
+                                $('#setRelationTwo').html('特别关注');
+                                $('#settingListUl').empty();
+                                var str = $('#waitRelation').find('#setFriendAction').html();
+                                $('#settingListUl').prepend(str);
+                                break;
+                            case '2':
+                                $('#tanchaungneirong').html('对方已在黑名单...');
+                                $('#setRelationTwo').html('黑名单');
+                                $('#settingListUl').empty();
+                                var str = $('#waitRelation').find('#setFriendXhw').html();
+                                $('#settingListUl').prepend(str);
+                                break;
+                        }
+                        $('#tanchuang').show();
+                    }else  if(data == 'repeat'){
+                        $('#tanchaungneirong').html('点一下就够了，你个蠢货...');
+                        $('#tanchuang').show();
+                    }else{
+                        $('#tanchaungneirong').html('请求失败，请稍后在再试...');
+                        $('#tanchuang').show();
+                    }
+                }
+            });
+        }
+    </script>
+</block>

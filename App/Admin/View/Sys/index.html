@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>在路上 后台主页</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="__PUBLIC__/admin/bower_components/bootstrap/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+        <!-- MetisMenu CSS -->
+        <link href="__PUBLIC__/admin/bower_components/metisMenu/dist/metisMenu.min.css"
+        rel="stylesheet">
+        <!-- DataTables CSS -->
+        <link href="__PUBLIC__/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css"
+        rel="stylesheet">
+        <!-- DataTables Responsive CSS -->
+        <link href="__PUBLIC__/admin/bower_components/datatables-responsive/css/dataTables.responsive.css"
+        rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="__PUBLIC__/admin/dist/css/sb-admin-2.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="__PUBLIC__/admin/bower_components/font-awesome/css/font-awesome.min.css"
+        rel="stylesheet" type="text/css">
+
+        <!-- jQuery -->
+        <script src="__PUBLIC__/admin/bower_components/jquery/dist/jquery.min.js">
+        </script>
+        <script src="__PUBLIC__/admin/bower_components/jquery-cookie-master/src/jquery.cookie.js">
+        </script>
+
+        <style type="text/css">
+            #inputSuccess,#level,#status,#picInput,#picName,#regInput,#updatePic,#updateName,#updateReg{width:60%;float:right;margin-right:10%;} 
+            .control-label{margin-left:10%;}
+            #secondWell{position:absolute;width:30%;left:35%;top:15%;}
+            #control-label-sex{padding-right:10%;}
+            #control-div-sex{padding-top:10px;}
+        </style>
+    </head>
+    
+    <body>
+        <div id="pageLoading">
+        </div>
+        <!------ 弹窗 ------>   
+        <button class="btn btn-primary btn-lg" id="success" data-toggle="modal" data-target="#successModal" style="display:none">
+            点击弹窗
+        </button>
+        <div class="modal fade in " id="successModal"  role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content alert-success" style="width:70%">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            恭喜你
+                        </h4>
+                    </div>
+                    <div id="addSuccessInfo" class="modal-body">
+                        <h4><b>　　　添加成功！</b></h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="successButton" class="btn btn-default" data-dismiss="modal">
+                            确定
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-lg" id="error" data-toggle="modal" data-target="#errorModal" style="display:none">
+            点击弹窗
+        </button>
+        <div class="modal fade in " id="errorModal"  role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content alert-success">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                        <h4 class="modal-title" id="addErrorInfo">
+                            不好意思，添加失败
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4><b id="errorShow"></b></h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="addAgain" class="btn btn-default" data-dismiss="modal">
+                            返回继续添加
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            回到页面
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!------ 头部开始 ------>
+        <header>
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation"
+            style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">
+                            Toggle navigation
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        欢迎进入后台
+                    </a>
+                    <div class="menu-toggler sidebar-toggler">
+                        <span class="sr-only">
+                            Toggle navigation
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                        <span class="icon-bar">
+                        </span>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope fa-fw">
+                                </i>
+                                <i class="fa fa-caret-down">
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-messages">
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <strong>
+                                                John Smith
+                                            </strong>
+                                            <span class="pull-right text-muted">
+                                                <em>
+                                                    Yesterday
+                                                </em>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+                                            eleifend...
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <strong>
+                                                John Smith
+                                            </strong>
+                                            <span class="pull-right text-muted">
+                                                <em>
+                                                    Yesterday
+                                                </em>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+                                            eleifend...
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <strong>
+                                                John Smith
+                                            </strong>
+                                            <span class="pull-right text-muted">
+                                                <em>
+                                                    Yesterday
+                                                </em>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+                                            eleifend...
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a class="text-center" href="#">
+                                        <strong>
+                                            Read All Messages
+                                        </strong>
+                                        <i class="fa fa-angle-right">
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-messages -->
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-tasks fa-fw">
+                                </i>
+                                <i class="fa fa-caret-down">
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-tasks">
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    Task 1
+                                                </strong>
+                                                <span class="pull-right text-muted">
+                                                    40% Complete
+                                                </span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                    <span class="sr-only">
+                                                        40% Complete (success)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    Task 2
+                                                </strong>
+                                                <span class="pull-right text-muted">
+                                                    20% Complete
+                                                </span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                                    <span class="sr-only">
+                                                        20% Complete
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    Task 3
+                                                </strong>
+                                                <span class="pull-right text-muted">
+                                                    60% Complete
+                                                </span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                    <span class="sr-only">
+                                                        60% Complete (warning)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <p>
+                                                <strong>
+                                                    Task 4
+                                                </strong>
+                                                <span class="pull-right text-muted">
+                                                    80% Complete
+                                                </span>
+                                            </p>
+                                            <div class="progress progress-striped active">
+                                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                    <span class="sr-only">
+                                                        80% Complete (danger)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a class="text-center" href="#">
+                                        <strong>
+                                            See All Tasks
+                                        </strong>
+                                        <i class="fa fa-angle-right">
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-tasks -->
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell fa-fw">
+                                </i>
+                                <i class="fa fa-caret-down">
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-comment fa-fw">
+                                            </i>
+                                            New Comment
+                                            <span class="pull-right text-muted small">
+                                                4 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-twitter fa-fw">
+                                            </i>
+                                            3 New Followers
+                                            <span class="pull-right text-muted small">
+                                                12 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-envelope fa-fw">
+                                            </i>
+                                            Message Sent
+                                            <span class="pull-right text-muted small">
+                                                4 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-tasks fa-fw">
+                                            </i>
+                                            New Task
+                                            <span class="pull-right text-muted small">
+                                                4 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="fa fa-upload fa-fw">
+                                            </i>
+                                            Server Rebooted
+                                            <span class="pull-right text-muted small">
+                                                4 minutes ago
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a class="text-center" href="#">
+                                        <strong>
+                                            See All Alerts
+                                        </strong>
+                                        <i class="fa fa-angle-right">
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-alerts -->
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user fa-fw">
+                                </i>
+                                <i class="fa fa-caret-down">
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user fa-fw">
+                                        </i>
+                                        表情简介
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-gear fa-fw">
+                                        </i>
+                                        设置
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="__MODULE__/Public/logout">
+                                        <i class="fa fa-sign-out fa-fw">
+                                        </i>
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </li>
+                        <!-- /.dropdown -->
+                    </ul>
+                    <!-- /.navbar-top-links -->
+                </div>
+                <!-- /.navbar-header -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+        </header>
+        <!------ /头部结束 ------>
+        <div id="wrapper">
+            <!------ 左侧导航栏 ------>
+            <nav role="navigation" style="margin-bottom: 0; margin-top: -1px;">
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse" id="sidebar-area">  
+                        <ul class="nav" id="sidebar">
+                            <!-- 搜索框 -->
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="搜索...">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                                </div>
+                                <div  class="search-icon">
+                                    <a href="#"><i class="fa fa fa-search fa-fw"></i></a>
+                                </div>
+                            </li>
+                            <!-- 主页 -->
+                            <li>
+                                <a href="__MODULE__/Index/index"> 
+                                    <i class="fa fa-dashboard fa-fw"></i>
+                                    <span class="side-menu-title">主页</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="__MODULE__/UserManage/index">
+                                    <i class="fa fa-male fa-fw"></i> 
+                                    <span class="side-menu-title">用户管理</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="__MODULE__/Log/index">
+                                    <i class="fa fa-list-alt fa-fw"></i> 
+                                    <span class="side-menu-title">行为日志</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-collapse">
+                                    <i class="fa fa-gears fa-fw"></i> 
+                                    <span class="side-menu-title">系统管理</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="__MODULE__/Sys/index">表情管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="__MODULE__/Sys/linkIndex">链接管理</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!------ /左侧导航栏 ------>
+                    </div>
+                </div>
+            </nav>
+            <!------ 中间主题内容 ------>
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12" text-align="center">
+                        <h2 class="page-header">
+                            <center>
+                                <i class="fa fa-thumbs-o-up fa-10x">
+                                </i>
+                                <b>
+                                    表情管理
+                                </b>
+                            </center>
+                        </h2>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!------ 第一块 修改表情弹窗 ------>
+                <div class="panel-body navbar-right" style="margin-top:-22px">
+                    <div class="modal fade" id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!------ form提交表单处 ------>
+                                <form action="__URL__/faceUpdate" id="editForm" enctype="multipart/form-data" target="frameIcon" method="post">
+                                    <input type="text" name="updateId" id="updateId" style="display:none">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">修改表情</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputSuccess">
+                                                表情名
+                                            </label>
+                                            <input type="text" name="icon" class="form-control" id="updateName">
+                                        </div><span id="updateWarning"></span><p>　</p>
+                                        <!-- <div class="form-group has-success">
+                                            <label class="control-label" for="inputWarning">
+                                                替换文字
+                                            </label>
+                                            <input type="text" name="reg" class="form-control" id="updateReg">
+                                        </div><p>　</p> -->
+                                        <div class="form-group has-success">
+                                            <label class="control-label" for="inputError">
+                                                选择表情图片
+                                            </label>
+                                            <input type="file" onchange="updateSee()" name="pic" id="updatePic">
+                                        </div><p>　</p>
+                                        <div class="form-group has-success" style="overflow:hidden">
+                                            <label class="control-label" for="inputError" style="float:left">
+                                                表情预览
+                                            </label>
+                                            <img style="float:right;margin-right:40%" src="" id="iconSee" alt="正在修改，请稍后。。。" width="70">
+                                        </div><p>　</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="editClose" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+                                        <button type="submit" class="btn btn-primary">提交</button>
+                                        <button type="reset" class="btn btn-primary">重置</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+                <!------ 第二块 ------>
+                <iframe id="frameIcon" onchange="change(this)" name="frameIcon" style="display:none;width:800px;height:400px;border:1px solid red" >
+                </iframe>
+                <div class="row" style="margin-bottom:100px">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                表情列表 
+                                <!------ 添加表情弹窗 ------>
+                                <div class="panel-body navbar-right" style="margin-top:-22px">
+                                    <!-- Button trigger modal -->
+                                    
+                                    <button class="btn btn-success " id="addNewIcon" data-toggle="modal" data-target="#myModal">
+                                        添加表情
+                                    </button>
+                                    <!-- <button class="btn btn-success " id="addNewIcon" data-toggle="modal" data-target="#myModal">
+                                        添加多个表情
+                                    </button> -->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!------ form提交表单处  target="frameIcon" ------>
+                                                
+                                                <form action="__URL__/faceInsert" enctype="multipart/form-data" id="addForm" target="frameIcon" method="post">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" id="closeAdd" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">添加新表情</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group has-success">
+                                                            <label class="control-label" for="inputSuccess">
+                                                                表情名
+                                                            </label>
+                                                            <input type="text" name="icon" class="form-control" id="picName">
+                                                        </div><p id="picWarning" style="margin-left:30%"></p><p>　</p>
+                                                        <div class="form-group has-success">
+                                                            <label class="control-label" for="inputError">
+                                                                选择表情图片
+                                                            </label>
+                                                            <input type="file" onchange="file()" name="pic" id="picInput">
+                                                        </div><p>　</p>
+                                                        <div class="form-group has-success" style="overflow:hidden">
+                                                            <label class="control-label" for="inputError" style="float:left">
+                                                                表情预览
+                                                            </label>
+                                                            <img style="float:right;margin-right:40%" src="" id="picSee" alt="" width="100">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="addClose" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+                                                        <button type="submit" id="addSubmit" class="btn btn-primary">提交</button>
+                                                        <button type="reset" class="btn btn-primary">重置</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    <!-- /.modal -->
+                                </div>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <!------ 浏览表格 ------>
+                            <div class="panel-body">
+                                <div class="dataTable_wrapper" >
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <!------ 表头 ------>
+                                        <thead>
+                                            <tr>
+                                                <th>表情编号</th>
+                                                <th>表情匹配文字</th>
+                                                <th>表情图</th>
+                                                <th>表情操作</th>
+                                            </tr>
+                                        </thead>
+                                        <!------ 表体 ------>
+                                        <tbody id="tbody">
+                                            <foreach name="icon" item="vo">
+                                                <tr class="odd gradeX ">
+                                                    <td k="id" id="id{$vo.id}">{$vo.id}</td>
+                                                    <td k="reg">{$vo.reg}</td>
+                                                    <td k="icon"><img src="__PUBLIC__/upload/icon/{$vo.icon}" alt=""></td>
+                                                    <td>
+                                                        <button type="button" onclick="getInfo(this)" class="btn btn-warning btn-sm btn-circle" data-toggle="modal" data-target="#myEditModal" title="修改">
+                                                            <i class="fa fa-wrench"></i>
+                                                        </button>
+                                                        <button type="button" onclick="del(this)" class="btn btn-warning btn-sm btn-circle" title="删除">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </foreach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- /#wrapper -->
+        
+        <!-- Bootstrap Core JavaScript -->
+        <script src="__PUBLIC__/admin/bower_components/bootstrap/dist/js/bootstrap.min.js">
+        </script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="__PUBLIC__/admin/bower_components/metisMenu/dist/metisMenu.min.js">
+        </script>
+        <!-- DataTables JavaScript -->
+        <script src="__PUBLIC__/admin/bower_components/DataTables/media/js/jquery.dataTables.min.js">
+        </script>
+        <script src="__PUBLIC__/admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js">
+        </script>
+        <!-- Custom Theme JavaScript -->
+        <script src="__PUBLIC__/admin/dist/js/sb-admin-2.js">
+        </script>
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+        <script>
+            $(document).ready(function() {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            function fun(){
+                alert('this is fun() function!!!!');
+            }
+            // 无刷新删除
+            function del(ob){
+                var id = $(ob).parents('tr').find("td[k=id]").html();
+                if(confirm("确定要删除吗？")){
+                   $.ajax({
+                        url:"__URL__/faceDel",
+                       type:"GET",
+                       data:"id="+id,
+                   dataType:"text",
+                      async:true,
+                    success:function(res){
+                            if(res == 'y'){
+                                $('#addSuccessInfo').html('　　　删除成功！');
+                                $('#success').trigger('click');
+                                $(ob).parents('tr').remove();
+                            }else{
+                                alert("删除失败！");
+                            }
+                        },
+                    });
+                    
+                }
+            }
+
+            // 提供表情上传界面 原来的分页失效
+            $(function(){
+                // loadIcon();
+            });
+
+            // 加载表情
+            function loadIcon(){
+                $.ajax({
+                    url:'__URL__/show',
+                    type:'POST',
+                    dataType:'json',
+                    async:true,
+                    success:function(res){
+                        // console.log(res);
+                        var str = "";
+                        for(var i=0;i<res.length;i++){
+                            str += "<tr class='odd gradeX'>";
+                            str += "<td k='id'>"+res[i].id+"</td>";
+                            str += "<td k='reg'>"+res[i].reg+"</td>";
+                            str += "<td k='icon'><img src='__PUBLIC__/upload/icon/"+res[i].icon+"'></td>";
+                            str += "<td><button type='button' onclick='getInfo(this)' class='btn btn-warning btn-sm btn-circle' data-toggle='modal' data-target='#myEditModal' title='修改'><i class='fa fa-wrench'></i></button><button type='button' onclick='del(this)' class='btn btn-warning btn-sm btn-circle' title='删除'><i class='fa fa-times'></i></button></td>";
+                            str += "</tr>";
+                        }
+                        $('#tbody').empty().append(str);
+                    },
+                    error:function(){
+                        alert('ajax加载失败');
+                    }
+                });
+            }
+            // 提交时触发
+            $('#addForm').submit(function(){
+                $("#addClose").trigger("click");
+            });
+            // 无刷新添加(成功)
+            function addSuccess(id){
+                $("#success").trigger("click");
+                $('#addSuccessInfo').html('　　　添加成功！');
+                // var reg = document.getElementById('regInput').value;
+                var icon = document.getElementById('picName').value;
+                // 获取上传文件后缀
+                var inputFile = document.getElementById('picInput').value;
+                var hz = inputFile.substr(inputFile.lastIndexOf('.'));
+                // hz = '.jpg';
+                var str = '';
+                str += "<tr class='odd gradeX'>";
+                str += "<td k='id'>"+id+"</td>";
+                str += "<td k='reg'>"+icon+"</td>";
+                str += "<td k='icon'><img src='__PUBLIC__/upload/icon/"+icon+hz+"'></td>";
+                str += "<td><button type='button' onclick='getInfo(this)' class='btn btn-warning btn-sm btn-circle' data-toggle='modal' data-target='#myEditModal' title='修改'><i class='fa fa-wrench'></i></button><button type='button' onclick='del(this)' class='btn btn-warning btn-sm btn-circle' title='删除'><i class='fa fa-times'></i></button></td>";
+                str += "</tr>";
+                $('#tbody').append(str);
+            }
+            // 无刷新添加(失败)
+            function addError(error){
+                $('#addErrorInfo').html('不好意思，修改失败');
+                $('#errorShow').html('原因：'+error+'');
+                $("#error").trigger("click");
+            }
+            // 继续添加
+            $('#addAgain').click(function(){
+                $("#addNewIcon").trigger("click");
+            });
+            // 修改成功
+            function editSuccess(){
+                $('#addSuccessInfo').html('　　　修改成功！');
+                $('#success').trigger('click');
+            }
+            // 修改成功后更换图片
+            $('#successButton').click(function(){
+                if($('#addSuccessInfo').html() == '　　　修改成功！'){
+                    var updateId = $('#updateId').val();
+                    var list = $("#id"+updateId).parents('tr').find('td');
+                    var icon = document.getElementById('updateName').value;
+                    
+                    // 获取上传文件后缀
+                    var inputFile = document.getElementById('updatePic').value;
+                    if(inputFile == ''){
+                        inputFile = document.getElementById('iconSee').src;
+                        var hz = inputFile.substr(inputFile.lastIndexOf('.'));
+                    }else{
+                        var hz = inputFile.substr(inputFile.lastIndexOf('.'));
+                    }
+                    // 进行修改
+                    // console.log(icon);
+                    $(list[1]).html(icon);
+                    var url = "__PUBLIC__/upload/icon/back_"+icon+hz+"";
+                    console.log(url);
+                    $(list[2]).find('img').attr('src',url);
+                    // setTimeout(function(){
+                        $.ajax({
+                            url:'__URL__/delBack',
+                            type:'POST',
+                            data:'url='+icon+hz,
+                            dataType:'text',
+                            async:true,
+                            success:function(res){
+                                console.log(res);
+                            }
+                        });
+                    // },100);
+                        
+                }
+            });
+            // 无刷新修改
+            $('#editForm').submit(function(){
+                $('#editClose').trigger('click');
+            });
+
+            //获取本地图片路径函数
+            function getObjectURL(file) {
+                var url = null ; 
+                if (window.createObjectURL!=undefined) { // basic
+                    url = window.createObjectURL(file) ;
+                } else if (window.URL!=undefined) { // mozilla(firefox)
+                    url = window.URL.createObjectURL(file) ;
+                } else if (window.webkitURL!=undefined) { // webkit or chrome
+                    url = window.webkitURL.createObjectURL(file) ;
+                }
+                return url ;
+            }
+
+            // 改变图片上传按钮时触发的函数
+            function file(){
+                var form = document.getElementById('addform');
+                // form.submit();
+                var nameObject = document.getElementById('picInput');
+                // 调用函数，获取本地路径（虚拟，但也可以使用）
+                var picPath = getObjectURL(nameObject.files[0]);
+                $('#picSee').attr('src',picPath);
+            }
+
+            // 改变图片上传按钮时触发的函数
+            function updateSee(){
+                var form = document.getElementById('editForm');
+                // form.submit();
+                var nameObject = document.getElementById('updatePic');
+                // 调用函数，获取本地路径（虚拟，但也可以使用）
+                var picPath = getObjectURL(nameObject.files[0]);
+                // console.log(picPath);
+                $('#iconSee').attr('src',picPath);
+            }
+            
+            // 修改表情信息时触发函数，作用：将id和icon和reg的值传到表单
+            function getInfo(me){
+                var list = $(me).parents('tr').find('td');
+                $("#editForm input[name='reg']").attr('value',$(list[1]).html()); 
+                var str = $(list[2]).find('img').attr('src');
+                var m = str.lastIndexOf('/');
+                var n = str.lastIndexOf('.');
+                var iconSee = str.substring(m+1);
+                var iconName = str.substring(m+1,n);
+                if(iconName.substr(0,4) == 'back'){
+                    iconName = iconName.substr(5);
+                }
+                $("#updateId").attr('value',$(list[0]).html());
+                $("#editForm input[name='icon']").attr('value',iconName);
+                $("#iconSee").attr('src','__PUBLIC__/upload/icon/'+iconSee);
+            }
+            $('#picName').focus(function(){
+                $('#picWarning').html('');
+                $('#addSubmit').attr('disabled',false);
+            });
+            $('#picName').blur(function(){
+                var inputIcon = $('#picName').val();
+                if(inputIcon == ''){
+                    console.log('bbbbbbbb');
+                    $('#picWarning').html('');
+                    $('#picWarning').html('图片名不能为空 ，请重新输入！');
+                    $('#picWarning').css('color','red');
+                    $('#addSubmit').attr('disabled',true);
+                }
+                $.ajax({
+                    url:'__MODULE__/Sys/sysSelectIcon',
+                    type:'POST',
+                    dataType:'json',
+                    async:true,
+                    success:function(res){
+                        var picList = res;
+                        var panduan = 0;
+                        for(var i=0;i<res.length;i++){
+                            if(inputIcon == res[i]){
+                                panduan = 1;
+                            }
+                        }
+                        if(panduan == 1){
+                            $('#picWarning').html('');
+                            $('#picWarning').html('图片名重复 ，请重新输入！');
+                            $('#picWarning').css('color','red');
+                            $('#addSubmit').attr('disabled',true);
+                        }
+                    },
+                });
+            });
+        </script>
+    </body>
+
+</html>

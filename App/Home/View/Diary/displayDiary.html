@@ -1,0 +1,146 @@
+<extend name="Public/base" />
+<block name="main-body">
+	<iframe src="" frameborder="0" hidden name="operateDiary">
+		
+
+	</iframe>
+	<div style="margin:0 auto;width:720px;background:#FFF;margin-top:20px;min-height:630px">
+		<form method="POST" action="__URL__/insert/id/{$Think.get.id}" style="width:690px;min-height:550px;margin-left:16px" name="mydiaryform" target="operateDiary">
+			<input type="hidden" name="uid" value="{$Think.get.id}" />
+			<input type="hidden" name="diaryid" value="{$Think.get.diaryid}" />
+
+			<div style="height:10px">
+				
+			</div>
+			<div style="width:690px;height:50px;border-top:1px solid #DDD;border-bottom:1px solid #DDD;margin-top:16px;border-bottom:2px solid #1AAF5E;" >
+				
+				<input type="text" name="title" placeholder="输入日志标题" style="width:681px;height:40px;font-size:20px;line-height:20px;font-weight:bold;text-align:center;background:#FFF;border-width:0px" value="{$diaryinfo.title}" disabled >
+			</div>
+			<!-- 加载编辑器容器 -->
+			<div id="container" name="content" type="text/plain" style="width:690px;min-height:450px;border-bottom:1px solid #DDD;">
+				{:htmlspecialchars_decode($diaryinfo['content'])}
+				
+			</div>
+			<div class="blogDetail-stat">
+			    <div class="blogDetail-buttons" ugcid="963645698" style="height:55px">
+			        <div class="blogDetail-disabled" title="由于隐私设置，该内容无法被分享">&nbsp;
+			        </div>
+			        <!-- <div style="float: left;">
+			            <a href="#nogo" id="likeTrigger963645698" class="trigger-like ui-button" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;}">
+			                <span class="icon-like">&nbsp;</span>0</a>
+			        </div>
+					<div style="float: left;margin-left:10px">
+			            <a href="#nogo" class="trigger-like ui-button" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;963645698&quot;,&quot;owner&quot;:&quot;436513776&quot;}">
+			                <span class="icon-like" style="background:url(__PUBLIC__/home/images/share.png);">&nbsp;</span>0</a>
+			        </div> -->
+
+					<a type="button" style="float:right;border-color: #418BC4;color: #FFF;-webkit-appearance: button;cursor: pointer;height: 28px;line-height: 24px;display: inline-block;zoom: 1;padding: 0 20px;font-size: 14px;background: #3E94D7;border: 1px solid #a7acb5;border-radius: 3px;box-shadow: 0 1px 0 rgba(0,0,0,0.15);margin-bottom:3px;margin-left:15px" href="__MODULE__/Diary/editDiary/id/{$Think.get.id}/diaryid/{$Think.get.diaryid}">编辑日志</a>
+
+					<a type="button" style="float:right;border-color: #418BC4;color: #FFF;-webkit-appearance: button;cursor: pointer;height: 28px;line-height: 24px;display: inline-block;zoom: 1;padding: 0 20px;font-size: 14px;background: #3E94D7;border: 1px solid #a7acb5;border-radius: 3px;box-shadow: 0 1px 0 rgba(0,0,0,0.15);margin-bottom:3px" href="javascript:void(0)" id="delDiaryButton">删除日志</a>
+					
+
+			    </div>
+			    <div class="list-like"></div>
+			</div>
+
+			
+			
+			<!-- <div class="comment-wrapper" data-comment="{&quot;type&quot;:&quot;blog&quot;,&quot;entryId&quot;:&quot;963645698&quot;,&quot;entryOwnerId&quot;:&quot;436513776&quot;}" data-privacy="{&quot;control&quot;:99,&quot;createTime&quot;:&quot;1447739654042&quot;,&quot;privacyGroupId&quot;:&quot;-1&quot;,&quot;owner&quot;:436513776,&quot;ugcGID&quot;:&quot;3602879702860042498&quot;,&quot;public&quot;:true}" data-admin="false">
+			    <div class="comment-center-wrapper"> -->
+			        <!-- <ul class="comment-center-nav clearfix">
+			            <li> <a class="comment-center-tab select" href="#nogo">当前评论</a> </li>
+			            <li class="item-last"> <a class="comment-center-tab" href="#nogo">全站评论</a> </li>
+			        </ul> -->
+			        
+					
+
+					<!-- <div class="comment-center-comments"> -->
+					    <!-- <div class="comment-center-lists" tab="0"> -->
+					        <!-- <div class="comment-center-more" style="display: none;"> 
+					        	<a href="#nogo">查看较早之前的评论</a> 
+					        	<span class="comment-center-loading" style="display: none;">加载中                                        
+					        		<img src="http://a.xnimg.cn/imgpro/bg/indicator_blue_small.gif">                                    
+					        	</span> 
+					        </div> -->
+					       <!--  <ul class="comment-center-list">
+					            <li id="friendComment47888692575488000" class="comment-center-item comment-47888692575488000 clearfix">
+					                <a class="comment-center-avatar" namecard="436513776" target="_blank" title="张宇" href="http://www.renren.com/profile.do?id=436513776"> <img src="http://hdn.xnimg.cn/photos/hdn121/20151107/1125/tiny_Pe6g_5d53000130cd195a.jpg" width="30" height="30"> </a>
+					                <p class="comment-center-info clearfix"> <a href="http://www.renren.com/profile.do?id=436513776" namecard="436513776" target="_blank" title="张宇" class="comment-center-author                                                         ">张宇</a> <span class="time">2015-11-17 14:19</span> <span class="like-thumb  ">0</span> <a href="#nogo" class="float-right comment-center-delete" data-cid="47888692575488000" data-comment="{&quot;type&quot;:&quot;Blog&quot;,&quot;entryId&quot;:&quot;963645698&quot;, &quot;entryOwnerId&quot;:&quot;436513776&quot;}">删除</a> <span class="right-btns">                                                                    <a href="#nogo" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;, &quot;resource&quot;:&quot;963645698&quot;, &quot;owner&quot;:&quot;436513776&quot;, &quot;resourceownerid&quot;:&quot;436513776&quot;, &quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?isDeclare=false&amp;newfoward=true&quot;, &quot;liked&quot;:false }" class="trigger-like-comment                                     ">                                     赞</a>                                                                                            </span> </p>
+					                <p class="comment-center-content"> <span class="comment-center-body">的顶顶顶顶</span> </p>
+					            </li>
+					            <li id="friendComment47888692641117184" class="comment-center-item comment-47888692641117184 clearfix">
+					                <a class="comment-center-avatar" namecard="436513776" target="_blank" title="张宇" href="http://www.renren.com/profile.do?id=436513776"> <img src="http://hdn.xnimg.cn/photos/hdn121/20151107/1125/tiny_Pe6g_5d53000130cd195a.jpg" width="30" height="30"> </a>
+					                <p class="comment-center-info clearfix"> <a href="http://www.renren.com/profile.do?id=436513776" namecard="436513776" target="_blank" title="张宇" class="comment-center-author                                                         ">张宇</a> <span class="time">2015-11-17 14:19</span> <span class="like-thumb  ">0</span> <a href="#nogo" class="float-right comment-center-delete" data-cid="47888692641117184" data-comment="{&quot;type&quot;:&quot;Blog&quot;,&quot;entryId&quot;:&quot;963645698&quot;, &quot;entryOwnerId&quot;:&quot;436513776&quot;}">删除</a> <span class="right-btns">                                                                    <a href="#nogo" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692641117184&quot;, &quot;resource&quot;:&quot;963645698&quot;, &quot;owner&quot;:&quot;436513776&quot;, &quot;resourceownerid&quot;:&quot;436513776&quot;, &quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?isDeclare=false&amp;newfoward=true&quot;, &quot;liked&quot;:false }" class="trigger-like-comment                                     ">                                     赞</a>                                                                                            </span> </p>
+					                <p class="comment-center-content"> <span class="comment-center-body">的顶顶顶顶顶</span> </p>
+					            </li>
+					        </ul> -->
+					    <!-- </div> -->
+					    <!-- <div class="comment-center-lists" tab="1" style="display: none;">
+					        <div class="comment-center-more" style="display: none;"> 
+					        	<a href="#nogo">查看较早之前的评论</a> 
+					        	<span class="comment-center-loading" style="display: none;">加载中                                        
+					        		<img src="http://a.xnimg.cn/imgpro/bg/indicator_blue_small.gif">                                    
+					        	</span> 
+					        </div>
+					        <ul class="comment-center-list">
+					            <ul class="comment-center-list">
+					                <li id="friendComment47888692575488000" class="comment-center-item comment-47888692575488000 clearfix">
+					                    <a class="comment-center-avatar" namecard="436513776" target="_blank" title="张宇" href="http://www.renren.com/profile.do?id=436513776"> <img src="http://hdn.xnimg.cn/photos/hdn121/20151107/1125/tiny_Pe6g_5d53000130cd195a.jpg" width="30" height="30"> </a>
+					                    <p class="comment-center-info clearfix"> <a href="http://www.renren.com/profile.do?id=436513776" namecard="436513776" target="_blank" title="张宇" class="comment-center-author                                                         ">张宇</a> <span class="time">2015-11-17 14:19</span> <span class="like-thumb  ">0</span> <a href="#nogo" class="float-right comment-center-delete" data-cid="47888692575488000" data-comment="{&quot;type&quot;:&quot;Blog&quot;,&quot;entryId&quot;:&quot;963645698&quot;, &quot;entryOwnerId&quot;:&quot;436513776&quot;}">删除</a> <span class="right-btns">                                                                    <a href="#nogo" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692575488000&quot;, &quot;resource&quot;:&quot;963645698&quot;, &quot;owner&quot;:&quot;436513776&quot;, &quot;resourceownerid&quot;:&quot;436513776&quot;, &quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?isDeclare=false&amp;newfoward=true&quot;, &quot;liked&quot;:false }" class="trigger-like-comment                                     ">                                     赞</a>                                                                                            </span> </p>
+					                    <p class="comment-center-content"> <span class="comment-center-body">的顶顶顶顶</span> </p>
+					                </li>
+					            </ul>
+					            <li id="friendComment47888692641117184" class="comment-center-item comment-47888692641117184 clearfix">
+					                <a class="comment-center-avatar" namecard="436513776" target="_blank" title="张宇" href="http://www.renren.com/profile.do?id=436513776"> <img src="http://hdn.xnimg.cn/photos/hdn121/20151107/1125/tiny_Pe6g_5d53000130cd195a.jpg" width="30" height="30"> </a>
+					                <p class="comment-center-info clearfix"> <a href="http://www.renren.com/profile.do?id=436513776" namecard="436513776" target="_blank" title="张宇" class="comment-center-author                                                         ">张宇</a> <span class="time">2015-11-17 14:19</span> <span class="like-thumb  ">0</span> <a href="#nogo" class="float-right comment-center-delete" data-cid="47888692641117184" data-comment="{&quot;type&quot;:&quot;Blog&quot;,&quot;entryId&quot;:&quot;963645698&quot;, &quot;entryOwnerId&quot;:&quot;436513776&quot;}">删除</a> <span class="right-btns">                                                                    <a href="#nogo" data-like="{&quot;stype&quot;:&quot;blog&quot;,&quot;sourceId&quot;:&quot;47888692641117184&quot;, &quot;resource&quot;:&quot;963645698&quot;, &quot;owner&quot;:&quot;436513776&quot;, &quot;resourceownerid&quot;:&quot;436513776&quot;, &quot;url&quot;:&quot;http://blog.renren.com/blog/436513776/963645698?isDeclare=false&amp;newfoward=true&quot;, &quot;liked&quot;:false }" class="trigger-like-comment                                     ">                                     赞</a>                                                                                            </span> </p>
+					                <p class="comment-center-content"> <span class="comment-center-body">的顶顶顶顶顶</span> </p>
+					            </li>
+					        </ul>
+					    </div> -->
+					<!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+			        <!-- <div class="feed-reply-container">
+            <div class="feed-replies"></div>
+        </div> -->
+        <!-- <div class="own-reply clearfix">
+            <a class="avatar">
+                <img src="__PUBLIC__/home/images/{$head}">
+            </a>
+            <div class="own-reply-content" onclick="zhankaipinglun(this)">
+                <div class="input-container">
+                    <div contenteditable="true" class="reply-input" data-privacy="{&quot;control&quot;:99,&quot;createTime&quot;:&quot;1446313952256&quot;,&quot;privacyGroupId&quot;:&quot;0&quot;,&quot;owner&quot;:429182327,&quot;ugcGID&quot;:&quot;3530822113145594550&quot;,&quot;public&quot;:true}" style="width:590px"></div>
+                    <div class="tool-bar clearfix">
+                        <a class="emotion" title="表情" href="#nogo" style="display:inline-block;background-image: url(/renren/Public/home/images/ui-icons-default_1423641197087.png);background-position: -36px -110px;width:18px;height:18px;margin-left:10px" onclick="biaoqingShow(this)"></a>
+                        <p>
+                           <!-- <span class="rest-count">0</span> /
+                            <span>240</span>-->
+                        <!-- </p>
+                    </div>
+                </div>
+                <div class="reply-btns clearfix" style="display:none">
+                    <a href="#nogo" class="add-comment disabled" style="display:block" onclick="fabupinglun(this)">发布评论</a>
+                    <a href="#nogo" class="cancel-comment" style="display:block">取消</a>
+                </div>
+            </div>
+        </div> --> 
+			  <!--   </div>
+			</div> -->
+
+
+
+		</form>
+	</div>
+
+    <script type="text/javascript" src="__PUBLIC__/home/js/diary.js"></script>
+    
+	
+</block>
